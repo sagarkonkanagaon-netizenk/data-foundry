@@ -34,6 +34,10 @@ self.onmessage = (e: MessageEvent<ToWorker>) => {
     }, 250);
     return;
   }
+  if (msg.type === "live") {
+    metrics?.setLive(msg.stats);
+    return;
+  }
   if (msg.type === "chaos") {
     metrics?.setChaos(msg.signal);
     return;

@@ -2,7 +2,7 @@
 
 import { createMetricsSim } from "./metrics";
 import { useMachine } from "./store";
-import type { FromWorker, ToWorker } from "./types";
+import type { FromWorker, LiveStats, ToWorker } from "./types";
 import type { ChaosSignal } from "./chaos";
 
 // One simulation per page. Prefers a Web Worker; if workers are unavailable the
@@ -35,6 +35,13 @@ export function sendChaos(signal: ChaosSignal | null) {
   const w = getWorker();
   if (w) w.postMessage({ type: "chaos", signal } satisfies ToWorker);
   else mainThreadSim?.setChaos(signal);
+}
+
+/** Hand the telemetry sim real numbers from the live feed (null = back to simulated). */
+export function sendLive(stats: LiveStats | null) {
+  const w = getWorker();
+  if (w) w.postMessage({ type: "live", stats } satisfies ToWorker);
+  else mainThreadSim?.setLive(stats);
 }
 
 export function startMetrics(tasks: string[]) {

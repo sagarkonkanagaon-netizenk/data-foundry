@@ -27,7 +27,7 @@ which file drives which part of the site.
 5. Chaos injection + Sentinel healing ✅
 6. Scroll tour + sections (Modules, Instruments, Flight Log, Transmit) ✅
 7. Ask the Engine (RAG chat) ✅
-8. Live data feed
+8. Live data feed ✅
 9. Performance, mobile, accessibility
 
 ## The machine (`components/machine/`)
@@ -99,3 +99,21 @@ which file drives which part of the site.
   its models, which is fine here since the prompts are public site content plus the
   visitor's question.
 - Without either key the console says it is offline and shows the contact email.
+
+## Live data
+
+- `lib/machine/feed.ts` subscribes to Wikimedia's public `recentchange` event stream
+  (every edit on every Wikipedia, ~20-60 a second) with the browser's `EventSource`.
+  No key or server needed.
+- A data contract decides what passes: edits and new pages need a title, a revision id
+  and a byte length; log events fail it and count as quarantined. Category bookkeeping
+  events are filtered out at the source.
+- While live, the HUD shows real numbers: events/sec, ingest lag p95 (now minus the
+  event's own timestamp), seconds since the last event and the contract pass rate.
+  Cost is still simulated and labelled so. Chaos injection works on live data too.
+- Hovering a particle shows a real recent event (a failing one for a red particle).
+- The switch above INJECT CHAOS flips between live and simulated. If the stream can't
+  connect or goes quiet for 8s, the machine falls back to simulated sources and retries
+  (5s, 15s, 30s, 60s, then every 2 min). The stream closes in background tabs and when
+  the browser asks to save data.
+- `NEXT_PUBLIC_LIVE_FEED_URL` overrides the stream URL (used for local testing).

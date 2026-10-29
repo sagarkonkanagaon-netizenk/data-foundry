@@ -23,8 +23,12 @@ export type DagState = {
 
 export type LiveTransforms = { sparkSpin: number[]; latticeRot: number; goldRot: number; goldY: number };
 
+/** Real numbers from the live feed, sent once a second while it is flowing. */
+export type LiveStats = { rate: number; passRate: number; lagP95Ms: number; freshnessSec: number };
+
 export type ToWorker =
   | { type: "metrics"; tasks: string[] }
+  | { type: "live"; stats: LiveStats | null }
   | { type: "init-flow"; count: number; colors: string[] }
   | { type: "chaos"; signal: ChaosSignal | null }
   | {

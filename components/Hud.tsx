@@ -2,22 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useMachine } from "@/lib/machine/store";
-import { startMetrics } from "@/lib/machine/sim";
+import { sendLive, startMetrics } from "@/lib/machine/sim";
+import { startFeed, useFeed } from "@/lib/machine/feed";
 import type { Metrics } from "@/lib/machine/types";
 
 type Readout = {
   key: keyof Metrics;
   label: string;
+  /** Label while the machine runs on the live stream. */
+  liveLabel?: string;
   unit: string;
   format: (v: number) => string;
 };
 
 const READOUTS: Readout[] = [
-  { key: "rowsPerSec", label: "Rows / sec", unit: "", format: (v) => Math.round(v).toLocaleString("en-US") },
-  { key: "latencyMs", label: "Latency p95", unit: "ms", format: (v) => Math.round(v).toString() },
-  { key: "freshnessSec", label: "Gold freshness", unit: "s", format: (v) => v.toFixed(1) },
-  { key: "dqScore", label: "DQ score", unit: "%", format: (v) => v.toFixed(2) },
-  { key: "costPerHr", label: "Cost / hr", unit: "usd", format: (v) => `$${v.toFixed(2)}` },
+  { key: "rowsPerSec", label: "Rows / sec", liveLabel: "Events / sec", unit: "", format: (v) => Math.round(v).toLocaleString("en-US") },
+  { key: "latencyMs", label: "Latency p95", liveLabel: "Ingest lag p95", unit: "ms", format: (v) => Math.round(v).toString() },
+  { key: "freshnessSec", label: "Gold freshness", liveLabel: "Last event", unit: "s", format: (v) => v.toFixed(1) },
+  { key: "dqScore", label: "DQ score", liveLabel: "Contract pass", unit: "%", format: (v) => v.toFixed(2) },
+  { key: "costPerHr", label: "Cost / hr", liveLabel: "Cost / hr (sim)", unit: "usd", format: (v) => `$${v.toFixed(2)}` },
 ];
 
 /** Eases toward the latest value so digits roll rather than jump. */
@@ -53,20 +56,52 @@ function Spark({ data }: { data: number[] }) {
   );
 }
 
+/**
+ * Which source the machine is running on, and the switch between them. Live means
+ * real Wikipedia edits from Wikimedia's public event stream.
+ */
+export function FeedSwitch() {
+  const { mode, status, total, setMode } = useFeed();
+  const live = mode === "live";
+  const label =
+    !live ? "Simulated sources" : status === "live" ? "Live · Wikipedia edits" : status === "connecting" ? "Connecting to live stream…" : status === "down" ? "Live link down · simulating, retrying" : "Live paused";
+  return (
+    <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase">
+      <button
+        type="button"
+        role="switch"
+        aria-checked={live}
+        onClick={() => setMode(live ? "sim" : "live")}
+        className="group flex items-center gap-2 rounded-full border border-line py-1 pr-3 pl-1 transition-colors hover:border-cyan/40"
+      >
+        <span className={`relative flex h-4 w-7 items-center rounded-full transition-colors ${live ? "bg-cyan/20" : "bg-faint/40"}`}>
+          <span className={`absolute h-3 w-3 rounded-full transition-all duration-500 ${live ? "left-3.5 bg-cyan shadow-[0_0_8px_#7fd8ff]" : "left-0.5 bg-mute"}`} />
+        </span>
+        <span className={status === "live" && live ? "text-cyan" : status === "down" && live ? "text-amber" : "text-mute"}>{label}</span>
+      </button>
+      {live && status === "live" && <span className="text-faint tabular-nums">{total.toLocaleString("en-US")} ingested</span>}
+    </div>
+  );
+}
+
 /** Live telemetry strip. Pure DOM, so it works with or without WebGL. */
 export function Hud({ tasks }: { tasks: string[] }) {
   const metrics = useMachine((s) => s.metrics);
   const history = useMachine((s) => s.history);
-  useEffect(() => startMetrics(tasks), [tasks]);
+  const onLive = useFeed((s) => s.mode === "live" && s.status === "live");
+  useEffect(() => {
+    startMetrics(tasks);
+    startFeed(sendLive);
+  }, [tasks]);
 
   return (
     <div
       className="relative grid grid-cols-2 gap-x-6 gap-y-5 font-mono sm:grid-cols-3 lg:grid-cols-5 after:pointer-events-none after:absolute after:-inset-3 after:bg-[repeating-linear-gradient(0deg,rgb(127_216_255/0.035)_0px,rgb(127_216_255/0.035)_1px,transparent_1px,transparent_3px)]"
-      aria-label="Pipeline telemetry (simulated)"
+      aria-label={onLive ? "Pipeline telemetry (live Wikipedia edits)" : "Pipeline telemetry (simulated)"}
     >
       {READOUTS.map((r) => (
         <div key={r.key} className="border-t border-line pt-3">
-          <div className="text-[9px] tracking-[0.24em] text-mute uppercase">{r.label}</div>
+          <div className="text-[9px] tracking-[0.24em] text-mute uppercase">{onLive && r.liveLabel ? r.liveLabel : r.label}</div>
           <div className="mt-2 flex items-baseline gap-1.5 text-ink tabular-nums">
             <span className="text-lg md:text-xl">{metrics ? <Rolling value={metrics[r.key]} format={r.format} /> : "—"}</span>
             {r.unit && r.unit !== "usd" && <span className="text-[10px] text-mute">{r.unit}</span>}
