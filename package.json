@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "worker": "esbuild workers/sim.worker.ts --bundle --format=esm --minify --target=es2020 --outfile=public/sim.worker.js --log-level=warning",
+    "predev": "npm run worker",
     "dev": "next dev",
+    "prebuild": "npm run worker",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -27,6 +30,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/three": "^0.186.0",
+    "esbuild": "^0.28.2",
     "postcss": "^8.5.32",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2"

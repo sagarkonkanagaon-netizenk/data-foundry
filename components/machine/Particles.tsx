@@ -5,7 +5,9 @@ import * as THREE from "three";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import type { Source } from "@/lib/content";
-import { createFlow, makeRecords, type FlowRecord, type Leg } from "./flow/sim";
+import { createFlow, makeRecords, type FlowBuffers, type FlowRecord, type Leg } from "./flow/sim";
+import { live } from "./geometry";
+import { connectFlow } from "@/lib/machine/sim";
 import { payloadFor } from "./flow/payload";
 import { makeParticleMaterial } from "./shaders/particles";
 
@@ -28,18 +30,57 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
     return g;
   }, [count]);
 
+  // The flow is computed in the sim worker: we hand it a spare set of buffers each
+  // frame and swap in whatever set comes back. Without a worker, it runs here.
+  const pending = useRef(false);
+  const incoming = useRef<FlowBuffers | null>(null);
+  const spare = useRef<FlowBuffers | null>(null);
+  const send = useMemo(() => {
+    spare.current = {
+      position: new Float32Array(count * 3),
+      color: new Float32Array(count * 3),
+      alpha: new Float32Array(count),
+      jitter: new Float32Array(count),
+    };
+    return connectFlow(count, sources.map((s) => s.color), (m) => (incoming.current = m));
+  }, [count, sources]);
+
   const [hover, setHover] = useState<{ record: FlowRecord; leg: Leg } | null>(null);
   const anchor = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
     const t = clock.elapsedTime;
-    flow.step(records, t, {
-      position: geo.attributes.position.array as Float32Array,
-      color: geo.attributes.color.array as Float32Array,
-      alpha: geo.attributes.aAlpha.array as Float32Array,
-      jitter: geo.attributes.aJitter.array as Float32Array,
+    const attrs = geo.attributes as Record<string, THREE.BufferAttribute>;
+    const current = (): FlowBuffers => ({
+      position: attrs.position.array as Float32Array,
+      color: attrs.color.array as Float32Array,
+      alpha: attrs.aAlpha.array as Float32Array,
+      jitter: attrs.aJitter.array as Float32Array,
     });
-    for (const k of ["position", "color", "aAlpha", "aJitter"]) geo.attributes[k].needsUpdate = true;
+    const show = (b: FlowBuffers) => {
+      attrs.position.array = b.position;
+      attrs.color.array = b.color;
+      attrs.aAlpha.array = b.alpha;
+      attrs.aJitter.array = b.jitter;
+      for (const k of ["position", "color", "aAlpha", "aJitter"]) attrs[k].needsUpdate = true;
+    };
+    if (send) {
+      if (incoming.current) {
+        spare.current = current();
+        show(incoming.current);
+        incoming.current = null;
+        pending.current = false;
+      }
+      if (!pending.current && spare.current) {
+        const b = spare.current;
+        spare.current = null;
+        pending.current = true;
+        send({ type: "flow", t, live: { sparkSpin: [...live.sparkSpin], latticeRot: live.latticeRot, goldRot: live.goldRot, goldY: live.goldY }, ...b });
+      }
+    } else {
+      flow.step(records, t, current());
+      show(current());
+    }
     mat.uniforms.uTime.value = t;
     const fov = (camera as THREE.PerspectiveCamera).fov;
     mat.uniforms.uScale.value = (size.height * Math.min(window.devicePixelRatio, 2)) / (2 * Math.tan(THREE.MathUtils.degToRad(fov / 2)));

@@ -6,6 +6,8 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { MeshTransmissionMaterial, useFBO } from "@react-three/drei";
 import { makeCausticsMaterial } from "./shaders/caustics";
 import { makeFresnelMaterial } from "./shaders/fresnel";
+import { useMachine } from "@/lib/machine/store";
+import type { StageId } from "@/lib/machine/types";
 
 // Every glass object refracts the same snapshot of the scene. Rendering one shared
 // buffer per frame (instead of one per vessel) is what keeps four refracting vessels
@@ -63,6 +65,8 @@ export type GlassProps = {
   rimIntensity?: number;
   position?: [number, number, number];
   rotation?: [number, number, number];
+  /** Rim brightens while this stage's DAG task is running. */
+  stage?: StageId;
 };
 
 /** A refracting glass vessel with a fresnel rim shell and (optionally) inner caustics. */
@@ -79,6 +83,7 @@ export function GlassVessel({
   rimIntensity = 1.2,
   position,
   rotation,
+  stage,
 }: GlassProps) {
   const glassRef = useRef<THREE.Mesh>(null);
   const buffer = useGlass(glassRef);
@@ -102,8 +107,14 @@ export function GlassVessel({
   );
   const causticMat = useMemo(() => (caustics > 0 ? makeCausticsMaterial(tint, caustics) : null), [tint, caustics]);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, dt) => {
     rimMat.uniforms.uTime.value = clock.elapsedTime;
+    if (stage) {
+      const on = useMachine.getState().activeStages.has(stage);
+      const target = rimIntensity * (on ? 2.1 : 1);
+      rimMat.uniforms.uIntensity.value += (target - rimMat.uniforms.uIntensity.value) * Math.min(1, dt * 2.5);
+      rimMat.uniforms.uScan.value = on ? 0.9 : 0.35;
+    }
     if (causticMat) causticMat.uniforms.uTime.value = clock.elapsedTime;
   });
 
