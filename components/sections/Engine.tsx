@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/ui";
 export function Engine({ data }: { data: T & { file: string } }) {
   return (
     <section id="engine" className="mx-auto max-w-6xl px-6 py-32 md:px-12">
-      <SectionHeader index="05" title={data.heading} intro={data.intro} draftFile={data.draft ? data.file : undefined} />
+      <SectionHeader index="06" title={data.heading} intro={data.intro} draftFile={data.draft ? data.file : undefined} />
       <div className="rounded-md border border-line bg-void-2/60 font-mono text-[13px] md:ml-[204px]">
         <div className="flex items-center justify-between border-b border-line px-5 py-3 text-[10px] tracking-[0.2em] text-mute uppercase">
           <span>engine://sagar</span>

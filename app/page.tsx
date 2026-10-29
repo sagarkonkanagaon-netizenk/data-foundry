@@ -15,8 +15,8 @@ export default function Home() {
   const chaos = getChaos();
   return (
     <main>
-      <Hero site={site} stages={stages} chaos={chaos} />
-      <Manual site={site} stages={stages} chaos={chaos} modules={modules} />
+      <Hero site={site} stages={stages} chaos={chaos} modules={modules} />
+      <Manual chaos={chaos} />
       <Hairline />
       <Modules modules={modules} />
       <Hairline />

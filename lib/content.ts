@@ -75,7 +75,9 @@ export type Chaos = {
 export type Module = {
   slug: string;
   order: number;
-  kind: "product" | "case-study";
+  kind: "lab" | "case-study";
+  /** Which animated 3D scene plays in the module capsule. */
+  scene?: "telemetry" | "lakehouse" | "migration" | "dedup" | "scd2" | "salting" | "backfill";
   codename: string;
   title: string;
   status: string;

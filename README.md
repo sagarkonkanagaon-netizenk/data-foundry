@@ -25,7 +25,7 @@ which file drives which part of the site.
 3. Particle flow ✅
 4. HUD + state + simulated metrics ✅
 5. Chaos injection + Sentinel healing ✅
-6. Sections polish (Modules, Instruments, Flight Log, Transmit)
+6. Scroll tour + sections (Modules, Instruments, Flight Log, Transmit) ✅
 7. Ask the Engine (RAG chat)
 8. Live data feed
 9. Performance, mobile, accessibility
@@ -63,3 +63,18 @@ which file drives which part of the site.
 - Failures live in `flow/sim.ts` (`applyChaos`), `metrics.ts` (numbers), `Glass.tsx`
   (rims burn amber/red), `SparkCore.tsx` (hot executor) and `Plumbing.tsx` (dead ports)
 - The log lines and narration come from `content/chaos/*.md`, so the story is editable
+
+## Scroll tour and sections
+
+- `lib/machine/tour.ts` – camera shots for each stage; `components/Tour.tsx` turns page
+  scroll into tour progress and renders a glass caption per stage. Clicking a chamber
+  (`components/machine/Hitboxes.tsx`) scrolls to its caption.
+- Modules dock along a spine. Each capsule has a live 3D scene
+  (`components/modules/scenes.tsx`) chosen by `scene:` in its markdown. All scenes draw
+  into one shared, fixed canvas through drei `<View>`, so seven scenes cost one WebGL
+  context, and the canvas only mounts while the section is near the viewport.
+- `components/Reveal.tsx` – scroll reveals (gauge needles, flight log entries).
+- Transmit posts to `app/api/transmit/route.ts`, which emails through Resend.
+  Set `RESEND_API_KEY` in Vercel (and optionally `TRANSMIT_FROM` with a verified
+  sender). Without a key the form opens the visitor's mail app instead. It has a
+  honeypot field and a per-IP limit of 5 messages an hour.
