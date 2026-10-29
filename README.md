@@ -2,6 +2,8 @@
 
 Sagar's portfolio: a live, self-healing medallion data machine.
 
+**Live site:** https://data-foundry-sand.vercel.app
+
 ```bash
 npm install
 npm run dev        # http://localhost:3000
