@@ -4,30 +4,16 @@ import { useMemo } from "react";
 import * as THREE from "three";
 import { GlassVessel } from "./Glass";
 import { LAYOUT, PALETTE } from "./layout";
+import { intakeCurve } from "./geometry";
 import type { Source } from "@/lib/content";
-
-const PORT_OFFSETS: [number, number, number][] = [
-  [-0.4, 1.7, -1.3],
-  [0, 0.6, 0.9],
-  [0, -0.55, -1.0],
-  [-0.4, -1.65, 0.85],
-];
 
 /** Intake nozzles at the left edge, one per source, piped into Bronze. */
 export function IntakePorts({ sources }: { sources: Source[] }) {
   const ports = useMemo(
     () =>
       sources.slice(0, 4).map((s, i) => {
-        const [dx, y, z] = PORT_OFFSETS[i];
-        const start = new THREE.Vector3(LAYOUT.intake.x + dx, y, z);
-        const end = new THREE.Vector3(LAYOUT.bronze.x - LAYOUT.bronze.radius + 0.05, y * 0.45, z * 0.3);
-        const curve = new THREE.CubicBezierCurve3(
-          start,
-          start.clone().add(new THREE.Vector3(1.3, 0, 0)),
-          end.clone().add(new THREE.Vector3(-1.1, 0, 0)),
-          end,
-        );
-        return { s, start, curve };
+        const curve = intakeCurve(i);
+        return { s, start: curve.v0, curve };
       }),
     [sources],
   );

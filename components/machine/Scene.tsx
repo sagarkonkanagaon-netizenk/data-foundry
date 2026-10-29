@@ -13,6 +13,8 @@ import { SparkCore } from "./SparkCore";
 import { Conduits, IntakePorts, Spine } from "./Plumbing";
 import { Orchestrator } from "./Orchestrator";
 import { Sentinel } from "./Sentinel";
+import { Particles } from "./Particles";
+import { ShuffleArcs } from "./ShuffleArcs";
 import { Backdrop, Dust } from "./Atmosphere";
 import { PALETTE } from "./layout";
 
@@ -59,12 +61,14 @@ function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
         <BronzeChamber />
         <Conduits />
         <SparkCore />
+        <ShuffleArcs />
         <SilverChamber />
         <QuarantinePod />
         <GoldChamber />
         <Spine />
         <Orchestrator tasks={orchestrator?.tasks ?? []} />
         <Sentinel />
+        <Particles sources={intake?.sources ?? []} count={quality === "high" ? 2400 : 900} />
       </group>
     </GlassBuffer>
   );
@@ -76,6 +80,7 @@ export default function Scene({ stages, quality = "high", onReady }: { stages: S
       dpr={quality === "high" ? [1, 1.75] : [1, 1.25]}
       camera={{ fov: 30, position: [-6.5, 3, 22], near: 0.1, far: 120 }}
       gl={{ antialias: quality === "low", powerPreference: "high-performance", alpha: false }}
+      raycaster={{ params: { Points: { threshold: 0.07 } } as THREE.RaycasterParameters }}
       onCreated={({ gl, scene }) => {
         gl.setClearColor(PALETTE.void);
         scene.fog = new THREE.Fog(PALETTE.void, 24, 50);

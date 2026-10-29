@@ -7,6 +7,7 @@ import { Edges } from "@react-three/drei";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { Collar, GlassVessel } from "./Glass";
 import { LAYOUT, PALETTE } from "./layout";
+import { COLUMNS, latticePoints, live, quarantineCurve } from "./geometry";
 
 export function BronzeChamber() {
   const { x, radius, height } = LAYOUT.bronze;
@@ -23,19 +24,12 @@ export function BronzeChamber() {
 export function SilverChamber() {
   const { x, radius, height } = LAYOUT.silver;
   // Faint guide lattice. In step 3 the particles settle onto these points.
-  const lattice = useMemo(() => {
-    const pts: number[] = [];
-    for (let i = -2; i <= 2; i++) for (let j = -3; j <= 3; j++) for (let k = -2; k <= 2; k++) {
-      if (i * i + k * k > 6) continue;
-      pts.push(i * 0.32, j * 0.38, k * 0.32);
-    }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
-    return g;
-  }, []);
+  const lattice = useMemo(() => new THREE.BufferGeometry().setFromPoints(latticePoints()), []);
   const ref = useRef<THREE.Points>(null);
   useFrame((_, dt) => {
-    if (ref.current) ref.current.rotation.y += dt * 0.05;
+    if (!ref.current) return;
+    ref.current.rotation.y += dt * 0.05;
+    live.latticeRot = ref.current.rotation.y;
   });
   return (
     <group position={[x, 0, 0]}>
@@ -52,15 +46,7 @@ export function SilverChamber() {
 export function QuarantinePod() {
   const { x, y, z, radius } = LAYOUT.quarantine;
   const core = useRef<THREE.Mesh>(null);
-  const curve = useMemo(
-    () =>
-      new THREE.CatmullRomCurve3([
-        new THREE.Vector3(LAYOUT.silver.x + 0.5, -LAYOUT.silver.height / 2 - 0.1, 0.3),
-        new THREE.Vector3(LAYOUT.silver.x + 0.9, -2.4, 0.7),
-        new THREE.Vector3(x - radius * 0.9, y + 0.1, z),
-      ]),
-    [x, y, z, radius],
-  );
+  const curve = useMemo(quarantineCurve, []);
   useFrame(({ clock }) => {
     if (!core.current) return;
     const s = 1 + Math.sin(clock.elapsedTime * 1.6) * 0.18;
@@ -77,14 +63,6 @@ export function QuarantinePod() {
     </group>
   );
 }
-
-// Gold is a cluster of hexagonal columns: ordered, faceted, each one a business-ready
-// table. Heights are fixed so the silhouette is the same on every load.
-const COLUMNS = [
-  { a: 0, d: 0, h: 1.15, r: 0.24 },
-  ...[0.85, 0.65, 0.92, 0.72, 0.8, 0.68].map((h, i) => ({ a: (i / 6) * Math.PI * 2 + 0.3, d: 0.42, h, r: 0.16 })),
-  ...[0.48, 0.4, 0.5, 0.42].map((h, i) => ({ a: (i / 4) * Math.PI * 2 + 1.1, d: 0.72, h, r: 0.11 })),
-];
 
 function columnGeometry() {
   const body = new THREE.CylinderGeometry(1, 1, 1, 6, 1);
@@ -104,6 +82,8 @@ export function GoldChamber() {
     if (!cluster.current) return;
     cluster.current.rotation.y += dt * 0.12;
     cluster.current.position.y = Math.sin(clock.elapsedTime * 0.4) * 0.04;
+    live.goldRot = cluster.current.rotation.y;
+    live.goldY = cluster.current.position.y;
   });
   return (
     <group position={[x, 0, 0]}>
