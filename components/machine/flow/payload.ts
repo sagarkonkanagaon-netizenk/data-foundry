@@ -1,4 +1,5 @@
 import type { FlowRecord, Leg } from "./sim";
+import type { LiveEvent } from "../../../lib/machine/feed";
 
 // Fake but realistic records, one shape per source. Deterministic per record id.
 
@@ -69,5 +70,22 @@ export function payloadFor(r: FlowRecord, leg: Leg, sources: { id: string; label
   const meta: Record<string, unknown> = { _source: src, _layer: LAYER[leg], _ingested_at: ts };
   if (leg === "spark" || leg === "toSilver") meta._partition = r.nodeA;
   if (r.bad && (leg === "silver" || leg === "toGold" || leg === "gold")) meta._quarantine = "dq.not_null violated";
+  return JSON.stringify({ ...body, ...meta }, null, 2);
+}
+
+/** A real event from the live stream, shaped like the record it rides on. */
+export function livePayloadFor(ev: LiveEvent, r: FlowRecord, leg: Leg) {
+  const body: Record<string, unknown> = {
+    wiki: ev.wiki,
+    type: ev.type,
+    title: ev.title,
+    revision: ev.revision,
+    bytes_delta: ev.bytes,
+    bot: ev.bot,
+    event_ts: ev.ts,
+  };
+  const meta: Record<string, unknown> = { _source: "wikimedia.recentchange", _layer: LAYER[leg], _ingest_lag_ms: Math.round(ev.lagMs) };
+  if (leg === "spark" || leg === "toSilver") meta._partition = r.nodeA;
+  if (!ev.pass && (leg === "silver" || leg === "toGold" || leg === "gold")) meta._quarantine = ev.reason;
   return JSON.stringify({ ...body, ...meta }, null, 2);
 }

@@ -2,7 +2,7 @@ import type { Module, Site, Stage } from "@/lib/content";
 import { Schematic } from "@/components/Schematic";
 import { MachineLoader } from "@/components/machine/MachineLoader";
 import { DraftTag } from "@/components/ui";
-import { Hud, RunLine } from "@/components/Hud";
+import { FeedSwitch, Hud, RunLine } from "@/components/Hud";
 import { ChaosDirector, ChaosPanel, IncidentCard, type ChaosItem } from "@/components/Chaos";
 import { ScrollTracker, TourBlocks } from "@/components/Tour";
 
@@ -66,6 +66,7 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
               )}
             </div>
             <div className="w-full space-y-8 lg:w-[min(56vw,720px)]">
+              <FeedSwitch />
               <ChaosPanel items={chaos} />
               <Hud tasks={stages.find((s) => s.id === "orchestrator")?.tasks ?? []} />
             </div>

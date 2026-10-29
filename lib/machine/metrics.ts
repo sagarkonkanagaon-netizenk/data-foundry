@@ -1,4 +1,4 @@
-import type { DagState, Metrics, TaskState } from "./types";
+import type { DagState, LiveStats, Metrics, TaskState } from "./types";
 import type { ChaosSignal } from "./chaos";
 
 // Simulated telemetry. Each signal is a mean-reverting random walk around a baseline
@@ -30,6 +30,7 @@ export function createMetricsSim(tasks: string[], seed = 231) {
   let runT = 0;
 
   let chaos: ChaosSignal | null = null;
+  let live: LiveStats | null = null;
   let lateBacklog = 0;
 
   const total = tasks.reduce((acc, t) => acc + (DURATIONS[t] ?? 2), 0) + IDLE_BETWEEN_RUNS;
@@ -45,12 +46,22 @@ export function createMetricsSim(tasks: string[], seed = 231) {
     if ((id === "late-data" || id === "source-outage") && f > 0.3) lateBacklog += dt * 18;
     else lateBacklog *= Math.exp(-dt * 1.2);
 
-    const base = (52000 + 9000 * Math.sin(t * 0.05) + 4000 * Math.sin(t * 0.013)) * (1 - rowsHit * f);
-    rows += (base - rows) * 0.08 * dt * 4 + gauss() * 1400 * Math.sqrt(dt);
-    rows = Math.max(8000, rows);
-    const throughput = Math.min(1, rows / 70000);
-    latency += (180 + 160 * throughput + latencyHit * f - latency) * 0.25 * dt * 4 + gauss() * 9 * Math.sqrt(dt);
-    dq += (99.62 - dqHit * f - dq) * 0.2 * dt * 4 + gauss() * 0.03 * Math.sqrt(dt);
+    let throughput: number;
+    if (live) {
+      // real source: rate, ingest lag and contract pass rate come from the stream;
+      // injected chaos still bends them so the incident drills work on live data too
+      rows += (live.rate * (1 - rowsHit * f) - rows) * Math.min(1, dt * 3);
+      throughput = Math.min(1, rows / 60);
+      latency += (live.lagP95Ms + latencyHit * f - latency) * Math.min(1, dt * 2);
+      dq += (live.passRate * 100 - dqHit * f - dq) * Math.min(1, dt * 2);
+    } else {
+      const base = (52000 + 9000 * Math.sin(t * 0.05) + 4000 * Math.sin(t * 0.013)) * (1 - rowsHit * f);
+      rows += (base - rows) * 0.08 * dt * 4 + gauss() * 1400 * Math.sqrt(dt);
+      rows = Math.max(8000, rows);
+      throughput = Math.min(1, rows / 70000);
+      latency += (180 + 160 * throughput + latencyHit * f - latency) * 0.25 * dt * 4 + gauss() * 9 * Math.sqrt(dt);
+      dq += (99.62 - dqHit * f - dq) * 0.2 * dt * 4 + gauss() * 0.03 * Math.sqrt(dt);
+    }
     dq = Math.min(99.99, dq);
     rowsToday += rows * dt;
     quarantined += rows * dt * (100 - dq) * 0.0001 * 0.6 * (1 + (id === "null-storm" ? 30 * f : 0));
@@ -70,7 +81,7 @@ export function createMetricsSim(tasks: string[], seed = 231) {
     });
     // Gold is refreshed when "publish" completes
     const publishEnd = acc;
-    freshness = runT >= publishEnd ? runT - publishEnd + 1.2 : freshness + dt;
+    freshness = live ? live.freshnessSec : runT >= publishEnd ? runT - publishEnd + 1.2 : freshness + dt;
 
     const metrics: Metrics = {
       rowsPerSec: rows,
@@ -85,5 +96,17 @@ export function createMetricsSim(tasks: string[], seed = 231) {
     return { metrics, dag: { runId, tasks: states } };
   }
 
-  return { step, setChaos: (c: ChaosSignal | null) => (chaos = c) };
+  return {
+    step,
+    setChaos: (c: ChaosSignal | null) => (chaos = c),
+    setLive: (s: LiveStats | null) => {
+      // switching sources: jump to the new scale instead of easing across it
+      if (!!s !== !!live) rows = s ? s.rate : 52000;
+      if (s && !live) {
+        latency = s.lagP95Ms;
+        dq = s.passRate * 100;
+      }
+      live = s;
+    },
+  };
 }

@@ -9,7 +9,8 @@ import { createFlow, makeRecords, type FlowBuffers, type FlowRecord, type Leg } 
 import { live } from "./geometry";
 import { connectFlow } from "@/lib/machine/sim";
 import { chaosSignal } from "@/lib/machine/store";
-import { payloadFor } from "./flow/payload";
+import { livePayloadFor, payloadFor } from "./flow/payload";
+import { sampleEvent, type LiveEvent } from "@/lib/machine/feed";
 import { makeParticleMaterial } from "./shaders/particles";
 
 /** Every record in flight, drawn as one Points draw call. Hover one to read it. */
@@ -46,7 +47,7 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
     return connectFlow(count, sources.map((s) => s.color), (m) => (incoming.current = m));
   }, [count, sources]);
 
-  const [hover, setHover] = useState<{ record: FlowRecord; leg: Leg } | null>(null);
+  const [hover, setHover] = useState<{ record: FlowRecord; leg: Leg; event: LiveEvent | null } | null>(null);
   const anchor = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
@@ -91,7 +92,7 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
       anchor.current.position.set(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]);
       // keep the payload's _layer honest as the record moves on
       const leg = flow.legAt(hover.record, t);
-      if (leg !== hover.leg) setHover({ record: hover.record, leg });
+      if (leg !== hover.leg) setHover({ ...hover, leg });
     }
   });
 
@@ -103,7 +104,8 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
     e.stopPropagation();
     if (hover?.record.id === i) return;
     const record = records[i];
-    setHover({ record, leg: flow.legAt(record, clock.elapsedTime) });
+    // on the live feed, the card shows a real recent event (a failing one for a red particle)
+    setHover({ record, leg: flow.legAt(record, clock.elapsedTime), event: sampleEvent(i, !record.bad) });
     mat.uniforms.uHover.value = i;
     document.body.style.cursor = "crosshair";
   };
@@ -121,10 +123,14 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
           <Html style={{ pointerEvents: "none" }} zIndexRange={[20, 0]}>
             <div className="ml-4 -translate-y-1/2 rounded-md border border-cyan/25 bg-void/80 px-4 py-3 shadow-[0_0_40px_rgba(127,216,255,0.08)] backdrop-blur-md">
               <div className="mb-2 flex items-center justify-between gap-6 font-mono text-[9px] tracking-[0.22em] text-mute uppercase">
-                <span style={{ color: sources[hover.record.source]?.color }}>{sources[hover.record.source]?.label}</span>
+                {hover.event ? (
+                  <span className="text-cyan">live · {hover.event.wiki}</span>
+                ) : (
+                  <span style={{ color: sources[hover.record.source]?.color }}>{sources[hover.record.source]?.label}</span>
+                )}
                 <span className={hover.record.bad ? "text-error" : "text-cyan/70"}>{hover.record.bad ? "malformed" : "record"}</span>
               </div>
-              <pre className="font-mono text-[11px] leading-[1.55] whitespace-pre text-ink/85">{payloadFor(hover.record, hover.leg, sources)}</pre>
+              <pre className="font-mono text-[11px] leading-[1.55] whitespace-pre text-ink/85">{hover.event ? livePayloadFor(hover.event, hover.record, hover.leg) : payloadFor(hover.record, hover.leg, sources)}</pre>
             </div>
           </Html>
         )}
