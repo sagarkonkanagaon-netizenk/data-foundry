@@ -92,4 +92,10 @@ which file drives which part of the site.
 - Limits: 12 questions per IP per 10 minutes and 400 per server instance per day,
   questions up to 600 characters. These are in memory and reset on cold start, so
   also set a monthly spend limit in the Anthropic Console.
-- Without a key the console says it is offline and shows the contact email.
+- Free option: set `GEMINI_API_KEY` instead (free key from
+  https://aistudio.google.com/apikey). It is used only when `ANTHROPIC_API_KEY` is not
+  set; `GEMINI_MODEL` overrides the default `gemini-2.5-flash`. The free tier has its
+  own per-minute and per-day quotas, and Google may use free-tier prompts to improve
+  its models, which is fine here since the prompts are public site content plus the
+  visitor's question.
+- Without either key the console says it is offline and shows the contact email.

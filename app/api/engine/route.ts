@@ -2,9 +2,10 @@ import Anthropic from "@anthropic-ai/sdk";
 import { getEngine, getTransmit } from "@/lib/content";
 import { retrieve } from "@/lib/engine/retrieve";
 
-// Ask the Engine: retrieval over /content, answered by Claude, streamed back as plain
-// text. The API key is read from ANTHROPIC_API_KEY on the server and never reaches the
-// browser. ENGINE_MODEL overrides the model.
+// Ask the Engine: retrieval over /content, answered by an LLM, streamed back as plain
+// text. Keys live in server env vars and never reach the browser:
+//   ANTHROPIC_API_KEY  Claude (ENGINE_MODEL overrides the model), used when set
+//   GEMINI_API_KEY     Google Gemini free tier, used when only this key is set
 
 const MODEL = process.env.ENGINE_MODEL || "claude-opus-5-5";
 const MAX_QUESTION = 600;
@@ -77,12 +78,12 @@ export async function POST(req: Request) {
   const turns = parseTurns(body);
   if (!turns) return Response.json({ error: "invalid" }, { status: 422 });
 
-  if (!process.env.ANTHROPIC_API_KEY) return Response.json({ error: "not_configured" }, { status: 503 });
+  const provider = process.env.ANTHROPIC_API_KEY ? "anthropic" : process.env.GEMINI_API_KEY ? "gemini" : null;
+  if (!provider) return Response.json({ error: "not_configured" }, { status: 503 });
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (!allow(ip)) return Response.json({ error: "rate_limited" }, { status: 429 });
 
-  const client = new Anthropic();
   // retrieve on the latest question plus the one before, so follow-ups ("and at eBay?") keep their subject
   const userTurns = turns.filter((t) => t.role === "user");
   const passages = retrieve(userTurns.slice(-2).map((t) => t.content).join(" "));
@@ -90,33 +91,23 @@ export async function POST(req: Request) {
   const sources = [...new Set(passages.map((p) => p.source).filter((s) => !/content\/(site|engine)\.md/.test(s)))]
     .slice(0, 4)
     .map((s) => s.replace(/^content\/.*?\((.*)\)$/, "$1"));
-  const stream = client.beta.messages.stream({
-    model: MODEL,
-    max_tokens: 2000, // short chat answers; a hard cap keeps a public endpoint's cost bounded
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
-    output_config: { effort: "low" },
-    system: systemPrompt(passages),
-    messages: turns,
-  });
+  const system = systemPrompt(passages);
+  const abort = new AbortController();
 
   const encoder = new TextEncoder();
   const body$ = new ReadableStream<Uint8Array>({
     async start(controller) {
-      stream.on("text", (t) => controller.enqueue(encoder.encode(t)));
+      const send = (t: string) => controller.enqueue(encoder.encode(t));
       try {
-        const final = await stream.finalMessage();
-        if (final.stop_reason === "refusal") {
-          controller.enqueue(encoder.encode("\n\nI can only talk about Sagar's work here."));
-        }
+        await (provider === "anthropic" ? streamAnthropic : streamGemini)(system, turns, send, abort.signal);
       } catch (err) {
-        console.error("engine: stream failed", err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
-        controller.enqueue(encoder.encode("\n\n[signal lost: the engine could not finish that answer. Try again in a moment.]"));
+        console.error(`engine: ${provider} stream failed`, err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
+        send("\n\n[signal lost: the engine could not finish that answer. Try again in a moment.]");
       }
       controller.close();
     },
     cancel() {
-      stream.abort();
+      abort.abort();
     },
   });
 
@@ -128,4 +119,61 @@ export async function POST(req: Request) {
       "X-Engine-Sources": encodeURIComponent(JSON.stringify(sources)),
     },
   });
+}
+
+type Send = (text: string) => void;
+
+// Claude, used whenever ANTHROPIC_API_KEY is set.
+async function streamAnthropic(system: string, turns: Turn[], send: Send, signal: AbortSignal) {
+  const stream = new Anthropic().beta.messages.stream(
+    {
+      model: MODEL,
+      max_tokens: 2000, // short chat answers; a hard cap keeps a public endpoint's cost bounded
+      betas: ["server-side-fallback-2026-07-01"],
+      fallbacks: "default",
+      output_config: { effort: "low" },
+      system,
+      messages: turns,
+    },
+    { signal },
+  );
+  stream.on("text", send);
+  const final = await stream.finalMessage();
+  if (final.stop_reason === "refusal") send("\n\nI can only talk about Sagar's work here.");
+}
+
+// Google Gemini's free tier (key from aistudio.google.com), used when only
+// GEMINI_API_KEY is set. GEMINI_MODEL overrides the model.
+async function streamGemini(system: string, turns: Turn[], send: Send, signal: AbortSignal) {
+  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  const base = process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com";
+  const res = await fetch(`${base}/v1beta/models/${model}:streamGenerateContent?alt=sse`, {
+    method: "POST",
+    signal,
+    headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY! },
+    body: JSON.stringify({
+      systemInstruction: { parts: [{ text: system }] },
+      contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
+      // room for the model's own thinking tokens plus a short answer
+      generationConfig: { maxOutputTokens: 2048 },
+    }),
+  });
+  if (!res.ok || !res.body) throw new Error(`gemini ${res.status}: ${await res.text().catch(() => "")}`);
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    // server-sent events: one JSON payload per "data:" line
+    let nl;
+    while ((nl = buf.indexOf("\n")) >= 0) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line.startsWith("data:")) continue;
+      const chunk = JSON.parse(line.slice(5));
+      for (const part of chunk.candidates?.[0]?.content?.parts ?? []) if (typeof part.text === "string") send(part.text);
+    }
+  }
 }
