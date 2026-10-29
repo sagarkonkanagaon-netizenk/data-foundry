@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import type { SceneName } from "./scenes";
+import { useRender } from "@/lib/gpu";
 
 // three.js and the scenes load as their own chunk, only when WebGL is usable.
 const ModulesCanvas = dynamic(() => import("./ModulesCanvas"), { ssr: false });
@@ -28,23 +29,15 @@ const LEGEND: Record<SceneName, [string, string][]> = {
   migration: [["#f0b45a", "UC4 job"], ["#7fd8ff", "on DLS"]],
 };
 
-function webglOk() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-    return false;
-  try {
-    return !!document.createElement("canvas").getContext("webgl2");
-  } catch {
-    return false;
-  }
-}
 
 /** Wraps the modules list. Mounts the shared canvas only while the section is near the viewport. */
 export function ModuleScenes({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [ok, setOk] = useState(false);
+  const { ready, gpu, init } = useRender();
+  const ok = ready && gpu;
   const [near, setNear] = useState(false);
   useEffect(() => {
-    setOk(webglOk());
+    init();
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => setNear(e.isIntersecting), {
@@ -52,7 +45,7 @@ export function ModuleScenes({ children }: { children: ReactNode }) {
     });
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [init]);
   return (
     <Enabled.Provider value={ok}>
       <div ref={ref}>{children}</div>

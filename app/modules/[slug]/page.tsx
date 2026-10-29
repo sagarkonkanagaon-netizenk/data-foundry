@@ -13,14 +13,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const m = getModule((await params).slug);
-  return m ? { title: m.title, description: m.problem } : {};
+  if (!m) return {};
+  const url = `/modules/${m.slug}`;
+  return {
+    title: m.title,
+    description: m.problem,
+    alternates: { canonical: url },
+    openGraph: { title: m.title, description: m.problem, type: "article", url },
+  };
 }
 
 export default async function ModulePage({ params }: { params: Promise<{ slug: string }> }) {
   const m = getModule((await params).slug);
   if (!m) notFound();
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+    <main id="content" className="mx-auto max-w-3xl px-6 py-16 md:py-24">
       <a href="/#modules" className="font-mono text-[11px] tracking-[0.22em] text-mute uppercase hover:text-ink">
         ← Back to the foundry
       </a>

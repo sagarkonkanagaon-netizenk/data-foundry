@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef, useState } from "react";
 import { SHOTS, TOUR_STAGES, tour, type Shot } from "@/lib/machine/tour";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -82,6 +82,38 @@ function Ready({ onReady }: { onReady: () => void }) {
   return null;
 }
 
+/**
+ * Keeps the frame rate up on whatever GPU this is. Every two seconds it looks at the
+ * average fps: below 45 it sheds the post effects, then resolution; if the scene still
+ * crawls (under 14 fps twice running) it gives up and the page switches to the 2.5D
+ * machine. Plenty of headroom earns resolution back.
+ */
+function Governor({ onDrop, onRaise, onSlow }: { onDrop: () => void; onRaise: () => void; onSlow: () => void }) {
+  const acc = useRef({ time: 0, frames: 0, warm: 0, crawl: 0, smooth: 0 });
+  useFrame((_, dt) => {
+    const a = acc.current;
+    // a frame that spans a hidden tab or a long stall says nothing about the GPU
+    if (document.hidden || dt > 4) return;
+    a.warm += dt;
+    if (a.warm < 3) return; // shader compiles and the first glass pass
+    a.time += dt;
+    a.frames++;
+    if (a.time < 2) return;
+    const fps = a.frames / a.time;
+    a.time = 0;
+    a.frames = 0;
+    a.crawl = fps < 14 ? a.crawl + 1 : 0;
+    a.smooth = fps > 58 ? a.smooth + 1 : 0;
+    if (a.crawl >= 2) onSlow();
+    else if (fps < 45) onDrop();
+    else if (a.smooth >= 3) {
+      a.smooth = 0;
+      onRaise();
+    }
+  });
+  return null;
+}
+
 function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
   const intake = stages.find((s) => s.id === "intake");
   const orchestrator = stages.find((s) => s.id === "orchestrator");
@@ -106,11 +138,26 @@ function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
   );
 }
 
-export default function Scene({ stages, quality = "high", paused = false, onReady }: { stages: Stage[]; quality?: Quality; paused?: boolean; onReady: () => void }) {
+export default function Scene({
+  stages,
+  quality = "high",
+  paused = false,
+  onReady,
+  onSlow,
+}: {
+  stages: Stage[];
+  quality?: Quality;
+  paused?: boolean;
+  onReady: () => void;
+  onSlow: () => void;
+}) {
+  const maxDpr = Math.min(window.devicePixelRatio || 1, quality === "high" ? 1.75 : 1.25);
+  const [dpr, setDpr] = useState(maxDpr);
+  const [fx, setFx] = useState(quality === "high");
   return (
     <Canvas
       frameloop={paused ? "never" : "always"}
-      dpr={quality === "high" ? [1, 1.75] : [1, 1.25]}
+      dpr={dpr}
       camera={{ fov: 30, position: [-6.5, 3, 22], near: 0.1, far: 120 }}
       gl={{ antialias: quality === "low", powerPreference: "high-performance", alpha: false }}
       raycaster={{ params: { Points: { threshold: 0.07 } } as THREE.RaycasterParameters }}
@@ -138,8 +185,16 @@ export default function Scene({ stages, quality = "high", paused = false, onRead
       <Machine stages={stages} quality={quality} />
       <CameraRig />
       <Ready onReady={onReady} />
+      <Governor
+        onDrop={() => {
+          if (fx) setFx(false);
+          else if (dpr > 1) setDpr(Math.max(1, dpr - 0.25));
+        }}
+        onRaise={() => setDpr(Math.min(maxDpr, dpr + 0.25))}
+        onSlow={onSlow}
+      />
 
-      {quality === "high" ? (
+      {fx ? (
         <EffectComposer multisampling={4}>
           <Bloom mipmapBlur intensity={0.85} luminanceThreshold={0.55} luminanceSmoothing={0.2} radius={0.72} />
           <ChromaticAberration offset={new THREE.Vector2(0.0005, 0.0007)} radialModulation modulationOffset={0.35} />
