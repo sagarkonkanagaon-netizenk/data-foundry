@@ -102,7 +102,9 @@ export async function POST(req: Request) {
         await (provider === "anthropic" ? streamAnthropic : streamGemini)(system, turns, send, abort.signal);
       } catch (err) {
         console.error(`engine: ${provider} stream failed`, err instanceof Anthropic.APIError ? `${err.status} ${err.message}` : err);
-        send("\n\n[signal lost: the engine could not finish that answer. Try again in a moment.]");
+        // a short reason (never the key) so a broken setup can be diagnosed from the page
+        const reason = err instanceof ProviderError ? ` (${err.reason})` : "";
+        send(`\n\n[signal lost: the engine could not finish that answer. Try again in a moment.${reason}]`);
       }
       controller.close();
     },
@@ -142,23 +144,47 @@ async function streamAnthropic(system: string, turns: Turn[], send: Send, signal
   if (final.stop_reason === "refusal") send("\n\nI can only talk about Sagar's work here.");
 }
 
+/** A provider refused the request; `reason` is safe to show visitors. */
+class ProviderError extends Error {
+  constructor(
+    readonly reason: string,
+    detail: string,
+  ) {
+    super(`${reason}: ${detail}`);
+  }
+}
+
 // Google Gemini's free tier (key from aistudio.google.com), used when only
-// GEMINI_API_KEY is set. GEMINI_MODEL overrides the model.
+// GEMINI_API_KEY is set. GEMINI_MODEL overrides the model; otherwise the first
+// model Google accepts is used, so a retired model name doesn't take the engine down.
+const GEMINI_MODELS = ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.0-flash"];
+
 async function streamGemini(system: string, turns: Turn[], send: Send, signal: AbortSignal) {
-  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   const base = process.env.GEMINI_BASE_URL || "https://generativelanguage.googleapis.com";
-  const res = await fetch(`${base}/v1beta/models/${model}:streamGenerateContent?alt=sse`, {
-    method: "POST",
-    signal,
-    headers: { "Content-Type": "application/json", "x-goog-api-key": process.env.GEMINI_API_KEY! },
-    body: JSON.stringify({
-      systemInstruction: { parts: [{ text: system }] },
-      contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
-      // room for the model's own thinking tokens plus a short answer
-      generationConfig: { maxOutputTokens: 2048 },
-    }),
-  });
-  if (!res.ok || !res.body) throw new Error(`gemini ${res.status}: ${await res.text().catch(() => "")}`);
+  // keys pasted into the dashboard often carry a stray newline or quotes
+  const key = process.env.GEMINI_API_KEY!.trim().replace(/^["']|["']$/g, "");
+  const models = process.env.GEMINI_MODEL ? [process.env.GEMINI_MODEL] : GEMINI_MODELS;
+  let res: Response | null = null;
+  for (const model of models) {
+    res = await fetch(`${base}/v1beta/models/${model}:streamGenerateContent?alt=sse`, {
+      method: "POST",
+      signal,
+      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: system }] },
+        contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
+        // room for the model's own thinking tokens plus a short answer
+        generationConfig: { maxOutputTokens: 2048 },
+      }),
+    });
+    // unknown or retired model, or that model's free quota is spent: try the next one
+    if (res.status !== 404 && res.status !== 429) break;
+  }
+  if (!res?.ok || !res.body) {
+    const text = (await res?.text().catch(() => "")) ?? "";
+    const reason = text.match(/"reason":\s*"([A-Z_]+)"/)?.[1] ?? text.match(/"status":\s*"([A-Z_]+)"/)?.[1] ?? "";
+    throw new ProviderError(`gemini ${res?.status ?? "?"}${reason ? ` ${reason}` : ""}`, text.slice(0, 500));
+  }
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let buf = "";
