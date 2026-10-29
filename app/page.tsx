@@ -24,7 +24,7 @@ export default function Home() {
       <Hairline />
       <FlightLog data={getFlightLog()} />
       <Hairline />
-      <Engine data={getEngine()} />
+      <Engine data={getEngine()} email={getTransmit().email} />
       <Hairline />
       <Transmit data={getTransmit()} site={site} />
     </main>
