@@ -2,7 +2,7 @@ import type { Module, Site, Stage } from "@/lib/content";
 import { Schematic } from "@/components/Schematic";
 import { MachineLoader } from "@/components/machine/MachineLoader";
 import { DraftTag } from "@/components/ui";
-import { FeedSwitch, Hud, RunLine } from "@/components/Hud";
+import { FeedSwitch, Hud, RenderSwitch, RunLine } from "@/components/Hud";
 import { ChaosDirector, ChaosPanel, IncidentCard, type ChaosItem } from "@/components/Chaos";
 import { ScrollTracker, TourBlocks } from "@/components/Tour";
 
@@ -26,7 +26,7 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
         <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-void via-void/70 to-transparent" style={{ opacity: "var(--hero)" }} />
 
         <header
-          className="pointer-events-none absolute inset-0 flex flex-col px-6 pt-8 pb-12 transition-[visibility] md:px-12 [&_a]:pointer-events-auto [&_button]:pointer-events-auto"
+          className="pointer-events-none absolute inset-0 flex flex-col px-6 pt-6 pb-8 sm:pt-8 sm:pb-12 transition-[visibility] md:px-12 [&_a]:pointer-events-auto [&_button]:pointer-events-auto"
           style={{ opacity: "var(--hero)" }}
         >
           <nav className="flex items-center justify-between font-mono text-[11px] tracking-[0.22em] text-mute uppercase">
@@ -52,21 +52,24 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
           </div>
 
           <div className="mt-auto grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div>
-              <p className="font-mono text-[11px] tracking-[0.25em] text-cyan/70 uppercase">{site.kicker}</p>
-              <h1 className="mt-3 text-3xl font-light tracking-tight md:text-5xl lg:whitespace-nowrap">
+            <div className="min-w-0">
+              <p className="hidden font-mono text-[11px] tracking-[0.25em] text-cyan/70 uppercase sm:block">{site.kicker}</p>
+              <h1 className="text-3xl font-light sm:mt-3 tracking-tight md:text-5xl lg:whitespace-nowrap">
                 {site.name}
                 <span className="mt-2 block font-mono text-xs tracking-[0.3em] text-mute uppercase md:text-sm">{site.title}</span>
               </h1>
-              <p className="mt-5 max-w-xl text-base text-ink/75 md:text-lg">{site.tagline}</p>
+              <p className="mt-3 max-w-xl text-[15px] text-ink/75 sm:mt-5 md:text-lg">{site.tagline}</p>
               {site.draft && (
-                <div className="mt-4">
+                <div className="mt-4 hidden sm:block">
                   <DraftTag file={site.file} />
                 </div>
               )}
             </div>
-            <div className="w-full space-y-8 lg:w-[min(56vw,720px)]">
-              <FeedSwitch />
+            <div className="w-full min-w-0 space-y-5 sm:space-y-8 lg:w-[min(56vw,720px)]">
+              <div className="flex h-7 items-center justify-between gap-3">
+                <FeedSwitch />
+                <RenderSwitch />
+              </div>
               <ChaosPanel items={chaos} />
               <Hud tasks={stages.find((s) => s.id === "orchestrator")?.tasks ?? []} />
             </div>

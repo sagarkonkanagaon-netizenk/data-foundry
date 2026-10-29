@@ -14,7 +14,7 @@ export function Manual({ chaos }: { chaos: WithHtml<Chaos>[] }) {
         {chaos.map((c) => (
           <article key={c.id} className="bg-void p-6 md:last:odd:col-span-2">
             <div className="flex items-center justify-between">
-              <h4 className="text-lg">{c.label}</h4>
+              <h3 className="text-lg">{c.label}</h3>
               <span className={`font-mono text-[10px] tracking-[0.2em] uppercase ${c.severity === "error" ? "text-error" : "text-amber"}`}>
                 {c.severity} · {c.stage}
               </span>

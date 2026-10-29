@@ -38,6 +38,22 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* One visible focus style for keyboard users, everywhere. */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+html {
+  scroll-padding-top: 1rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 ::selection {
   background: rgb(127 216 255 / 0.25);
 }
@@ -212,5 +228,11 @@ body {
   .beam-up,
   .ping-ring {
     animation: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
   }
 }

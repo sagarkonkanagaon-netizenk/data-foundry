@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useMachine } from "@/lib/machine/store";
 import { sendLive, startMetrics } from "@/lib/machine/sim";
 import { startFeed, useFeed } from "@/lib/machine/feed";
+import { useRender } from "@/lib/gpu";
 import type { Metrics } from "@/lib/machine/types";
 
 type Readout = {
@@ -66,21 +67,37 @@ export function FeedSwitch() {
   const label =
     !live ? "Simulated sources" : status === "live" ? "Live · Wikipedia edits" : status === "connecting" ? "Connecting to live stream…" : status === "down" ? "Live link down · simulating, retrying" : "Live paused";
   return (
-    <div className="flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase">
+    <div className="flex min-w-0 items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase">
       <button
         type="button"
         role="switch"
         aria-checked={live}
         onClick={() => setMode(live ? "sim" : "live")}
-        className="group flex items-center gap-2 rounded-full border border-line py-1 pr-3 pl-1 transition-colors hover:border-cyan/40"
+        className="group flex min-w-0 items-center gap-2 rounded-full border border-line py-1 pr-3 pl-1 transition-colors hover:border-cyan/40"
       >
-        <span className={`relative flex h-4 w-7 items-center rounded-full transition-colors ${live ? "bg-cyan/20" : "bg-faint/40"}`}>
+        <span className={`relative flex h-4 w-7 shrink-0 items-center rounded-full transition-colors ${live ? "bg-cyan/20" : "bg-faint/40"}`}>
           <span className={`absolute h-3 w-3 rounded-full transition-all duration-500 ${live ? "left-3.5 bg-cyan shadow-[0_0_8px_#7fd8ff]" : "left-0.5 bg-mute"}`} />
         </span>
-        <span className={status === "live" && live ? "text-cyan" : status === "down" && live ? "text-amber" : "text-mute"}>{label}</span>
+        <span className={`truncate ${status === "live" && live ? "text-cyan" : status === "down" && live ? "text-amber" : "text-mute"}`}>{label}</span>
       </button>
-      {live && status === "live" && <span className="text-faint tabular-nums">{total.toLocaleString("en-US")} ingested</span>}
+      {live && status === "live" && <span className="hidden whitespace-nowrap text-faint tabular-nums md:inline">{total.toLocaleString("en-US")} ingested</span>}
     </div>
+  );
+}
+
+/** On phones: the 2.5D machine by default, with the full 3D one a tap away. */
+export function RenderSwitch() {
+  const { ready, canUpgrade, optedIn, upgrade, downgrade } = useRender();
+  if (!ready || (!canUpgrade && !optedIn)) return null;
+  return (
+    <button
+      type="button"
+      onClick={canUpgrade ? upgrade : downgrade}
+      className="shrink-0 rounded-full border border-line px-3 py-1 font-mono text-[10px] tracking-[0.2em] text-mute uppercase transition-colors hover:border-cyan/40 hover:text-ink"
+      aria-label={canUpgrade ? "Load the full 3D machine" : "Switch back to the 2.5D machine"}
+    >
+      {canUpgrade ? "Load 3D" : "Use 2.5D"}
+    </button>
   );
 }
 
@@ -96,14 +113,14 @@ export function Hud({ tasks }: { tasks: string[] }) {
 
   return (
     <div
-      className="relative grid grid-cols-2 gap-x-6 gap-y-5 font-mono sm:grid-cols-3 lg:grid-cols-5 after:pointer-events-none after:absolute after:-inset-3 after:bg-[repeating-linear-gradient(0deg,rgb(127_216_255/0.035)_0px,rgb(127_216_255/0.035)_1px,transparent_1px,transparent_3px)]"
+      className="relative grid grid-cols-3 gap-x-4 gap-y-5 font-mono sm:gap-x-6 lg:grid-cols-5 after:pointer-events-none after:absolute after:-inset-3 after:bg-[repeating-linear-gradient(0deg,rgb(127_216_255/0.035)_0px,rgb(127_216_255/0.035)_1px,transparent_1px,transparent_3px)]"
       aria-label={onLive ? "Pipeline telemetry (live Wikipedia edits)" : "Pipeline telemetry (simulated)"}
     >
-      {READOUTS.map((r) => (
-        <div key={r.key} className="border-t border-line pt-3">
-          <div className="text-[9px] tracking-[0.24em] text-mute uppercase">{onLive && r.liveLabel ? r.liveLabel : r.label}</div>
+      {READOUTS.map((r, i) => (
+        <div key={r.key} className={`border-t border-line pt-3 ${i === 2 || i === 4 ? "hidden lg:block" : ""}`}>
+          <div className="truncate text-[9px] tracking-[0.24em] text-mute uppercase">{onLive && r.liveLabel ? r.liveLabel : r.label}</div>
           <div className="mt-2 flex items-baseline gap-1.5 text-ink tabular-nums">
-            <span className="text-lg md:text-xl">{metrics ? <Rolling value={metrics[r.key]} format={r.format} /> : "—"}</span>
+            <span className="text-base sm:text-lg md:text-xl">{metrics ? <Rolling value={metrics[r.key]} format={r.format} /> : "—"}</span>
             {r.unit && r.unit !== "usd" && <span className="text-[10px] text-mute">{r.unit}</span>}
           </div>
           <div className="mt-2 text-cyan/50">

@@ -28,7 +28,7 @@ which file drives which part of the site.
 6. Scroll tour + sections (Modules, Instruments, Flight Log, Transmit) ✅
 7. Ask the Engine (RAG chat) ✅
 8. Live data feed ✅
-9. Performance, mobile, accessibility
+9. Performance, mobile, accessibility ✅
 
 ## The machine (`components/machine/`)
 
@@ -117,3 +117,28 @@ which file drives which part of the site.
   (5s, 15s, 30s, 60s, then every 2 min). The stream closes in background tabs and when
   the browser asks to save data.
 - `NEXT_PUBLIC_LIVE_FEED_URL` overrides the stream URL (used for local testing).
+
+## Devices, performance and SEO
+
+- `lib/gpu.ts` picks a version of the machine per device: the full 3D machine on
+  desktops with a real GPU (without post effects on modest ones), a **2.5D machine** on
+  phones, with data saver and on software-rendered WebGL, and the still schematic with
+  reduced motion or no WebGL. Phone visitors can tap **Load 3D**; the choice is remembered.
+- `?render=3d`, `?render=2.5d` or `?render=static` forces a version, for checking each
+  one on a single machine.
+- The 2.5D machine (`components/machine/Machine25D.tsx`) stacks the schematic's depth
+  layers in CSS 3D, runs records through the conduits, flies the same scroll tour and
+  reacts to injected chaos with the Sentinel's beam. No WebGL.
+- In 3D, a frame-rate governor sheds post effects, then resolution, below 45 fps, earns
+  resolution back with headroom, and switches to 2.5D if the scene stays under 14 fps.
+  The 3D chunk loads only once the browser is idle after first paint.
+- Accessibility: skip link, visible focus rings, ordered headings, text alternatives for
+  every version of the machine, and all motion off with reduced motion.
+- SEO: canonical URLs, an Open Graph card (`app/opengraph-image.tsx`), `sitemap.xml`,
+  `robots.txt` and JSON-LD for the profile. Set `NEXT_PUBLIC_SITE_URL` when a custom
+  domain goes live; until then the Vercel production URL is used.
+- Links in `content/site.md` that still point at a placeholder or at a file missing from
+  `/public` (like `/resume.pdf`) are hidden until they're real.
+- Lighthouse (local production build): mobile 95 performance, 100 accessibility,
+  100 SEO; desktop 100 / 100 / 100. Best practices reads 96 here only because this
+  sandbox blocks the Wikimedia stream.

@@ -35,7 +35,8 @@ export function ChaosPanel({ items }: { items: ChaosItem[] }) {
         <span className="h-px flex-1 bg-line" />
         <span>{incident ? "sentinel engaged" : "pick a failure"}</span>
       </div>
-      <div className="flex flex-wrap gap-2">
+      {/* one swipeable row on phones, wrapping on wider screens */}
+      <div className="-mx-6 flex gap-2 overflow-x-auto px-6 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
         {items.map((c) => {
           const active = incident?.id === c.id;
           return (
@@ -46,7 +47,7 @@ export function ChaosPanel({ items }: { items: ChaosItem[] }) {
               onClick={() =>
                 start({ id: c.id, label: c.label, stage: c.stage as Incident["stage"], severity: c.severity, lines: [c.detect, c.diagnose, c.heal] })
               }
-              className={`group flex items-center gap-2 rounded-sm border px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase transition-all duration-500 ${
+              className={`group flex shrink-0 items-center gap-2 rounded-sm border px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase transition-all duration-500 ${
                 active
                   ? c.severity === "error"
                     ? "border-error/70 bg-error/10 text-error"
@@ -54,7 +55,7 @@ export function ChaosPanel({ items }: { items: ChaosItem[] }) {
                   : "border-line text-ink/75 hover:border-amber/50 hover:bg-amber/5 hover:text-ink disabled:opacity-35 disabled:hover:border-line disabled:hover:bg-transparent"
               }`}
             >
-              <span className={`h-1.5 w-1.5 rounded-full ${c.severity === "error" ? "bg-error" : "bg-amber"} ${active ? "animate-ping" : ""}`} />
+              <span className={`h-1.5 w-1.5 rounded-full ${c.severity === "error" ? "bg-error" : "bg-amber"} ${active ? "motion-safe:animate-ping" : ""}`} />
               {c.label}
             </button>
           );

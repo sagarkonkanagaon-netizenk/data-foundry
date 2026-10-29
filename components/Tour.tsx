@@ -44,7 +44,7 @@ export function TourBlocks({ intro, stages, modules }: { intro: string; stages: 
     <div className="pointer-events-none relative z-10">
       <section id="machine" className="flex min-h-svh items-center px-6 md:px-12">
         <div className="pointer-events-auto mx-auto max-w-2xl rounded-lg border border-line bg-void/55 p-8 backdrop-blur-xl md:p-10">
-          <p className="mb-5 font-mono text-[10px] tracking-[0.3em] text-cyan/70 uppercase">§01 · How to read the machine</p>
+          <h2 className="mb-5 font-mono text-[10px] tracking-[0.3em] text-cyan/70 uppercase">§01 · How to read the machine</h2>
           <div className="prose-foundry text-lg" dangerouslySetInnerHTML={{ __html: intro }} />
           <p className="mt-6 font-mono text-[10px] tracking-[0.25em] text-mute uppercase">↓ Scroll to fly through it · or click any chamber</p>
         </div>
@@ -80,5 +80,6 @@ export function TourBlocks({ intro, stages, modules }: { intro: string; stages: 
 
 /** Jump the tour to a stage (used when a chamber is clicked). */
 export function flyTo(stage: string) {
-  document.getElementById(`tour-${stage}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById(`tour-${stage}`)?.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
 }

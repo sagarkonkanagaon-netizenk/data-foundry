@@ -126,7 +126,20 @@ export type Transmit = {
   success: string;
 };
 
-export const getSite = () => read<Site>("site.md");
+/**
+ * A link that still points at a placeholder ("your-handle") or at a file not yet in
+ * /public would 404 for visitors, so it is left off the page until it's real.
+ */
+function live(l: Link) {
+  if (/your-handle|example\.com/.test(l.href)) return false;
+  if (l.href.startsWith("/") && !l.href.startsWith("/#")) return fs.existsSync(path.join(process.cwd(), "public", l.href));
+  return true;
+}
+
+export const getSite = () => {
+  const site = read<Site>("site.md");
+  return { ...site, links: site.links.filter(live) };
+};
 export const getStages = () => readDir<Stage>("machine");
 export const getChaos = () => readDir<Chaos>("chaos");
 export const getModules = () => readDir<Module>("modules");
