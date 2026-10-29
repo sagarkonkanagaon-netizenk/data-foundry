@@ -21,7 +21,7 @@ links:
     href: https://www.linkedin.com/in/sagar-konkanagaon-346914156
   - label: Résumé (PDF)
     href: /resume.pdf
-draft: true
+draft: false
 ---
 
 Pipeline work is invisible. When it goes right, nobody notices; when it goes wrong,

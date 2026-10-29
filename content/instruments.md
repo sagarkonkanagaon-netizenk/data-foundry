@@ -6,13 +6,13 @@ intro: "Every tool on the panel has been run in production. Needle = depth of us
 groups:
   - name: Compute
     dials:
-      - { label: PySpark, depth: 5, years: 6 }
-      - { label: Spark SQL, depth: 5, years: 6 }
-      - { label: Hadoop / Hive, depth: 5, years: 6 }
+      - { label: PySpark, depth: 5, years: 5 }
+      - { label: Spark SQL, depth: 5, years: 5 }
+      - { label: Hadoop / Hive, depth: 5, years: 5 }
       - { label: Databricks, depth: 4, years: 1 }
   - name: Storage
     dials:
-      - { label: HDFS, depth: 4, years: 6 }
+      - { label: HDFS, depth: 4, years: 5 }
       - { label: Delta Lake, depth: 4, years: 1 }
       - { label: ADLS Gen2, depth: 3, years: 5 }
       - { label: BigQuery, depth: 3, years: 1 }
@@ -25,10 +25,10 @@ groups:
     dials:
       - { label: Azure, depth: 4, years: 5 }
       - { label: GCP, depth: 3, years: 1 }
-      - { label: On-prem Hadoop, depth: 5, years: 6 }
+      - { label: On-prem Hadoop, depth: 5, years: 5 }
   - name: CI/CD
     dials:
-      - { label: Git, depth: 4, years: 6 }
+      - { label: Git, depth: 4, years: 5 }
       - { label: Jenkins, depth: 3, years: 2 }
       - { label: PagerDuty, depth: 3, years: 1 }
   - name: AI
@@ -36,5 +36,5 @@ groups:
       - { label: AI pipeline docs, depth: 3, years: 1 }
       - { label: LLM APIs, depth: 2, years: 1 }
       - { label: Self-healing pipelines, depth: 2, years: 1 }
-draft: true
+draft: false
 ---
