@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getModule, getModules } from "@/lib/content";
 import { MiniDiagram } from "@/components/sections/Modules";
 import { DraftTag } from "@/components/ui";
+import { CapsuleScene, ModuleScenes } from "@/components/modules/ModuleScenes";
 
 export const dynamicParams = false;
 
@@ -30,6 +31,11 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
       </div>
       <h1 className="mt-4 text-4xl font-light tracking-tight md:text-6xl">{m.title}</h1>
       <p className="mt-6 text-lg text-ink/75">{m.problem}</p>
+      {m.scene && (
+        <ModuleScenes>
+          <CapsuleScene scene={m.scene} label={`Animated scene: ${m.problem}`} large />
+        </ModuleScenes>
+      )}
       <div className="my-12 grid gap-8 border-y border-line py-8 md:grid-cols-[1fr_auto]">
         <MiniDiagram nodes={m.diagram} />
         <div className="md:text-right">

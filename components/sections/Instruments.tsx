@@ -1,8 +1,10 @@
 import type { Dial, Instruments as T } from "@/lib/content";
 import { DraftTag, SectionHeader } from "@/components/ui";
+import { Reveal } from "@/components/Reveal";
+import type { CSSProperties } from "react";
 
 // A 240° gauge. Needle = depth (1–5), readout = years. Deliberately not a progress bar.
-function Gauge({ dial }: { dial: Dial }) {
+function Gauge({ dial, delay }: { dial: Dial; delay: number }) {
   const start = 150; // degrees, measured clockwise from +x
   const sweep = 240;
   const r = 34;
@@ -18,16 +20,16 @@ function Gauge({ dial }: { dial: Dial }) {
   const needle = start + (sweep * dial.depth) / 5;
   const [nx, ny] = pt(needle, r - 8);
   return (
-    <figure className="flex flex-col items-center">
+    <figure className="flex flex-col items-center" style={{ ["--delay" as string]: `${delay}ms`, ["--sweep" as string]: `${needle - start}deg` } as CSSProperties}>
       <svg viewBox="0 0 100 86" className="w-28" role="img" aria-label={`${dial.label}: depth ${dial.depth} of 5, ${dial.years} years`}>
         <path d={arc(start, start + sweep)} fill="none" stroke="#7fd8ff" strokeOpacity="0.12" strokeWidth="1" />
-        <path d={arc(start, needle)} fill="none" stroke="#7fd8ff" strokeOpacity="0.8" strokeWidth="1.5" />
+        <path d={arc(start, needle)} pathLength={1} className="needle-arc" fill="none" stroke="#7fd8ff" strokeOpacity="0.8" strokeWidth="1.5" />
         {[0, 1, 2, 3, 4, 5].map((i) => {
           const [x1, y1] = pt(start + (sweep * i) / 5, r + 3);
           const [x2, y2] = pt(start + (sweep * i) / 5, r + 7);
           return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#7d8aa0" strokeOpacity={i <= dial.depth ? 0.9 : 0.3} />;
         })}
-        <line x1="50" y1="50" x2={nx} y2={ny} stroke="#e8f6ff" strokeWidth="1" />
+        <line className="needle" x1="50" y1="50" x2={nx} y2={ny} stroke="#e8f6ff" strokeWidth="1" />
         <circle cx="50" cy="50" r="2" fill="#e8f6ff" />
         <text x="50" y="76" textAnchor="middle" fill="#d9e6f2" fontSize="11" fontFamily="var(--font-mono)">
           {String(dial.years).padStart(2, "0")}y
@@ -41,17 +43,17 @@ function Gauge({ dial }: { dial: Dial }) {
 export function Instruments({ data }: { data: T & { file: string } }) {
   return (
     <section id="instruments" className="mx-auto max-w-6xl px-6 py-32 md:px-12">
-      <SectionHeader index="03" title={data.heading} intro={data.intro} draftFile={data.draft ? data.file : undefined} />
+      <SectionHeader index="04" title={data.heading} intro={data.intro} draftFile={data.draft ? data.file : undefined} />
       <div className="grid gap-px overflow-hidden rounded-md border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-        {data.groups.map((g) => (
-          <div key={g.name} className="bg-void p-6">
+        {data.groups.map((g, gi) => (
+          <Reveal key={g.name} className="bg-void p-6" delay={(gi % 3) * 120}>
             <h3 className="mb-6 font-mono text-[11px] tracking-[0.25em] text-cyan/70 uppercase">{g.name}</h3>
             <div className="grid grid-cols-2 gap-y-6 xl:grid-cols-3">
-              {g.dials.map((d) => (
-                <Gauge key={d.label} dial={d} />
+              {g.dials.map((d, di) => (
+                <Gauge key={d.label} dial={d} delay={(gi % 3) * 120 + di * 90} />
               ))}
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>

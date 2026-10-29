@@ -5,7 +5,7 @@ greeting: "Engine online. Ask me about Sagar's pipelines, projects or how he'd a
 suggestions:
   - "What's the hardest pipeline problem Sagar has solved?"
   - "How would he design a medallion lakehouse on Databricks?"
-  - "Tell me about Rewind."
+  - "How does he make a backfill safe to rerun?"
   - "Is he open to new roles?"
 # Instructions given to the model. Visitors never see this.
 persona: >

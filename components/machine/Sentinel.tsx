@@ -10,6 +10,7 @@ import { makeGlowMaterial } from "./shaders/glow";
 import { incidentClock, useMachine } from "@/lib/machine/store";
 import { faultAt, repairAt } from "@/lib/machine/chaos";
 import type { StageId } from "@/lib/machine/types";
+import { pointerHandlers } from "./Hitboxes";
 
 const STAGE_X: Record<StageId, number> = {
   intake: LAYOUT.intake.x + 1.2,
@@ -127,7 +128,7 @@ export function Sentinel() {
             <planeGeometry args={[1.6, 1.6]} />
           </mesh>
         </Billboard>
-        <mesh>
+        <mesh {...pointerHandlers("sentinel")}>
           <sphereGeometry args={[0.11, 32, 24]} />
           <meshBasicMaterial color="#ffffff" toneMapped={false} />
         </mesh>

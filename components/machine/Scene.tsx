@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import { SHOTS, TOUR_STAGES, tour, type Shot } from "@/lib/machine/tour";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, Lightformer } from "@react-three/drei";
@@ -17,21 +18,51 @@ import { Particles } from "./Particles";
 import { ShuffleArcs } from "./ShuffleArcs";
 import { Backdrop, Dust } from "./Atmosphere";
 import { PALETTE } from "./layout";
+import { Hitboxes } from "./Hitboxes";
 
 export type Quality = "high" | "low";
 
-/** Slow, weighted camera: idle drift plus a gentle lean toward the pointer. */
+/**
+ * Slow, weighted camera. At the top of the page it holds a three-quarter hero view
+ * with idle drift and a lean toward the pointer; as the page scrolls it flies the
+ * tour from shot to shot, easing in and holding while each caption is read.
+ */
 function CameraRig() {
   const { camera, pointer, size } = useThree();
-  const target = useRef(new THREE.Vector3());
+  const pos = useRef(new THREE.Vector3(-6.5, 3, 22));
   const look = useRef(new THREE.Vector3(-0.3, -1.2, 0));
+  const wantPos = useMemo(() => new THREE.Vector3(), []);
+  const wantLook = useMemo(() => new THREE.Vector3(), []);
+  const a = useMemo(() => new THREE.Vector3(), []);
+  const b = useMemo(() => new THREE.Vector3(), []);
   // Pull back on narrow screens so the whole machine stays in frame.
-  const dist = THREE.MathUtils.clamp(23.5 * (1.6 / (size.width / size.height)), 23.5, 42);
+  const aspectPull = THREE.MathUtils.clamp(1.6 / (size.width / size.height), 1, 1.9);
+  const dist = 23.5 * aspectPull;
+
+  const shots = useMemo(() => {
+    const hero: Shot = { pos: [-6.5, 3.0, dist], look: [-0.3, -1.2, 0] };
+    const list = [hero, SHOTS.intro, ...TOUR_STAGES.map((s) => SHOTS[s])];
+    // narrow screens: back every close-up away from its subject
+    return list.map((s, i) =>
+      i === 0 ? s : { pos: s.pos.map((v, k) => s.look[k] + (v - s.look[k]) * aspectPull) as Shot["pos"], look: s.look },
+    );
+  }, [dist, aspectPull]);
+
   useFrame(({ clock }, dt) => {
     const t = clock.elapsedTime;
-    // three-quarter view from the intake side, so the chambers recede in depth
-    target.current.set(-6.5 + Math.sin(t * 0.05) * 0.8 + pointer.x * 1.1, 3.0 + Math.sin(t * 0.07) * 0.3 + pointer.y * 0.5, dist);
-    camera.position.lerp(target.current, 1 - Math.exp(-dt * 0.9));
+    const u = THREE.MathUtils.clamp(tour.u, 0, shots.length - 1);
+    const i = Math.min(Math.floor(u), shots.length - 2);
+    const f = THREE.MathUtils.smoothstep(u - i, 0.15, 0.85);
+    wantPos.copy(a.fromArray(shots[i].pos)).lerp(b.fromArray(shots[i + 1].pos), f);
+    wantLook.copy(a.fromArray(shots[i].look)).lerp(b.fromArray(shots[i + 1].look), f);
+    // idle drift and pointer lean, softened once we're touring close-ups
+    const sway = u < 1 ? 1 : 0.35;
+    wantPos.x += (Math.sin(t * 0.05) * 0.8 + pointer.x * 1.1) * sway;
+    wantPos.y += (Math.sin(t * 0.07) * 0.3 + pointer.y * 0.5) * sway;
+    const k = 1 - Math.exp(-dt * 1.6);
+    pos.current.lerp(wantPos, k);
+    look.current.lerp(wantLook, k);
+    camera.position.copy(pos.current);
     camera.lookAt(look.current);
   });
   return null;
@@ -68,15 +99,17 @@ function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
         <Spine />
         <Orchestrator tasks={orchestrator?.tasks ?? []} />
         <Sentinel />
+        <Hitboxes />
         <Particles sources={intake?.sources ?? []} count={quality === "high" ? 2400 : 900} />
       </group>
     </GlassBuffer>
   );
 }
 
-export default function Scene({ stages, quality = "high", onReady }: { stages: Stage[]; quality?: Quality; onReady: () => void }) {
+export default function Scene({ stages, quality = "high", paused = false, onReady }: { stages: Stage[]; quality?: Quality; paused?: boolean; onReady: () => void }) {
   return (
     <Canvas
+      frameloop={paused ? "never" : "always"}
       dpr={quality === "high" ? [1, 1.75] : [1, 1.25]}
       camera={{ fov: 30, position: [-6.5, 3, 22], near: 0.1, far: 120 }}
       gl={{ antialias: quality === "low", powerPreference: "high-performance", alpha: false }}

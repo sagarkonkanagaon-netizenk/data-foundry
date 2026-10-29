@@ -1,7 +1,8 @@
 ---
 slug: case-automotive-lakehouse
-order: 6
+order: 2
 kind: case-study
+scene: lakehouse
 codename: CASE 02
 title: "Automotive medallion lakehouse"
 status: Case study · Tiger Analytics

@@ -1,7 +1,8 @@
 ---
 slug: case-ebay-orchestration-migration
-order: 7
+order: 3
 kind: case-study
+scene: migration
 codename: CASE 03
 title: "Migrating 300+ pipelines without dropping one"
 status: Case study · eBay

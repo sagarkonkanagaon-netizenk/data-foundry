@@ -1,7 +1,8 @@
 ---
 slug: case-iot-telemetry-lakehouse
-order: 5
+order: 1
 kind: case-study
+scene: telemetry
 codename: CASE 01
 title: "Industrial IoT telemetry platform"
 status: Case study · Trane

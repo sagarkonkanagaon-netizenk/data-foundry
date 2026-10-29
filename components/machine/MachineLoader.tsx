@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Stage } from "@/lib/content";
 import type { Quality } from "./Scene";
 
@@ -29,13 +29,19 @@ function detect(): { ok: boolean; quality: Quality } {
 export function MachineLoader({ stages, children }: { stages: Stage[]; children: React.ReactNode }) {
   const [env, setEnv] = useState<{ ok: boolean; quality: Quality } | null>(null);
   const [ready, setReady] = useState(false);
+  const [onScreen, setOnScreen] = useState(true);
+  const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setEnv(detect());
+    // stop rendering the machine once it has scrolled out of view
+    const io = new IntersectionObserver(([e]) => setOnScreen(e.isIntersecting));
+    if (root.current) io.observe(root.current);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <div className="absolute inset-0">
+    <div ref={root} className="absolute inset-0">
       <div
         className="absolute inset-0 flex items-center justify-center px-6 pb-40 transition-opacity duration-[1800ms] ease-out md:px-12"
         style={{ opacity: ready ? 0 : 1 }}
@@ -45,7 +51,7 @@ export function MachineLoader({ stages, children }: { stages: Stage[]; children:
       </div>
       {env?.ok && (
         <div className="absolute inset-0 transition-opacity duration-[2400ms] ease-out" style={{ opacity: ready ? 1 : 0 }}>
-          <Scene stages={stages} quality={env.quality} onReady={() => setReady(true)} />
+          <Scene stages={stages} quality={env.quality} paused={!onScreen} onReady={() => setReady(true)} />
         </div>
       )}
     </div>
