@@ -59,6 +59,18 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
                 <span className="mt-2 block font-mono text-xs tracking-[0.3em] text-mute uppercase md:text-sm">{site.title}</span>
               </h1>
               <p className="mt-3 max-w-xl text-[15px] text-ink/75 sm:mt-5 md:text-lg">{site.tagline}</p>
+              {site.openToWork && (
+                <a
+                  href="#transmit"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/5 px-3 py-1 font-mono text-[10px] tracking-[0.2em] text-cyan uppercase transition-colors hover:border-cyan/60 hover:bg-cyan/10"
+                >
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inset-0 rounded-full bg-cyan motion-safe:animate-ping" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                  </span>
+                  Open to new roles · Get in touch
+                </a>
+              )}
               {site.draft && (
                 <div className="mt-4 hidden sm:block">
                   <DraftTag file={site.file} />
