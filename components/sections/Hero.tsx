@@ -3,8 +3,9 @@ import { Schematic } from "@/components/Schematic";
 import { MachineLoader } from "@/components/machine/MachineLoader";
 import { DraftTag } from "@/components/ui";
 import { Hud, RunLine } from "@/components/Hud";
+import { ChaosDirector, ChaosPanel, IncidentCard, type ChaosItem } from "@/components/Chaos";
 
-export function Hero({ site, stages }: { site: Site & { html: string; file: string }; stages: Stage[] }) {
+export function Hero({ site, stages, chaos }: { site: Site & { html: string; file: string }; stages: Stage[]; chaos: ChaosItem[] }) {
   return (
     <section className="relative flex min-h-svh flex-col overflow-hidden px-6 pt-8 pb-12 md:px-12">
       <MachineLoader stages={stages}>
@@ -24,6 +25,10 @@ export function Hero({ site, stages }: { site: Site & { html: string; file: stri
           <a href="#transmit" className="hover:text-ink">Transmit</a>
         </span>
       </nav>
+      <ChaosDirector />
+      <div className="pointer-events-none absolute top-28 right-6 z-20 md:right-12">
+        <IncidentCard items={chaos} />
+      </div>
       <div className="relative z-10 mt-5 flex items-start justify-between gap-6">
         <RunLine />
         <span className="hidden font-mono text-[10px] tracking-[0.2em] text-mute uppercase md:block">
@@ -45,7 +50,8 @@ export function Hero({ site, stages }: { site: Site & { html: string; file: stri
             </div>
           )}
         </div>
-        <div className="w-full lg:w-[min(56vw,720px)]">
+        <div className="w-full space-y-8 lg:w-[min(56vw,720px)]">
+          <ChaosPanel items={chaos} />
           <Hud tasks={stages.find((s) => s.id === "orchestrator")?.tasks ?? []} />
         </div>
       </div>

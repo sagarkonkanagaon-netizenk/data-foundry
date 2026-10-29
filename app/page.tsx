@@ -12,10 +12,11 @@ export default function Home() {
   const site = getSite();
   const stages = getStages();
   const modules = getModules();
+  const chaos = getChaos();
   return (
     <main>
-      <Hero site={site} stages={stages} />
-      <Manual site={site} stages={stages} chaos={getChaos()} modules={modules} />
+      <Hero site={site} stages={stages} chaos={chaos} />
+      <Manual site={site} stages={stages} chaos={chaos} modules={modules} />
       <Hairline />
       <Modules modules={modules} />
       <Hairline />

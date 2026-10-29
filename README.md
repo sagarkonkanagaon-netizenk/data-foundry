@@ -24,7 +24,7 @@ which file drives which part of the site.
 2. Static machine geometry + glass shaders ✅
 3. Particle flow ✅
 4. HUD + state + simulated metrics ✅
-5. Chaos injection + Sentinel healing
+5. Chaos injection + Sentinel healing ✅
 6. Sections polish (Modules, Instruments, Flight Log, Transmit)
 7. Ask the Engine (RAG chat)
 8. Live data feed
@@ -53,3 +53,13 @@ which file drives which part of the site.
 - `lib/machine/store.ts` – Zustand store: metrics, history for sparklines, DAG task states,
   active stages. 3D parts read it inside `useFrame` (no re-renders).
 - `components/Hud.tsx` – the telemetry strip and run line; plain DOM, so it works without WebGL
+
+## Chaos and the Sentinel
+
+- `lib/machine/chaos.ts` – the incident timeline (inject → detect → diagnose → heal →
+  recovered) and the `fault` / `repair` curves every reacting part reads
+- `components/Chaos.tsx` – INJECT CHAOS buttons, the incident report card, and the
+  director that ticks the clock and tells the telemetry sim
+- Failures live in `flow/sim.ts` (`applyChaos`), `metrics.ts` (numbers), `Glass.tsx`
+  (rims burn amber/red), `SparkCore.tsx` (hot executor) and `Plumbing.tsx` (dead ports)
+- The log lines and narration come from `content/chaos/*.md`, so the story is editable

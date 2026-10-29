@@ -5,8 +5,9 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Billboard } from "@react-three/drei";
 import { LAYOUT, PALETTE } from "./layout";
-import { live, RINGS, SPARK_YAW } from "./geometry";
-import { useMachine } from "@/lib/machine/store";
+import { HOT, live, RINGS, SPARK_YAW } from "./geometry";
+import { incidentClock, useMachine } from "@/lib/machine/store";
+import { faultAt } from "@/lib/machine/chaos";
 import { makeGlowMaterial } from "./shaders/glow";
 
 // A gyroscope of executor rings. Each node on a ring is one executor/task slot.
@@ -27,11 +28,23 @@ function Ring({ index, r, nodes, tilt, speed }: (typeof RINGS)[number] & { index
   }, [nodes, r]);
 
   const throughput = useRef(0.6);
+  const hot = useRef<THREE.Mesh>(null);
+  const hotPos = useMemo<[number, number, number]>(() => {
+    const a = (HOT.node / nodes) * Math.PI * 2;
+    return [0, Math.cos(a) * r, Math.sin(a) * r];
+  }, [nodes, r]);
   useFrame((_, dt) => {
     if (!spin.current) return;
     const target = useMachine.getState().metrics?.throughput ?? 0.6;
     throughput.current += (target - throughput.current) * Math.min(1, dt * 1.5);
     spin.current.rotation.x += dt * speed * (0.25 + throughput.current * 1.4);
+    if (hot.current) {
+      // the overloaded executor in a skewed partition
+      const inc = useMachine.getState().incident;
+      const f = inc?.id === "skewed-partition" ? faultAt(incidentClock()) : 0;
+      hot.current.visible = f > 0.01;
+      hot.current.scale.setScalar(0.4 + f * (1.6 + 0.3 * Math.sin(performance.now() / 90)));
+    }
     live.sparkSpin[index] = spin.current.rotation.x;
   });
 
@@ -46,6 +59,12 @@ function Ring({ index, r, nodes, tilt, speed }: (typeof RINGS)[number] & { index
           <torusGeometry args={[r, 0.03, 12, 192]} />
           <meshStandardMaterial color="#141024" metalness={0.8} roughness={0.35} transparent opacity={0.6} />
         </mesh>
+        {index === HOT.ring && (
+          <mesh ref={hot} position={hotPos} visible={false}>
+            <sphereGeometry args={[0.09, 20, 14]} />
+            <meshBasicMaterial color={PALETTE.amber} toneMapped={false} />
+          </mesh>
+        )}
         <instancedMesh ref={inst} args={[undefined, undefined, nodes]}>
           <sphereGeometry args={[0.055, 16, 12]} />
           <meshBasicMaterial color="#c4b8ff" toneMapped={false} />

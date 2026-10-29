@@ -10,6 +10,7 @@ import type { FromWorker, ToWorker } from "../lib/machine/types";
 declare const self: DedicatedWorkerGlobalScope;
 
 let flow: ReturnType<typeof createFlow> | null = null;
+let metrics: ReturnType<typeof createMetricsSim> | null = null;
 let records: FlowRecord[] = [];
 
 const post = (msg: FromWorker, transfer: Transferable[] = []) => self.postMessage(msg, transfer);
@@ -22,7 +23,7 @@ self.onmessage = (e: MessageEvent<ToWorker>) => {
     return;
   }
   if (msg.type === "metrics") {
-    const sim = createMetricsSim(msg.tasks);
+    const sim = (metrics = createMetricsSim(msg.tasks));
     const t0 = performance.now();
     let last = t0;
     setInterval(() => {
@@ -33,9 +34,13 @@ self.onmessage = (e: MessageEvent<ToWorker>) => {
     }, 250);
     return;
   }
+  if (msg.type === "chaos") {
+    metrics?.setChaos(msg.signal);
+    return;
+  }
   if (msg.type === "flow" && flow) {
     Object.assign(live, msg.live);
-    flow.step(records, msg.t, msg);
+    flow.step(records, msg.t, msg, msg.chaos);
     post({ type: "flow", position: msg.position, color: msg.color, alpha: msg.alpha, jitter: msg.jitter }, [
       msg.position.buffer,
       msg.color.buffer,

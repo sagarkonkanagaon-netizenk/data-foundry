@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { LAYOUT, PALETTE } from "../layout";
-import { COLUMNS, intakeCurve, latticePoints, live, quarantineCurve, RINGS, SPARK_YAW } from "../geometry";
+import { COLUMNS, HOT, intakeCurve, latticePoints, live, quarantineCurve, RINGS, SPARK_YAW } from "../geometry";
+import type { ChaosSignal } from "../../../lib/machine/chaos";
 
 // The data-flow simulation. Every particle is a record making one trip through the
 // machine; its position is a pure function of (record, time), so the sim needs no
@@ -108,6 +109,8 @@ export function createFlow(sourceColors: string[]) {
     silver: new THREE.Color(PALETTE.silver),
     gold: new THREE.Color("#ffd27a"),
     error: new THREE.Color("#ff5a52"),
+    amber: new THREE.Color(PALETTE.amber),
+    repair: new THREE.Color("#bfefff"),
   };
 
   const B = LAYOUT.bronze;
@@ -126,6 +129,8 @@ export function createFlow(sourceColors: string[]) {
   const b = new THREE.Vector3();
   const c = new THREE.Vector3();
   const bow = new THREE.Vector3();
+  const h = new THREE.Vector3();
+  const q = new THREE.Vector3();
   const col = new THREE.Color();
   const yAxis = new THREE.Vector3(0, 1, 0);
 
@@ -149,8 +154,96 @@ export function createFlow(sourceColors: string[]) {
     return out.add(c.set(G.x, live.goldY, 0));
   };
 
+  function sparkPath(ra: number, na: number, rb: number, nb: number, t: number, out: THREE.Vector3) {
+    node(ra, na, a);
+    node(rb, nb, b);
+    if (t < 0.28) return out.lerpVectors(sparkIn, a, ease(t / 0.28));
+    if (t < 0.72) {
+      // the shuffle: an arc that bows out away from the axle
+      const u = ease((t - 0.28) / 0.44);
+      c.addVectors(a, b).multiplyScalar(0.5);
+      c.add(bow.copy(c).sub(sparkPos).normalize().multiplyScalar(1.1));
+      return out.copy(a).multiplyScalar((1 - u) * (1 - u)).addScaledVector(c, 2 * u * (1 - u)).addScaledVector(b, u * u);
+    }
+    return out.lerpVectors(b, sparkOut, ease((t - 0.72) / 0.28));
+  }
+
+  /** Quarantined: diverted at Silver's door, parked in the pod, then expired. Returns alpha. */
+  function quarantinePath(r: FlowRecord, life: number, time: number, out: THREE.Vector3) {
+    const t = clamp01((life - LEG.silver[0]) / (1 - LEG.silver[0]));
+    if (t < 0.12) out.lerpVectors(silverIn, quarantine.points[0], ease(t / 0.12));
+    else if (t < 0.4) quarantine.getPoint(ease((t - 0.12) / 0.28), out);
+    else {
+      const o = r.seed[2] * Math.PI * 2 + time * 0.8;
+      out.copy(pod).add(q.set(Math.cos(o) * 0.22 * r.seed[3], Math.sin(o * 1.3) * 0.18, Math.sin(o) * 0.22 * r.seed[3]));
+    }
+    return 1 - clamp01((t - 0.85) / 0.15);
+  }
+
+  /**
+   * Bends a record's normal path toward its broken path while an incident is live.
+   * `fault` blends the failure in and out; `repair` tints records in the Sentinel's beam.
+   */
+  function applyChaos(r: FlowRecord, life: number, leg: Leg, time: number, p: THREE.Vector3, s: { alpha: number; jitter: number }, chaos: ChaosSignal) {
+    const f = chaos.fault;
+    let hit = false;
+    switch (chaos.id) {
+      case "schema-drift":
+        // orders.v3 gains a column: orders back up in Bronze until the schema evolves
+        if (r.source !== 0) break;
+        if (leg === "bronze") {
+          hit = true;
+          s.jitter *= 1 + 2.5 * f;
+          col.lerp(C.amber, f);
+        } else if (leg === "toSpark" || leg === "spark" || leg === "toSilver") {
+          hit = true;
+          p.lerp(bronzeWander(r, time, h), f);
+          col.lerp(C.amber, f);
+          s.jitter = Math.max(s.jitter, f);
+        }
+        break;
+      case "late-data":
+        // a site gateway goes quiet, then flushes everything at once
+        if (r.source !== 1 || (leg !== "intake" && leg !== "bronze")) break;
+        hit = true;
+        h.copy(curves[1].v0).add(q.set(0.15 + r.seed[0] * 0.35, (r.seed[1] - 0.5) * 0.2, (r.seed[2] - 0.5) * 0.2));
+        p.lerp(h, f);
+        col.lerp(C.amber, f * 0.8);
+        break;
+      case "null-storm":
+        // a third of transactions arrive with null amounts and flood quarantine
+        if (r.source !== 2 || r.bad || r.seed[3] > 0.55) break;
+        if (leg === "bronze") {
+          hit = true;
+          if (Math.sin(time * 23 + r.seed[1] * 40) > 0.2) col.lerp(C.error, f);
+        } else if (leg === "silver" || leg === "toGold" || leg === "gold") {
+          hit = true;
+          const qa = quarantinePath(r, life, time, h);
+          p.lerp(h, f);
+          s.alpha = s.alpha + (qa - s.alpha) * f;
+          col.lerp(C.error, f);
+        }
+        break;
+      case "skewed-partition":
+        // one hot key: most records pile onto a single executor
+        if (leg !== "spark" || r.seed[2] > 0.72) break;
+        hit = true;
+        sparkPath(HOT.ring, HOT.node, r.ringB, r.nodeB, local(life, "spark"), h);
+        p.lerp(h, f);
+        col.lerp(C.amber, f * 0.7);
+        break;
+      case "source-outage":
+        // the supply-chain feed goes silent
+        if (r.source !== 3 || (leg !== "intake" && leg !== "bronze")) break;
+        hit = true;
+        s.alpha *= 1 - f;
+        break;
+    }
+    if (hit && chaos.repair > 0) col.lerp(C.repair, chaos.repair * 0.75);
+  }
+
   /** Where record `r` is at `time`, plus its colour, opacity and jitter. */
-  function sample(r: FlowRecord, time: number, p: THREE.Vector3) {
+  function sample(r: FlowRecord, time: number, p: THREE.Vector3, chaos: ChaosSignal | null = null) {
     const life = (time / PERIOD + r.offset) % 1;
     const leg = legOf(life);
     let alpha = 1;
@@ -181,37 +274,18 @@ export function createFlow(sourceColors: string[]) {
       case "toSpark":
         p.lerpVectors(bronzeExit, sparkIn, local(life, "toSpark"));
         break;
-      case "spark": {
-        const t = local(life, "spark");
-        node(r.ringA, r.nodeA, a);
-        node(r.ringB, r.nodeB, b);
-        if (t < 0.28) p.lerpVectors(sparkIn, a, ease(t / 0.28));
-        else if (t < 0.72) {
-          // the shuffle: an arc that bows out away from the axle
-          const u = ease((t - 0.28) / 0.44);
-          c.addVectors(a, b).multiplyScalar(0.5);
-          c.add(bow.copy(c).sub(sparkPos).normalize().multiplyScalar(1.1));
-          p.copy(a).multiplyScalar((1 - u) * (1 - u)).addScaledVector(c, 2 * u * (1 - u)).addScaledVector(b, u * u);
-        } else p.lerpVectors(b, sparkOut, ease((t - 0.72) / 0.28));
+      case "spark":
+        sparkPath(r.ringA, r.nodeA, r.ringB, r.nodeB, local(life, "spark"), p);
         col.lerp(C.violet, 0.65);
         break;
-      }
       case "toSilver":
         p.lerpVectors(sparkOut, silverIn, local(life, "toSilver"));
         col.lerp(C.silver, 0.5);
         break;
       default: {
         if (r.bad) {
-          // quarantined: diverted at Silver's door, parked in the pod, then expired
-          const t = clamp01((life - LEG.silver[0]) / (1 - LEG.silver[0]));
+          alpha = quarantinePath(r, life, time, p);
           col.copy(C.error);
-          if (t < 0.12) p.lerpVectors(silverIn, quarantine.points[0], ease(t / 0.12));
-          else if (t < 0.4) quarantine.getPoint(ease((t - 0.12) / 0.28), p);
-          else {
-            const o = r.seed[2] * Math.PI * 2 + time * 0.8;
-            p.copy(pod).add(a.set(Math.cos(o) * 0.22 * r.seed[3], Math.sin(o * 1.3) * 0.18, Math.sin(o) * 0.22 * r.seed[3]));
-          }
-          alpha = 1 - clamp01((t - 0.85) / 0.15);
           break;
         }
         if (leg === "silver") {
@@ -234,13 +308,15 @@ export function createFlow(sourceColors: string[]) {
         }
       }
     }
-    return { leg, alpha, jitter, color: col };
+    const s = { alpha, jitter };
+    if (chaos && (chaos.fault > 0.001 || chaos.repair > 0.001)) applyChaos(r, life, leg, time, p, s, chaos);
+    return { leg, alpha: s.alpha, jitter: s.jitter, color: col };
   }
 
   const p = new THREE.Vector3();
-  function step(records: FlowRecord[], time: number, out: FlowBuffers) {
+  function step(records: FlowRecord[], time: number, out: FlowBuffers, chaos: ChaosSignal | null = null) {
     for (let i = 0; i < records.length; i++) {
-      const s = sample(records[i], time, p);
+      const s = sample(records[i], time, p, chaos);
       out.position[i * 3] = p.x;
       out.position[i * 3 + 1] = p.y;
       out.position[i * 3 + 2] = p.z;

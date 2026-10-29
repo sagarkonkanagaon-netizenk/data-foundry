@@ -27,6 +27,8 @@ export function intakeCurve(i: number) {
 }
 
 export const SPARK_YAW = -0.75;
+/** The executor that a skewed partition overloads. */
+export const HOT = { ring: 2, node: 3 };
 export const RINGS = [
   { r: 0.95, nodes: 8, tilt: [0, 0, 0] as [number, number, number], speed: 0.35 },
   { r: 1.3, nodes: 12, tilt: [0.32, 0, 0.18] as [number, number, number], speed: -0.24 },

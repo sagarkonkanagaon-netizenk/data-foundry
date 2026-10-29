@@ -83,13 +83,23 @@ export function Hud({ tasks }: { tasks: string[] }) {
 /** One-line orchestrator status: run id, current task, health. */
 export function RunLine() {
   const dag = useMachine((s) => s.dag);
+  const incident = useMachine((s) => s.incident);
+  const phase = useMachine((s) => s.phase);
   const running = dag?.tasks.find((t) => t.state === "running");
   const done = dag?.tasks.filter((t) => t.state === "success").length ?? 0;
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-[10px] tracking-[0.2em] text-mute uppercase">
-      <span>
-        <span className="text-cyan">●</span> Nominal
-      </span>
+      {incident && phase !== "recovered" ? (
+        <span className={incident.severity === "error" ? "text-error" : "text-amber"}>
+          ▲ {phase === "heal" ? "Healing" : "Incident"} · {incident.label}
+        </span>
+      ) : incident ? (
+        <span className="text-cyan">✓ Healed</span>
+      ) : (
+        <span>
+          <span className="text-cyan">●</span> Nominal
+        </span>
+      )}
       <span>dag foundry_daily</span>
       <span className="tabular-nums">run #{dag?.runId ?? "—"}</span>
       <span className="text-ink/80">

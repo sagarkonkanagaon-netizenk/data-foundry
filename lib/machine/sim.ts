@@ -3,6 +3,7 @@
 import { createMetricsSim } from "./metrics";
 import { useMachine } from "./store";
 import type { FromWorker, ToWorker } from "./types";
+import type { ChaosSignal } from "./chaos";
 
 // One simulation per page. Prefers a Web Worker; if workers are unavailable the
 // telemetry runs on the main thread instead (and Particles computes its own flow).
@@ -27,6 +28,15 @@ function getWorker(): Worker | null {
   return worker;
 }
 
+let mainThreadSim: ReturnType<typeof createMetricsSim> | null = null;
+
+/** Tell the telemetry sim how broken the machine is (the flow gets it per frame). */
+export function sendChaos(signal: ChaosSignal | null) {
+  const w = getWorker();
+  if (w) w.postMessage({ type: "chaos", signal } satisfies ToWorker);
+  else mainThreadSim?.setChaos(signal);
+}
+
 export function startMetrics(tasks: string[]) {
   if (started) return;
   started = true;
@@ -35,7 +45,7 @@ export function startMetrics(tasks: string[]) {
     w.postMessage({ type: "metrics", tasks } satisfies ToWorker);
     return;
   }
-  const sim = createMetricsSim(tasks);
+  const sim = (mainThreadSim = createMetricsSim(tasks));
   const t0 = performance.now();
   let last = t0;
   setInterval(() => {

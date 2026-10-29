@@ -1,5 +1,7 @@
 // Shapes shared by the main thread and the simulation worker.
 
+import type { ChaosSignal } from "./chaos";
+
 export type TaskState = "queued" | "running" | "success" | "failed";
 export type StageId = "intake" | "bronze" | "spark" | "silver" | "gold";
 
@@ -24,7 +26,17 @@ export type LiveTransforms = { sparkSpin: number[]; latticeRot: number; goldRot:
 export type ToWorker =
   | { type: "metrics"; tasks: string[] }
   | { type: "init-flow"; count: number; colors: string[] }
-  | { type: "flow"; t: number; live: LiveTransforms; position: Float32Array; color: Float32Array; alpha: Float32Array; jitter: Float32Array };
+  | { type: "chaos"; signal: ChaosSignal | null }
+  | {
+      type: "flow";
+      t: number;
+      live: LiveTransforms;
+      chaos: ChaosSignal | null;
+      position: Float32Array;
+      color: Float32Array;
+      alpha: Float32Array;
+      jitter: Float32Array;
+    };
 
 export type FromWorker =
   | { type: "tick"; metrics: Metrics; dag: DagState }
