@@ -21,7 +21,7 @@ which file drives which part of the site.
 ## Build plan
 
 1. Scaffold + content ✅
-2. Static machine geometry + glass shaders
+2. Static machine geometry + glass shaders ✅
 3. Particle flow
 4. HUD + state + simulated metrics
 5. Chaos injection + Sentinel healing
@@ -29,3 +29,13 @@ which file drives which part of the site.
 7. Ask the Engine (RAG chat)
 8. Live data feed
 9. Performance, mobile, accessibility
+
+## The machine (`components/machine/`)
+
+- `MachineLoader.tsx` – detects WebGL2 / reduced motion / weak devices, lazy-loads the
+  scene and cross-fades it over the SVG schematic
+- `Scene.tsx` – canvas, studio lighting (Lightformers), camera rig, postprocessing
+- `Glass.tsx` – shared refraction buffer + `GlassVessel` (transmission, fresnel rim, caustics)
+- `Chambers.tsx`, `SparkCore.tsx`, `Plumbing.tsx`, `Orchestrator.tsx`, `Sentinel.tsx`, `Atmosphere.tsx`
+- `shaders/` – custom GLSL: fresnel rim + scan band, caustics, scan beam, hologram tiles, dust, backdrop fog, glow
+- `layout.ts` – world positions and palette
