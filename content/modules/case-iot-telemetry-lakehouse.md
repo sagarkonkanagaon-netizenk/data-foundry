@@ -3,30 +3,34 @@ slug: case-iot-telemetry-lakehouse
 order: 5
 kind: case-study
 codename: CASE 01
-title: "Industrial IoT telemetry lakehouse"
-status: Case study · Trane Technologies
-problem: "HVAC equipment telemetry arrived late, duplicated and in mixed formats, so efficiency reports could not be trusted."
-diagram: [Device gateways, ADF ingestion, Bronze / Silver / Gold on Delta, BI + alerts]
-stack: [Azure Data Factory, Databricks, PySpark, Delta Lake, Azure DevOps]
+title: "Industrial IoT telemetry platform"
+status: Case study · Trane
+problem: "Telemetry from 10,000+ connected HVAC units kept changing shape with every firmware update, and every change risked breaking the pipelines behind equipment-health and predictive-maintenance analytics."
+diagram: [10k+ HVAC devices, Parquet on HDFS, PySpark + schema evolution, Partitioned Hive tables, Health + maintenance analytics]
+stack: [PySpark, Spark SQL, Hadoop, HDFS, Hive, Parquet, Python]
 impact:
-  value: "TBD"
-  label: "faster daily refresh"
-links:
-  - label: Write-up
-    href: "#"
-draft: true
+  value: "10k+"
+  label: "devices, zero-redeploy schema changes"
+links: []
+draft: false
 ---
 
-**Context.** Describe the system, the scale (devices, rows per day) and who used the
-output.
+**Context.** Trane Technologies runs HVAC and refrigeration equipment that reports
+telemetry continuously. The platform turns that stream into real-time equipment
+health monitoring and predictive maintenance analytics. I worked on it as a Senior
+Data Engineer on a RedBlackTree client engagement (Aug 2025 – Jan 2026).
 
-**What I built.** A medallion lakehouse on Databricks: raw telemetry landed in Bronze,
-deduplicated and late-arrival-aware Silver tables, and Gold aggregates for equipment
-efficiency.
+**What I built.** Hadoop–Spark pipelines that process high-volume telemetry from
+10,000+ devices. PySpark jobs on Parquet in HDFS apply window functions, aggregations,
+broadcast joins and schema enforcement before loading partitioned Hive tables.
 
-**Hard part.** Write the one problem that took real thinking.
+**Hard part.** Firmware updates add or change fields without warning. I implemented
+schema evolution with dynamic schema inference, so pipelines adapt to new or modified
+fields and stay fully compatible downstream **without being redeployed**. This is the
+Schema Drift scenario in the machine above.
 
-**Result.** Put the measured outcome here.
+**Governance.** Data validation, lineage tracking and metadata governance across
+ingestion and transformation, giving end-to-end traceability for compliance and audit.
 
-**Status:** placeholder framing. Replace with the real story; keep anything
-confidential vague.
+**Result.** Standardised Spark transformation patterns across the platform, which
+reduced the ad-hoc query load on the team.

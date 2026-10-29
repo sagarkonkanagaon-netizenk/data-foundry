@@ -33,10 +33,11 @@ export type Link = { label: string; href: string };
 
 export type Site = {
   name: string;
+  shortName: string;
   title: string;
   location: string;
   email: string;
-  years: number;
+  years: string;
   seoTitle: string;
   seoDescription: string;
   tagline: string;
@@ -96,6 +97,7 @@ export type Instruments = {
 
 export type FlightEntry = {
   company: string;
+  client?: string;
   role: string;
   domain: string;
   start: string;

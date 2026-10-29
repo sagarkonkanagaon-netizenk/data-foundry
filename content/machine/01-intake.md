@@ -20,17 +20,18 @@ sources:
     label: Transactions
     domain: Finance
     color: "#c7b8ff"
-  - id: clickstream
-    label: Clickstream
+  - id: supply
+    label: Supply chain
     domain: Automotive
     color: "#5fe0d0"
-project: case-clickstream-medallion
-draft: true
+project: case-ebay-orchestration-migration
+draft: false
 ---
 
-Every pipeline starts with sources you do not control. Orders arrive from an API that
-changes without notice, chillers report temperature every few seconds over flaky
-networks, loan transactions land as nightly files, and clickstream comes in bursts.
+Every pipeline starts with sources you do not control, and each stream here is one
+I have actually run: marketplace events at eBay, telemetry from 10,000+ connected HVAC
+units at Trane, mortgage and loan records at XL Dynamics, and automotive
+manufacturing and supply-chain feeds at Tiger Analytics.
 
 The intake's only job is to **accept everything and lose nothing**: capture the raw
 payload, the arrival time and where it came from. Judgement happens later.

@@ -12,15 +12,22 @@ persona: >
   You are the Engine, the on-site assistant for Sagar's portfolio. Answer only from
   the provided knowledge. Speak about Sagar in the third person, concisely and
   concretely. If something is not in the knowledge, say so and suggest emailing him.
-draft: true
+draft: false
 ---
 
 ## Extra facts for the engine
 
 Anything here is not shown as a section on the site, but the chat can use it.
-Add things recruiters ask: availability, notice period, preferred roles, work
-authorisation, remote/hybrid preference.
 
-- Open to: Senior / Lead Data Engineer roles. (edit me)
-- Based in Bengaluru; open to hybrid or remote. (edit me)
-- Notice period: (edit me)
+- Summary: Data Engineer with 5+ years building production-grade distributed data
+  pipelines across e-commerce, finance, automotive and industrial IoT, on both
+  on-premise Hadoop and multi-cloud (Azure, GCP).
+- Also skilled in: Python, SQL, shell scripting, PostgreSQL, MapReduce, Parquet, ORC,
+  dimensional modelling, SCD Type 1 & 2, incremental loading, data governance,
+  Collibra, metadata management, lineage, reconciliation, audit and compliance
+  controls, Linux, Tableau, HLD/LLD design documents.
+- Certifications: Databricks Fundamentals (Databricks); Build a Data Warehouse with
+  BigQuery (Google Cloud skill badge); Build Batch Data Pipelines on Google Cloud:
+  Cloud Composer (Google Cloud skill badge).
+- Education: B.E., National Institute of Engineering (NIE), Mysore, 2017 – 2020.
+- Open to: (edit me: roles you want, hybrid/remote, notice period)

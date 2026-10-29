@@ -28,7 +28,7 @@ export function Hero({ site, stages }: { site: Site & { html: string; file: stri
           <p className="font-mono text-[11px] tracking-[0.25em] text-cyan/70 uppercase">{site.kicker}</p>
           <h1 className="mt-3 text-5xl font-light tracking-tight md:text-7xl">
             {site.name}
-            <span className="text-mute"> · {site.title}</span>
+            <span className="mt-1 block text-mute">{site.title}</span>
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-ink/80">{site.tagline}</p>
           {site.draft && (
@@ -41,7 +41,7 @@ export function Hero({ site, stages }: { site: Site & { html: string; file: stri
           <dt>Location</dt>
           <dd className="text-ink">{site.location}</dd>
           <dt>Runtime</dt>
-          <dd className="text-ink">~{site.years} yrs</dd>
+          <dd className="text-ink">{site.years} yrs</dd>
           <dt>Status</dt>
           <dd className="text-cyan">● Nominal</dd>
         </dl>

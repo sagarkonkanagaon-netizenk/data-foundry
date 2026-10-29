@@ -1,21 +1,22 @@
 ---
-name: Sagar
+name: Sagar Konkanagaon
+shortName: Sagar
 title: Senior Data Engineer
 location: Bengaluru, India
 email: sagarkonkanagaon@gmail.com
-years: 5
+years: "5+"
 # Shown in browser tabs and search results.
 seoTitle: "Sagar · Senior Data Engineer · The Data Foundry"
-seoDescription: "Senior Data Engineer in Bengaluru. Spark, Databricks, Delta Lake, Airflow and BigQuery across e-commerce, automotive, finance and industrial IoT. Watch a live medallion pipeline heal itself."
+seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Spark, Hadoop/Hive, Databricks, Delta Lake, ADF, Airflow and BigQuery across e-commerce, automotive, finance and industrial IoT. Watch a live medallion pipeline heal itself."
 # The one line under the machine. Keep it under ~90 characters.
 tagline: "I build data pipelines that notice when they break, and fix themselves."
 # Small caps label above the name.
-kicker: "The Data Foundry · est. 2021"
+kicker: "The Data Foundry · est. 2020"
 links:
   - label: GitHub
     href: https://github.com/your-handle
   - label: LinkedIn
-    href: https://www.linkedin.com/in/your-handle
+    href: https://www.linkedin.com/in/sagar-konkanagaon-346914156
   - label: Résumé (PDF)
     href: /resume.pdf
 draft: true

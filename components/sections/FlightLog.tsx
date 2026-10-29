@@ -16,7 +16,10 @@ export function FlightLog({ data }: { data: T & { file: string } }) {
               {e.company}
               <span className="text-mute"> :: {e.role}</span>
             </h3>
-            <div className="mt-1 text-[11px] tracking-[0.2em] text-violet uppercase">domain={e.domain}</div>
+            <div className="mt-1 text-[11px] tracking-[0.2em] text-violet uppercase">
+              domain={e.domain}
+              {e.client && <span className="text-mute"> · via={e.client}</span>}
+            </div>
             <ul className="mt-4 space-y-2 text-ink/75">
               {e.lines.map((l) => (
                 <li key={l}>

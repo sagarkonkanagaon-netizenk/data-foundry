@@ -5,8 +5,8 @@ label: "04 · Silver"
 title: Silver chamber
 color: "#d6e4f0"
 summary: "Clear glass. Records align into a conformed lattice; bad ones go to quarantine."
-project: phoenix
-draft: true
+project: case-iot-telemetry-lakehouse
+draft: false
 ---
 
 Silver is where records become trustworthy. Types are enforced, duplicates removed,
@@ -18,5 +18,9 @@ ranges, referential checks). Records that fail are not silently dropped. They ar
 routed to the **quarantine pod** with the reason attached, so they can be fixed and
 replayed.
 
-**Built with:** Delta `MERGE`, expectations / Great Expectations-style checks,
-SCD Type 2.
+At XL Dynamics I built DQ rule frameworks and reconciliation checks over 20M+ mortgage
+and loan records; at Trane, schema evolution that absorbed firmware changes without a
+redeploy.
+
+**Built with:** Delta `MERGE`, DQ rule frameworks, reconciliation, SCD Type 1 & 2,
+lineage and metadata governance (Collibra).

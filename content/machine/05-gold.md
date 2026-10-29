@@ -5,17 +5,17 @@ label: "05 · Gold"
 title: Gold chamber
 color: "#f2c46d"
 summary: "Crystal clear. Business-ready tables, modelled for the people who use them."
-project: case-iot-telemetry-lakehouse
-draft: true
+project: case-automotive-lakehouse
+draft: false
 ---
 
 Gold is what the business actually sees: aggregated, modelled tables shaped around
-questions, not sources. Daily revenue by category, chiller efficiency by site, loan
-funnel conversion.
+questions, not sources: equipment health by site, loan performance and risk KPIs,
+supply-chain throughput.
 
 The crystal rotates slowly because Gold should be **boring**: stable schemas,
 documented columns, predictable freshness, and a cost per query someone has actually
 looked at.
 
-**Built with:** Delta / BigQuery marts, partitioning and clustering, semantic views
-for BI.
+**Built with:** Delta Lake on Databricks, BigQuery, dimensional modelling with
+surrogate keys, Tableau.

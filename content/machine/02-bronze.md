@@ -6,7 +6,7 @@ title: Bronze chamber
 color: "#c9a27a"
 summary: "Frosted glass. Records land exactly as they arrived, malformed ones included."
 project: case-iot-telemetry-lakehouse
-draft: true
+draft: false
 ---
 
 Bronze is the append-only landing zone. Records are written to Delta tables **as they
@@ -17,4 +17,7 @@ history when a downstream bug is found.
 Malformed records (the red flickers) are kept, not dropped. Throwing data away at the
 door is how you lose the evidence you need later.
 
-**Built with:** Auto Loader / ADF copy activities, Delta Lake, schema-on-read.
+At Trane this was raw HVAC telemetry from 10,000+ devices, landed as Parquet in HDFS
+before any transformation touched it.
+
+**Built with:** ADF, ADLS Gen2, HDFS, Parquet / ORC, Delta Lake.
