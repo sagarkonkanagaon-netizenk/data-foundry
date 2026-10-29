@@ -22,7 +22,7 @@ which file drives which part of the site.
 
 1. Scaffold + content ✅
 2. Static machine geometry + glass shaders ✅
-3. Particle flow
+3. Particle flow ✅
 4. HUD + state + simulated metrics
 5. Chaos injection + Sentinel healing
 6. Sections polish (Modules, Instruments, Flight Log, Transmit)
@@ -39,3 +39,6 @@ which file drives which part of the site.
 - `Chambers.tsx`, `SparkCore.tsx`, `Plumbing.tsx`, `Orchestrator.tsx`, `Sentinel.tsx`, `Atmosphere.tsx`
 - `shaders/` – custom GLSL: fresnel rim + scan band, caustics, scan beam, hologram tiles, dust, backdrop fog, glow
 - `layout.ts` – world positions and palette
+- `geometry.ts` – shared shapes (intake curves, rings, lattice, Gold columns) and live transforms the flow reads
+- `flow/sim.ts` – the record journey as a pure function of (record, time); `flow/payload.ts` – fake JSON per source
+- `Particles.tsx` – one Points draw call for every record, hover to inspect; `ShuffleArcs.tsx` – Spark shuffle arcs
