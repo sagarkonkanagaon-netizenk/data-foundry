@@ -9,7 +9,7 @@ export function Engine({ data, email }: { data: T & { file: string }; email: str
       <div className="md:ml-[204px]">
         <EngineConsole greeting={data.greeting} suggestions={data.suggestions} email={email} />
         <p className="mt-4 font-mono text-[10px] tracking-[0.12em] text-faint">
-          Answers come from Claude, grounded only in what is on this site. It can be wrong, so for anything important, email Sagar.
+          Answers come from an AI model, grounded only in what is on this site. It can be wrong, so for anything important, email Sagar.
         </p>
       </div>
     </section>
