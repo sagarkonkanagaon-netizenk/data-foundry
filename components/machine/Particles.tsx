@@ -8,6 +8,7 @@ import type { Source } from "@/lib/content";
 import { createFlow, makeRecords, type FlowBuffers, type FlowRecord, type Leg } from "./flow/sim";
 import { live } from "./geometry";
 import { connectFlow } from "@/lib/machine/sim";
+import { chaosSignal } from "@/lib/machine/store";
 import { payloadFor } from "./flow/payload";
 import { makeParticleMaterial } from "./shaders/particles";
 
@@ -75,10 +76,10 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
         const b = spare.current;
         spare.current = null;
         pending.current = true;
-        send({ type: "flow", t, live: { sparkSpin: [...live.sparkSpin], latticeRot: live.latticeRot, goldRot: live.goldRot, goldY: live.goldY }, ...b });
+        send({ type: "flow", t, chaos: chaosSignal(), live: { sparkSpin: [...live.sparkSpin], latticeRot: live.latticeRot, goldRot: live.goldRot, goldY: live.goldY }, ...b });
       }
     } else {
-      flow.step(records, t, current());
+      flow.step(records, t, current(), chaosSignal());
       show(current());
     }
     mat.uniforms.uTime.value = t;

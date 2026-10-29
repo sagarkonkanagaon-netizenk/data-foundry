@@ -6,7 +6,9 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { MeshTransmissionMaterial, useFBO } from "@react-three/drei";
 import { makeCausticsMaterial } from "./shaders/caustics";
 import { makeFresnelMaterial } from "./shaders/fresnel";
-import { useMachine } from "@/lib/machine/store";
+import { incidentClock, useMachine } from "@/lib/machine/store";
+import { faultAt, repairAt } from "@/lib/machine/chaos";
+import { PALETTE } from "./layout";
 import type { StageId } from "@/lib/machine/types";
 
 // Every glass object refracts the same snapshot of the scene. Rendering one shared
@@ -110,10 +112,20 @@ export function GlassVessel({
   useFrame(({ clock }, dt) => {
     rimMat.uniforms.uTime.value = clock.elapsedTime;
     if (stage) {
-      const on = useMachine.getState().activeStages.has(stage);
-      const target = rimIntensity * (on ? 2.1 : 1);
-      rimMat.uniforms.uIntensity.value += (target - rimMat.uniforms.uIntensity.value) * Math.min(1, dt * 2.5);
-      rimMat.uniforms.uScan.value = on ? 0.9 : 0.35;
+      const { activeStages, incident } = useMachine.getState();
+      const on = activeStages.has(stage);
+      let target = rimIntensity * (on ? 2.1 : 1);
+      let alert = 0;
+      if (incident?.stage === stage) {
+        const s = incidentClock();
+        alert = faultAt(s);
+        // fault: the rim burns amber/red and pulses; repair: it floods with cyan
+        target = rimIntensity * (1.6 + alert * (1 + 0.6 * Math.sin(clock.elapsedTime * 7)) + repairAt(s) * 2.4);
+        rimMat.uniforms.uAlertColor.value.set(incident.severity === "error" ? PALETTE.error : PALETTE.amber);
+      }
+      rimMat.uniforms.uIntensity.value += (target - rimMat.uniforms.uIntensity.value) * Math.min(1, dt * 4);
+      rimMat.uniforms.uAlert.value += (alert - rimMat.uniforms.uAlert.value) * Math.min(1, dt * 4);
+      rimMat.uniforms.uScan.value = on || alert > 0.05 ? 0.9 : 0.35;
     }
     if (causticMat) causticMat.uniforms.uTime.value = clock.elapsedTime;
   });

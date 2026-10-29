@@ -1,4 +1,5 @@
 import type { DagState, Metrics, TaskState } from "./types";
+import type { ChaosSignal } from "./chaos";
 
 // Simulated telemetry. Each signal is a mean-reverting random walk around a baseline
 // that slowly breathes, so numbers move like a real pipeline: never still, never wild.
@@ -28,18 +29,31 @@ export function createMetricsSim(tasks: string[], seed = 231) {
   let runId = 4812;
   let runT = 0;
 
+  let chaos: ChaosSignal | null = null;
+  let lateBacklog = 0;
+
   const total = tasks.reduce((acc, t) => acc + (DURATIONS[t] ?? 2), 0) + IDLE_BETWEEN_RUNS;
 
   function step(dt: number, t: number): { metrics: Metrics; dag: DagState } {
-    const base = 52000 + 9000 * Math.sin(t * 0.05) + 4000 * Math.sin(t * 0.013);
+    // what each injected fault does to the numbers, scaled by how broken things are
+    const f = chaos?.fault ?? 0;
+    const id = chaos?.id;
+    const rowsHit = id === "skewed-partition" ? 0.5 : id === "schema-drift" ? 0.35 : id === "source-outage" ? 0.3 : id === "late-data" ? 0.2 : 0;
+    const latencyHit = id === "skewed-partition" ? 1400 : id === "schema-drift" ? 120 : id === "late-data" ? 60 : 0;
+    const dqHit = id === "null-storm" ? 3.6 : id === "schema-drift" ? 0.5 : 0;
+    const costHit = id === "skewed-partition" ? 9 : id === "null-storm" ? 1.5 : 0;
+    if ((id === "late-data" || id === "source-outage") && f > 0.3) lateBacklog += dt * 18;
+    else lateBacklog *= Math.exp(-dt * 1.2);
+
+    const base = (52000 + 9000 * Math.sin(t * 0.05) + 4000 * Math.sin(t * 0.013)) * (1 - rowsHit * f);
     rows += (base - rows) * 0.08 * dt * 4 + gauss() * 1400 * Math.sqrt(dt);
     rows = Math.max(8000, rows);
     const throughput = Math.min(1, rows / 70000);
-    latency += (180 + 160 * throughput - latency) * 0.1 * dt * 4 + gauss() * 9 * Math.sqrt(dt);
-    dq += (99.62 - dq) * 0.05 * dt * 4 + gauss() * 0.03 * Math.sqrt(dt);
+    latency += (180 + 160 * throughput + latencyHit * f - latency) * 0.25 * dt * 4 + gauss() * 9 * Math.sqrt(dt);
+    dq += (99.62 - dqHit * f - dq) * 0.2 * dt * 4 + gauss() * 0.03 * Math.sqrt(dt);
     dq = Math.min(99.99, dq);
     rowsToday += rows * dt;
-    quarantined += rows * dt * (100 - dq) * 0.0001 * 0.6;
+    quarantined += rows * dt * (100 - dq) * 0.0001 * 0.6 * (1 + (id === "null-storm" ? 30 * f : 0));
 
     // DAG run cycle
     runT += dt;
@@ -61,9 +75,9 @@ export function createMetricsSim(tasks: string[], seed = 231) {
     const metrics: Metrics = {
       rowsPerSec: rows,
       latencyMs: latency,
-      freshnessSec: freshness,
+      freshnessSec: freshness + lateBacklog,
       dqScore: dq,
-      costPerHr: 11.4 + throughput * 7.2 + gauss() * 0.04,
+      costPerHr: 11.4 + throughput * 7.2 + costHit * f + gauss() * 0.04,
       throughput,
       rowsToday,
       quarantined,
@@ -71,5 +85,5 @@ export function createMetricsSim(tasks: string[], seed = 231) {
     return { metrics, dag: { runId, tasks: states } };
   }
 
-  return { step };
+  return { step, setChaos: (c: ChaosSignal | null) => (chaos = c) };
 }

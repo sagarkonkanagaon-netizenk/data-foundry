@@ -5,6 +5,31 @@ import * as THREE from "three";
 import { GlassVessel } from "./Glass";
 import { LAYOUT, PALETTE } from "./layout";
 import { intakeCurve } from "./geometry";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { incidentClock, useMachine } from "@/lib/machine/store";
+import { faultAt } from "@/lib/machine/chaos";
+
+// Which intake port each incident hits.
+const PORT_FAULT: Record<string, { port: number; color: string }> = {
+  "source-outage": { port: 3, color: PALETTE.error },
+  "late-data": { port: 1, color: PALETTE.amber },
+};
+
+function PortRing({ index, color }: { index: number; color: string }) {
+  const mat = useRef<THREE.MeshBasicMaterial>(null);
+  const base = useMemo(() => new THREE.Color(color), [color]);
+  const alert = useMemo(() => new THREE.Color(), []);
+  useFrame(({ clock }) => {
+    if (!mat.current) return;
+    const inc = useMachine.getState().incident;
+    const hit = inc ? PORT_FAULT[inc.id] : undefined;
+    const f = hit && hit.port === index ? faultAt(incidentClock()) : 0;
+    const blink = f * (0.5 + 0.5 * Math.sign(Math.sin(clock.elapsedTime * 9)));
+    mat.current.color.copy(base).lerp(alert.set(hit?.color ?? color), blink);
+  });
+  return <meshBasicMaterial ref={mat} color={color} toneMapped={false} />;
+}
 import type { Source } from "@/lib/content";
 
 /** Intake nozzles at the left edge, one per source, piped into Bronze. */
@@ -19,7 +44,7 @@ export function IntakePorts({ sources }: { sources: Source[] }) {
   );
   return (
     <group>
-      {ports.map(({ s, start, curve }) => (
+      {ports.map(({ s, start, curve }, i) => (
         <group key={s.id}>
           <group position={start} rotation={[0, 0, -Math.PI / 2]}>
             <mesh>
@@ -28,7 +53,7 @@ export function IntakePorts({ sources }: { sources: Source[] }) {
             </mesh>
             <mesh position={[0, -0.28, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <torusGeometry args={[0.22, 0.012, 8, 64]} />
-              <meshBasicMaterial color={s.color} toneMapped={false} />
+              <PortRing index={i} color={s.color} />
             </mesh>
             <mesh position={[0, -0.2, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <circleGeometry args={[0.19, 48]} />
