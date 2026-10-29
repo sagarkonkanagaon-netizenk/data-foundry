@@ -14,7 +14,7 @@ tagline: "I build data pipelines that notice when they break, and fix themselves
 kicker: "The Data Foundry · est. 2020"
 links:
   - label: GitHub
-    href: https://github.com/your-handle
+    href: https://github.com/sagarkonkanagaon-netizenk
   - label: LinkedIn
     href: https://www.linkedin.com/in/sagar-konkanagaon-346914156
   - label: Résumé (PDF)
