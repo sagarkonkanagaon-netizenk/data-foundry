@@ -14,7 +14,7 @@ export function BronzeChamber() {
   return (
     <group position={[x, 0, 0]}>
       {/* frosted: high roughness blurs what's behind it */}
-      <GlassVessel shape="cylinder" radius={radius} height={height} tint="#efe2d2" rim={PALETTE.bronze} roughness={0.38} thickness={0.8} caustics={0.35} rimIntensity={0.9} />
+      <GlassVessel shape="cylinder" radius={radius} height={height} tint="#efe2d2" rim={PALETTE.bronze} stage="bronze" roughness={0.38} thickness={0.8} caustics={0.35} rimIntensity={0.9} />
       <Collar radius={radius} y={height / 2} color={PALETTE.bronze} />
       <Collar radius={radius} y={-height / 2} color={PALETTE.bronze} />
     </group>
@@ -33,7 +33,7 @@ export function SilverChamber() {
   });
   return (
     <group position={[x, 0, 0]}>
-      <GlassVessel shape="cylinder" radius={radius} height={height} tint="#e6f0fa" rim={PALETTE.silver} roughness={0.08} thickness={0.6} caustics={0.4} rimIntensity={1.3} />
+      <GlassVessel shape="cylinder" radius={radius} height={height} tint="#e6f0fa" rim={PALETTE.silver} stage="silver" roughness={0.08} thickness={0.6} caustics={0.4} rimIntensity={1.3} />
       <points ref={ref} geometry={lattice}>
         <pointsMaterial color={PALETTE.silver} size={0.035} sizeAttenuation transparent opacity={0.55} toneMapped={false} />
       </points>
@@ -87,7 +87,7 @@ export function GoldChamber() {
   });
   return (
     <group position={[x, 0, 0]}>
-      <GlassVessel shape="sphere" radius={radius} tint="#fffaf0" rim={PALETTE.gold} roughness={0.0} thickness={0.25} caustics={0.22} rimIntensity={0.9} />
+      <GlassVessel shape="sphere" radius={radius} tint="#fffaf0" rim={PALETTE.gold} stage="gold" roughness={0.0} thickness={0.25} caustics={0.22} rimIntensity={0.9} />
       <group ref={cluster}>
         {COLUMNS.map((c, i) => (
           <mesh

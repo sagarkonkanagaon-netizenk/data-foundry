@@ -5,8 +5,9 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { LAYOUT, PALETTE } from "./layout";
 import { makeHologramMaterial } from "./shaders/hologram";
+import { useMachine } from "@/lib/machine/store";
 
-/** Holographic Airflow-style DAG floating above the machine. Idles through a run cycle. */
+/** Holographic Airflow-style DAG floating above the machine, lit by the sim's task states. */
 export function Orchestrator({ tasks }: { tasks: string[] }) {
   const { y, z, x0, x1 } = LAYOUT.dag;
   const nodes = useMemo(
@@ -26,14 +27,14 @@ export function Orchestrator({ tasks }: { tasks: string[] }) {
   }, [nodes, y, z]);
 
   const edgeMat = useRef<THREE.LineBasicMaterial>(null);
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, dt) => {
     const t = clock.elapsedTime;
-    // one task every 1.4s, then a short pause with everything lit before resetting
-    const step = (t / 1.4) % (nodes.length + 3);
-    nodes.forEach((n, i) => {
+    const dag = useMachine.getState().dag;
+    nodes.forEach((n) => {
       n.mat.uniforms.uTime.value = t;
-      const target = step >= nodes.length + 1 ? 0 : step > i + 1 ? 0.55 : step > i ? 1 : 0;
-      n.mat.uniforms.uActive.value += (target - n.mat.uniforms.uActive.value) * 0.08;
+      const state = dag?.tasks.find((x) => x.id === n.t)?.state;
+      const target = state === "running" ? 1 : state === "success" ? 0.4 : 0;
+      n.mat.uniforms.uActive.value += (target - n.mat.uniforms.uActive.value) * Math.min(1, dt * 5);
     });
     if (edgeMat.current) edgeMat.current.opacity = 0.18 + Math.sin(t * 0.8) * 0.04;
   });

@@ -6,12 +6,13 @@ import { useFrame } from "@react-three/fiber";
 import { Billboard } from "@react-three/drei";
 import { LAYOUT, PALETTE } from "./layout";
 import { live, RINGS, SPARK_YAW } from "./geometry";
+import { useMachine } from "@/lib/machine/store";
 import { makeGlowMaterial } from "./shaders/glow";
 
 // A gyroscope of executor rings. Each node on a ring is one executor/task slot.
-// `throughput` (0..1) will drive spin speed from step 4 on.
+// Spin speed follows live throughput from the sim.
 
-function Ring({ index, r, nodes, tilt, speed, throughput }: (typeof RINGS)[number] & { index: number; throughput: number }) {
+function Ring({ index, r, nodes, tilt, speed }: (typeof RINGS)[number] & { index: number }) {
   const spin = useRef<THREE.Group>(null);
   const inst = useRef<THREE.InstancedMesh>(null);
 
@@ -25,9 +26,12 @@ function Ring({ index, r, nodes, tilt, speed, throughput }: (typeof RINGS)[numbe
     inst.current!.instanceMatrix.needsUpdate = true;
   }, [nodes, r]);
 
+  const throughput = useRef(0.6);
   useFrame((_, dt) => {
     if (!spin.current) return;
-    spin.current.rotation.x += dt * speed * (0.4 + throughput);
+    const target = useMachine.getState().metrics?.throughput ?? 0.6;
+    throughput.current += (target - throughput.current) * Math.min(1, dt * 1.5);
+    spin.current.rotation.x += dt * speed * (0.25 + throughput.current * 1.4);
     live.sparkSpin[index] = spin.current.rotation.x;
   });
 
@@ -51,7 +55,7 @@ function Ring({ index, r, nodes, tilt, speed, throughput }: (typeof RINGS)[numbe
   );
 }
 
-export function SparkCore({ throughput = 0.5 }: { throughput?: number }) {
+export function SparkCore() {
   const core = useRef<THREE.Mesh>(null);
   const glow = useMemo(() => makeGlowMaterial(PALETTE.violet), []);
   useFrame(({ clock }) => {
@@ -61,7 +65,7 @@ export function SparkCore({ throughput = 0.5 }: { throughput?: number }) {
   return (
     <group position={[LAYOUT.spark.x, 0, 0]} rotation={[0, SPARK_YAW, 0]}>
       {RINGS.map((ring, i) => (
-        <Ring key={i} index={i} {...ring} throughput={throughput} />
+        <Ring key={i} index={i} {...ring} />
       ))}
       <mesh ref={core}>
         <icosahedronGeometry args={[0.12, 3]} />
