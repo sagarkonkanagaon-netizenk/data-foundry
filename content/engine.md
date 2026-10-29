@@ -1,6 +1,6 @@
 ---
 heading: Ask the engine
-intro: "A small model that has read everything on this site. Ask it about my work."
+intro: "An AI that has read everything on this site, and nothing else. Ask it about my work."
 greeting: "Engine online. Ask me about Sagar's pipelines, projects or how he'd approach your data problem."
 suggestions:
   - "What's the hardest pipeline problem Sagar has solved?"

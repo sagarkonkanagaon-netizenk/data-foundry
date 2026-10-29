@@ -26,7 +26,7 @@ which file drives which part of the site.
 4. HUD + state + simulated metrics ✅
 5. Chaos injection + Sentinel healing ✅
 6. Scroll tour + sections (Modules, Instruments, Flight Log, Transmit) ✅
-7. Ask the Engine (RAG chat)
+7. Ask the Engine (RAG chat) ✅
 8. Live data feed
 9. Performance, mobile, accessibility
 
@@ -78,3 +78,18 @@ which file drives which part of the site.
   Set `RESEND_API_KEY` in Vercel (and optionally `TRANSMIT_FROM` with a verified
   sender). Without a key the form opens the visitor's mail app instead. It has a
   honeypot field and a per-IP limit of 5 messages an hour.
+
+## Ask the Engine
+
+- `lib/engine/retrieve.ts` splits every file in `/content` into short passages and
+  ranks them per question with BM25 (the site overview and the extra facts in
+  `content/engine.md` are always included). Edit the markdown and the engine knows.
+- `app/api/engine/route.ts` sends the top passages and the last few chat turns to
+  Claude and streams the answer back as plain text. The key is `ANTHROPIC_API_KEY`
+  in Vercel and never reaches the browser. `ENGINE_MODEL` overrides the model
+  (default `claude-opus-5-5` at low effort, answers capped at 2,000 tokens, with
+  server-side fallback on a refusal).
+- Limits: 12 questions per IP per 10 minutes and 400 per server instance per day,
+  questions up to 600 characters. These are in memory and reset on cold start, so
+  also set a monthly spend limit in the Anthropic Console.
+- Without a key the console says it is offline and shows the contact email.
