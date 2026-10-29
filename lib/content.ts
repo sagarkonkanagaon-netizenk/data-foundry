@@ -42,6 +42,7 @@ export type Site = {
   seoDescription: string;
   tagline: string;
   kicker: string;
+  openToWork?: boolean;
   links: Link[];
   draft?: boolean;
 };

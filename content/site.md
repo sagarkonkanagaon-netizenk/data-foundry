@@ -12,6 +12,8 @@ seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Spa
 tagline: "I build data pipelines that notice when they break, and fix themselves."
 # Small caps label above the name.
 kicker: "The Data Foundry · est. 2020"
+# Shows an "Open to new roles" signal under the name. Set to false once hired.
+openToWork: true
 links:
   - label: GitHub
     href: https://github.com/sagarkonkanagaon-netizenk
