@@ -41,6 +41,13 @@ function chunk(file: string, raw: string): Passage[] {
   const title = (data.title || data.heading || data.label || data.name || file) as string;
   const source = `${file} (${title})`;
   const out: Passage[] = [];
+  // The FAQ is question/answer pairs: one passage per "## " question, so each answer stays with its question.
+  if (file.endsWith("faq.md")) {
+    for (const qa of content.replace(/<!--[\s\S]*?-->/g, "").split(/^(?=## )/m)) {
+      if (qa.startsWith("## ")) out.push({ source, text: qa.trim() });
+    }
+    return out;
+  }
   // Flight log entries and instrument groups are long lists: one passage per item.
   if (Array.isArray(data.entries)) {
     for (const e of data.entries) out.push({ source, text: flatten(e) });
@@ -91,7 +98,8 @@ export function retrieve(query: string, k = 8): Passage[] {
       const idf = Math.log(1 + (N - (df.get(t) ?? 0) + 0.5) / ((df.get(t) ?? 0) + 0.5));
       s += (idf * f * 2.2) / (f + 1.2 * (0.25 + 0.75 * (len[i] / avg)));
     }
-    return { p, s };
+    // Sagar's own written answers win over passages that merely mention the same words
+    return { p, s: p.source.startsWith("content/faq.md") ? s * 1.5 : s };
   });
   const overview = passages.filter((p) => p.source.startsWith("content/site.md") || p.source.startsWith("content/engine.md"));
   const top = scored
