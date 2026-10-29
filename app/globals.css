@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* Design tokens. Palette from the brief: icy cyan, soft violet, amber for warnings,
+   muted red for errors, gold reserved for the Gold layer only. */
+@theme {
+  --color-void: #05070d;
+  --color-void-2: #0a0e18;
+  --color-ink: #d9e6f2;
+  --color-mute: #7d8aa0;
+  --color-faint: #3a4558;
+  --color-cyan: #7fd8ff;
+  --color-violet: #9d8cff;
+  --color-amber: #f0b45a;
+  --color-error: #d0645f;
+  --color-gold: #f2c46d;
+  --color-line: rgb(127 216 255 / 0.14);
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-void);
+}
+
+body {
+  background:
+    radial-gradient(1200px 700px at 50% -10%, rgb(127 216 255 / 0.06), transparent 60%),
+    radial-gradient(900px 600px at 85% 30%, rgb(157 140 255 / 0.05), transparent 60%),
+    var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(127 216 255 / 0.25);
+}
+
+/* Long-form markdown rendered from /content. */
+.prose-foundry p {
+  margin: 0 0 1em;
+  color: rgb(217 230 242 / 0.82);
+  line-height: 1.7;
+}
+.prose-foundry strong {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+.prose-foundry code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-cyan);
+  background: rgb(127 216 255 / 0.07);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+.prose-foundry h2 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-mute);
+  margin: 2em 0 1em;
+}
+.prose-foundry ul {
+  margin: 0 0 1em;
+  padding-left: 1.1em;
+  list-style: "— ";
+  color: rgb(217 230 242 / 0.82);
+}
+
+/* The flowing dashes in the static schematic. Off for reduced motion. */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.flow {
+  stroke-dasharray: 2 8;
+  animation: flow 2.4s linear infinite;
+}
+@keyframes breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
+.breathe {
+  animation: breathe 5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .breathe {
+    animation: none;
+  }
+}
