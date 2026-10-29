@@ -1,5 +1,17 @@
 # The Data Foundry
 
+[![Live site](https://img.shields.io/badge/Live-data--foundry--sand.vercel.app-0ea5e9?style=for-the-badge&logo=vercel&logoColor=white)](https://data-foundry-sand.vercel.app)
+[![Open to work](https://img.shields.io/badge/Open%20to%20work-Yes-22c55e?style=for-the-badge)](mailto:sagarkonkanagaon@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sagar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sagar-konkanagaon-346914156)
+
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Last commit](https://img.shields.io/github/last-commit/sagarkonkanagaon-netizenk/data-foundry?style=flat-square)
+
 Sagar's portfolio: a live, self-healing medallion data machine.
 
 ```bash
