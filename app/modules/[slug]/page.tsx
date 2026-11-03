@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getModule, getModules } from "@/lib/content";
+import { kindAccent } from "@/lib/kind";
 import { MiniDiagram } from "@/components/sections/Modules";
 import { DraftTag } from "@/components/ui";
 import { CapsuleScene, ModuleScenes } from "@/components/modules/ModuleScenes";
@@ -32,7 +33,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
         ← Back to the foundry
       </a>
       <div className="mt-16 flex items-center gap-4 font-mono text-[11px] tracking-[0.22em] uppercase">
-        <span className={m.kind === "case-study" ? "text-violet" : "text-cyan"}>{m.codename}</span>
+        <span className={kindAccent(m.kind)}>{m.codename}</span>
         <span className="text-mute">{m.status}</span>
         {m.draft && <DraftTag file={m.file} />}
       </div>

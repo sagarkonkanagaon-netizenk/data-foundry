@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { PALETTE } from "@/components/machine/layout";
 
-// Seven small looping scenes, one per module capsule. Each is a pure function of time:
+// Nine small looping scenes, one per module capsule. Each is a pure function of time:
 // instanced boxes whose position, scale and colour are recomputed every frame, so
 // there is no state to drift and every loop plays the same.
 
@@ -528,6 +528,149 @@ function Migration() {
   );
 }
 
+/* ── OSS 01 · Number Passport ────────────────────────────────────────────── */
+// A trace pulse leaves the report cell and walks the lineage back hop by hop:
+// report, gold, silver, bronze, source rows. Each hop it passes is stamped as
+// reconciled; the first hop flashes red, the unexplained manual adjustment.
+function Passport() {
+  const hops = 5;
+  const loop = 9;
+  const step = 1.25;
+  const xs = [2.4, 1.2, 0, -1.2, -2.4];
+  const tones = [C.white, C.gold, C.silver, C.bronze, C.dim];
+  const node = useMemo(() => box(0.5, 0.7, 0.5), []);
+  const stamp = useMemo(() => box(0.34, 0.06, 0.34), []);
+  const bead = useMemo(() => box(0.09, 0.09, 0.09), []);
+  const row = useMemo(() => box(0.12, 0.12, 0.12), []);
+  const trail = 9;
+  const R = 12;
+  const arrive = (k: number) => 0.6 + k * step; // when the pulse reaches node k
+  const nodeFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    o.position.set(xs[i], -0.35 + Math.sin(tt * 1.2 + i) * 0.03, 0);
+    const lit = clamp01((t - arrive(i)) / 0.3);
+    c.copy(C.dim).lerp(tones[i] === C.dim ? C.cyan : tones[i], 0.35 + lit * 0.65);
+    if (i === hops - 1) o.scale.set(1, 0.35, 1);
+  };
+  const stampFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    const k = ease((t - arrive(i + 1)) / 0.35) * clamp01((loop - 0.4 - t) / 0.4);
+    o.position.set(xs[i + 1], 0.25 + (1 - k) * 0.3, 0);
+    o.scale.setScalar(k + 0.001);
+    if (i === 0) {
+      // the report → gold hop does not reconcile
+      const flash = 0.6 + 0.4 * Math.sin(tt * 9);
+      c.copy(C.error).multiplyScalar(flash);
+      o.position.x = (xs[0] + xs[1]) / 2;
+      o.position.y = 0.45 + (1 - k) * 0.3;
+    } else c.copy(C.cyan);
+  };
+  const beadFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop - i * 0.05;
+    const p = (t - 0.6) / step; // which hop, and how far along it
+    const k = Math.floor(p);
+    if (p < 0 || k >= hops - 1) {
+      o.scale.setScalar(0);
+      return;
+    }
+    const f = ease(p - k);
+    o.position.set(
+      THREE.MathUtils.lerp(xs[k], xs[k + 1], f),
+      0.15 + Math.sin(Math.PI * f) * 0.55,
+      Math.sin(Math.PI * f) * 0.2,
+    );
+    o.scale.setScalar(1.4 * (1 - i / trail));
+    c.copy(k === 0 ? C.error : C.cyan).lerp(C.white, 0.35);
+  };
+  const rowFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    const k = clamp01((t - arrive(hops - 1) - (i % 4) * 0.08) / 0.3);
+    o.position.set(xs[hops - 1] + ((i % 4) - 1.5) * 0.17, -0.82 + Math.floor(i / 4) * 0.17, 0.42);
+    o.scale.setScalar(0.6 + k * 0.4);
+    c.copy(C.dim).lerp(C.cyan, k);
+  };
+  return (
+    <Stage>
+      <Instances count={hops} fn={nodeFn} geometry={node} />
+      <Instances count={hops - 1} fn={stampFn} geometry={stamp} glow />
+      <Instances count={trail} fn={beadFn} geometry={bead} glow />
+      <Instances count={R} fn={rowFn} geometry={row} />
+    </Stage>
+  );
+}
+
+/* ── OSS 02 · deja ───────────────────────────────────────────────────────── */
+// Two sessions run their commands left to right. In the first, a command fails and
+// stays red until a retry passes; the fix flies into the memory stack. In the second,
+// the same failure gets its fix from memory at once.
+function Memory() {
+  const loop = 11;
+  const cols = 6;
+  const fail = 2;
+  const rowsY = [0.55, -0.35];
+  const starts = [0, 5.2];
+  const cmd = useMemo(() => box(0.4, 0.4, 0.4), []);
+  const slab = useMemo(() => box(0.9, 0.12, 0.6), []);
+  const fixGeo = useMemo(() => box(0.16, 0.16, 0.16), []);
+  const storeX = -2.2;
+  const slabs = 5;
+  const topY = -0.75 + (slabs - 1) * 0.2;
+  const cx = (j: number) => -1.0 + j * 0.62;
+  const litAt = (r: number, j: number) => starts[r] + 0.5 + j * 0.5;
+  const recorded = 4.2;
+  const healed = [3.4, 7.4];
+  const end = (t: number) => clamp01((loop - t) / 0.5);
+  const cmdFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    const r = Math.floor(i / cols);
+    const j = i % cols;
+    const k = ease((t - litAt(r, j)) / 0.25);
+    o.position.set(cx(j), rowsY[r], 0);
+    o.scale.setScalar(k * end(t) + 0.001);
+    o.rotation.y = (1 - k) * 1.2;
+    if (j === fail) c.copy(t < healed[r] ? C.error : C.cyan);
+    else c.copy(C.dim).lerp(C.white, 0.5);
+  };
+  const slabFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    o.position.set(storeX, -0.75 + i * 0.2, 0);
+    const top = i === slabs - 1;
+    const k = top ? ease((t - recorded) / 0.3) * end(t) : 1;
+    o.scale.set(1, top ? k + 0.001 : 1, 1);
+    const glow = top ? 1 : 0.35 + 0.15 * Math.sin(tt * 1.5 + i);
+    c.copy(C.dim).lerp(C.amber, glow);
+  };
+  const a = useMemo(() => new THREE.Vector3(), []);
+  const b = useMemo(() => new THREE.Vector3(), []);
+  const fixFn: Fn = (i, tt, o, c) => {
+    const t = tt % loop;
+    // flight 0: the fix is learned (failure → memory); flight 1: it is recalled
+    const [from, to, t0, t1] =
+      i === 0
+        ? [a.set(cx(fail), rowsY[0], 0), b.set(storeX, topY + 0.15, 0), healed[0], recorded]
+        : [a.set(storeX, topY + 0.15, 0), b.set(cx(fail), rowsY[1], 0), litAt(1, fail) + 0.1, healed[1]];
+    const p = (t - t0) / (t1 - t0);
+    if (p < 0 || p > 1) {
+      o.scale.setScalar(0);
+      return;
+    }
+    const f = ease(p);
+    o.position.lerpVectors(from, to, f);
+    o.position.y += Math.sin(Math.PI * f) * 0.7;
+    o.position.z += Math.sin(Math.PI * f) * 0.4;
+    o.rotation.set(t * 4, t * 3, 0);
+    o.scale.setScalar(1.3);
+    c.copy(C.amber);
+  };
+  return (
+    <Stage>
+      <Instances count={slabs} fn={slabFn} geometry={slab} opacity={0.9} />
+      <Instances count={cols * 2} fn={cmdFn} geometry={cmd} />
+      <Instances count={2} fn={fixFn} geometry={fixGeo} glow />
+    </Stage>
+  );
+}
+
 export const SCENES = {
   dedup: Dedup,
   scd2: Scd2,
@@ -536,5 +679,7 @@ export const SCENES = {
   telemetry: Telemetry,
   lakehouse: Lakehouse,
   migration: Migration,
+  passport: Passport,
+  memory: Memory,
 } as const;
 export type SceneName = keyof typeof SCENES;

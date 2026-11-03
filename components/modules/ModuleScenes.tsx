@@ -27,6 +27,8 @@ const LEGEND: Record<SceneName, [string, string][]> = {
   telemetry: [["#7fd8ff", "reading"], ["#9d8cff", "new firmware schema"]],
   lakehouse: [["#c9a27a", "bronze"], ["#d6e4f0", "silver"], ["#f2c46d", "gold"]],
   migration: [["#f0b45a", "UC4 job"], ["#7fd8ff", "on DLS"]],
+  passport: [["#7fd8ff", "reconciled hop"], ["#d0645f", "unexplained gap"]],
+  memory: [["#d0645f", "failure"], ["#f0b45a", "remembered fix"], ["#7fd8ff", "fixed"]],
 };
 
 

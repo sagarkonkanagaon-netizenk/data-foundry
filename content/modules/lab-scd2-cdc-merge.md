@@ -1,6 +1,6 @@
 ---
 slug: lab-scd2-cdc-merge
-order: 5
+order: 7
 kind: lab
 scene: scd2
 codename: LAB 02
