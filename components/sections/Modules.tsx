@@ -1,4 +1,5 @@
 import type { Module } from "@/lib/content";
+import { kindAccent } from "@/lib/kind";
 import { DraftTag, SectionHeader } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
 import { CapsuleScene, ModuleScenes } from "@/components/modules/ModuleScenes";
@@ -44,7 +45,7 @@ export function MiniDiagram({ nodes }: { nodes: string[] }) {
 }
 
 function Capsule({ m }: { m: Module & { file: string } }) {
-  const accent = m.kind === "case-study" ? "text-violet" : "text-cyan";
+  const accent = kindAccent(m.kind);
   return (
     <article className="relative flex flex-col overflow-hidden rounded-[30px] border border-line bg-void-2/70 p-7 backdrop-blur-sm transition-[border-color,transform] duration-700 group-hover:-translate-y-0.5 group-hover:border-cyan/35 md:p-8">
       {m.scene && (
@@ -108,7 +109,7 @@ export function Modules({
       <SectionHeader
         index="03"
         title="Modules"
-        intro="Docked capsules. Three case studies from production, and four mini projects on the problems every pipeline eventually meets, each playing out live inside its capsule."
+        intro="Docked capsules. Three case studies from production, two open-source tools I built and released, and four mini projects on the problems every pipeline eventually meets, each playing out live inside its capsule."
       />
       <ModuleScenes>
         <ol className="relative">

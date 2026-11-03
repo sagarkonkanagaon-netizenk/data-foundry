@@ -1,6 +1,6 @@
 ---
 slug: lab-skew-salting
-order: 6
+order: 8
 kind: lab
 scene: salting
 codename: LAB 03
