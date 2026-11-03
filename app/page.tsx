@@ -2,6 +2,7 @@ import { getChaos, getEngine, getFlightLog, getInstruments, getModules, getSite,
 import { Hero } from "@/components/sections/Hero";
 import { Manual } from "@/components/sections/Manual";
 import { Modules } from "@/components/sections/Modules";
+import { Banner } from "@/components/sections/Banner";
 import { Instruments } from "@/components/sections/Instruments";
 import { FlightLog } from "@/components/sections/FlightLog";
 import { Engine } from "@/components/sections/Engine";
@@ -40,7 +41,7 @@ export default function Home() {
       <PersonLd site={site} />
       <Hero site={site} stages={stages} chaos={chaos} modules={modules} />
       <Manual chaos={chaos} />
-      <Hairline />
+      <Banner />
       <Modules modules={modules} />
       <Hairline />
       <Instruments data={getInstruments()} />

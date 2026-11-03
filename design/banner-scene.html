@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  :root { --void:#05070d; --ink:#d9e6f2; --mute:#7d8aa0; --cyan:#7fd8ff; --gold:#f2c46d; --amber:#f0b45a; }
+  html,body { margin:0; background:var(--void); overflow:hidden; }
+  #stage { position:relative; overflow:hidden; background:var(--void); }
+  canvas { position:absolute; inset:0; display:block; }
+  .copy { position:absolute; color:var(--ink); font-family:'Space Grotesk',sans-serif; z-index:2; }
+  .kicker { font-family:'JetBrains Mono',monospace; letter-spacing:.32em; text-transform:uppercase; color:var(--mute); display:flex; align-items:center; gap:.9em; }
+  .dot { width:.7em; height:.7em; border-radius:50%; background:var(--cyan); box-shadow:0 0 14px var(--cyan); }
+  .name { font-weight:300; letter-spacing:-.02em; line-height:1.02; }
+  .title { font-family:'JetBrains Mono',monospace; letter-spacing:.3em; text-transform:uppercase; color:var(--cyan); }
+  .tag { color:rgba(217,230,242,.82); line-height:1.35; font-weight:300; }
+  .chips { display:flex; flex-wrap:wrap; gap:.55em; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.14em; }
+  .chip { border:1px solid rgba(127,216,255,.28); background:rgba(10,14,24,.6); color:rgba(217,230,242,.8); padding:.45em .8em; border-radius:999px; }
+  .chip.oss { border-color:rgba(240,180,90,.5); color:var(--amber); }
+  .url { font-family:'JetBrains Mono',monospace; letter-spacing:.18em; color:var(--mute); }
+  .fade { position:absolute; inset:0; z-index:1; pointer-events:none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script type="importmap">{ "imports": { "three": "./three/build/three.module.js", "three/addons/": "./three/examples/jsm/" } }</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const q = new URLSearchParams(location.search);
+const W = +q.get('w') || 1200, H = +q.get('h') || 630;
+const mode = q.get('mode') || 'og';
+const T0 = +(q.get('t') ?? 2.2);
+
+const stage = document.getElementById('stage');
+stage.style.width = W + 'px'; stage.style.height = H + 'px';
+
+// ── copy layer ────────────────────────────────────────────────────────────
+const copy = document.createElement('div'); copy.className = 'copy';
+const fade = document.createElement('div'); fade.className = 'fade';
+const u = H / 630; // type scale
+if (mode === 'og') {
+  Object.assign(copy.style, { left: 72*u+'px', top: 70*u+'px', bottom: 64*u+'px', width: 500*u+'px', display:'flex', flexDirection:'column', justifyContent:'space-between' });
+  copy.innerHTML = `
+    <div class="kicker" style="font-size:${17*u}px"><span class="dot"></span>The Data Foundry</div>
+    <div>
+      <div class="name" style="font-size:${74*u}px">Sagar<br>Konkanagaon</div>
+      <div class="title" style="font-size:${19*u}px;margin-top:${18*u}px">Senior Data Engineer</div>
+      <div class="tag" style="font-size:${24*u}px;margin-top:${26*u}px">I build data pipelines that notice when they break, and fix themselves.</div>
+    </div>
+    <div class="chips" style="font-size:${12.5*u}px">
+      <span class="chip">Spark</span><span class="chip">Databricks</span><span class="chip">Airflow</span><span class="chip">BigQuery</span>
+      <span class="chip oss">Open source · Number Passport · deja</span>
+    </div>`;
+  fade.style.background = `linear-gradient(90deg, rgba(5,7,13,.97) 0%, rgba(5,7,13,.92) 40%, rgba(5,7,13,0) 58%)`;
+} else if (mode === 'cover') {
+  // LinkedIn puts the profile photo over the bottom-left, so the copy sits on the right
+  Object.assign(copy.style, { right: 64*u+'px', top: 0, bottom: 0, width: 760*u+'px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'flex-end', textAlign:'right' });
+  const s = H / 396;
+  copy.innerHTML = `
+    <div class="kicker" style="font-size:${13*s}px"><span class="dot"></span>The Data Foundry</div>
+    <div class="name" style="font-size:${44*s}px;margin-top:${14*s}px">Turning chaos into clean data</div>
+    <div class="title" style="font-size:${12*s}px;margin-top:${14*s}px;letter-spacing:.24em;white-space:nowrap">Spark · Databricks · Airflow · Lakehouse</div>
+    <div class="chips" style="font-size:${10.5*s}px;margin-top:${20*s}px;justify-content:flex-end">
+      <span class="chip oss">Open source · Number Passport · deja</span>
+    </div>
+    <div class="url" style="font-size:${11.5*s}px;margin-top:${16*s}px">data-foundry-sand.vercel.app</div>`;
+  fade.style.background = `linear-gradient(270deg, rgba(5,7,13,.97) 0%, rgba(5,7,13,.88) 34%, rgba(5,7,13,0) 58%)`;
+} else {
+  fade.style.background = `linear-gradient(180deg, rgba(5,7,13,1) 0%, rgba(5,7,13,0) 16%, rgba(5,7,13,0) 84%, rgba(5,7,13,1) 100%)`;
+}
+stage.append(fade, copy);
+
+// ── renderer ──────────────────────────────────────────────────────────────
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(window.devicePixelRatio);
+renderer.setSize(W, H);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+stage.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#05070d');
+scene.fog = new THREE.Fog('#05070d', 14, 30);
+
+const camera = new THREE.PerspectiveCamera(mode === 'cover' ? 30 : 34, W / H, 0.1, 100);
+// where the machine sits in frame
+const target = { og: [1.0, 0.8, 0], cover: [-0.6, 0.7, 0], strip: [-0.4, 0.7, 0] }[mode];
+const camPos = { og: [-5.0, 4.8, 21], cover: [-6.0, 3.8, 16.5], strip: [-1.5, 3.8, 15.5] }[mode];
+camera.position.set(...camPos);
+camera.lookAt(...target);
+camera.updateMatrixWorld();
+// shift the projection so the machine lands on the free side of the copy
+const shift = { og: -0.235, cover: 0.2, strip: 0 }[mode];
+camera.setViewOffset(W, H, shift * W, 0, W, H);
+
+const C = { cyan: new THREE.Color('#7fd8ff'), violet: new THREE.Color('#9d8cff'), amber: new THREE.Color('#f0b45a'),
+  gold: new THREE.Color('#f2c46d'), bronze: new THREE.Color('#c9a27a'), silver: new THREE.Color('#d6e4f0'), white: new THREE.Color('#eaf6ff') };
+
+scene.add(new THREE.HemisphereLight('#cfe6ff', '#05070d', 0.55));
+const key = new THREE.DirectionalLight('#ffffff', 1.4); key.position.set(4, 8, 6); scene.add(key);
+const rim = new THREE.PointLight('#7fd8ff', 40, 18); rim.position.set(-5, 3, 3); scene.add(rim);
+const warm = new THREE.PointLight('#f2c46d', 14, 9); warm.position.set(6.5, 3.2, -1.5); scene.add(warm);
+
+// floor: dark mirror-ish plane + fine grid
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 30), new THREE.MeshStandardMaterial({ color: '#070b13', metalness: 0.85, roughness: 0.38 }));
+floor.rotation.x = -Math.PI / 2; floor.position.y = -1.6; scene.add(floor);
+const grid = new THREE.GridHelper(60, 120, '#16314a', '#0d1724'); grid.position.y = -1.59; scene.add(grid);
+
+// ── chambers ──────────────────────────────────────────────────────────────
+const chambersList = [];
+const glowTex = (() => { const cv = document.createElement('canvas'); cv.width = cv.height = 128; const x = cv.getContext('2d');
+  const gr = x.createRadialGradient(64, 64, 0, 64, 64, 64); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.35, 'rgba(255,255,255,.35)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = gr; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(cv); })();
+const X = { intake: -6.6, bronze: -3.6, spark: -0.6, silver: 2.4, gold: 5.6 };
+function chamber(x, color, r, h, fill) {
+  const g = new THREE.Group(); g.position.set(x, -1.6, 0);
+  const glass = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 64, 1, true),
+    new THREE.MeshPhysicalMaterial({ color: '#9fd4ff', metalness: 0.1, roughness: 0.05, transparent: true, opacity: 0.1, side: THREE.DoubleSide, clearcoat: 1, depthWrite: false, emissive: '#2a5578', emissiveIntensity: 0.12 }));
+  glass.position.y = h / 2; glass.renderOrder = 2; g.add(glass);
+  const liquid = new THREE.Mesh(new THREE.CylinderGeometry(r * 0.9, r * 0.9, h * fill, 64),
+    new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.85, roughness: 0.2, metalness: 0.1, transparent: true, opacity: 0.42, depthWrite: false, side: THREE.DoubleSide }));
+  liquid.position.y = (h * fill) / 2 + 0.02; g.add(liquid);
+  const surface = new THREE.Mesh(new THREE.CircleGeometry(r * 0.9, 64), new THREE.MeshBasicMaterial({ color: color.clone().multiplyScalar(1.15), toneMapped: false }));
+  surface.rotation.x = -Math.PI / 2; surface.position.y = h * fill + 0.03; g.add(surface);
+  for (const y of [0.02, h]) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(r * 1.01, 0.035, 12, 96), new THREE.MeshBasicMaterial({ color: color.clone().multiplyScalar(1.25), toneMapped: false }));
+    ring.rotation.x = Math.PI / 2; ring.position.y = y; g.add(ring);
+  }
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(r * 1.06, r * 1.06, 0.12, 64), new THREE.MeshStandardMaterial({ color: '#0d1522', metalness: 0.9, roughness: 0.3 }));
+  cap.position.y = h + 0.06; g.add(cap);
+  const base = cap.clone(); base.position.y = -0.04; g.add(base);
+  // a pool of light on the floor under the chamber
+  const pool = new THREE.Mesh(new THREE.PlaneGeometry(r * 6, r * 6), new THREE.MeshBasicMaterial({ map: glowTex, color, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+  pool.rotation.x = -Math.PI / 2; pool.position.y = 0.01; g.add(pool);
+  // records suspended in the fill, rising slowly
+  const N = 46;
+  const motes = new THREE.InstancedMesh(new THREE.BoxGeometry(0.07, 0.07, 0.07), new THREE.MeshBasicMaterial({ color: color.clone().lerp(new THREE.Color('#ffffff'), 0.5).multiplyScalar(1.7), toneMapped: false }), N);
+  g.add(motes);
+  scene.add(g);
+  const ch = { g, h, r, fill, motes, N };
+  chambersList.push(ch);
+  return ch;
+}
+const bronze = chamber(X.bronze, C.bronze, 0.95, 2.6, 0.55);
+const silver = chamber(X.silver, C.silver, 0.95, 2.9, 0.62);
+const gold = chamber(X.gold, C.gold, 1.2, 3.2, 0.7);
+
+// spark core: wireframe icosahedron around a hot core, with orbiting shards
+const spark = new THREE.Group(); spark.position.set(X.spark, 0.25, 0); scene.add(spark);
+const shell = new THREE.Mesh(new THREE.IcosahedronGeometry(0.95, 1), new THREE.MeshBasicMaterial({ color: C.cyan.clone().multiplyScalar(1.6), wireframe: true, toneMapped: false, transparent: true, opacity: 0.75 }));
+spark.add(shell);
+const core = new THREE.Mesh(new THREE.IcosahedronGeometry(0.42, 3), new THREE.MeshBasicMaterial({ color: new THREE.Color('#bff0ff').multiplyScalar(1.6), toneMapped: false }));
+spark.add(core);
+const orbit = new THREE.Mesh(new THREE.TorusGeometry(1.35, 0.012, 8, 160), new THREE.MeshBasicMaterial({ color: C.violet.clone().multiplyScalar(1.6), toneMapped: false }));
+orbit.rotation.set(1.2, 0.3, 0); spark.add(orbit);
+const orbit2 = orbit.clone(); orbit2.rotation.set(0.4, 1.1, 0.6); spark.add(orbit2);
+
+// intake funnel: a ring gate where raw records arrive
+const gate = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.04, 12, 96), new THREE.MeshBasicMaterial({ color: C.cyan.clone().multiplyScalar(1.4), toneMapped: false }));
+gate.position.set(X.intake, 0.3, 0); gate.rotation.y = Math.PI / 2; scene.add(gate);
+
+// pipes along the flow, each with glowing beads
+const pipes = [];
+function pipe(a, b, lift = 0.9, color = C.cyan) {
+  const p0 = new THREE.Vector3(...a), p3 = new THREE.Vector3(...b);
+  const curve = new THREE.CubicBezierCurve3(p0, p0.clone().add(new THREE.Vector3(0.6, lift, 0)), p3.clone().add(new THREE.Vector3(-0.6, lift, 0)), p3);
+  const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.045, 10), new THREE.MeshStandardMaterial({ color: '#13283b', emissive: color, emissiveIntensity: 0.25, metalness: 0.7, roughness: 0.3 }));
+  scene.add(tube);
+  pipes.push({ curve, color });
+}
+pipe([X.intake + 0.1, 0.3, 0], [X.bronze - 0.95, 0.4, 0], 0.4);
+pipe([X.bronze + 0.95, 0.6, 0], [X.spark - 1.0, 0.25, 0], 0.6);
+pipe([X.spark + 1.0, 0.25, 0], [X.silver - 0.95, 0.7, 0], 0.6, C.violet);
+pipe([X.silver + 0.95, 0.9, 0], [X.gold - 1.2, 0.9, 0], 0.7, C.gold);
+const BEADS = 14;
+const beadGeo = new THREE.SphereGeometry(0.075, 12, 12);
+const beads = new THREE.InstancedMesh(beadGeo, new THREE.MeshBasicMaterial({ toneMapped: false }), pipes.length * BEADS);
+scene.add(beads);
+
+// orchestrator rail overhead, with task nodes
+const railY = 3.5;
+const rail = new THREE.Mesh(new THREE.BoxGeometry(13.5, 0.02, 0.02), new THREE.MeshBasicMaterial({ color: C.cyan.clone().multiplyScalar(0.7), toneMapped: false }));
+rail.position.set(-0.5, railY, -1.2); scene.add(rail);
+const nodes = [];
+for (const x of [X.intake, X.bronze, X.spark, X.silver, X.gold]) {
+  const n = new THREE.Mesh(new THREE.OctahedronGeometry(0.13), new THREE.MeshBasicMaterial({ color: C.cyan.clone().multiplyScalar(1.8), toneMapped: false }));
+  n.position.set(x, railY, -1.2); scene.add(n); nodes.push(n);
+  const drop = new THREE.Mesh(new THREE.BoxGeometry(0.008, railY - 2.0, 0.008), new THREE.MeshBasicMaterial({ color: '#1f3a52' }));
+  drop.position.set(x, (railY + 2.0) / 2 - 0.2, -1.2); scene.add(drop);
+}
+
+// raw records: scattered multicoloured cubes drifting into the intake
+const RAW = 70;
+const raw = new THREE.InstancedMesh(new THREE.BoxGeometry(0.13, 0.13, 0.13), new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.2, emissiveIntensity: 0.6 }), RAW);
+scene.add(raw);
+const rnd = (i) => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+const rawHue = Array.from({ length: RAW }, (_, i) => new THREE.Color().setHSL(rnd(i) * 0.9, 0.6, 0.62));
+
+// gold output: neat stacked blocks beside the gold chamber
+const OUT = 18;
+const out = new THREE.InstancedMesh(new THREE.BoxGeometry(0.32, 0.18, 0.32), new THREE.MeshStandardMaterial({ color: C.gold, emissive: C.gold, emissiveIntensity: 0.45, metalness: 0.6, roughness: 0.25 }), OUT);
+scene.add(out);
+
+// a sentinel eye hovering over the machine
+const sentinel = new THREE.Group(); sentinel.position.set(1.2, 2.55, 1.0); scene.add(sentinel);
+sentinel.add(new THREE.Mesh(new THREE.SphereGeometry(0.16, 24, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color('#e8f6ff').multiplyScalar(2.2), toneMapped: false })));
+const halo = new THREE.Mesh(new THREE.TorusGeometry(0.3, 0.012, 8, 64), new THREE.MeshBasicMaterial({ color: C.cyan.clone().multiplyScalar(1.6), toneMapped: false }));
+sentinel.add(halo);
+
+// dust motes for depth
+const DUST = 260;
+const dustPos = new Float32Array(DUST * 3);
+for (let i = 0; i < DUST; i++) { dustPos[i*3] = (rnd(i+3)-0.5)*26; dustPos[i*3+1] = rnd(i+7)*7-1.4; dustPos[i*3+2] = (rnd(i+11)-0.5)*12-2; }
+const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+scene.add(new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: '#7fd8ff', size: 0.03, transparent: true, opacity: 0.55 })));
+
+// ── post ──────────────────────────────────────────────────────────────────
+const composer = new EffectComposer(renderer);
+composer.setPixelRatio(window.devicePixelRatio);
+composer.setSize(W, H);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.7, 0.5, 0.86));
+composer.addPass(new OutputPass());
+
+const o = new THREE.Object3D(), c = new THREE.Color(), v = new THREE.Vector3();
+const L = 10, TAU = Math.PI * 2, w = (n) => (TAU * n) / L; // every motion repeats exactly every L seconds
+function frame(t) {
+  shell.rotation.set(0.4 + Math.sin(w(1) * t) * 0.3, w(1) * t, 0);
+  orbit.rotation.z = w(1) * t; orbit2.rotation.z = -w(1) * t;
+  core.scale.setScalar(1 + Math.sin(w(5) * t) * 0.06);
+  halo.rotation.set(Math.PI / 2 + Math.sin(w(1) * t) * 0.3, w(1) * t, 0);
+  sentinel.position.y = 2.55 + Math.sin(w(2) * t) * 0.08;
+  gate.rotation.x = w(1) * t;
+  nodes.forEach((n, k) => { n.rotation.y = w(2) * t + k; const on = ((t * 0.5) % 5) - k; n.scale.setScalar(1 + Math.max(0, 1 - Math.abs(on)) * 0.8); });
+  let k = 0;
+  pipes.forEach((p, pi) => {
+    for (let b = 0; b < BEADS; b++, k++) {
+      const u = (t * 0.2 + b / BEADS + pi * 0.13) % 1;
+      p.curve.getPoint(u, v); o.position.copy(v); o.scale.setScalar(0.6 + 0.6 * Math.sin(Math.PI * u));
+      o.updateMatrix(); beads.setMatrixAt(k, o.matrix);
+      c.copy(p.color).multiplyScalar(1.6); beads.setColorAt(k, c);
+    }
+  });
+  beads.instanceMatrix.needsUpdate = true; beads.instanceColor.needsUpdate = true;
+  for (let i = 0; i < RAW; i++) {
+    const ph = (t * 0.1 + rnd(i + 21)) % 1;
+    const x = -12.5 + ph * (X.intake + 12.5);
+    const conv = Math.pow(ph, 2.2);
+    o.position.set(x, 0.3 + (rnd(i + 2) - 0.5) * 3.2 * (1 - conv) + Math.sin(w(1) * t + i) * 0.1, (rnd(i + 5) - 0.5) * 4 * (1 - conv));
+    o.rotation.set(w(1 + Math.floor(rnd(i) * 2)) * t + i, w(1) * t + i, 0);
+    o.scale.setScalar((0.7 + rnd(i + 9) * 0.8) * Math.min(1, (1 - ph) * 6));
+    o.updateMatrix(); raw.setMatrixAt(i, o.matrix); raw.setColorAt(i, rawHue[i]);
+  }
+  raw.instanceMatrix.needsUpdate = true; raw.instanceColor.needsUpdate = true;
+  for (let i = 0; i < OUT; i++) {
+    const col = i % 3, row = Math.floor(i / 3);
+    o.position.set(X.gold + 1.75 + (col - 1) * 0.38, -1.5 + row * 0.2, 0.9 + (row % 2) * 0.05);
+    o.rotation.set(0, 0, 0);
+        o.scale.setScalar(1);
+    o.updateMatrix(); out.setMatrixAt(i, o.matrix);
+  }
+  out.instanceMatrix.needsUpdate = true;
+  chambersList.forEach((ch, ci) => {
+    for (let i = 0; i < ch.N; i++) {
+      const a = rnd(i + ci * 100) * Math.PI * 2, rr = Math.sqrt(rnd(i + ci * 100 + 7)) * ch.r * 0.8;
+      const top = ch.h * ch.fill;
+      const y = ((rnd(i + ci * 100 + 3) * top + (t / L) * top * (1 + Math.floor(rnd(i) * 2))) % top);
+      o.position.set(Math.cos(a + w(1) * t) * rr, y + 0.05, Math.sin(a + w(1) * t) * rr);
+      o.rotation.set(w(1) * t + i, w(1) * t + i, 0); o.scale.setScalar(0.6 + rnd(i + 5) * 0.9);
+      o.updateMatrix(); ch.motes.setMatrixAt(i, o.matrix);
+    }
+    ch.motes.instanceMatrix.needsUpdate = true;
+  });
+  composer.render();
+}
+window.renderAt = (t) => { frame(t); return true; };
+document.fonts.ready.then(() => { frame(T0); window.ready = true; });
+</script>
+</body>
+</html>

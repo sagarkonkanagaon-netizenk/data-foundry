@@ -236,3 +236,7 @@ html {
     opacity: 0;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .banner-video { display: none; }
+}

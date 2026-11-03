@@ -1,5 +1,7 @@
 # The Data Foundry
 
+![The Data Foundry: a 3D data machine of bronze, silver and gold chambers](public/brand/link-preview.jpg)
+
 Sagar's portfolio: a live, self-healing medallion data machine.
 
 **Live site:** https://data-foundry-sand.vercel.app
