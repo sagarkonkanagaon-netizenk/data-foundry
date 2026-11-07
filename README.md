@@ -6,6 +6,8 @@ Sagar's portfolio: a live, self-healing medallion data machine.
 
 **Live site:** https://data-foundry-sand.vercel.app
 
+Learning data engineering? I also run [Data Dhaba](https://datadhaba.in), with handbooks, SQL and Python labs, and a 24-week path.
+
 ```bash
 npm install
 npm run dev        # http://localhost:3000
