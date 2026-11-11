@@ -9,14 +9,18 @@ import { createFlow, makeRecords, type FlowBuffers, type FlowRecord, type Leg } 
 import { live } from "./geometry";
 import { connectFlow } from "@/lib/machine/sim";
 import { chaosSignal } from "@/lib/machine/store";
-import { livePayloadFor, payloadFor } from "./flow/payload";
-import { sampleEvent, type LiveEvent } from "@/lib/machine/feed";
+import { payloadFor } from "./flow/payload";
+import { useRuns } from "@/lib/machine/runs";
+import type { FlowShape } from "@/lib/machine/types";
 import { makeParticleMaterial } from "./shaders/particles";
 
-/** Every record in flight, drawn as one Points draw call. Hover one to read it. */
-export function Particles({ sources, count }: { sources: Source[]; count: number }) {
+/**
+ * Every record in flight, drawn as one Points draw call. How many show, and how many
+ * are red, come from the latest real run; hover one to read a real row from it.
+ */
+export function Particles({ sources, count, shape }: { sources: Source[]; count: number; shape: FlowShape }) {
   const { size, camera, clock } = useThree();
-  const records = useMemo(() => makeRecords(count), [count]);
+  const records = useMemo(() => makeRecords(count, shape), [count, shape]);
   const flow = useMemo(() => createFlow(sources.map((s) => s.color)), [sources]);
   const mat = useMemo(makeParticleMaterial, []);
 
@@ -44,10 +48,10 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
       alpha: new Float32Array(count),
       jitter: new Float32Array(count),
     };
-    return connectFlow(count, sources.map((s) => s.color), (m) => (incoming.current = m));
-  }, [count, sources]);
+    return connectFlow(count, sources.map((s) => s.color), shape, (m) => (incoming.current = m));
+  }, [count, sources, shape]);
 
-  const [hover, setHover] = useState<{ record: FlowRecord; leg: Leg; event: LiveEvent | null } | null>(null);
+  const [hover, setHover] = useState<{ record: FlowRecord; leg: Leg } | null>(null);
   const anchor = useRef<THREE.Group>(null);
 
   useFrame(({ clock }) => {
@@ -104,8 +108,7 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
     e.stopPropagation();
     if (hover?.record.id === i) return;
     const record = records[i];
-    // on the live feed, the card shows a real recent event (a failing one for a red particle)
-    setHover({ record, leg: flow.legAt(record, clock.elapsedTime), event: sampleEvent(i, !record.bad) });
+    setHover({ record, leg: flow.legAt(record, clock.elapsedTime) });
     mat.uniforms.uHover.value = i;
     document.body.style.cursor = "crosshair";
   };
@@ -119,22 +122,24 @@ export function Particles({ sources, count }: { sources: Source[]; count: number
     <>
       <points geometry={geo} material={mat} frustumCulled={false} onPointerMove={onMove} onPointerOut={onOut} />
       <group ref={anchor}>
-        {hover && (
-          <Html style={{ pointerEvents: "none" }} zIndexRange={[20, 0]}>
-            <div className="ml-4 -translate-y-1/2 rounded-md border border-cyan/25 bg-void/80 px-4 py-3 shadow-[0_0_40px_rgba(127,216,255,0.08)] backdrop-blur-md">
-              <div className="mb-2 flex items-center justify-between gap-6 font-mono text-[9px] tracking-[0.22em] text-mute uppercase">
-                {hover.event ? (
-                  <span className="text-cyan">live · {hover.event.wiki}</span>
-                ) : (
-                  <span style={{ color: sources[hover.record.source]?.color }}>{sources[hover.record.source]?.label}</span>
-                )}
-                <span className={hover.record.bad ? "text-error" : "text-cyan/70"}>{hover.record.bad ? "malformed" : "record"}</span>
-              </div>
-              <pre className="font-mono text-[11px] leading-[1.55] whitespace-pre text-ink/85">{hover.event ? livePayloadFor(hover.event, hover.record, hover.leg) : payloadFor(hover.record, hover.leg, sources)}</pre>
-            </div>
-          </Html>
-        )}
+        {hover && <HoverCard record={hover.record} leg={hover.leg} />}
       </group>
     </>
+  );
+}
+
+function HoverCard({ record, leg }: { record: FlowRecord; leg: Leg }) {
+  const latest = useRuns((s) => s.latest);
+  const p = payloadFor(latest, record, leg);
+  return (
+    <Html style={{ pointerEvents: "none" }} zIndexRange={[20, 0]}>
+      <div className="ml-4 -translate-y-1/2 rounded-md border border-cyan/25 bg-void/80 px-4 py-3 shadow-[0_0_40px_rgba(127,216,255,0.08)] backdrop-blur-md">
+        <div className="mb-2 flex items-center justify-between gap-6 font-mono text-[9px] tracking-[0.22em] text-mute uppercase">
+          <span className="text-cyan">{p ? p.head : "no run published yet"}</span>
+          <span className={record.bad ? "text-error" : "text-cyan/70"}>{record.bad ? "rejected" : "real row"}</span>
+        </div>
+        {p && <pre className="max-w-[340px] font-mono text-[11px] leading-[1.55] whitespace-pre-wrap break-all text-ink/85">{p.body}</pre>}
+      </div>
+    </Html>
   );
 }

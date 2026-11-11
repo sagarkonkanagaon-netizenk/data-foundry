@@ -6,12 +6,17 @@ title: Orchestrator
 color: "#7fd8ff"
 summary: "A holographic DAG above the machine. Each node lights as its task runs."
 project: case-ebay-orchestration-migration
-# Tasks shown in the floating DAG, in run order.
-tasks: [extract, land_bronze, spark_transform, dq_checks, merge_silver, build_gold, publish]
+# Tasks shown in the floating DAG, in run order. These are the real stages of
+# pipeline/foundry/run.py; the machine replays the latest run's stages on them.
+tasks: [extract, bronze, schema, silver, gold, quality, retention]
 draft: false
 ---
 
-Nothing in the machine runs on its own. The orchestrator decides **what runs, in what
+The DAG above replays the latest real run: GitHub Actions runs the pipeline in
+`/pipeline` every hour, one run at a time, and each node lights for as long as that
+stage really took. A failed stage stays red, and the stages after it never run.
+
+Nothing in a pipeline runs on its own. The orchestrator decides **what runs, in what
 order, and what happens when something fails**: retries with backoff, sensors that
 wait for late files, SLAs that page a human only when it matters.
 

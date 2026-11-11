@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { LAYOUT, PALETTE } from "../layout";
 import { COLUMNS, HOT, intakeCurve, latticePoints, live, quarantineCurve, RINGS, SPARK_YAW } from "../geometry";
 import type { ChaosSignal } from "../../../lib/machine/chaos";
+import type { FlowShape } from "../../../lib/machine/types";
 
 // The data-flow simulation. Every particle is a record making one trip through the
 // machine; its position is a pure function of (record, time), so the sim needs no
@@ -28,6 +29,8 @@ export type FlowRecord = {
   offset: number;
   seed: [number, number, number, number];
   bad: boolean;
+  /** Off when the latest run carried fewer rows than the machine has particles. */
+  hidden: boolean;
   ringA: number;
   nodeA: number;
   ringB: number;
@@ -56,7 +59,12 @@ function mulberry32(a: number) {
   };
 }
 
-export function makeRecords(count: number, badRate = 0.06): FlowRecord[] {
+/**
+ * One record per particle. The share that are malformed (red, routed to quarantine) is
+ * the latest real run's reject rate, and `density` (how many particles are visible)
+ * follows how many rows it landed.
+ */
+export function makeRecords(count: number, shape: FlowShape = { badRate: 0, density: 1 }): FlowRecord[] {
   const rnd = mulberry32(20201001);
   const lattice = latticePoints().length;
   return Array.from({ length: count }, (_, id) => {
@@ -68,7 +76,8 @@ export function makeRecords(count: number, badRate = 0.06): FlowRecord[] {
       source: id % 4,
       offset: rnd(),
       seed: [rnd(), rnd(), rnd(), rnd()],
-      bad: rnd() < badRate,
+      bad: rnd() < shape.badRate,
+      hidden: (id + 0.5) / count > shape.density,
       ringA,
       nodeA: Math.floor(rnd() * RINGS[ringA].nodes),
       ringB,
@@ -310,6 +319,7 @@ export function createFlow(sourceColors: string[]) {
     }
     const s = { alpha, jitter };
     if (chaos && (chaos.fault > 0.001 || chaos.repair > 0.001)) applyChaos(r, life, leg, time, p, s, chaos);
+    if (r.hidden) s.alpha = 0;
     return { leg, alpha: s.alpha, jitter: s.jitter, color: col };
   }
 

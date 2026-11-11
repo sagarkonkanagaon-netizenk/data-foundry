@@ -6,14 +6,19 @@ label: Schema drift
 stage: bronze
 severity: warning
 # Floating log lines, in order. Keep each under ~70 characters.
-detect: "schema drift detected in orders.v3 → +discount_code (string)"
-diagnose: "column is additive, nullable, no downstream contract broken"
-heal: "auto-evolving schema · mergeSchema=true · replaying 1,204 rows"
+detect: "an event arrives with a field the contract doesn't know"
+diagnose: "registry: new field → recorded once in ops/schema_changes"
+heal: "kept in silver.extras · run continues · no code change"
+# Where /pipeline really handles it.
+code:
+  - { label: "evolution.py · detect()", path: "pipeline/foundry/evolution.py" }
+  - { label: "silver.py · extras column", path: "pipeline/foundry/silver.py" }
+  - { label: "bronze.yaml · known fields", path: "pipeline/contracts/bronze.yaml" }
 ---
 
-The orders API added a `discount_code` field overnight. Bronze accepts it (raw is
-raw), but the Silver write would fail on an unexpected column.
+Wikimedia's event schema allows extra fields, and they do appear. Each run compares the
+fields it sees with a registry seeded from the upstream schema. A new field, or a known
+field with a new type, is recorded once and the run keeps going.
 
-The sentinel compares the incoming schema against the registered contract, sees the
-change is **additive and nullable**, evolves the Silver table and replays the batch.
-A breaking change (a dropped or retyped column) would be held for a human instead.
+New top-level fields land in silver's `extras` column, so nothing is lost and no code
+changes. A known field whose new type no longer casts goes to quarantine instead.

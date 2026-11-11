@@ -11,7 +11,7 @@ import { faultAt } from "@/lib/machine/chaos";
 import { makeGlowMaterial } from "./shaders/glow";
 
 // A gyroscope of executor rings. Each node on a ring is one executor/task slot.
-// Spin speed follows live throughput from the sim.
+// Spin speed follows how many rows the latest real pipeline run landed.
 
 function Ring({ index, r, nodes, tilt, speed }: (typeof RINGS)[number] & { index: number }) {
   const spin = useRef<THREE.Group>(null);
@@ -35,7 +35,7 @@ function Ring({ index, r, nodes, tilt, speed }: (typeof RINGS)[number] & { index
   }, [nodes, r]);
   useFrame((_, dt) => {
     if (!spin.current) return;
-    const target = useMachine.getState().metrics?.throughput ?? 0.6;
+    const target = useMachine.getState().throughput;
     throughput.current += (target - throughput.current) * Math.min(1, dt * 1.5);
     spin.current.rotation.x += dt * speed * (0.25 + throughput.current * 1.4);
     if (hot.current) {

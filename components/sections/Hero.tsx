@@ -2,8 +2,11 @@ import type { Module, Site, Stage } from "@/lib/content";
 import { Schematic } from "@/components/Schematic";
 import { MachineLoader } from "@/components/machine/MachineLoader";
 import { DraftTag } from "@/components/ui";
-import { FeedSwitch, Hud, RenderSwitch, RunLine } from "@/components/Hud";
-import { ChaosDirector, ChaosPanel, IncidentCard, type ChaosItem } from "@/components/Chaos";
+import { Hud, RenderSwitch, ReplayLatest, RunLine } from "@/components/Hud";
+import { AutoReplay, ChaosDirector, ChaosPanel, IncidentCard, type ChaosItem } from "@/components/Chaos";
+import { RunHistory } from "@/components/RunHistory";
+import { RunsInit } from "@/components/RunsInit";
+import type { Runs } from "@/lib/runs";
 import { ScrollTracker, TourBlocks } from "@/components/Tour";
 
 type WithHtml<T> = T & { html: string; file: string };
@@ -13,11 +16,14 @@ type WithHtml<T> = T & { html: string; file: string };
  * chaos controls, live HUD), then one caption block per stage as the camera flies
  * the tour. Everything here is server-rendered text, so it reads fine without WebGL.
  */
-export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; stages: WithHtml<Stage>[]; chaos: ChaosItem[]; modules: Module[] }) {
+export function Hero({ site, stages, chaos, modules, runs }: { site: WithHtml<Site>; stages: WithHtml<Stage>[]; chaos: ChaosItem[]; modules: Module[]; runs: Runs }) {
   const blocks = stages.length + 1;
   return (
     <div id="foundry" className="relative" style={{ ["--hero" as string]: 1 }}>
       <ScrollTracker targetId="foundry" blocks={blocks} />
+      <RunsInit index={runs.index} latest={runs.latest} />
+      <ReplayLatest />
+      <AutoReplay />
       <ChaosDirector />
       <div className="sticky top-0 h-svh overflow-hidden">
         <MachineLoader stages={stages}>
@@ -42,7 +48,7 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
             </span>
           </nav>
           <div className="mt-5 flex items-start justify-between gap-6">
-            <RunLine />
+            <RunLine latest={runs.latest} />
             <span className="hidden font-mono text-[10px] tracking-[0.2em] text-mute uppercase md:block">
               {site.location} · 12.97°N 77.59°E
             </span>
@@ -78,12 +84,14 @@ export function Hero({ site, stages, chaos, modules }: { site: WithHtml<Site>; s
               )}
             </div>
             <div className="w-full min-w-0 space-y-5 sm:space-y-8 lg:w-[min(56vw,720px)]">
-              <div className="flex h-7 items-center justify-between gap-3">
-                <FeedSwitch />
+              <div className="flex items-end gap-4">
+                <div className="min-w-0 flex-1">
+                  <RunHistory index={runs.index} />
+                </div>
                 <RenderSwitch />
               </div>
+              <Hud latest={runs.latest} runs={runs.index?.runs ?? []} />
               <ChaosPanel items={chaos} />
-              <Hud tasks={stages.find((s) => s.id === "orchestrator")?.tasks ?? []} />
             </div>
           </div>
         </header>

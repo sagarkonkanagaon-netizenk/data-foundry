@@ -1,91 +1,36 @@
 import type { FlowRecord, Leg } from "./sim";
-import type { LiveEvent } from "../../../lib/machine/feed";
+import type { RejectSample, RunReport, SampleRow } from "../../../lib/runs";
 
-// Fake but realistic records, one shape per source. Deterministic per record id.
-
-const pick = <T,>(arr: T[], x: number) => arr[Math.floor(x * arr.length) % arr.length];
-const pad = (n: number, w: number) => String(Math.floor(n)).padStart(w, "0");
-const money = (x: number, lo: number, hi: number) => Math.round((lo + x * (hi - lo)) * 100) / 100;
+// What a particle's hover card shows: a real row from the latest pipeline run.
+// Good particles carry one of the run's silver sample rows, red ones one of its
+// quarantined rows with the reason it was rejected.
 
 const LAYER: Record<Leg, string> = {
-  intake: "raw",
-  bronze: "bronze",
-  toSpark: "bronze",
-  spark: "spark:shuffle",
-  toSilver: "spark:shuffle",
-  silver: "silver",
-  toGold: "silver",
+  intake: "landing",
+  bronze: "bronze.recentchange",
+  toSpark: "bronze.recentchange",
+  spark: "spark",
+  toSilver: "spark",
+  silver: "silver.recentchange",
+  toGold: "silver.recentchange",
   gold: "gold",
 };
 
-export function payloadFor(r: FlowRecord, leg: Leg, sources: { id: string; label: string }[]) {
-  const [a, b, c, d] = r.seed;
-  const ts = new Date(Date.UTC(2026, 9, 29, 5, 0, 0) + Math.floor(a * 3_600_000)).toISOString();
-  const src = sources[r.source]?.id ?? "orders";
-  let body: Record<string, unknown>;
-  switch (r.source) {
-    case 0:
-      body = {
-        order_id: `ORD-${pad(b * 1e9, 9)}`,
-        item_sku: `SKU-${pad(c * 1e6, 6)}`,
-        qty: 1 + Math.floor(d * 4),
-        price: money(c, 4, 480),
-        currency: pick(["USD", "GBP", "EUR", "INR"], d),
-        discount_code: leg === "intake" || leg === "bronze" ? undefined : null,
-      };
-      break;
-    case 1:
-      body = {
-        device_id: `TRN-CH-${pad(b * 1e4, 4)}`,
-        site: pick(["BLR-04", "PUN-11", "CHE-02", "HYD-07"], c),
-        supply_temp_c: money(d, 5.5, 8.5),
-        return_temp_c: money(c, 11, 14.5),
-        kw: money(b, 120, 410),
-        firmware: pick(["4.2.1", "4.2.1", "4.3.0"], d),
-      };
-      break;
-    case 2:
-      body = {
-        loan_id: `LN-${pad(b * 1e8, 8)}`,
-        txn_type: pick(["DISBURSAL", "EMI", "PREPAYMENT", "FEE"], c),
-        amount: money(d, 1200, 95000),
-        branch: pick(["MUM-ANDHERI", "MUM-POWAI", "PUNE-BANER"], b),
-        dpd: Math.floor(c * c * 30),
-      };
-      break;
-    default:
-      body = {
-        part_no: `PRT-${pad(c * 1e5, 5)}-${pick(["A", "B", "C"], d)}`,
-        plant: pick(["CHAKAN", "SANAND", "HOSUR"], b),
-        supplier_id: `SUP-${pad(d * 1e3, 3)}`,
-        qty: 50 + Math.floor(b * 950),
-        eta: new Date(Date.UTC(2026, 10, 1 + Math.floor(c * 20))).toISOString().slice(0, 10),
-      };
-  }
-  if (r.bad) {
-    // break it the way real data breaks
-    const keys = Object.keys(body);
-    body[keys[Math.floor(c * keys.length)]] = null;
-  }
-  const meta: Record<string, unknown> = { _source: src, _layer: LAYER[leg], _ingested_at: ts };
-  if (leg === "spark" || leg === "toSilver") meta._partition = r.nodeA;
-  if (r.bad && (leg === "silver" || leg === "toGold" || leg === "gold")) meta._quarantine = "dq.not_null violated";
-  return JSON.stringify({ ...body, ...meta }, null, 2);
-}
+export type Payload = { head: string; body: string; bad: boolean } | null;
 
-/** A real event from the live stream, shaped like the record it rides on. */
-export function livePayloadFor(ev: LiveEvent, r: FlowRecord, leg: Leg) {
-  const body: Record<string, unknown> = {
-    wiki: ev.wiki,
-    type: ev.type,
-    title: ev.title,
-    revision: ev.revision,
-    bytes_delta: ev.bytes,
-    bot: ev.bot,
-    event_ts: ev.ts,
-  };
-  const meta: Record<string, unknown> = { _source: "wikimedia.recentchange", _layer: LAYER[leg], _ingest_lag_ms: Math.round(ev.lagMs) };
-  if (leg === "spark" || leg === "toSilver") meta._partition = r.nodeA;
-  if (!ev.pass && (leg === "silver" || leg === "toGold" || leg === "gold")) meta._quarantine = ev.reason;
-  return JSON.stringify({ ...body, ...meta }, null, 2);
+export function payloadFor(report: RunReport | null, r: FlowRecord, leg: Leg): Payload {
+  if (!report) return null;
+  const rejects = report.rejects?.samples ?? [];
+  const rows = report.samples ?? [];
+  if (r.bad && rejects.length) {
+    const x: RejectSample = rejects[r.id % rejects.length];
+    const late = leg === "silver" || leg === "toGold" || leg === "gold";
+    const body: Record<string, unknown> = { _layer: late ? "silver.quarantine" : LAYER[leg], reason: late ? x.reason : undefined, event_id: x.event_id, raw: x.raw.length > 120 ? `${x.raw.slice(0, 120)}…` : x.raw };
+    return { head: `run ${report.run_id} · rejected`, body: JSON.stringify(body, null, 2), bad: true };
+  }
+  if (!rows.length) return null;
+  const x: SampleRow = rows[r.id % rows.length];
+  const delta = x.length_new != null ? x.length_new - (x.length_old ?? 0) : null;
+  const body = { wiki: x.wiki, change_type: x.change_type, title: x.title, is_bot: x.is_bot, bytes_delta: delta, event_ts: x.event_ts, _layer: LAYER[leg] };
+  return { head: `run ${report.run_id} · ${x.wiki}`, body: JSON.stringify(body, null, 2), bad: false };
 }

@@ -158,3 +158,25 @@ def evolve_table(spark: SparkSession, lake: Lake, contracts: Contracts) -> list[
                 f"column {c.name} is {existing[c.name].simpleString()} in the table, contract says {t.simpleString()}",
             )
     return notes
+
+
+SAMPLE_COLUMNS = [
+    "event_id",
+    "event_ts",
+    "wiki",
+    "change_type",
+    "namespace",
+    "title",
+    "is_bot",
+    "length_old",
+    "length_new",
+]
+
+
+def sample_rows(silver: DataFrame, n: int = 12) -> list[dict]:
+    """A few silver rows for the report, picked by a hash of the key so a re-run picks the same ones."""
+    rows = silver.select(*SAMPLE_COLUMNS).orderBy(F.xxhash64("event_id"), "event_id").limit(n).collect()
+    return [
+        {k: (v.isoformat() + "Z" if k == "event_ts" and v is not None else v) for k, v in r.asDict().items()}
+        for r in rows
+    ]
