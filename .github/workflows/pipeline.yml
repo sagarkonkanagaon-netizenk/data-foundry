@@ -118,6 +118,9 @@ jobs:
           - `reports/index.json`: one line per run, newest first, last 30 days
           - `reports/runs/YYYY-MM-DD/<run_id>.json`: every run, last 30 days
           MD
+          # Vercel builds every pushed branch and reads vercel.json from the commit
+          # it builds, so this branch carries its own "never deploy me" switch.
+          echo '{ "git": { "deploymentEnabled": false } }' > vercel.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
