@@ -1,0 +1,276 @@
+{
+ "run_id": "20261111T192621Z",
+ "trigger": "manual",
+ "started_at": "2026-11-11T19:26:21Z",
+ "status": "passed",
+ "finished_at": "2026-11-11T19:28:56Z",
+ "duration_s": 155.58,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4405,
+  "bytes": 5719829,
+  "window_start": "2026-11-11T19:26:21Z",
+  "window_end": "2026-11-11T19:28:20Z"
+ },
+ "partitions": [
+  "2026-11-11T19"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-11T19:26:21Z",
+   "duration_s": 120.1,
+   "rows_in": null,
+   "rows_out": 4405,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:21Z",
+   "duration_s": 10.03,
+   "rows_in": 4405,
+   "rows_out": 4405,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-11T19"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:31Z",
+   "duration_s": 0.18,
+   "rows_in": 4405,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:31Z",
+   "duration_s": 9.09,
+   "rows_in": 4405,
+   "rows_out": 4405,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:40Z",
+   "duration_s": 9.79,
+   "rows_in": 4405,
+   "rows_out": 99,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 88,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:50Z",
+   "duration_s": 4.31,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-11T19:28:54Z",
+   "duration_s": 2.08,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4405,
+  "bronze": 4405,
+  "silver": 4405,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4405,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4405,
+    "silver": 4405,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2512,
+    "gold_edits": 2512
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2512,
+  "bot_share": 0.4956,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 842
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 480
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 398
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 136
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 107
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142116167",
+    "edits": 14
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q951550",
+    "edits": 13
+   },
+   {
+    "wiki": "labswiki",
+    "title": "Server Admin Log",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q109592128",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q111537116",
+    "edits": 6
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 4405,
+  "silver.recentchange": 4405,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 88,
+  "gold.bot_share_hour": 1,
+  "gold.top_pages_hour": 10,
+  "keep_hours": 72,
+  "restored_from_cache": false
+ },
+ "error": null,
+ "code": {
+  "commit": "7edd3fd17ebf8f577a74b50f425e2d223927b83d",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43087088334"
+ },
+ "schema_version": 1
+}
