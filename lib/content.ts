@@ -43,6 +43,9 @@ export type Site = {
   tagline: string;
   kicker: string;
   openToWork?: boolean;
+  results: { org: string; text: string }[];
+  actions: Link[];
+  plainLabel: string;
   links: Link[];
   draft?: boolean;
 };
@@ -151,6 +154,22 @@ export const getInstruments = () => read<Instruments>("instruments.md");
 export const getFlightLog = () => read<FlightLog>("flight-log.md");
 export const getEngine = () => read<Engine>("engine.md");
 export const getTransmit = () => read<Transmit>("transmit.md");
+
+export type Plain = {
+  seoTitle: string;
+  seoDescription: string;
+  backLabel: string;
+  pipelineHeading: string;
+  pipelineIntro: string;
+  pipelineEmpty: string;
+  historyLabel: string;
+  experienceHeading: string;
+  workHeading: string;
+  contactHeading: string;
+  contactIntro: string;
+  formLabel: string;
+};
+export const getPlain = () => read<Plain>("plain.md");
 
 /** Every content file as plain text: the knowledge base for Ask the Engine. */
 export function getKnowledge(): { file: string; text: string }[] {
