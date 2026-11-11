@@ -91,6 +91,23 @@ html {
   color: rgb(217 230 242 / 0.82);
 }
 
+/* An open question for Sagar. Shown on preview builds only (lib/content.ts). */
+.prose-foundry .todo-sagar {
+  border: 1px dashed rgb(240 180 90 / 0.5);
+  background: rgb(240 180 90 / 0.06);
+  border-radius: 4px;
+  padding: 0.7em 0.9em;
+  font-size: 0.9em;
+  color: rgb(240 180 90 / 0.95);
+}
+.todo-sagar-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.18em;
+  margin-right: 0.4em;
+  color: var(--color-amber);
+}
+
 /* The flowing dashes in the static schematic. Off for reduced motion. */
 @keyframes flow {
   to {

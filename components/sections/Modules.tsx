@@ -99,6 +99,16 @@ function Capsule({ m }: { m: Module & { file: string } }) {
  * powers the line between it and its docking port. On mobile the spine runs
  * down the left edge and every capsule docks to the right of it.
  */
+const WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+const n = (k: number) => WORDS[k] ?? String(k);
+
+/** Counts from the content itself, so adding a module never leaves the intro wrong. */
+function intro(modules: Module[]) {
+  const c = (kind: Module["kind"]) => modules.filter((m) => m.kind === kind).length;
+  const cases = c("case-study");
+  return `Docked capsules. ${n(cases)[0].toUpperCase()}${n(cases).slice(1)} case studies from production, ${n(c("open-source"))} open-source tools I built and released, and ${n(c("lab"))} mini projects on the problems every pipeline eventually meets.`;
+}
+
 export function Modules({
   modules,
 }: {
@@ -109,7 +119,7 @@ export function Modules({
       <SectionHeader
         index="03"
         title="Modules"
-        intro="Docked capsules. Three case studies from production, two open-source tools I built and released, and four mini projects on the problems every pipeline eventually meets, each playing out live inside its capsule."
+        intro={intro(modules)}
       />
       <ModuleScenes>
         <ol className="relative">

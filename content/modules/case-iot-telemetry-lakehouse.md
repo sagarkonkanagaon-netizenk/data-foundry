@@ -4,34 +4,54 @@ order: 1
 kind: case-study
 scene: telemetry
 codename: CASE 01
-title: "Industrial IoT telemetry platform"
-status: Case study · Trane
-problem: "Telemetry from 10,000+ connected HVAC units kept changing shape with every firmware update, and every change risked breaking the pipelines behind equipment-health and predictive-maintenance analytics."
-diagram: [10k+ HVAC devices, Parquet on HDFS, PySpark + schema evolution, Partitioned Hive tables, Health + maintenance analytics]
-stack: [PySpark, Spark SQL, Hadoop, HDFS, Hive, Parquet, Python]
+title: "Schema evolution for 10,000+ IoT devices"
+status: Case study · RedBlackTree for Trane
+problem: "Schema evolution for telemetry from 10,000+ connected IoT devices."
+diagram: ["10,000+ IoT devices", Telemetry, Schema evolution, Analytics]
+stack: [Spark]
 impact:
-  value: "10k+"
-  label: "devices, zero-redeploy schema changes"
+  value: "10,000+"
+  label: "IoT devices"
 links: []
 draft: false
 ---
 
-**Context.** Trane Technologies runs HVAC and refrigeration equipment that reports
-telemetry continuously. The platform turns that stream into real-time equipment
-health monitoring and predictive maintenance analytics. I worked on it as a Senior
-Data Engineer on a RedBlackTree client engagement (Aug 2025 – Jan 2026).
+<!--
+  Case study rules: only the result above is confirmed. Every line that starts with
+  TODO-SAGAR is a question for Sagar. Those lines show on preview builds and are left
+  out of the live site. Replace a TODO-SAGAR line with your answer to publish it.
+-->
 
-**What I built.** Hadoop–Spark pipelines that process high-volume telemetry from
-10,000+ devices. PySpark jobs on Parquet in HDFS apply window functions, aggregations,
-broadcast joins and schema enforcement before loading partitioned Hive tables.
+## Context
 
-**Hard part.** Firmware updates add or change fields without warning. I implemented
-schema evolution with dynamic schema inference, so pipelines adapt to new or modified
-fields and stay fully compatible downstream **without being redeployed**. This is the
-Schema Drift scenario in the machine above.
+Senior Data Engineer at RedBlackTree, on a client engagement for Trane Technologies, August 2025 to January 2026.
 
-**Governance.** Data validation, lineage tracking and metadata governance across
-ingestion and transformation, giving end-to-end traceability for compliance and audit.
+TODO-SAGAR: What did the platform do with the telemetry, and who used it? Keep it to what Trane would be comfortable seeing in public.
 
-**Result.** Standardised Spark transformation patterns across the platform, which
-reduced the ad-hoc query load on the team.
+## The problem
+
+TODO-SAGAR: How did the schema change, and what broke (or would have broken) when it did? For example firmware updates adding or renaming fields.
+
+## What I did
+
+Implemented schema evolution for telemetry from 10,000+ IoT devices.
+
+TODO-SAGAR: How did it work? Where new fields landed, how type changes were handled, and how you knew nothing was lost. (Your résumé mentions dynamic schema inference, Parquet on HDFS, partitioned Hive tables, and validation and lineage. Confirm the ones that belong here.)
+
+## Result
+
+- Schema evolution across **10,000+** IoT devices
+
+TODO-SAGAR: What changed after it shipped? For example redeploys avoided or failures prevented. Leave this out if you don't have a number. (The site used to say "zero redeploys"; only keep that if it's true.)
+
+## What I'd do differently
+
+TODO-SAGAR: One thing you'd change if you built it again.
+
+## Stack
+
+TODO-SAGAR: The rest of the stack you used on this work. The tools listed at the bottom of this page come from the result above.
+
+## In the machine
+
+The machine's **Schema drift** drill, and the real schema registry in `/pipeline`, use the same idea on a public stream.

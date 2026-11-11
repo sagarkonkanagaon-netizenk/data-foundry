@@ -1,6 +1,6 @@
 ---
 slug: lab-dedup-late-events
-order: 6
+order: 7
 kind: lab
 scene: dedup
 codename: LAB 01

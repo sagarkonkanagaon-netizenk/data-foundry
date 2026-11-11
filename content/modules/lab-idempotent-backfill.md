@@ -1,6 +1,6 @@
 ---
 slug: lab-idempotent-backfill
-order: 9
+order: 10
 kind: lab
 scene: backfill
 codename: LAB 04

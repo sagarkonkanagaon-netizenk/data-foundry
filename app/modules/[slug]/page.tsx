@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getModule, getModules } from "@/lib/content";
+import { SHOW_TODOS, getModule, getModules } from "@/lib/content";
 import { kindAccent } from "@/lib/kind";
 import { MiniDiagram } from "@/components/sections/Modules";
 import { DraftTag } from "@/components/ui";
@@ -37,6 +37,11 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
         <span className="text-mute">{m.status}</span>
         {m.draft && <DraftTag file={m.file} />}
       </div>
+      {SHOW_TODOS && m.todos > 0 && (
+        <p className="mt-6 rounded-sm border border-dashed border-amber/50 bg-amber/5 px-4 py-3 font-mono text-[11px] leading-relaxed tracking-[0.12em] text-amber uppercase">
+          Preview only · {m.todos} open question{m.todos === 1 ? "" : "s"} for Sagar in {m.file}. The live site leaves them out.
+        </p>
+      )}
       <h1 className="mt-4 text-4xl font-light tracking-tight md:text-6xl">{m.title}</h1>
       <p className="mt-6 text-lg text-ink/75">{m.problem}</p>
       {m.scene && (
@@ -53,7 +58,7 @@ export default async function ModulePage({ params }: { params: Promise<{ slug: s
       </div>
       <div className="prose-foundry text-lg" dangerouslySetInnerHTML={{ __html: m.html }} />
       <div className="mt-12 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[11px] text-mute">
-        {m.stack.map((s) => (
+        {(m.stack ?? []).map((s) => (
           <span key={s}>{s}</span>
         ))}
       </div>

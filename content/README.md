@@ -29,3 +29,12 @@ Map:
 | `flight-log.md`      | Experience timeline (FLIGHT LOG)                         |
 | `engine.md`          | Ask the Engine: greeting, suggested questions, extra facts |
 | `transmit.md`        | Contact section copy                                     |
+
+## Case studies and TODO-SAGAR
+
+The four case studies in `modules/case-*.md` state only the four confirmed results.
+Every paragraph that starts with `TODO-SAGAR:` is an open question. Preview and local
+builds show it in a dashed amber box, with a count at the top of the page; the live
+site (`VERCEL_ENV=production`) leaves it out, and drops any heading left empty. Ask the
+Engine never sees them. To publish an answer, replace the `TODO-SAGAR:` paragraph with
+your own text.
