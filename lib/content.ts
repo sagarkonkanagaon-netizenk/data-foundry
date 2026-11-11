@@ -8,17 +8,33 @@ import { marked } from "marked";
 
 const ROOT = path.join(process.cwd(), "content");
 
-type Doc<T> = T & { body: string; html: string; file: string };
+type Doc<T> = T & { body: string; html: string; file: string; todos: number };
+
+// A paragraph that starts with TODO-SAGAR is a question only Sagar can answer. Preview
+// and local builds show it, highlighted; the live site leaves it out, along with any
+// heading left with nothing under it, so an open question never reads as a fact.
+const TODO = /^TODO-SAGAR:.*(?:\n(?!\s*\n).*)*/gm;
+export const SHOW_TODOS = process.env.VERCEL_ENV !== "production";
+
+function render(md: string) {
+  const clean = md.replace(/<!--[\s\S]*?-->/g, "");
+  const todos = clean.match(TODO)?.length ?? 0;
+  if (SHOW_TODOS) {
+    const html = (marked.parse(clean, { async: false }) as string).replace(
+      /<p>TODO-SAGAR:\s*/g,
+      '<p class="todo-sagar"><span class="todo-sagar-tag">TODO-SAGAR</span> ',
+    );
+    return { body: clean.trim(), html, todos };
+  }
+  const body = clean.replace(TODO, "").replace(/\n{3,}/g, "\n\n").trim();
+  const html = (marked.parse(body, { async: false }) as string).replace(/<h2[^>]*>(?:(?!<\/h2>).)*<\/h2>\s*(?=<h2|$)/gs, "");
+  return { body, html, todos };
+}
 
 function read<T>(rel: string): Doc<T> {
   const file = path.join(ROOT, rel);
   const { data, content } = matter(fs.readFileSync(file, "utf8"));
-  return {
-    ...(data as T),
-    body: content.trim(),
-    html: marked.parse(content, { async: false }) as string,
-    file: `content/${rel}`,
-  };
+  return { ...(data as T), ...render(content), file: `content/${rel}` };
 }
 
 function readDir<T extends { order?: number }>(dir: string): Doc<T>[] {
@@ -177,5 +193,6 @@ export function getKnowledge(): { file: string; text: string }[] {
     fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
       e.isDirectory() ? walk(path.join(dir, e.name)) : e.name.endsWith(".md") && e.name !== "README.md" ? [path.join(dir, e.name)] : [],
     );
-  return walk(ROOT).map((f) => ({ file: path.relative(process.cwd(), f), text: fs.readFileSync(f, "utf8") }));
+  // open questions and editor notes are not knowledge: the engine must not quote them
+  return walk(ROOT).map((f) => ({ file: path.relative(process.cwd(), f), text: fs.readFileSync(f, "utf8").replace(/<!--[\s\S]*?-->/g, "").replace(TODO, "") }));
 }

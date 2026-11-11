@@ -1,6 +1,6 @@
 ---
 slug: oss-deja
-order: 5
+order: 6
 kind: open-source
 scene: memory
 codename: OSS 02

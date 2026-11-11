@@ -5,7 +5,7 @@ label: "04 · Silver"
 title: Silver chamber
 color: "#d6e4f0"
 summary: "Clear glass. Records align into a conformed lattice; bad ones go to quarantine."
-project: case-iot-telemetry-lakehouse
+project: case-finance-reconciliation
 draft: false
 ---
 
