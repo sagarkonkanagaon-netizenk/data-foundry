@@ -20,7 +20,8 @@ Map:
 
 | File / folder        | Where it shows up                                        |
 | -------------------- | -------------------------------------------------------- |
-| `site.md`            | Name, title, hero copy, SEO description, social links    |
+| `site.md`            | Name, title, hero copy, the four results and buttons, SEO description, social links |
+| `plain.md`           | Headings and copy for the plain view at `/plain`         |
 | `machine/*.md`       | One file per machine stage: the glass panel you get when you click a chamber |
 | `chaos/*.md`         | One file per INJECT CHAOS button: detection + healing narration |
 | `modules/*.md`       | Project capsules (MODULES) and their detail pages        |

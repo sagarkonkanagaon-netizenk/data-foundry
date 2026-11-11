@@ -39,11 +39,12 @@ export function ScrollTracker({ targetId, blocks }: { targetId: string; blocks: 
 type WithHtml<T> = T & { html: string };
 
 /** One full-viewport block per stage; its glass caption sits beside the chamber the camera is framing. */
-export function TourBlocks({ intro, stages, modules }: { intro: string; stages: WithHtml<Stage>[]; modules: Module[] }) {
+export function TourBlocks({ intro, stages, modules, children }: { intro: string; stages: WithHtml<Stage>[]; modules: Module[]; children?: React.ReactNode }) {
   return (
     <div className="pointer-events-none relative z-10">
       <section id="machine" className="flex min-h-svh items-center px-6 md:px-12">
-        <div className="pointer-events-auto mx-auto max-w-2xl rounded-lg border border-line bg-void/55 p-8 backdrop-blur-xl md:p-10">
+        <div className="pointer-events-auto mx-auto max-w-2xl rounded-lg border border-line bg-void/55 p-6 backdrop-blur-xl md:p-10">
+          {children}
           <h2 className="mb-5 font-mono text-[10px] tracking-[0.3em] text-cyan/70 uppercase">§01 · How to read the machine</h2>
           <div className="prose-foundry text-lg" dangerouslySetInnerHTML={{ __html: intro }} />
           <p className="mt-6 font-mono text-[10px] tracking-[0.25em] text-mute uppercase">↓ Scroll to fly through it · or click any chamber</p>

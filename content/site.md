@@ -7,9 +7,31 @@ email: sagarkonkanagaon@gmail.com
 years: "5+"
 # Shown in browser tabs and search results.
 seoTitle: "Sagar · Senior Data Engineer · The Data Foundry"
-seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Spark, Hadoop/Hive, Databricks, Delta Lake, ADF, Airflow and BigQuery across e-commerce, automotive, finance and industrial IoT. Watch a live medallion pipeline heal itself."
-# The one line under the machine. Keep it under ~90 characters.
-tagline: "I build data pipelines that notice when they break, and fix themselves."
+seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Spark, Hadoop/Hive, Databricks, Delta Lake, ADF, Airflow and BigQuery across e-commerce, automotive, finance and industrial IoT. See a real medallion pipeline run every hour."
+# The one line under the name. Keep it under ~90 characters.
+tagline: "I build data pipelines that check their own data and are safe to run twice."
+# The four results on the first screen. Only real, citable results go here.
+results:
+  - org: eBay
+    text: "300+ pipelines migrated from UC4 (Automic) to the in-house DLS platform, plus a 2-year backfill"
+  - org: Tiger Analytics
+    text: "Spark runtimes cut by 35%, and a medallion lakehouse on Databricks and Delta Lake"
+  - org: RedBlackTree · client Trane
+    text: "Schema evolution for telemetry from 10,000+ IoT devices"
+  - org: XL Dynamics
+    text: "Validation and reconciliation over 20M+ records"
+# The four buttons on the first screen, in order. The first one is the primary button.
+actions:
+  - label: Résumé (PDF)
+    href: /resume.pdf
+  - label: GitHub
+    href: https://github.com/sagarkonkanagaon-netizenk
+  - label: LinkedIn
+    href: https://www.linkedin.com/in/sagar-konkanagaon-346914156
+  - label: Contact
+    href: "#transmit"
+# The link to the page without the machine.
+plainLabel: "Skip the machine"
 # Small caps label above the name.
 kicker: "The Data Foundry · est. 2020"
 # Shows an "Open to new roles" signal under the name. Set to false once hired.

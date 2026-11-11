@@ -62,7 +62,6 @@ export function RunHistory({ index }: { index: RunIndex | null }) {
         <a href={PIPELINE_CODE} className="hover:text-ink">pipeline code ↗</a>
         <a href={PIPELINE_DATA_TREE} className="hover:text-ink">all reports ↗</a>
       </div>
-      <RunDetail />
     </div>
   );
 }
@@ -81,7 +80,8 @@ function H({ children }: { children: React.ReactNode }) {
 }
 
 /** One run's full report, as published. Opens from a history cell or an incident card. */
-function RunDetail() {
+/** The open run's report, as a dialog. Rendered once per page, whichever strip opened it. */
+export function RunDetail() {
   const r = useRuns((s) => s.selected);
   const error = useRuns((s) => s.error);
   const close = useRuns((s) => s.close);

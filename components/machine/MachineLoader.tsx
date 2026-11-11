@@ -9,15 +9,28 @@ import { Machine25D } from "./Machine25D";
 // The 3D scene is its own chunk, fetched only on devices that will render it.
 const Scene = dynamic(() => import("./Scene"), { ssr: false });
 
-/** Resolves once the browser is idle after load, so the 3D chunk never competes with first paint. */
+/**
+ * Runs once the page has loaded and the browser is idle, so the 3D chunk never competes
+ * with the server-rendered first screen (name, results, buttons) for bandwidth or CPU.
+ */
 function whenIdle(fn: () => void) {
   const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
-  if (w.requestIdleCallback) {
-    const id = w.requestIdleCallback(fn, { timeout: 1500 });
-    return () => w.cancelIdleCallback?.(id);
+  let cancel = () => {};
+  const idle = () => {
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(fn, { timeout: 2500 });
+      cancel = () => w.cancelIdleCallback?.(id);
+    } else {
+      const id = setTimeout(fn, 600);
+      cancel = () => clearTimeout(id);
+    }
+  };
+  if (document.readyState === "complete") idle();
+  else {
+    window.addEventListener("load", idle, { once: true });
+    cancel = () => window.removeEventListener("load", idle);
   }
-  const id = setTimeout(fn, 300);
-  return () => clearTimeout(id);
+  return () => cancel();
 }
 
 /**

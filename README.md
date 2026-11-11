@@ -126,6 +126,19 @@ The numbers on the machine come from a real PySpark + Delta pipeline in `/pipeli
 that samples Wikimedia's public recent-changes stream every hour on GitHub Actions.
 See [pipeline/README.md](pipeline/README.md).
 
+## The first screen and the plain view
+
+- The hero is server-rendered HTML: name, title, one line, the four results and the
+  Résumé, GitHub, LinkedIn and Contact buttons (`components/Intro.tsx`, text from
+  `results` and `actions` in `content/site.md`). It reads without JavaScript.
+- The machine loads behind it only after the page's `load` event and an idle moment,
+  so it never competes with the first screen.
+- Below `lg` the first screen keeps to those essentials; the run history, readouts and
+  chaos drills open the next block.
+- `/plain` (`app/plain/page.tsx`, text in `content/plain.md`) is the page without the
+  machine: the same facts, the latest run in numbers, experience, projects and contact.
+  No WebGL and no client components. "Skip the machine" links to it.
+
 ## Devices, performance and SEO
 
 - `lib/gpu.ts` picks a version of the machine per device: the full 3D machine on
