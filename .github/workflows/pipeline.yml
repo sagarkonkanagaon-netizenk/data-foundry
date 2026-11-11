@@ -1,0 +1,137 @@
+# The hourly pipeline run. Samples the Wikimedia stream, runs every stage, and
+# publishes the run report to the `pipeline-data` branch (reports/latest.json,
+# reports/index.json with 30 days of history). The Delta tables persist between runs
+# in the Actions cache, keeping the newest 72 hours.
+name: pipeline
+
+on:
+  schedule:
+    - cron: "17 * * * *" # hourly, off the top of the hour when Actions is busiest
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "run: sample the stream. rerun: rebuild one hour. backfill: rebuild a range."
+        type: choice
+        options: [run, rerun, backfill]
+        default: run
+      sample_seconds:
+        description: "run: seconds to sample the stream"
+        default: "120"
+      start:
+        description: "rerun/backfill: first hour, yyyy-MM-ddTHH (UTC)"
+        default: ""
+      end:
+        description: "backfill: last hour, yyyy-MM-ddTHH (UTC), inclusive"
+        default: ""
+
+permissions:
+  contents: write # to push run reports to the pipeline-data branch
+
+concurrency:
+  group: pipeline # one run at a time; the lake has a single writer
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PUBLISHED: ${{ github.workspace }}/../published
+      CMD: ${{ inputs.command || 'run' }}
+      SAMPLE_SECONDS: ${{ inputs.sample_seconds || '120' }}
+      START: ${{ inputs.start }}
+      END: ${{ inputs.end }}
+      TRIGGER: ${{ github.event_name == 'schedule' && 'schedule' || 'manual' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/pyproject.toml
+      - run: pip install -e pipeline
+
+      - name: Restore Spark packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.ivy2*
+          key: ivy-${{ hashFiles('pipeline/pyproject.toml') }}
+
+      - name: Restore the lake
+        id: lake
+        uses: actions/cache/restore@v4
+        with:
+          path: pipeline/lake
+          key: lake-${{ github.run_id }}
+          restore-keys: lake-
+
+      - name: Check out the published reports
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          url="https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          if git ls-remote --exit-code --heads "$url" pipeline-data >/dev/null; then
+            git clone --quiet --depth 1 --branch pipeline-data "$url" "$PUBLISHED"
+          else
+            git init --quiet -b pipeline-data "$PUBLISHED"
+            git -C "$PUBLISHED" remote add origin "$url"
+          fi
+
+      - name: Run the pipeline
+        id: run
+        continue-on-error: true
+        working-directory: pipeline
+        env:
+          RESTORED: ${{ steps.lake.outputs.cache-matched-key != '' }}
+        run: |
+          common=(--lake lake --reports "$PUBLISHED/reports" --lake-restored "$RESTORED")
+          case "$CMD" in
+            run)      foundry "${common[@]}" run --trigger "$TRIGGER" --sample-seconds "$SAMPLE_SECONDS" ;;
+            rerun)    foundry "${common[@]}" rerun --hour "$START" ;;
+            backfill) foundry "${common[@]}" backfill --start "$START" --end "${END:-$START}" ;;
+            *)        echo "unknown command $CMD"; exit 2 ;;
+          esac
+
+      - name: Save the lake
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: pipeline/lake
+          key: lake-${{ github.run_id }}
+
+      - name: Publish the run report
+        if: always()
+        working-directory: ${{ env.PUBLISHED }}
+        run: |
+          [ -f reports/latest.json ] || { echo "no report was written"; exit 1; }
+          cat > README.md <<'MD'
+          # pipeline-data
+
+          Run reports published by the hourly pipeline in `/pipeline` on `main`.
+          This branch is written by GitHub Actions only.
+
+          - `reports/latest.json`: the newest run, in full
+          - `reports/index.json`: one line per run, newest first, last 30 days
+          - `reports/runs/YYYY-MM-DD/<run_id>.json`: every run, last 30 days
+          MD
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          msg="run $(jq -r .run_id reports/latest.json): $(jq -r .status reports/latest.json)"
+          git commit --quiet -m "$msg" || { echo "nothing to publish"; exit 0; }
+          for i in 1 2 3 4; do
+            git push --quiet origin pipeline-data && exit 0
+            sleep $((i * 4))
+            git pull --quiet --rebase origin pipeline-data || true
+          done
+          exit 1
+
+      - name: Fail the job when the run failed
+        if: steps.run.outcome == 'failure'
+        run: |
+          jq '{run_id, status, error}' "$PUBLISHED/reports/latest.json"
+          exit 1

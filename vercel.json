@@ -1,0 +1,7 @@
+{
+  "git": {
+    "deploymentEnabled": {
+      "pipeline-data": false
+    }
+  }
+}

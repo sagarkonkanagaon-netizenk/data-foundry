@@ -13,6 +13,10 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
+**The pipeline:** [`/pipeline`](pipeline/) is a real medallion pipeline (PySpark + Delta Lake) over
+the Wikimedia recent-changes stream. GitHub Actions runs it every hour and publishes each
+run report to the [`pipeline-data`](../../tree/pipeline-data/reports) branch.
+
 **Edit text in `/content`, not in code.** See `content/README.md` for the map of
 which file drives which part of the site.
 

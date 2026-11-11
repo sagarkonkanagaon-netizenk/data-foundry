@@ -1,0 +1,65 @@
+# Data contract: bronze layer.
+# Bronze keeps every event exactly as it arrived (the `raw` column), plus the metadata
+# needed to trace and replay it. Nothing is fixed or dropped here. Append-only.
+name: bronze.recentchange
+version: 1
+description: Raw Wikimedia recentchange events, one row per line received, with ingestion metadata.
+path: bronze/recentchange
+partition_by: event_hour
+min_rows: 1            # a live run that lands fewer rows than this fails the row-count check
+
+columns:
+  - { name: raw,           type: string,    nullable: false, description: "The event exactly as received (JSON text)" }
+  - { name: event_id,      type: string,    nullable: true,  description: "meta.id, null when the line is not valid JSON" }
+  - { name: event_ts,      type: timestamp, nullable: true,  description: "meta.dt, the time the change happened" }
+  - { name: event_hour,    type: string,    nullable: false, description: "Partition key, yyyy-MM-ddTHH (UTC). Ingest hour when event_ts is missing" }
+  - { name: _run_id,       type: string,    nullable: false, description: "The pipeline run that landed the row" }
+  - { name: _source,       type: string,    nullable: false, description: "Where the line came from (stream URL or fixture file)" }
+  - { name: _line,         type: long,      nullable: false, description: "Line number in the run's landing file" }
+  - { name: _ingested_at,  type: timestamp, nullable: false, description: "When the run landed the row" }
+
+# Fields documented by the upstream schema, mediawiki/recentchange 1.0.0
+# (github.com/wikimedia/mediawiki-event-schemas), with the JSON types each may take.
+# The schema registry starts from this list. A field or type not listed here is recorded
+# as a schema change the first time it appears, and new top-level fields are carried
+# into silver's `extras` column with no code change.
+known_fields:
+  $schema: [string]
+  meta: [object]
+  meta.id: [string]
+  meta.dt: [string]
+  meta.uri: [string]
+  meta.request_id: [string]
+  meta.domain: [string]
+  meta.stream: [string]
+  meta.topic: [string]
+  meta.partition: [integer]
+  meta.offset: [integer]
+  id: [integer, "null"]
+  type: [string]
+  title: [string]
+  title_url: [string]
+  namespace: [integer]
+  comment: [string]
+  parsedcomment: [string]
+  timestamp: [integer]
+  user: [string]
+  bot: [boolean]
+  notify_url: [string]
+  server_url: [string]
+  server_name: [string]
+  server_script_path: [string]
+  wiki: [string]
+  minor: [boolean]
+  patrolled: [boolean]
+  length: [object]
+  length.old: [integer, "null"]
+  length.new: [integer, "null"]
+  revision: [object]
+  revision.old: [integer, "null"]
+  revision.new: [integer, "null"]
+  log_id: [integer, "null"]
+  log_type: [string, "null"]
+  log_action: [string]
+  log_params: [array, object, string]
+  log_action_comment: [string, "null"]

@@ -1,0 +1,69 @@
+# Tests for /pipeline on every pull request and push to main that touches it.
+name: pipeline-ci
+
+on:
+  pull_request:
+    paths: ["pipeline/**", ".github/workflows/pipeline*.yml"]
+  push:
+    branches: [main]
+    paths: ["pipeline/**", ".github/workflows/pipeline*.yml"]
+
+concurrency:
+  group: pipeline-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: pipeline
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: pip install "ruff>=0.6"
+      - run: ruff check .
+      - run: ruff format --check .
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/pyproject.toml
+      - run: pip install -e ".[dev]"
+      - run: pytest
+      - name: Smoke run over the recorded sample
+        run: foundry --lake "$RUNNER_TEMP/lake" --reports "$RUNNER_TEMP/reports" run --fixture fixtures/recentchange_sample.jsonl
+
+  # Reads the real stream for 20 seconds. Informational: Wikimedia being briefly
+  # unreachable should not block a merge, but the result shows the live path works.
+  live-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/pyproject.toml
+      - run: pip install -e .
+      - run: foundry --lake "$RUNNER_TEMP/lake" --reports "$RUNNER_TEMP/reports" run --sample-seconds 20
+      - run: cat "$RUNNER_TEMP/reports/latest.json"
