@@ -71,6 +71,8 @@ export type Chaos = {
   detect: string;
   diagnose: string;
   heal: string;
+  /** Where /pipeline really handles this failure (paths from the repo root). */
+  code?: { label: string; path: string }[];
 };
 
 export type Module = {

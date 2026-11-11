@@ -4,14 +4,17 @@ order: 2
 label: Late data
 stage: silver
 severity: warning
-detect: "telemetry.site_14 arriving 47 min late · watermark breached"
-diagnose: "upstream gateway backlog, not data loss · 3 partitions affected"
-heal: "extending watermark · reprocessing 3 partitions via MERGE"
+detect: "events for an earlier hour arrive in this run"
+diagnose: "the run rebuilds every hour partition its events touch"
+heal: "late hour rebuilt with replaceWhere · nothing counted twice"
+code:
+  - { label: "silver.py · build()", path: "pipeline/foundry/silver.py" }
+  - { label: "lake.py · replace_hours()", path: "pipeline/foundry/lake.py" }
 ---
 
-A site gateway went offline and then flushed 47 minutes of sensor readings at once.
-A naive pipeline would drop them as "too late" or double-count them.
+Events carry the time the change happened, and the pipeline partitions by that hour,
+not by when the event arrived. A late event reopens its own hour.
 
-The sentinel identifies which date partitions the late records belong to, widens the
-watermark for that source only, and re-merges just those partitions so Gold stays
-correct without a full rebuild.
+Silver and gold are rebuilt for each hour a run touches, from every bronze row in that
+hour, and written with Delta `replaceWhere` on exactly those partitions. Late rows are
+merged in, duplicates are dropped on `event_id`, and re-running gives the same tables.

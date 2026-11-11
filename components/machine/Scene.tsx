@@ -19,6 +19,9 @@ import { ShuffleArcs } from "./ShuffleArcs";
 import { Backdrop, Dust } from "./Atmosphere";
 import { PALETTE } from "./layout";
 import { Hitboxes } from "./Hitboxes";
+import { useRuns } from "@/lib/machine/runs";
+import type { FlowShape } from "@/lib/machine/types";
+import { flowShape } from "@/lib/machine/shape";
 
 export type Quality = "high" | "low";
 
@@ -117,6 +120,9 @@ function Governor({ onDrop, onRaise, onSlow }: { onDrop: () => void; onRaise: ()
 function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
   const intake = stages.find((s) => s.id === "intake");
   const orchestrator = stages.find((s) => s.id === "orchestrator");
+  const latest = useRuns((s) => s.latest);
+  // particle volume and reject share follow the latest real run
+  const shape = useMemo<FlowShape>(() => flowShape(latest), [latest]);
   return (
     <GlassBuffer resolution={quality === "high" ? 1024 : 512}>
       <group position={[0.4, 0, 0]}>
@@ -132,7 +138,7 @@ function Machine({ stages, quality }: { stages: Stage[]; quality: Quality }) {
         <Orchestrator tasks={orchestrator?.tasks ?? []} />
         <Sentinel />
         <Hitboxes />
-        <Particles sources={intake?.sources ?? []} count={quality === "high" ? 2400 : 900} />
+        <Particles sources={intake?.sources ?? []} count={quality === "high" ? 2400 : 900} shape={shape} />
       </group>
     </GlassBuffer>
   );

@@ -4,14 +4,18 @@ order: 3
 label: Null storm
 stage: silver
 severity: error
-detect: "null rate on transactions.amount 0.2% → 38% in 90s"
-diagnose: "single producer (branch_api_v2) emitting nulls · DQ gate tripped"
-heal: "quarantining 4,812 rows · alerting owner · Gold kept at last good"
+detect: "a required field arrives null on many rows"
+diagnose: "rows fail the silver contract with reason null:<column>"
+heal: "rows quarantined · above 25% the run fails before writing"
+code:
+  - { label: "silver.py · typed()", path: "pipeline/foundry/silver.py" }
+  - { label: "silver.yaml · max_reject_rate", path: "pipeline/contracts/silver.yaml" }
+  - { label: "quality.py · null_rate", path: "pipeline/foundry/quality.py" }
 ---
 
-Suddenly a third of transaction amounts are null. Loading them would corrupt every
-revenue number downstream.
+Every silver column is read and validated from the contract. A row missing a required
+value, or carrying one that won't cast, goes to `silver.quarantine` with the reason
+attached, never silently dropped.
 
-The DQ gate trips, the sentinel traces the nulls to one producer, routes those rows
-to quarantine with the reason attached, and holds Gold at its last good version
-(Delta time travel) until the source is fixed.
+If more than a quarter of a run's rows are rejected, the contract fails the run before
+silver is written, so a broken source can't overwrite good data.

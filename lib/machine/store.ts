@@ -1,17 +1,17 @@
 import { create } from "zustand";
-import type { DagState, Metrics, StageId } from "./types";
+import type { DagState, StageId } from "./types";
 import { faultAt, phaseAt, repairAt, type ChaosSignal, type IncidentPhase } from "./chaos";
 import { TASK_STAGE } from "./types";
 
-const HISTORY = 60; // samples kept per metric for HUD sparklines (~15s at 4Hz)
-
 type MachineState = {
-  metrics: Metrics | null;
-  history: Record<keyof Metrics, number[]>;
+  /** 0..1, how busy the latest real run was; spins the Spark core. */
+  throughput: number;
+  /** The replay of a real run's stages (see lib/machine/replay.ts). */
   dag: DagState | null;
-  /** Stages whose DAG task is running right now. */
+  /** Chambers whose pipeline stage is running in the replay right now. */
   activeStages: Set<StageId>;
-  apply: (m: Metrics, dag: DagState) => void;
+  apply: (dag: DagState) => void;
+  setThroughput: (t: number) => void;
   incident: Incident | null;
   phase: IncidentPhase | null;
   startIncident: (i: Omit<Incident, "startedAt" | "number">) => void;
@@ -27,6 +27,8 @@ export type Incident = {
   lines: [string, string, string];
   startedAt: number; // performance.now() ms
   number: number;
+  /** Set when this replays something that happened in a real run; absent for a simulated drill. */
+  real?: { runId: string; path: string; summary: string };
 };
 
 let incidentCount = 0;
@@ -45,24 +47,16 @@ export function chaosSignal(): ChaosSignal | null {
   return { id: i.id, fault: faultAt(s), repair: repairAt(s) };
 }
 
-const empty = () => ({ rowsPerSec: [], latencyMs: [], freshnessSec: [], dqScore: [], costPerHr: [], throughput: [], rowsToday: [], quarantined: [] }) as Record<keyof Metrics, number[]>;
-
 export const useMachine = create<MachineState>((set, get) => ({
-  metrics: null,
-  history: empty(),
+  throughput: 0.5,
   dag: null,
   activeStages: new Set(),
-  apply: (metrics, dag) => {
-    const history = { ...get().history };
-    for (const k of Object.keys(metrics) as (keyof Metrics)[]) {
-      const h = history[k].length >= HISTORY ? history[k].slice(1) : history[k].slice();
-      h.push(metrics[k]);
-      history[k] = h;
-    }
+  apply: (dag) => {
     const activeStages = new Set<StageId>();
-    for (const t of dag.tasks) if (t.state === "running" && TASK_STAGE[t.id]) activeStages.add(TASK_STAGE[t.id]);
-    set({ metrics, dag, history, activeStages });
+    for (const t of dag.tasks) if (t.state === "running") for (const s of TASK_STAGE[t.id] ?? []) activeStages.add(s);
+    set({ dag, activeStages });
   },
+  setThroughput: (throughput) => set({ throughput }),
   incident: null,
   phase: null,
   startIncident: (i) => {

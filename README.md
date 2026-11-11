@@ -33,11 +33,11 @@ which file drives which part of the site.
 1. Scaffold + content ✅
 2. Static machine geometry + glass shaders ✅
 3. Particle flow ✅
-4. HUD + state + simulated metrics ✅
+4. HUD + state, read from real run reports ✅
 5. Chaos injection + Sentinel healing ✅
 6. Scroll tour + sections (Modules, Instruments, Flight Log, Transmit) ✅
 7. Ask the Engine (RAG chat) ✅
-8. Live data feed ✅
+8. Real pipeline in `/pipeline`, run hourly ✅
 9. Performance, mobile, accessibility ✅
 
 ## The machine (`components/machine/`)
@@ -50,27 +50,37 @@ which file drives which part of the site.
 - `shaders/` – custom GLSL: fresnel rim + scan band, caustics, scan beam, hologram tiles, dust, backdrop fog, glow
 - `layout.ts` – world positions and palette
 - `geometry.ts` – shared shapes (intake curves, rings, lattice, Gold columns) and live transforms the flow reads
-- `flow/sim.ts` – the record journey as a pure function of (record, time); `flow/payload.ts` – fake JSON per source
+- `flow/sim.ts` – the record journey as a pure function of (record, time); `flow/payload.ts` – real silver rows and rejects from the latest run report
 - `Particles.tsx` – one Points draw call for every record, hover to inspect; `ShuffleArcs.tsx` – Spark shuffle arcs
 
-## Simulation and state
+## Real runs and state
 
-- `workers/sim.worker.ts` – runs off the main thread: telemetry at 4Hz and the particle
-  flow (buffers ping-pong between the main thread and the worker each frame). It is
-  bundled by esbuild to `public/sim.worker.js` (`npm run worker`, run automatically
-  before `dev` and `build`).
-- `lib/machine/metrics.ts` – mean-reverting telemetry and the DAG run cycle
-- `lib/machine/store.ts` – Zustand store: metrics, history for sparklines, DAG task states,
-  active stages. 3D parts read it inside `useFrame` (no re-renders).
-- `components/Hud.tsx` – the telemetry strip and run line; plain DOM, so it works without WebGL
+- `lib/runs.ts` – fetches the run reports the pipeline publishes to the `pipeline-data`
+  branch (`reports/index.json`, `reports/latest.json`) on the server, revalidated every
+  5 minutes. `NEXT_PUBLIC_PIPELINE_DATA_URL` overrides the base URL (local testing).
+  `app/api/runs/route.ts` serves one run's full report to the browser.
+- `lib/machine/replay.ts` – replays the latest (or any chosen) run's stages on the
+  machine, each lit for a time proportional to its real duration; a failed stage stays red.
+- `lib/machine/incidents.ts` – turns a run's error, failed DQ checks, schema changes and
+  rejects into incidents the Sentinel replays. Every word on the card comes from the report.
+- `lib/machine/shape.ts` – how many records ride the machine and how many go to
+  quarantine follow the latest run's landed rows and reject rate.
+- `components/RunHistory.tsx` – the last 48 runs as pass/warn/fail cells; each opens the
+  run's stages, row counts, quarantine reasons, DQ checks, schema changes and CI log.
+- `components/Hud.tsx` – real readouts from the latest run (rows landed, rows to silver,
+  quarantined, DQ checks, run time) with sparklines over the run history.
+- `workers/sim.worker.ts` – moves the particles off the main thread. It is bundled by
+  esbuild to `public/sim.worker.js` (`npm run worker`, run before `dev` and `build`).
+- `lib/machine/store.ts` – Zustand store: DAG task states, active stages, incident.
 
 ## Chaos and the Sentinel
 
 - `lib/machine/chaos.ts` – the incident timeline (inject → detect → diagnose → heal →
   recovered) and the `fault` / `repair` curves every reacting part reads
-- `components/Chaos.tsx` – INJECT CHAOS buttons, the incident report card, and the
-  director that ticks the clock and tells the telemetry sim
-- Failures live in `flow/sim.ts` (`applyChaos`), `metrics.ts` (numbers), `Glass.tsx`
+- `components/Chaos.tsx` – the INJECT CHAOS panel (labelled as a simulation, each drill
+  links to the real code path in `/pipeline`), the incident card (real or simulated) and
+  the director that ticks the clock
+- Failures live in `flow/sim.ts` (`applyChaos`), `Glass.tsx`
   (rims burn amber/red), `SparkCore.tsx` (hot executor) and `Plumbing.tsx` (dead ports)
 - The log lines and narration come from `content/chaos/*.md`, so the story is editable
 
@@ -110,23 +120,11 @@ which file drives which part of the site.
   visitor's question.
 - Without either key the console says it is offline and shows the contact email.
 
-## Live data
+## The pipeline
 
-- `lib/machine/feed.ts` subscribes to Wikimedia's public `recentchange` event stream
-  (every edit on every Wikipedia, ~20-60 a second) with the browser's `EventSource`.
-  No key or server needed.
-- A data contract decides what passes: edits and new pages need a title, a revision id
-  and a byte length; log events fail it and count as quarantined. Category bookkeeping
-  events are filtered out at the source.
-- While live, the HUD shows real numbers: events/sec, ingest lag p95 (now minus the
-  event's own timestamp), seconds since the last event and the contract pass rate.
-  Cost is still simulated and labelled so. Chaos injection works on live data too.
-- Hovering a particle shows a real recent event (a failing one for a red particle).
-- The switch above INJECT CHAOS flips between live and simulated. If the stream can't
-  connect or goes quiet for 8s, the machine falls back to simulated sources and retries
-  (5s, 15s, 30s, 60s, then every 2 min). The stream closes in background tabs and when
-  the browser asks to save data.
-- `NEXT_PUBLIC_LIVE_FEED_URL` overrides the stream URL (used for local testing).
+The numbers on the machine come from a real PySpark + Delta pipeline in `/pipeline`
+that samples Wikimedia's public recent-changes stream every hour on GitHub Actions.
+See [pipeline/README.md](pipeline/README.md).
 
 ## Devices, performance and SEO
 

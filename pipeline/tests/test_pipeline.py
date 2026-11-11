@@ -58,6 +58,8 @@ def test_fixture_run_passes_every_stage(first_run):
         "reject_rate",
     }
     assert r.gold["edits"] > 0 and 0 < r.gold["bot_share"] < 1
+    assert len(r.samples) == 12 and {"event_id", "wiki", "title", "change_type"} <= set(r.samples[0])
+    assert r.samples[0]["event_ts"].endswith("Z")
 
 
 def test_report_is_published(first_run):

@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import type { Stage } from "@/lib/content";
 import { CAPTION_SIDE, TOUR_STAGES, tour } from "@/lib/machine/tour";
 import { useMachine } from "@/lib/machine/store";
+import { useRuns } from "@/lib/machine/runs";
+import { flowShape } from "@/lib/machine/shape";
 import type { StageId } from "@/lib/machine/types";
 import { CY, H, STAGE_AT, Schematic, W } from "@/components/Schematic";
 import { flyTo } from "@/components/Tour";
@@ -34,15 +36,22 @@ const smooth = (a: number, b: number, x: number) => {
   return t * t * (3 - 2 * t);
 };
 
-/** Records riding the conduits: source colour, then bronze, silver and gold. Every sixth fails a check and drops to quarantine. */
+/**
+ * Records riding the conduits: source colour, then bronze, silver and gold. As in 3D,
+ * how many ride and how many fail to quarantine follow the latest real run.
+ */
 function Records({ colors }: { colors: string[] }) {
-  const n = 22;
+  const latest = useRuns((s) => s.latest);
+  const { badRate, density } = flowShape(latest);
+  const n = Math.round(4 + 22 * density);
+  const nBad = Math.round(n * badRate);
+  const every = nBad ? Math.max(1, Math.floor(n / nBad)) : 0;
   return (
     <g>
       {Array.from({ length: n }, (_, i) => {
         const lane = i % Math.max(colors.length, 1);
         const y = CY - 75 + lane * 50;
-        const bad = i % 6 === 5;
+        const bad = every > 0 && i % every === every - 1 && Math.floor(i / every) < nBad;
         const path = bad
           ? `M 20 ${y} C 120 ${y}, 140 ${CY}, 230 ${CY} L 680 ${CY} C 700 ${CY + 140}, 740 ${CY + 150}, 785 ${CY + 165}`
           : `M 20 ${y} C 120 ${y}, 140 ${CY}, 230 ${CY} L 1000 ${CY}`;

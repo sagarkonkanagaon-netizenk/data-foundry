@@ -131,6 +131,7 @@ first, 30 days) and `reports/runs/YYYY-MM-DD/<run_id>.json`. A report holds:
 - `rows`: landed, bronze, silver, quarantine, duplicates
 - `rejects`: total, rate, count per reason, up to five sample rows
 - `dq`: every check with observed value and threshold
+- `samples`: twelve silver rows (stable pick by hashed `event_id`) for the site's hover cards
 - `schema_changes`, `contract_notes`, `gold` (edits, bot share, top wikis and pages)
 - `error` (stage, type, message) when the run failed
 - `code`: the commit and a link to the Actions run that produced it

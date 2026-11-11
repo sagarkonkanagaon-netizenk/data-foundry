@@ -4,14 +4,17 @@ order: 5
 label: Source outage
 stage: intake
 severity: error
-detect: "supply_chain feed silent for 6 min · expected ~2.1k ev/s"
-diagnose: "upstream 503s · not a pipeline fault · freshness SLA at risk"
-heal: "circuit open · serving last good snapshot · auto-backfill on recovery"
+detect: "the stream can't be reached, or sends nothing"
+diagnose: "3 attempts with backoff, then SourceUnavailable"
+heal: "run marked failed · report still published · next hour retries"
+code:
+  - { label: "source.py · sample_stream()", path: "pipeline/foundry/source.py" }
+  - { label: "run.py · failed runs", path: "pipeline/foundry/run.py" }
 ---
 
-The supply-chain feed simply stops. Nothing in the pipeline is broken, but dashboards
-are about to go stale.
+The source is outside the pipeline's control. The sampler retries three times with
+backoff, keeps whatever arrived if the stream drops mid-sample, and gives up cleanly
+if nothing came at all.
 
-The sentinel opens a circuit breaker so the pipeline stops retrying a dead endpoint,
-marks Gold as "stale since 14:02" instead of quietly showing old numbers, and
-schedules a backfill for the gap once the source returns.
+A failed run is still a run: its report is published with the stage and the error, and
+it shows up red in the run history. The next hourly run tries again.

@@ -9,6 +9,10 @@ import { Engine } from "@/components/sections/Engine";
 import { Transmit } from "@/components/sections/Transmit";
 import { Hairline } from "@/components/ui";
 import { SITE_URL } from "@/lib/url";
+import { getRuns } from "@/lib/runs";
+
+// Re-render with fresh run reports at most every few minutes (the pipeline runs hourly).
+export const revalidate = 300;
 
 /** Structured data, so search engines read the page as a person's profile. */
 function PersonLd({ site }: { site: ReturnType<typeof getSite> }) {
@@ -31,15 +35,20 @@ function PersonLd({ site }: { site: ReturnType<typeof getSite> }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />;
 }
 
-export default function Home() {
+export default async function Home() {
   const site = getSite();
-  const stages = getStages();
+  const runs = await getRuns();
+  // the intake's four streams are the four busiest wikis in the latest real run
+  const top = runs.latest?.gold.top_wikis ?? [];
+  const stages = getStages().map((s) =>
+    s.id === "intake" && s.sources ? { ...s, sources: s.sources.map((src, i) => (top[i] ? { ...src, id: top[i].wiki, label: top[i].wiki } : src)) } : s,
+  );
   const modules = getModules();
   const chaos = getChaos();
   return (
     <main id="content">
       <PersonLd site={site} />
-      <Hero site={site} stages={stages} chaos={chaos} modules={modules} />
+      <Hero site={site} stages={stages} chaos={chaos} modules={modules} runs={runs} />
       <Manual chaos={chaos} />
       <Banner />
       <Modules modules={modules} />

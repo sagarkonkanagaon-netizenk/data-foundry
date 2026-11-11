@@ -192,6 +192,7 @@ class Runner:
                 duplicates=result.duplicates,
             )
             report.contract_notes += silver.write(spark, lake, contracts, result, silver_df, bad_df)
+            report.samples = silver.sample_rows(silver_df)
 
         with self._stage(report, "gold") as info:
             silver_hours = lake.read_hours(spark, contracts.silver, hours)

@@ -27,12 +27,14 @@ draft: false
 Pipeline work is invisible. When it goes right, nobody notices; when it goes wrong,
 someone gets paged at 3am. This site makes the invisible part visible.
 
-The machine above is a working model of how I think about data: raw records arrive
-messy, get landed untouched in **Bronze**, are shuffled and cleaned by **Spark** into a
-conformed **Silver** layer, and settle into business-ready **Gold** tables. An
-orchestrator keeps the stages in order. A sentinel watches every chamber, and when
-something drifts, stalls or floods with nulls, it diagnoses the fault and repairs the
-flow.
+The machine above runs on a real pipeline. Every hour, GitHub Actions samples the
+Wikimedia recent-changes stream and runs it through **Bronze**, **Silver** and **Gold**
+Delta tables with PySpark, checks the data against its contracts, and publishes a run
+report. The machine replays the latest run: its stages, its row counts, the rows it
+quarantined. When a real run had rejects, a schema change or a failed check, the machine
+replays that incident.
 
-Press **Inject chaos** to break it on purpose. Click any chamber to see the real
-project behind it.
+The run history shows the last 48 runs; open any cell for its full report.
+**Inject chaos** is a simulation, labelled as one, and each drill links to the code in
+`/pipeline` that handles that failure for real. Click any chamber to see the project
+behind it.

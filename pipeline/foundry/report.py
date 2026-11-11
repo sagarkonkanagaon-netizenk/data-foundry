@@ -45,6 +45,7 @@ class Report:
     stages: list[Stage] = field(default_factory=list)
     rows: dict[str, int] = field(default_factory=dict)
     rejects: dict[str, Any] = field(default_factory=dict)
+    samples: list[dict[str, Any]] = field(default_factory=list)  # a few silver rows, for the site's hover cards
     dq: list[dict[str, Any]] = field(default_factory=list)
     schema_changes: list[dict[str, Any]] = field(default_factory=list)
     contract_notes: list[str] = field(default_factory=list)

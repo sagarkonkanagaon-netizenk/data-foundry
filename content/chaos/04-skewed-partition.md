@@ -4,13 +4,15 @@ order: 4
 label: Skewed partition
 stage: spark
 severity: warning
-detect: "task 187 at 41 min · p50 is 22 s · key seller_id=0 holds 31% of rows"
-diagnose: "hot key skew on join orders ⋈ sellers"
-heal: "salting hot key ×16 · AQE skew join on · stage time 41m → 2m"
+detect: "one key holds most rows · one task does most of the work"
+diagnose: "hot key found from a quick groupBy count"
+heal: "salt the hot key across N buckets · balanced join"
+code:
+  - { label: "spark-pipeline-labs · salting.py", path: "https://github.com/sagarkonkanagaon-netizenk/spark-pipeline-labs/blob/main/labs/salting.py" }
 ---
 
-One executor is still grinding while the rest sit idle. A single key (a default
-`seller_id = 0`) owns almost a third of the rows, so one task does a third of the work.
+The hourly pipeline doesn't need this: a few thousand rows an hour can't skew a join.
+The fix is shown where it can be tested instead, in a separate lab with its own tests.
 
-The sentinel spots the straggler from task metrics, finds the hot key, and re-runs the
-stage with the key salted across 16 buckets and adaptive skew-join enabled.
+When one key owns most of the rows, salting adds a random bucket to the large side and
+replicates the matching rows on the small side, so the hot key spreads across tasks.
