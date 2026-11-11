@@ -1,0 +1,42 @@
+[project]
+name = "data-foundry-pipeline"
+version = "0.1.0"
+description = "A real medallion pipeline over the Wikimedia recent-changes stream: PySpark + Delta Lake, YAML data contracts, data quality checks and run reports."
+requires-python = ">=3.10"
+dependencies = [
+  "pyspark==4.2.0",
+  "delta-spark==4.4.1",
+  "PyYAML>=6.0",
+  "requests>=2.32",
+]
+authors = [{ name = "Sagar Konkanagaon" }]
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+foundry = "foundry.cli:main"
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["foundry"]
+
+[tool.setuptools.package-data]
+foundry = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+# the formatter owns line length
+ignore = ["E501"]

@@ -1,0 +1,42 @@
+# Data contract: gold layer.
+# Small aggregate tables built from silver for every hour partition a run touched.
+# Each hour is rebuilt whole (Delta replaceWhere), so re-running never double counts.
+# Note: the pipeline samples the stream for a few minutes each hour, so these are
+# counts for the sampled window, not for the whole hour.
+version: 1
+tables:
+  - name: gold.edits_per_wiki_hour
+    path: gold/edits_per_wiki_hour
+    partition_by: event_hour
+    description: Edits and page creations per wiki per hour.
+    columns:
+      - { name: event_hour,    type: string,  nullable: false }
+      - { name: wiki,          type: string,  nullable: false }
+      - { name: edits,         type: long,    nullable: false }
+      - { name: new_pages,     type: long,    nullable: false }
+      - { name: bot_edits,     type: long,    nullable: false }
+      - { name: bytes_added,   type: long,    nullable: false }
+      - { name: bytes_removed, type: long,    nullable: false }
+
+  - name: gold.bot_share_hour
+    path: gold/bot_share_hour
+    partition_by: event_hour
+    description: Bot versus human share of edits per hour.
+    columns:
+      - { name: event_hour,  type: string, nullable: false }
+      - { name: edits,       type: long,   nullable: false }
+      - { name: bot_edits,   type: long,   nullable: false }
+      - { name: human_edits, type: long,   nullable: false }
+      - { name: bot_share,   type: double, nullable: false }
+
+  - name: gold.top_pages_hour
+    path: gold/top_pages_hour
+    partition_by: event_hour
+    description: The ten most edited pages per hour, across all wikis.
+    top_n: 10
+    columns:
+      - { name: event_hour, type: string, nullable: false }
+      - { name: rank,       type: int,    nullable: false }
+      - { name: wiki,       type: string, nullable: false }
+      - { name: title,      type: string, nullable: false }
+      - { name: edits,      type: long,   nullable: false }

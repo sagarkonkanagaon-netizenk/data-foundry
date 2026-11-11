@@ -1,0 +1,63 @@
+# Data contract: silver layer.
+# Silver is typed, deduplicated and schema-enforced. Each column says where it comes
+# from in the raw event (`from`, a JSON path). Add a column here and the next run
+# extracts it; no code change. A row that breaks a rule goes to the quarantine table
+# with the reason, never silently dropped.
+name: silver.recentchange
+version: 1
+description: One row per distinct Wikimedia change, typed and validated.
+path: silver/recentchange
+quarantine_path: silver/quarantine
+partition_by: event_hour
+key: event_id                 # deduplicated on this; the earliest ingested copy wins
+
+# The run fails fast (nothing is written) when more than this share of rows is rejected.
+max_reject_rate: 0.25
+
+# Events from these meta.domain values are synthetic monitoring traffic, not edits.
+drop_domains: [canary]
+
+columns:
+  - { name: event_id,    type: string,    from: "$.meta.id",       nullable: false }
+  - { name: event_ts,    type: timestamp, from: "$.meta.dt",       nullable: false }
+  - { name: wiki,        type: string,    from: "$.wiki",          nullable: false }
+  - { name: domain,      type: string,    from: "$.meta.domain",   nullable: true }
+  - { name: change_type, type: string,    from: "$.type",          nullable: false,
+      accepted_values: [edit, new, log, categorize, external] }
+  - { name: namespace,   type: int,       from: "$.namespace",     nullable: true }
+  - { name: title,       type: string,    from: "$.title",         nullable: false }
+  - { name: is_bot,      type: boolean,   from: "$.bot",           nullable: false }
+  - { name: is_minor,    type: boolean,   from: "$.minor",         nullable: true }
+  - { name: length_old,  type: int,       from: "$.length.old",    nullable: true }
+  - { name: length_new,  type: int,       from: "$.length.new",    nullable: true }
+  - { name: rev_old,     type: long,      from: "$.revision.old",  nullable: true }
+  - { name: rev_new,     type: long,      from: "$.revision.new",  nullable: true }
+  - { name: log_type,    type: string,    from: "$.log_type",      nullable: true }
+
+# Added by the pipeline, not read from the event.
+system_columns:
+  - { name: event_hour,    type: string }
+  - { name: extras,        type: "map<string,string>", description: "Top-level fields this contract doesn't know yet" }
+  - { name: _run_id,       type: string }
+  - { name: _ingested_at,  type: timestamp }
+  - { name: _processed_at, type: timestamp }
+
+quarantine_columns:
+  - { name: reason,        type: string }
+  - { name: raw,           type: string }
+  - { name: event_id,      type: string }
+  - { name: event_hour,    type: string }
+  - { name: _run_id,       type: string }
+  - { name: _line,         type: long }
+  - { name: _ingested_at,  type: timestamp }
+  - { name: _processed_at, type: timestamp }
+
+quality:
+  # Highest share of nulls allowed per column, over the partitions a run touched.
+  max_null_rate:
+    domain: 0.0
+    namespace: 0.01
+  # Warn when the newest event is older than this (live runs only).
+  freshness_minutes: 30
+  # Warn (not fail) above this reject rate.
+  warn_reject_rate: 0.05
