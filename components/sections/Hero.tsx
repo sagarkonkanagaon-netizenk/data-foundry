@@ -17,6 +17,9 @@ type WithHtml<T> = T & { html: string; file: string };
  * chaos controls, live HUD), then one caption block per stage as the camera flies
  * the tour. Everything here is server-rendered text, so it reads fine without WebGL.
  */
+/** The few fields the drill buttons need, so the client payload doesn't carry every write-up twice. */
+const panelItems = (chaos: ChaosItem[]) => chaos.map((c) => ({ ...c, html: "" }));
+
 export function Hero({ site, stages, chaos, modules, runs }: { site: WithHtml<Site>; stages: WithHtml<Stage>[]; chaos: ChaosItem[]; modules: Module[]; runs: Runs }) {
   const blocks = stages.length + 1;
   return (
@@ -59,7 +62,7 @@ export function Hero({ site, stages, chaos, modules, runs }: { site: WithHtml<Si
           <div className="mt-5 hidden items-start justify-between gap-6 sm:flex">
             <RunLine latest={runs.latest} />
             <span className="hidden font-mono text-[10px] tracking-[0.2em] text-mute uppercase md:block">
-              {site.location} · 12.97°N 77.59°E
+              {site.location}
             </span>
           </div>
           <div className="absolute top-28 right-6 z-20 md:right-12">
@@ -98,7 +101,7 @@ export function Hero({ site, stages, chaos, modules, runs }: { site: WithHtml<Si
                 <RenderSwitch />
               </div>
               <Hud latest={runs.latest} runs={runs.index?.runs ?? []} />
-              <ChaosPanel items={chaos} />
+              <ChaosPanel items={panelItems(chaos)} />
             </div>
           </div>
         </header>
@@ -116,7 +119,7 @@ export function Hero({ site, stages, chaos, modules, runs }: { site: WithHtml<Si
             <RenderSwitch />
           </div>
           <Hud latest={runs.latest} runs={runs.index?.runs ?? []} />
-          <ChaosPanel items={chaos} />
+          <ChaosPanel items={panelItems(chaos)} />
         </div>
       </TourBlocks>
     </div>

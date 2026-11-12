@@ -29,29 +29,22 @@ draft: false
 
 ## Extra facts for the engine
 
-Anything here is not shown as a section on the site, but the chat can use it.
+Anything here is not shown as a section on the site, but the chat can use it. Only
+confirmed facts belong here; open questions for Sagar are hidden from the chat.
 
-- Summary: Data Engineer with 5+ years building production-grade distributed data
-  pipelines across e-commerce, finance, automotive and industrial IoT, on both
-  on-premise Hadoop and multi-cloud (Azure, GCP).
-- Also skilled in: Python, SQL, shell scripting, PostgreSQL, MapReduce, Parquet, ORC,
-  dimensional modelling, SCD Type 1 & 2, incremental loading, data governance,
-  Collibra, metadata management, lineage, reconciliation, audit and compliance
-  controls, Linux, Tableau, HLD/LLD design documents.
-- Certifications: Databricks Fundamentals (Databricks); Build a Data Warehouse with
-  BigQuery (Google Cloud skill badge); Build Batch Data Pipelines on Google Cloud:
-  Cloud Composer (Google Cloud skill badge).
-- Education: B.E., National Institute of Engineering (NIE), Mysore, 2017 – 2020.
 - Job search: Sagar is actively looking for his next role, as of October 2026, and is
   happy to hear from recruiters and hiring managers.
-- Roles he's after: Senior Data Engineer and similar data platform roles, where he
-  would build and own large-scale pipelines, lakehouse platforms (Databricks and Delta
-  Lake, BigQuery), orchestration (Airflow, Cloud Composer) and data quality.
-- Where he would add value fastest: migrating or modernising pipelines without data
-  loss (he moved 300+ production pipelines at eBay), Spark performance tuning, safe
-  backfills, medallion lakehouse design and governance-heavy domains like finance.
+- Roles he's after: Senior Data Engineer and similar data platform roles.
 - Location: based in Bengaluru, India. For location preferences, notice period and
   start date, ask him directly by email.
 - How to reach him: the contact form at the bottom of this site, or
   sagarkonkanagaon@gmail.com. He replies within two working days. His résumé is
   linked in the contact section (/resume.pdf).
+
+TODO-SAGAR: These were listed here before but go beyond the four confirmed results, so the chat no longer uses them. Move back any that are true, as plain bullets above.
+- Summary: 5+ years across e-commerce, finance, automotive and industrial IoT, on on-premise Hadoop and multi-cloud (Azure, GCP).
+- Also skilled in: Python, SQL, shell scripting, PostgreSQL, MapReduce, Parquet, ORC, dimensional modelling, SCD Type 1 & 2, incremental loading, data governance, Collibra, metadata management, lineage, reconciliation, audit and compliance controls, Linux, Tableau, HLD/LLD design documents.
+- Certifications: Databricks Fundamentals; Build a Data Warehouse with BigQuery (Google Cloud skill badge); Build Batch Data Pipelines on Google Cloud: Cloud Composer (Google Cloud skill badge).
+- Education: B.E., National Institute of Engineering (NIE), Mysore, 2017 – 2020.
+- Roles: lakehouse platforms (Databricks and Delta Lake, BigQuery), orchestration (Airflow, Cloud Composer) and data quality.
+- Where he would add value fastest: migrating or modernising pipelines, Spark performance tuning, safe backfills, medallion lakehouse design, governance-heavy domains like finance.

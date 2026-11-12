@@ -145,6 +145,14 @@ See [pipeline/README.md](pipeline/README.md).
 
 ## Devices, performance and SEO
 
+- The share image (`app/opengraph-image.tsx`, also used for X cards) is drawn from the
+  latest run report: name, title, the four results, the last 48 runs and the latest
+  run's numbers. It re-renders at most every few minutes.
+- The banner video loads only when its band nears the screen, and never with reduced
+  motion or data saver (`components/BannerVideo.tsx`).
+- Web fonts use `display: optional`, so slow connections keep the fallback font
+  instead of re-laying out the first screen.
+
 - `lib/gpu.ts` picks a version of the machine per device: the full 3D machine on
   desktops with a real GPU (without post effects on modest ones), a **2.5D machine** on
   phones, with data saver and on software-rendered WebGL, and the still schematic with

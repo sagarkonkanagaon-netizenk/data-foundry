@@ -90,10 +90,15 @@ export function RunDetail() {
 
   useEffect(() => {
     if (!r) return;
+    // keyboard users land on Close, and go back to the run they opened when it shuts
+    const opener = document.activeElement as HTMLElement | null;
     closeBtn.current?.focus();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      if (opener?.isConnected) opener.focus({ preventScroll: true });
+    };
   }, [r, close]);
 
   if (error) {
