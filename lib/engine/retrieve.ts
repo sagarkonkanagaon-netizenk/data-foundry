@@ -5,7 +5,23 @@ import { getKnowledge } from "@/lib/content";
 // split into small passages and ranked per question with BM25. It is tiny (tens of
 // passages), so it is built once per server instance and searched in memory.
 
-export type Passage = { source: string; text: string };
+/** A piece of knowledge, with where a visitor can check it: `label` and `href` back each citation. */
+export type Passage = { source: string; text: string; label: string; href: string };
+
+/** Where on the site each content file is shown, so a citation links to the page that says it. */
+function place(file: string, data: Record<string, unknown>): { label: string; href: string } {
+  const name = file.replace(/^content\//, "");
+  const title = String(data.title || data.heading || data.label || "");
+  if (name.startsWith("modules/")) return { label: title, href: `/modules/${data.slug}` };
+  if (name.startsWith("machine/")) return { label: `${title} (the machine)`, href: `/#tour-${data.id}` };
+  if (name.startsWith("chaos/")) return { label: `${title} drill`, href: "/#machine" };
+  if (name === "flight-log.md") return { label: "Flight log", href: "/#flight-log" };
+  if (name === "instruments.md") return { label: "Instruments", href: "/#instruments" };
+  if (name === "transmit.md") return { label: "Contact", href: "/#transmit" };
+  if (name === "site.md") return { label: "Site overview", href: "/" };
+  if (name === "faq.md" || name === "engine.md") return { label: "Sagar's notes for the engine", href: `https://github.com/sagarkonkanagaon-netizenk/data-foundry/blob/main/content/${name}` };
+  return { label: title || name, href: "/" };
+}
 
 const STOP = new Set(
   "a an and are as at be but by can did do does for from has have he her his how i in is it its me my of on or our she so that the their them they this to was we what when where which who why will with you your about into than then there these those would could should also just".split(
@@ -40,31 +56,33 @@ function chunk(file: string, raw: string): Passage[] {
     .join("\n");
   const title = (data.title || data.heading || data.label || data.name || file) as string;
   const source = `${file} (${title})`;
+  const at = place(file, data);
   const out: Passage[] = [];
+  const push = (text: string) => out.push({ source, text, ...at });
   // The FAQ is question/answer pairs: one passage per "## " question, so each answer stays with its question.
   if (file.endsWith("faq.md")) {
     for (const qa of content.replace(/<!--[\s\S]*?-->/g, "").split(/^(?=## )/m)) {
-      if (qa.startsWith("## ")) out.push({ source, text: qa.trim() });
+      if (qa.startsWith("## ")) push(qa.trim());
     }
     return out;
   }
   // Flight log entries and instrument groups are long lists: one passage per item.
   if (Array.isArray(data.entries)) {
-    for (const e of data.entries) out.push({ source, text: flatten(e) });
+    for (const e of data.entries) push(flatten(e));
   } else if (Array.isArray(data.groups)) {
-    for (const g of data.groups) out.push({ source, text: flatten(g) });
+    for (const g of data.groups) push(flatten(g));
   }
   const meta = flatten(Object.fromEntries(Object.entries(data).filter(([k]) => k !== "entries" && k !== "groups")));
-  if (meta) out.push({ source, text: meta });
+  if (meta) push(meta);
   let buf = "";
   for (const para of content.split(/\n\s*\n/)) {
     if (buf && buf.length + para.length > 900) {
-      out.push({ source, text: buf.trim() });
+      push(buf.trim());
       buf = "";
     }
     buf += para + "\n\n";
   }
-  if (buf.trim()) out.push({ source, text: buf.trim() });
+  if (buf.trim()) push(buf.trim());
   return out;
 }
 
@@ -72,7 +90,9 @@ type Index = { passages: Passage[]; tf: Map<string, number>[]; len: number[]; df
 let index: Index | null = null;
 
 function build(): Index {
-  const passages = getKnowledge().flatMap((k) => chunk(k.file, k.text));
+  const passages = getKnowledge()
+    .filter((k) => !k.file.endsWith("plain.md") && !k.file.endsWith("README.md"))
+    .flatMap((k) => chunk(k.file, k.text));
   const df = new Map<string, number>();
   const tf = passages.map((p) => {
     const m = new Map<string, number>();

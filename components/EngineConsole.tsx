@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { cited, segments, type Source } from "@/lib/engine/cite";
 
-type Msg = { role: "user" | "assistant"; content: string; sources?: string[]; error?: boolean };
+type Msg = { role: "user" | "assistant"; content: string; sources?: Source[]; error?: boolean };
 type Status = "idle" | "retrieving" | "streaming";
 
 const ERRORS: Record<string, string> = {
@@ -48,7 +49,7 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
       setStatus("idle");
       return;
     }
-    let sources: string[] = [];
+    let sources: Source[] = [];
     try {
       sources = JSON.parse(decodeURIComponent(res.headers.get("X-Engine-Sources") ?? "%5B%5D"));
     } catch {}
@@ -91,7 +92,7 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
           engine://sagar
         </span>
         <span className={busy ? "text-cyan" : offline ? "text-amber" : "text-mute"}>
-          {status === "retrieving" ? "retrieving · ranking passages" : status === "streaming" ? "transmitting" : offline ? "offline" : "online · rag over this site"}
+          {status === "retrieving" ? "retrieving · ranking sources" : status === "streaming" ? "transmitting" : offline ? "offline" : "online · answers from this site"}
         </span>
       </div>
 
@@ -107,7 +108,7 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
           ) : (
             <div key={i}>
               <p className={`whitespace-pre-wrap leading-6 ${m.error ? "text-amber" : "text-ink/85"}`}>
-                <span className="text-faint">engine ›</span> {m.content}
+                <span className="text-faint">engine ›</span> {m.sources ? <Answer text={m.content} sources={m.sources} /> : m.content}
                 {busy && i === msgs.length - 1 && <span className="cursor-blink ml-0.5 inline-block h-[1.05em] w-[0.5em] translate-y-[3px] bg-cyan/80" />}
               </p>
               {m.error && m.content.startsWith("Engine offline") && (
@@ -115,9 +116,7 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
                   {email}
                 </a>
               )}
-              {!!m.sources?.length && !(busy && i === msgs.length - 1) && (
-                <p className="mt-2 text-[10px] tracking-[0.12em] text-faint uppercase">read: {m.sources.join(" · ")}</p>
-              )}
+              {!!m.sources?.length && !(busy && i === msgs.length - 1) && <SourceList text={m.content} sources={m.sources} />}
             </div>
           ),
         )}
@@ -155,7 +154,7 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
             onChange={(e) => setInput(e.target.value)}
             maxLength={600}
             disabled={busy}
-            placeholder="Ask about pipelines, projects, or how Sagar would approach your data problem"
+            placeholder="Ask about Sagar's work or the pipeline's runs"
             className="min-w-0 flex-1 border-0 bg-transparent p-0 text-ink placeholder:text-faint focus:ring-0 focus:outline-none"
             autoComplete="off"
           />
@@ -169,6 +168,51 @@ export function EngineConsole({ greeting, suggestions, email }: { greeting: stri
         </form>
       </div>
     </div>
+  );
+}
+
+/** An answer with each [n] turned into a link to its source. */
+function Answer({ text, sources }: { text: string; sources: Source[] }) {
+  return (
+    <>
+      {segments(text, sources.length).map((s, i) => {
+        if ("text" in s) return <span key={i}>{s.text}</span>;
+        const src = sources[s.cite - 1];
+        return (
+          <a
+            key={i}
+            href={src.href}
+            title={src.label}
+            target={src.href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            className="mx-px align-super text-[9px] text-cyan hover:text-ink"
+          >
+            [{s.cite}]
+          </a>
+        );
+      })}
+    </>
+  );
+}
+
+/** The sources an answer actually cited, numbered as in the answer. */
+function SourceList({ text, sources }: { text: string; sources: Source[] }) {
+  const used = cited(text, sources.length);
+  if (!used.length) return null;
+  return (
+    <ol className="mt-2 space-y-0.5 text-[10px] tracking-[0.06em] text-faint">
+      {used.map((n) => {
+        const src = sources[n - 1];
+        return (
+          <li key={n}>
+            [{n}]{" "}
+            <a href={src.href} target={src.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="text-mute underline decoration-line underline-offset-2 hover:text-ink">
+              {src.label}
+            </a>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 

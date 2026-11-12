@@ -137,6 +137,9 @@ export type Engine = {
   greeting: string;
   suggestions: string[];
   persona: string;
+  noAnswer: string;
+  uncited: string;
+  note: string;
   draft?: boolean;
 };
 

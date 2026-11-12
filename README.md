@@ -101,24 +101,28 @@ which file drives which part of the site.
 
 ## Ask the Engine
 
-- `lib/engine/retrieve.ts` splits every file in `/content` into short passages and
-  ranks them per question with BM25 (the site overview and the extra facts in
-  `content/engine.md` are always included). Edit the markdown and the engine knows.
-- `app/api/engine/route.ts` sends the top passages and the last few chat turns to
-  Claude and streams the answer back as plain text. The key is `ANTHROPIC_API_KEY`
-  in Vercel and never reaches the browser. `ENGINE_MODEL` overrides the model
-  (default `claude-opus-5-5` at low effort, answers capped at 2,000 tokens, with
-  server-side fallback on a refusal).
-- Limits: 12 questions per IP per 10 minutes and 400 per server instance per day,
-  questions up to 600 characters. These are in memory and reset on cold start, so
-  also set a monthly spend limit in the Anthropic Console.
-- Free option: set `GEMINI_API_KEY` instead (free key from
-  https://aistudio.google.com/apikey). It is used only when `ANTHROPIC_API_KEY` is not
-  set; `GEMINI_MODEL` overrides the default `gemini-2.5-flash`. The free tier has its
-  own per-minute and per-day quotas, and Google may use free-tier prompts to improve
-  its models, which is fine here since the prompts are public site content plus the
-  visitor's question.
-- Without either key the console says it is offline and shows the contact email.
+Grounded: it answers only from `/content` and the pipeline's run reports, cites every
+fact, and says "I don't have that" when its sources don't cover a question.
+
+- `lib/engine/retrieve.ts` splits every file in `/content` into short passages, each
+  with a label and a link to where the site shows it, and ranks them per question with
+  BM25 (the site overview and `content/engine.md` are always included). `TODO-SAGAR`
+  questions and editor comments are never part of it.
+- `lib/engine/runs.ts` turns the latest run report and the run history into two more
+  sources, so pipeline questions are answered from real runs.
+- `app/api/engine/route.ts` numbers the sources, tells the model to answer only from
+  them with `[n]` after each fact, or to start with the `noAnswer` line from
+  `content/engine.md`. If a long answer cites nothing, the `uncited` line is appended so
+  it can't pass as fact. Sources go to the browser in the `X-Engine-Sources` header and
+  the console turns each `[n]` into a link (`lib/engine/cite.ts`).
+- Keys stay on the server: `ANTHROPIC_API_KEY` (Claude; `ENGINE_MODEL` overrides the
+  model, default `claude-opus-5-5` at low effort, 2,000-token cap), or `GEMINI_API_KEY`
+  (free tier; `GEMINI_MODEL` overrides `gemini-2.5-flash`) when the Anthropic key isn't
+  set. Without either, the console says it is offline and shows the contact email.
+- Limits: 12 questions per IP per 10 minutes, 400 per server instance per day,
+  600 characters per question. In memory, so also set a spend limit with the provider.
+- `npm test` runs key-free checks: retrieval finds each case study, no source contains
+  `TODO-SAGAR`, run reports become sources, and citations are parsed.
 
 ## The pipeline
 
