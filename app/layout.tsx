@@ -4,8 +4,8 @@ import { getSite } from "@/lib/content";
 import { SITE_URL } from "@/lib/url";
 import "./globals.css";
 
-const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk", display: "optional" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "optional" });
 
 export function generateMetadata(): Metadata {
   const site = getSite();

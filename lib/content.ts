@@ -8,7 +8,7 @@ import { marked } from "marked";
 
 const ROOT = path.join(process.cwd(), "content");
 
-type Doc<T> = T & { body: string; html: string; file: string; todos: number };
+type Doc<T> = T & { html: string; file: string; todos: number };
 
 // A paragraph that starts with TODO-SAGAR is a question only Sagar can answer. Preview
 // and local builds show it, highlighted; the live site leaves it out, along with any
@@ -24,11 +24,11 @@ function render(md: string) {
       /<p>TODO-SAGAR:\s*/g,
       '<p class="todo-sagar"><span class="todo-sagar-tag">TODO-SAGAR</span> ',
     );
-    return { body: clean.trim(), html, todos };
+    return { html, todos };
   }
-  const body = clean.replace(TODO, "").replace(/\n{3,}/g, "\n\n").trim();
-  const html = (marked.parse(body, { async: false }) as string).replace(/<h2[^>]*>(?:(?!<\/h2>).)*<\/h2>\s*(?=<h2|$)/gs, "");
-  return { body, html, todos };
+  const kept = clean.replace(TODO, "").replace(/\n{3,}/g, "\n\n").trim();
+  const html = (marked.parse(kept, { async: false }) as string).replace(/<h2[^>]*>(?:(?!<\/h2>).)*<\/h2>\s*(?=<h2|$)/gs, "");
+  return { html, todos };
 }
 
 function read<T>(rel: string): Doc<T> {

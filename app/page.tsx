@@ -37,7 +37,9 @@ function PersonLd({ site }: { site: ReturnType<typeof getSite> }) {
 
 export default async function Home() {
   const site = getSite();
-  const runs = await getRuns();
+  const all = await getRuns();
+  // the browser only ever shows the last 48 runs; 30 days of hourly runs would be ~720
+  const runs = { ...all, index: all.index && { ...all.index, runs: all.index.runs.slice(0, 48) } };
   // the intake's four streams are the four busiest wikis in the latest real run
   const top = runs.latest?.gold.top_wikis ?? [];
   const stages = getStages().map((s) =>
