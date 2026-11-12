@@ -1,52 +1,52 @@
 {
- "run_id": "20261112T082813Z",
+ "run_id": "20261112T174055Z",
  "trigger": "schedule",
- "started_at": "2026-11-12T08:28:13Z",
+ "started_at": "2026-11-12T17:40:55Z",
  "status": "passed",
- "finished_at": "2026-11-12T08:30:43Z",
- "duration_s": 150.01,
+ "finished_at": "2026-11-12T17:43:30Z",
+ "duration_s": 155.0,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
   "sample_seconds": 120.0,
-  "events": 4740,
-  "bytes": 6416502,
-  "window_start": "2026-11-12T08:28:12Z",
-  "window_end": "2026-11-12T08:30:13Z"
+  "events": 5011,
+  "bytes": 6490510,
+  "window_start": "2026-11-12T17:40:55Z",
+  "window_end": "2026-11-12T17:42:55Z"
  },
  "partitions": [
-  "2026-11-12T08"
+  "2026-11-12T17"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-12T08:28:13Z",
-   "duration_s": 120.0,
+   "started_at": "2026-11-12T17:40:55Z",
+   "duration_s": 120.01,
    "rows_in": null,
-   "rows_out": 4740,
+   "rows_out": 5011,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:13Z",
-   "duration_s": 10.32,
-   "rows_in": 4740,
-   "rows_out": 4740,
+   "started_at": "2026-11-12T17:42:55Z",
+   "duration_s": 12.25,
+   "rows_in": 5011,
+   "rows_out": 5011,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-12T08"
+     "2026-11-12T17"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:23Z",
-   "duration_s": 0.3,
-   "rows_in": 4740,
+   "started_at": "2026-11-12T17:43:07Z",
+   "duration_s": 0.23,
+   "rows_in": 5011,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:24Z",
-   "duration_s": 7.07,
-   "rows_in": 4740,
-   "rows_out": 4740,
+   "started_at": "2026-11-12T17:43:07Z",
+   "duration_s": 8.33,
+   "rows_in": 5011,
+   "rows_out": 5011,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:31Z",
-   "duration_s": 7.91,
-   "rows_in": 4740,
-   "rows_out": 93,
+   "started_at": "2026-11-12T17:43:16Z",
+   "duration_s": 9.14,
+   "rows_in": 5011,
+   "rows_out": 100,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 82,
+     "gold.edits_per_wiki_hour": 89,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:39Z",
-   "duration_s": 2.74,
+   "started_at": "2026-11-12T17:43:25Z",
+   "duration_s": 3.01,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,8 +95,8 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-12T08:30:41Z",
-   "duration_s": 1.66,
+   "started_at": "2026-11-12T17:43:28Z",
+   "duration_s": 2.03,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -106,9 +106,9 @@
   }
  ],
  "rows": {
-  "landed": 4740,
-  "bronze": 4740,
-  "silver": 4740,
+  "landed": 5011,
+  "bronze": 5011,
+  "silver": 5011,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "e5c53a4d-b845-4e32-83b1-cda2ef734c0c",
-   "event_ts": "2026-11-12T08:29:11.711000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "cde34faf-cc00-4e18-8357-0379ecc4f37e",
+   "event_ts": "2026-11-12T17:41:33.013000Z",
+   "wiki": "ukwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q2009501",
-   "is_bot": false,
-   "length_old": 58855,
-   "length_new": 59687
-  },
-  {
-   "event_id": "d9f05cad-0e51-4bea-96ab-7eadecee6604",
-   "event_ts": "2026-11-12T08:29:21.969000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Daily covid vaccination doses per capita, World, Dec 17, 2023.svg",
+   "title": "\u0410\u043d\u043d\u0430 \u0413\u043e\u043b\u044c\u043c\u043b\u0443\u043d\u0434",
    "is_bot": true,
-   "length_old": 760,
-   "length_new": 809
+   "length_old": 4761,
+   "length_new": 4761
   },
   {
-   "event_id": "40fdcb71-cd09-42b8-bac8-489a398933de",
-   "event_ts": "2026-11-12T08:29:53.088000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Kannon-d\u014d",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "082fbc9f-d5d1-4719-82b1-f63cc5549f45",
-   "event_ts": "2026-11-12T08:28:51.675000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q112398414",
-   "is_bot": false,
-   "length_old": 34779,
-   "length_new": 35972
-  },
-  {
-   "event_id": "0b4059eb-2909-4db4-ac95-5e6425f8879a",
-   "event_ts": "2026-11-12T08:28:42.639000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:NAJDA-139-0012 \u53f2\u5fb437.pdf",
-   "is_bot": true,
-   "length_old": 1077,
-   "length_new": 983
-  },
-  {
-   "event_id": "aa45e4e9-45f4-48ba-aefb-3c1df918a6aa",
-   "event_ts": "2026-11-12T08:30:12.110000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q17479628",
-   "is_bot": true,
-   "length_old": 32896,
-   "length_new": 39292
-  },
-  {
-   "event_id": "68fec06a-cbcc-4e1a-b32c-232f470567fc",
-   "event_ts": "2026-11-12T08:28:57.742000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Patrimonium 3 (project)",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "74eee3fa-55b0-4cf8-a8c4-657832d092b6",
-   "event_ts": "2026-11-12T08:29:15.154000Z",
+   "event_id": "9a835367-9909-435d-9a86-9d9033acd73e",
+   "event_ts": "2026-11-12T17:41:11.336000Z",
    "wiki": "enwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Chief Makgoba",
-   "is_bot": false,
-   "length_old": 13066,
-   "length_new": 13110
-  },
-  {
-   "event_id": "16ce61fd-3dbe-48fe-97a9-5ee9e694cd44",
-   "event_ts": "2026-11-12T08:28:45.385000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:2026-10-24 11 46 06 will rename and categorize soon 036.jpg",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using Year in country category with deprecated parameters",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "ed87bbfb-c6fd-4ec5-8468-6e42852ad548",
-   "event_ts": "2026-11-12T08:28:26.878000Z",
+   "event_id": "7f444684-6b2a-4aa2-8ea1-e5688d113c32",
+   "event_ts": "2026-11-12T17:41:40.629000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Our World in Data maps of the world",
+   "title": "Category:High-Security and Organized Crime Center",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c18bf6e6-b4d9-4e81-81d6-63c14f7ed9a9",
+   "event_ts": "2026-11-12T17:41:14.603000Z",
+   "wiki": "plwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoria:Strony u\u017cywaj\u0105ce rozszerzenia Phonos",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "fa521d03-edf1-4e08-82f8-45bede96b610",
+   "event_ts": "2026-11-12T17:42:11.366000Z",
+   "wiki": "ttwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0421\u0430\u043d \u041d\u0438\u043a\u043e\u043b\u043e \u0412\u0435\u043a\u0438\u043e (\u041c\u0435\u0441\u0438\u043d\u0430)",
+   "is_bot": true,
+   "length_old": 2702,
+   "length_new": 2736
+  },
+  {
+   "event_id": "ed5b1893-d559-42e1-a242-35b1e1686236",
+   "event_ts": "2026-11-12T17:42:10.128000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q112052784",
+   "is_bot": false,
+   "length_old": 5619,
+   "length_new": 6054
+  },
+  {
+   "event_id": "8871b05a-0439-483e-8fa3-58a04cab7d34",
+   "event_ts": "2026-11-12T17:41:33.581000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Media missing permission as of 12 November 2026",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "16d41ba0-6daf-4cfc-bc00-3d26b8910216",
+   "event_ts": "2026-11-12T17:41:17.963000Z",
+   "wiki": "zhwikisource",
+   "change_type": "edit",
+   "namespace": 104,
+   "title": "Page:\u6649\u66f8\u65a0\u6ce8\uff08\u4e2d\u83ef\u66f8\u5c402008\u5e74\u5f71\u5370\u672c\uff09\u7b2c\u4e00\u518a.pdf/51",
+   "is_bot": true,
+   "length_old": 1830,
+   "length_new": 1829
+  },
+  {
+   "event_id": "04b161df-4449-470e-b021-303e44d6e0c4",
+   "event_ts": "2026-11-12T17:41:34.573000Z",
+   "wiki": "trwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategori:Vikiproje Kurgusal karakterler bilinmeyen-\u00f6nemli de\u011ferlendirilmemi\u015f-s\u0131n\u0131f sayfalar",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "1cc84599-214e-4038-8832-698ac73c1bdb",
-   "event_ts": "2026-11-12T08:28:20.507000Z",
-   "wiki": "frwiki",
-   "change_type": "edit",
-   "namespace": 2,
-   "title": "Utilisateur:Cbigorgne/Brouillon-1MI",
-   "is_bot": true,
-   "length_old": 70861,
-   "length_new": 70861
-  },
-  {
-   "event_id": "f917bd5c-8b62-41a4-bd91-747e3151de12",
-   "event_ts": "2026-11-12T08:28:45.141000Z",
+   "event_id": "725f2877-952b-45f3-ba11-7a4e007d6734",
+   "event_ts": "2026-11-12T17:42:22.126000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q4157284",
-   "is_bot": true,
-   "length_old": 10186,
-   "length_new": 10463
+   "title": "Q108014734",
+   "is_bot": false,
+   "length_old": 29233,
+   "length_new": 32218
+  },
+  {
+   "event_id": "b36edcec-2363-475a-ba43-cc704a717008",
+   "event_ts": "2026-11-12T17:42:04.642000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Unidentified logos",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "d302a261-e663-404b-b577-b36e5e318acd",
+   "event_ts": "2026-11-12T17:41:12.632000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD-Costa Rica",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4740,
+   "observed": 5011,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4740,
-    "silver": 4740,
+    "bronze": 5011,
+    "silver": 5011,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 3046,
-    "gold_edits": 3046
+    "silver_edits": 2908,
+    "gold_edits": 2908
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 3046,
-  "bot_share": 0.4879,
+  "edits": 2908,
+  "bot_share": 0.4811,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 1377
+    "edits": 728
    },
    {
     "wiki": "commonswiki",
-    "edits": 627
+    "edits": 718
    },
    {
     "wiki": "enwiki",
-    "edits": 334
+    "edits": 452
    },
    {
-    "wiki": "arwiki",
-    "edits": 103
+    "wiki": "elwiktionary",
+    "edits": 218
    },
    {
-    "wiki": "frwiki",
-    "edits": 61
+    "wiki": "zhwikisource",
+    "edits": 144
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q142120597",
-    "edits": 10
+    "title": "Q100255083",
+    "edits": 15
+   },
+   {
+    "wiki": "dewiki",
+    "title": "Diskussion:Jugendverkehrsschule",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142103183",
-    "edits": 9
+    "title": "Q100255082",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142103186",
-    "edits": 9
+    "title": "Q142126415",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142103188",
-    "edits": 9
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q142103192",
-    "edits": 9
+    "title": "Q102166154",
+    "edits": 5
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 13630,
-  "silver.recentchange": 13630,
+  "bronze.recentchange": 18641,
+  "silver.recentchange": 18641,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 243,
-  "gold.bot_share_hour": 3,
-  "gold.top_pages_hour": 30,
+  "gold.edits_per_wiki_hour": 332,
+  "gold.bot_share_hour": 4,
+  "gold.top_pages_hour": 40,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43183122492"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43271889345"
  },
  "schema_version": 1
 }
