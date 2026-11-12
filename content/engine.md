@@ -40,11 +40,23 @@ confirmed facts belong here; open questions for Sagar are hidden from the chat.
 - How to reach him: the contact form at the bottom of this site, or
   sagarkonkanagaon@gmail.com. He replies within two working days. His résumé is
   linked in the contact section (/resume.pdf).
-
-TODO-SAGAR: These were listed here before but go beyond the four confirmed results, so the chat no longer uses them. Move back any that are true, as plain bullets above.
-- Summary: 5+ years across e-commerce, finance, automotive and industrial IoT, on on-premise Hadoop and multi-cloud (Azure, GCP).
-- Also skilled in: Python, SQL, shell scripting, PostgreSQL, MapReduce, Parquet, ORC, dimensional modelling, SCD Type 1 & 2, incremental loading, data governance, Collibra, metadata management, lineage, reconciliation, audit and compliance controls, Linux, Tableau, HLD/LLD design documents.
-- Certifications: Databricks Fundamentals; Build a Data Warehouse with BigQuery (Google Cloud skill badge); Build Batch Data Pipelines on Google Cloud: Cloud Composer (Google Cloud skill badge).
+- Summary: Senior Data Engineer with 5+ years building batch data pipelines on Spark and
+  Hadoop, with production lakehouse experience on Azure Databricks and Delta Lake. Core
+  strengths: PySpark and Spark SQL, large-scale pipeline migration, and Spark performance
+  tuning. Domains: e-commerce (eBay), industrial IoT (Trane, via RedBlackTree),
+  automotive (Tiger Analytics) and finance (XL Dynamics).
+- Daily production use: PySpark, Spark SQL, Apache Spark, Hive, Hadoop / HDFS, Python, SQL.
+- Lakehouse and cloud: Azure Databricks, Delta Lake, medallion architecture, Azure Data
+  Factory, ADLS Gen2, Parquet, ORC.
+- Orchestration: UC4 / Automic, DLS (Data Lake Studio), Airflow DAGs on GCP Cloud Composer.
+- Modelling and quality: dimensional modelling, SCD Type 1 & 2, incremental loading,
+  schema evolution, data contracts, data validation, reconciliation, lineage.
+- CI/CD and operations: Git, Jenkins, shell scripting, Linux, PagerDuty.
+- Also worked with: GCP BigQuery, PostgreSQL, Tableau, and RAG with LLM APIs (this site's chat).
+- Certifications: Databricks Fundamentals; Build a Data Warehouse with BigQuery (Google
+  Cloud skill badge); Build Batch Data Pipelines on Google Cloud: Cloud Composer (Google
+  Cloud skill badge).
 - Education: B.E., National Institute of Engineering (NIE), Mysore, 2017 – 2020.
-- Roles: lakehouse platforms (Databricks and Delta Lake, BigQuery), orchestration (Airflow, Cloud Composer) and data quality.
-- Where he would add value fastest: migrating or modernising pipelines, Spark performance tuning, safe backfills, medallion lakehouse design, governance-heavy domains like finance.
+- Where he adds value fastest: migrating and modernising pipelines, Spark performance
+  tuning, safe backfills, medallion lakehouse design, and data quality in domains where
+  numbers must reconcile, like finance.

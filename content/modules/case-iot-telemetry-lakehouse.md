@@ -8,7 +8,7 @@ title: "Schema evolution for 10,000+ IoT devices"
 status: Case study · RedBlackTree for Trane
 problem: "Schema evolution for telemetry from 10,000+ connected IoT devices."
 diagram: ["10,000+ IoT devices", Telemetry, Schema evolution, Analytics]
-stack: [Spark]
+stack: [PySpark, Spark SQL, Hadoop, HDFS, Hive, Parquet]
 impact:
   value: "10,000+"
   label: "IoT devices"
@@ -17,41 +17,44 @@ draft: false
 ---
 
 <!--
-  Case study rules: only the result above is confirmed. Every line that starts with
-  TODO-SAGAR is a question for Sagar. Those lines show on preview builds and are left
-  out of the live site. Replace a TODO-SAGAR line with your answer to publish it.
+  Case study rules: every fact on this page comes from Sagar's résumé (Senior Data
+  Engineer, November 2026). Lines that start with TODO-SAGAR are still open questions:
+  they show on preview builds and are left out of the live site.
 -->
 
 ## Context
 
-Senior Data Engineer at RedBlackTree, on a client engagement for Trane Technologies, August 2025 to January 2026.
-
-TODO-SAGAR: What did the platform do with the telemetry, and who used it? Keep it to what Trane would be comfortable seeing in public.
+Senior Data Engineer at RedBlackTree, August 2025 to January 2026, for the client Trane
+Technologies (HVAC and refrigeration). I built an industrial IoT telemetry platform:
+Hadoop and Spark pipelines for HVAC telemetry from 10,000+ connected devices, feeding
+equipment-health monitoring and predictive-maintenance analytics.
 
 ## The problem
 
-TODO-SAGAR: How did the schema change, and what broke (or would have broken) when it did? For example firmware updates adding or renaming fields.
+Device firmware updates add and change telemetry fields. A pipeline with a fixed
+schema has to be redeployed for each change, or it breaks the tables downstream.
 
 ## What I did
 
-Implemented schema evolution for telemetry from 10,000+ IoT devices.
-
-TODO-SAGAR: How did it work? Where new fields landed, how type changes were handled, and how you knew nothing was lost. (Your résumé mentions dynamic schema inference, Parquet on HDFS, partitioned Hive tables, and validation and lineage. Confirm the ones that belong here.)
+- **Schema evolution.** Dynamic schema inference let new or modified fields from
+  firmware updates flow through without a pipeline redeploy or downstream breakage.
+- **Transformations.** PySpark jobs on Parquet datasets in HDFS, with window functions,
+  aggregations, broadcast joins and schema enforcement, loading partitioned Hive tables.
+- **Traceability.** Data validation, lineage tracking and metadata capture built into
+  the ingestion and transformation stages, for end-to-end audit.
+- **Reuse.** With the product and analytics teams, I turned common Spark transformations
+  into reusable ETL components, which cut down ad-hoc query load.
 
 ## Result
 
-- Schema evolution across **10,000+** IoT devices
-
-TODO-SAGAR: What changed after it shipped? For example redeploys avoided or failures prevented. Leave this out if you don't have a number. (The site used to say "zero redeploys"; only keep that if it's true.)
+- Telemetry from **10,000+** IoT devices
+- Firmware schema changes absorbed **without redeploying** the pipeline
 
 ## What I'd do differently
 
 TODO-SAGAR: One thing you'd change if you built it again.
 
-## Stack
-
-TODO-SAGAR: The rest of the stack you used on this work. The tools listed at the bottom of this page come from the result above.
-
 ## In the machine
 
-The machine's **Schema drift** drill, and the real schema registry in `/pipeline`, use the same idea on a public stream.
+The machine's **Schema drift** drill, and the real schema registry in `/pipeline`, use
+the same idea on a public stream.

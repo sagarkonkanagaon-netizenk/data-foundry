@@ -8,7 +8,7 @@ title: "A faster medallion lakehouse"
 status: Case study · Tiger Analytics
 problem: "Cutting Spark runtimes by 35%, and building a medallion lakehouse on Databricks and Delta Lake."
 diagram: [Bronze (Delta), Silver (Delta), Gold (Delta), Databricks]
-stack: [Spark, Databricks, Delta Lake]
+stack: [PySpark, Azure Databricks, Delta Lake, Azure Data Factory, Airflow / Cloud Composer, Hive, Jenkins]
 impact:
   value: "−35%"
   label: "Spark runtime"
@@ -17,40 +17,46 @@ draft: false
 ---
 
 <!--
-  Case study rules: only the result above is confirmed. Every line that starts with
-  TODO-SAGAR is a question for Sagar. Those lines show on preview builds and are left
-  out of the live site. Replace a TODO-SAGAR line with your answer to publish it.
+  Case study rules: every fact on this page comes from Sagar's résumé (Senior Data
+  Engineer, November 2026). Lines that start with TODO-SAGAR are still open questions:
+  they show on preview builds and are left out of the live site.
 -->
 
 ## Context
 
-Data Engineer at Tiger Analytics, November 2024 to August 2025.
-
-TODO-SAGAR: What kind of client and data was this (industry and data domain), without naming anything confidential?
+Data Engineer at Tiger Analytics, November 2024 to August 2025, on an automotive data
+platform: ETL and ELT pipelines for large-scale automotive manufacturing and
+supply-chain datasets.
 
 ## The problem
 
-TODO-SAGAR: What was wrong before? For example jobs that ran too long, full reloads, stale data or cost. Say what the 35% was measured on (which jobs, before and after).
+Spark jobs used more time and cluster than they needed, and data was refreshed with
+full reloads, which kept it later than it had to be.
 
 ## What I did
 
-Cut Spark runtimes by 35%, and built a medallion (Bronze, Silver, Gold) lakehouse on Databricks and Delta Lake.
-
-TODO-SAGAR: Which changes made the 35%? (Your résumé mentions partition pruning, caching, broadcast joins and Adaptive Query Execution. Confirm which applied here.)
-
-TODO-SAGAR: How was the lakehouse laid out, and what did each layer do? (Your résumé also mentions SCD Type 1 and 2, watermark-based incremental loads on ADF and Cloud Composer, and Jenkins deployments. Confirm the ones that belong here.)
+- **Tuned the Spark jobs.** Partition pruning, caching, broadcast joins and Adaptive
+  Query Execution (AQE) cut job runtimes by 35% and reduced cluster resource use.
+- **Built a medallion lakehouse.** Bronze, Silver and Gold layers on Azure Databricks
+  with Delta Lake, from raw ingestion to analytics-ready datasets, with SCD Type 1 and
+  Type 2 dimension tables using surrogate keys.
+- **Replaced full reloads.** Incremental ingestion with watermark-based change
+  detection, triggered from Azure Data Factory and Airflow DAGs on GCP Cloud Composer,
+  reduced data latency.
+- **Automated releases.** Spark jobs were tested and deployed across Dev, QA and
+  Production with Git branching and Jenkins pipelines.
 
 ## Result
 
-- Spark runtimes cut by **35%**
-- A medallion lakehouse on **Databricks** and **Delta Lake**
-
-TODO-SAGAR: Any other outcome you can share, such as cost, freshness or fewer failures? Leave this out if you don't have a number.
+- Spark job runtimes cut by **35%**
+- A medallion lakehouse on **Azure Databricks** and **Delta Lake**
+- Full reloads replaced by **incremental**, watermark-based ingestion
 
 ## What I'd do differently
 
 TODO-SAGAR: One thing you'd change if you built it again.
 
-## Stack
+## In the machine
 
-TODO-SAGAR: The rest of the stack you used on this work. The tools listed at the bottom of this page come from the result above.
+The pipeline on this site has the same Bronze, Silver and Gold layers in Delta, with
+idempotent `MERGE` loads.

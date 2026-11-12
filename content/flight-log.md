@@ -10,9 +10,9 @@ entries:
     end: present
     location: Bengaluru
     lines:
-      - "Migrated 300+ production pipelines from UC4 (Automic) to Data Lake Studio, rebuilding them on the new orchestration layer."
-      - "Ran a two-year historical backfill across high-volume pipelines with full completeness checks."
-      - "On-call via PagerDuty: diagnosing Spark and Hive failures before they reach downstream analytics."
+      - "Migrated 300+ production pipelines, including SLA-critical jobs, from UC4 (Automic) to the in-house DLS (Data Lake Studio) platform."
+      - "Delivered historical backfills, including a two-year reprocess, validating every dataset for completeness before release."
+      - "PySpark and Spark SQL on a petabyte-scale Hadoop platform (tables of ~2 trillion records); on call via PagerDuty."
   - company: Trane Technologies
     client: RedBlackTree
     role: Senior Data Engineer (client engagement)
@@ -23,7 +23,7 @@ entries:
     lines:
       - "Built Hadoop–Spark pipelines for telemetry from 10,000+ connected HVAC devices."
       - "Implemented schema evolution so firmware changes never forced a pipeline redeploy."
-      - "Set up validation, lineage and metadata governance for compliance and audit."
+      - "Built validation, lineage and metadata capture into ingestion for end-to-end audit traceability."
   - company: Tiger Analytics
     role: Data Engineer
     domain: Automotive
@@ -41,8 +41,8 @@ entries:
     end: "2024-08"
     location: Mumbai
     lines:
-      - "Built ETL over 20M+ mortgage, loan and risk records with full lineage and audit controls."
-      - "Designed DQ rule frameworks and reconciliation checks across every pipeline stage."
+      - "Built ETL over 20M+ mortgage, loan and risk records with lineage and audit controls."
+      - "Implemented validation rules and reconciliation checks across pipeline stages, source to reporting."
       - "Automated ingestion, scheduling and alerting with shell scripts, cutting manual ops work by 40%."
 draft: false
 ---

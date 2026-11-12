@@ -15,7 +15,7 @@ groups:
       - { label: HDFS, depth: 4, years: 5 }
       - { label: Delta Lake, depth: 4, years: 1 }
       - { label: ADLS Gen2, depth: 3, years: 5 }
-      - { label: BigQuery, depth: 3, years: 1 }
+      - { label: BigQuery, depth: 2, years: 1 }
   - name: Orchestration
     dials:
       - { label: Azure Data Factory, depth: 4, years: 5 }
@@ -29,12 +29,12 @@ groups:
   - name: CI/CD
     dials:
       - { label: Git, depth: 4, years: 5 }
-      - { label: Jenkins, depth: 3, years: 2 }
+      - { label: Jenkins, depth: 3, years: 1 }
       - { label: PagerDuty, depth: 3, years: 1 }
   - name: AI
     dials:
       - { label: AI pipeline docs, depth: 3, years: 1 }
-      - { label: LLM APIs, depth: 2, years: 1 }
-      - { label: Self-healing pipelines, depth: 2, years: 1 }
+      - { label: RAG with LLM APIs, depth: 2, years: 1 }
+      - { label: Data contracts, depth: 3, years: 1 }
 draft: false
 ---
