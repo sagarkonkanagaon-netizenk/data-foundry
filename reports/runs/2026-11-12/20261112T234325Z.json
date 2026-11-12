@@ -1,0 +1,410 @@
+{
+ "run_id": "20261112T234325Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-12T23:43:25Z",
+ "status": "passed",
+ "finished_at": "2026-11-12T23:46:02Z",
+ "duration_s": 157.68,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.6,
+  "events": 3523,
+  "bytes": 4788086,
+  "window_start": "2026-11-12T23:43:25Z",
+  "window_end": "2026-11-12T23:45:24Z"
+ },
+ "partitions": [
+  "2026-11-12T23"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-12T23:43:25Z",
+   "duration_s": 120.62,
+   "rows_in": null,
+   "rows_out": 3523,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-12T23:45:25Z",
+   "duration_s": 12.66,
+   "rows_in": 3523,
+   "rows_out": 3523,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-12T23"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-12T23:45:38Z",
+   "duration_s": 0.16,
+   "rows_in": 3523,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-12T23:45:38Z",
+   "duration_s": 8.32,
+   "rows_in": 3523,
+   "rows_out": 3523,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-12T23:45:46Z",
+   "duration_s": 10.23,
+   "rows_in": 3523,
+   "rows_out": 82,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 71,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-12T23:45:57Z",
+   "duration_s": 3.4,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-12T23:46:00Z",
+   "duration_s": 2.29,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3523,
+  "bronze": 3523,
+  "silver": 3523,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "6e29e9b4-167a-450f-8372-707ae81c4411",
+   "event_ts": "2026-11-12T23:43:37.086000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0623\u0630\u0631\u0633\u0648\u0646 \u0623\u0631\u064a\u0646\u0627",
+   "is_bot": true,
+   "length_old": 4034,
+   "length_new": 4160
+  },
+  {
+   "event_id": "cf60cf92-7cfb-464c-bdda-df82762165e8",
+   "event_ts": "2026-11-12T23:43:51.727000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Media needing categories as of 12 November 2026",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b262e7c1-a552-4343-8153-558b64f3eab0",
+   "event_ts": "2026-11-12T23:44:29.471000Z",
+   "wiki": "trwiki",
+   "change_type": "new",
+   "namespace": 15,
+   "title": "Kategori tart\u0131\u015fma:\u00dclkeye g\u00f6re kano",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 82
+  },
+  {
+   "event_id": "055517ce-ec81-48e6-bcf9-907fcb4d03fc",
+   "event_ts": "2026-11-12T23:44:00.306000Z",
+   "wiki": "etwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategooria:Alaliste k\u00f5dulinkidega artiklid",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8b419c02-6e97-4e56-bae0-5f81ae95c46b",
+   "event_ts": "2026-11-12T23:44:57.697000Z",
+   "wiki": "eswiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Jorge Bustos (periodista)",
+   "is_bot": false,
+   "length_old": 6663,
+   "length_new": 6763
+  },
+  {
+   "event_id": "4464b0b9-bdaa-4b27-95eb-ffef2e7282d8",
+   "event_ts": "2026-11-12T23:44:14.853000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q4944919",
+   "is_bot": true,
+   "length_old": 14774,
+   "length_new": 20645
+  },
+  {
+   "event_id": "5e1a14aa-2f91-4b39-bc10-6ec3cefb95ef",
+   "event_ts": "2026-11-12T23:45:03.486000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "Q142132921",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 311
+  },
+  {
+   "event_id": "f74730a6-f7f8-4773-9c38-662f65445477",
+   "event_ts": "2026-11-12T23:45:03.573000Z",
+   "wiki": "shnwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u1015\u102d\u1030\u1004\u103a\u1011\u1062\u107c\u103a\u1088:\u101d\u1062\u107c\u103a\u1088\u1078\u102d\u1030\u101d\u103a\u1038\u1019\u102e\u1038\u1010\u102e\u1088 \u1078\u1084\u1088\u101d\u1035\u1004\u103a\u1038\u1019\u1022\u1030\u1087\u1015\u102d\u107c\u103a\u1087",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "7cf60bbe-f0f7-49ac-a517-74ac38d97652",
+   "event_ts": "2026-11-12T23:44:33.738000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "User:SpicyHamSamson/Morrie Turner",
+   "is_bot": true,
+   "length_old": 21367,
+   "length_new": 21327
+  },
+  {
+   "event_id": "749cd53b-4dab-45a8-b6e5-71bce2962d87",
+   "event_ts": "2026-11-12T23:43:33.189000Z",
+   "wiki": "nlwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categorie:Karel de Grote",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8b261611-958c-4464-8d31-28eb1b4a297d",
+   "event_ts": "2026-11-12T23:44:43.660000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:\u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6 \u0997\u09c7\u099c\u09c7\u099f, \u09b8\u09be\u09aa\u09cd\u09a4\u09be\u09b9\u09bf\u0995, \u09ea\u09b0\u09cd\u09a5 \u09b8\u09aa\u09cd\u09a4\u09be\u09b9, \u09a1\u09bf\u09b8\u09c7\u09ae\u09cd\u09ac\u09b0 \u09e8\u09e6\u09e7\u09ea - \u0996\u09a3\u09cd\u09a1 \u09ee (\u09ac\u09c7\u09b8\u09b0\u0995\u09be\u09b0\u09bf \u09ac\u09bf\u099c\u09cd\u099e\u09be\u09aa\u09a8).pdf",
+   "is_bot": true,
+   "length_old": 6075,
+   "length_new": 11007
+  },
+  {
+   "event_id": "f5276d84-38ff-4a90-948b-901786d58d18",
+   "event_ts": "2026-11-12T23:45:02.986000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files with coordinates missing SDC location of creation",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3523,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3523,
+    "silver": 3523,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2309,
+    "gold_edits": 2309
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2309,
+  "bot_share": 0.518,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 1065
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 459
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 294
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 54
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 37
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142132832",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q134570041",
+    "edits": 11
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142132900",
+    "edits": 10
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142132915",
+    "edits": 10
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142132764",
+    "edits": 9
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 22164,
+  "silver.recentchange": 22164,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 403,
+  "gold.bot_share_hour": 5,
+  "gold.top_pages_hour": 50,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43331153676"
+ },
+ "schema_version": 1
+}
