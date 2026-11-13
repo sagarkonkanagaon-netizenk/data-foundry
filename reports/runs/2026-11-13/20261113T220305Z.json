@@ -1,0 +1,410 @@
+{
+ "run_id": "20261113T220305Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-13T22:03:05Z",
+ "status": "passed",
+ "finished_at": "2026-11-13T22:05:34Z",
+ "duration_s": 148.32,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 3641,
+  "bytes": 4611734,
+  "window_start": "2026-11-13T22:03:05Z",
+  "window_end": "2026-11-13T22:05:05Z"
+ },
+ "partitions": [
+  "2026-11-13T22"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-13T22:03:05Z",
+   "duration_s": 120.05,
+   "rows_in": null,
+   "rows_out": 3641,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:05Z",
+   "duration_s": 9.71,
+   "rows_in": 3641,
+   "rows_out": 3641,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-13T22"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:15Z",
+   "duration_s": 0.17,
+   "rows_in": 3641,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:15Z",
+   "duration_s": 6.39,
+   "rows_in": 3641,
+   "rows_out": 3641,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:22Z",
+   "duration_s": 7.69,
+   "rows_in": 3641,
+   "rows_out": 90,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 79,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:29Z",
+   "duration_s": 2.57,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-13T22:05:32Z",
+   "duration_s": 1.73,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3641,
+  "bronze": 3641,
+  "silver": 3641,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "bff6b244-72c4-4db7-83bc-5a6a3857ba6f",
+   "event_ts": "2026-11-13T22:03:24.415000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:ISS073-E-1193187 - View of Earth.jpg",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "e16d3f47-cd04-44ea-9244-bca54d2629fb",
+   "event_ts": "2026-11-13T22:03:38.389000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Andr\u00e9s Caro",
+   "is_bot": true,
+   "length_old": 4801,
+   "length_new": 4824
+  },
+  {
+   "event_id": "cafc2089-ee26-4e6b-baac-4aee50fbac27",
+   "event_ts": "2026-11-13T22:04:53.784000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Flickr review needed",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "2be79052-5843-4bd1-a01a-3187fa583752",
+   "event_ts": "2026-11-13T22:03:11.070000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Football at the 2004 Summer Olympics \u2013 Men's tournament final",
+   "is_bot": false,
+   "length_old": 20135,
+   "length_new": 20132
+  },
+  {
+   "event_id": "a10dbac2-88bd-4e7a-bae1-90d9179bd3a0",
+   "event_ts": "2026-11-13T22:03:59.014000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q137308516",
+   "is_bot": false,
+   "length_old": 7170,
+   "length_new": 8677
+  },
+  {
+   "event_id": "b816bfb8-360d-472b-9438-8c501fb1a845",
+   "event_ts": "2026-11-13T22:04:36.171000Z",
+   "wiki": "mgwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Sokajy:let\u00f4na",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ed570367-e933-4d37-bcc9-8e0901ce2bce",
+   "event_ts": "2026-11-13T22:03:21.695000Z",
+   "wiki": "hywiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u053f\u0561\u057f\u0565\u0563\u0578\u0580\u056b\u0561:\u054f\u0565\u0572\u0565\u056f\u0561\u057f\u057e\u0561\u056f\u0561\u0576 \u0561\u0576\u057e\u057f\u0561\u0576\u0563\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "38b4704a-9bad-497b-80a8-1ac2e46f8061",
+   "event_ts": "2026-11-13T22:03:44.517000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hitty 11 field 64kb.mp3",
+   "is_bot": true,
+   "length_old": 600,
+   "length_new": 3120
+  },
+  {
+   "event_id": "32f428b6-dc26-459c-b583-6c66d462de6e",
+   "event_ts": "2026-11-13T22:04:34.211000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Uploaded with Mobile/Android",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "6669312d-8a14-4d07-b289-1f4ff8617ed4",
+   "event_ts": "2026-11-13T22:03:54.541000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q108712060",
+   "is_bot": false,
+   "length_old": 15038,
+   "length_new": 15457
+  },
+  {
+   "event_id": "df26e0fd-f28f-4e24-b3f2-f6d26c4f30e3",
+   "event_ts": "2026-11-13T22:03:58.407000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Software companies established in 2007",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "a8218c1a-b823-4f86-9158-b4362ba2e4e0",
+   "event_ts": "2026-11-13T22:04:35.555000Z",
+   "wiki": "elwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Gnezda",
+   "is_bot": true,
+   "length_old": 624,
+   "length_new": 240
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3641,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3641,
+    "silver": 3641,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2370,
+    "gold_edits": 2370
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2370,
+  "bot_share": 0.4169,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 815
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 517
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 247
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 208
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 117
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140787807",
+    "edits": 29
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140787810",
+    "edits": 28
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140787809",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142146542",
+    "edits": 17
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140787812",
+    "edits": 14
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 34875,
+  "silver.recentchange": 34875,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 694,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43515910767"
+ },
+ "schema_version": 1
+}
