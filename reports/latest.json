@@ -1,54 +1,52 @@
 {
- "run_id": "20261113T065858Z",
+ "run_id": "20261113T153146Z",
  "trigger": "schedule",
- "started_at": "2026-11-13T06:58:58Z",
+ "started_at": "2026-11-13T15:31:46Z",
  "status": "passed",
- "finished_at": "2026-11-13T07:01:25Z",
- "duration_s": 146.62,
+ "finished_at": "2026-11-13T15:34:22Z",
+ "duration_s": 155.97,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 4525,
-  "bytes": 5608555,
-  "window_start": "2026-11-13T06:58:59Z",
-  "window_end": "2026-11-13T07:00:58Z"
+  "sample_seconds": 120.6,
+  "events": 4545,
+  "bytes": 5801495,
+  "window_start": "2026-11-13T15:31:45Z",
+  "window_end": "2026-11-13T15:33:46Z"
  },
  "partitions": [
-  "2026-11-13T06",
-  "2026-11-13T07"
+  "2026-11-13T15"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-13T06:58:58Z",
-   "duration_s": 120.01,
+   "started_at": "2026-11-13T15:31:46Z",
+   "duration_s": 120.59,
    "rows_in": null,
-   "rows_out": 4525,
+   "rows_out": 4545,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-13T07:00:58Z",
-   "duration_s": 9.17,
-   "rows_in": 4525,
-   "rows_out": 4525,
+   "started_at": "2026-11-13T15:33:46Z",
+   "duration_s": 12.24,
+   "rows_in": 4545,
+   "rows_out": 4545,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-13T06",
-     "2026-11-13T07"
+     "2026-11-13T15"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-13T07:01:08Z",
-   "duration_s": 0.17,
-   "rows_in": 4525,
+   "started_at": "2026-11-13T15:33:59Z",
+   "duration_s": 0.23,
+   "rows_in": 4545,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -58,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-13T07:01:08Z",
-   "duration_s": 6.09,
-   "rows_in": 4525,
-   "rows_out": 4525,
+   "started_at": "2026-11-13T15:33:59Z",
+   "duration_s": 8.08,
+   "rows_in": 4545,
+   "rows_out": 4545,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -70,23 +68,23 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-13T07:01:14Z",
-   "duration_s": 7.35,
-   "rows_in": 4525,
-   "rows_out": 139,
+   "started_at": "2026-11-13T15:34:07Z",
+   "duration_s": 9.64,
+   "rows_in": 4545,
+   "rows_out": 106,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 117,
-     "gold.bot_share_hour": 2,
-     "gold.top_pages_hour": 20
+     "gold.edits_per_wiki_hour": 95,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
     }
    }
   },
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-13T07:01:21Z",
-   "duration_s": 2.35,
+   "started_at": "2026-11-13T15:34:17Z",
+   "duration_s": 3.14,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -97,8 +95,8 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-13T07:01:24Z",
-   "duration_s": 1.49,
+   "started_at": "2026-11-13T15:34:20Z",
+   "duration_s": 2.03,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -108,9 +106,9 @@
   }
  ],
  "rows": {
-  "landed": 4525,
-  "bronze": 4525,
-  "silver": 4525,
+  "landed": 4545,
+  "bronze": 4545,
+  "silver": 4545,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -122,118 +120,74 @@
  },
  "samples": [
   {
-   "event_id": "14496192-1e14-40f8-af86-d831b980a6f8",
-   "event_ts": "2026-11-13T07:00:11.829000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 3,
-   "title": "User talk:~2026-60005-08",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "a7416e7a-ba80-452d-aa3f-114f45b849d9",
-   "event_ts": "2026-11-13T07:00:44.352000Z",
+   "event_id": "07cd9bc9-7c9c-4323-a79a-2a6ed3b939e8",
+   "event_ts": "2026-11-13T15:31:48.797000Z",
    "wiki": "enwiktionary",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:English borrowed terms",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "0b02b77c-48b8-43ca-bf90-13bcb0d5f0aa",
-   "event_ts": "2026-11-13T06:59:00.216000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 3,
-   "title": "User talk:~2026-60005-08",
+   "title": "Category:Wu lemmas",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "1c310677-ddfe-484e-b7ef-6dac4cbf7af8",
-   "event_ts": "2026-11-13T07:00:41.433000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:H1112345678",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "ad096fed-2a70-49a1-afef-3650866afa5a",
-   "event_ts": "2026-11-13T06:59:02.341000Z",
-   "wiki": "commonswiki",
+   "event_id": "0a2df922-4022-4500-b41b-bf38accb9fcf",
+   "event_ts": "2026-11-13T15:33:24.024000Z",
+   "wiki": "frwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:763 in the Northern Hemisphere",
+   "title": "Cat\u00e9gorie:Article du projet Musique d'importance faible",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "aee27f67-d985-45a8-b8e2-2923977156ec",
-   "event_ts": "2026-11-13T07:00:22.211000Z",
+   "event_id": "b1b79f5b-dcce-47c4-99b4-46ff4f7b996b",
+   "event_ts": "2026-11-13T15:33:41.859000Z",
    "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:YssyBC",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "b94e505f-e897-4a2b-af2a-4718bb70b923",
-   "event_ts": "2026-11-13T07:00:17.238000Z",
-   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Indian Air Force air marshals",
+   "title": "Category:EPs by artist",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "ffa8e72b-65e8-4f98-9d67-379534fb47db",
-   "event_ts": "2026-11-13T07:00:36.749000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:Diginexora",
+   "event_id": "c8505cdd-3ec3-4d0c-b122-c09db6b4086a",
+   "event_ts": "2026-11-13T15:32:29.449000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q117050409",
    "is_bot": true,
+   "length_old": 199464,
+   "length_new": 202051
+  },
+  {
+   "event_id": "40c2c4c7-2dd6-4838-847a-271b3ea4e11e",
+   "event_ts": "2026-11-13T15:31:51.865000Z",
+   "wiki": "slwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategorija:Zvonovi",
+   "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "23534ad0-9ebe-424f-adad-726057069fea",
-   "event_ts": "2026-11-13T07:00:39.413000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:Sanyn00",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "1f9711b1-2de5-48da-9c84-2809046f4144",
-   "event_ts": "2026-11-13T06:59:59.124000Z",
+   "event_id": "0badff5d-935b-4614-8015-7c17326bff81",
+   "event_ts": "2026-11-13T15:31:56.182000Z",
    "wiki": "jawiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:\u6620\u753b\u306e\u30ca\u30d3\u30b2\u30fc\u30b7\u30e7\u30f3\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8",
+   "title": "Category:\u51fa\u5178\u3092\u5fc5\u8981\u3068\u3059\u308b\u8a18\u8ff0\u306e\u3042\u308b\u8a18\u4e8b/2026\u5e7411\u6708",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "9862f7cd-654f-454e-8efb-76f53d660222",
-   "event_ts": "2026-11-13T07:00:42.293000Z",
+   "event_id": "cdf43cbe-334b-46eb-9874-67ad81c3c62a",
+   "event_ts": "2026-11-13T15:33:23.263000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
@@ -243,15 +197,59 @@
    "length_new": null
   },
   {
-   "event_id": "14565624-339d-426e-b437-69684fdd95b8",
-   "event_ts": "2026-11-13T06:59:16.104000Z",
-   "wiki": "enwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Turkish lemmas",
+   "event_id": "b4ec5e6b-6e71-4924-b3be-acc6397e1f12",
+   "event_ts": "2026-11-13T15:32:24.954000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142139756",
+   "is_bot": false,
+   "length_old": 3182,
+   "length_new": 260
+  },
+  {
+   "event_id": "efe671d5-dda3-47bd-879c-06da5d87de95",
+   "event_ts": "2026-11-13T15:31:57.152000Z",
+   "wiki": "ukwiki",
+   "change_type": "edit",
+   "namespace": 4,
+   "title": "\u0412\u0456\u043a\u0456\u043f\u0435\u0434\u0456\u044f:\u0417\u0430\u043f\u0438\u0442\u0438 \u0434\u043e \u0430\u0434\u043c\u0456\u043d\u0456\u0441\u0442\u0440\u0430\u0442\u043e\u0440\u0456\u0432",
+   "is_bot": false,
+   "length_old": 36650,
+   "length_new": 36865
+  },
+  {
+   "event_id": "ced9a95a-737e-4978-b69f-09e29b109eba",
+   "event_ts": "2026-11-13T15:32:14.937000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Arnolfo di cambio e collaboratore, frammento di annuncio ai pastori, 1300 ca. 01.JPG",
+   "is_bot": true,
+   "length_old": 10541,
+   "length_new": 10538
+  },
+  {
+   "event_id": "ba97ce35-f3b2-4498-9518-b0466c6fcf61",
+   "event_ts": "2026-11-13T15:32:13.668000Z",
+   "wiki": "tewiki",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "\u0c28\u0c47\u0c2a\u0c3e\u0c32\u0c4d \u0c28\u0c41\u0c02\u0c21\u0c3f \u0c2c\u0c4c\u0c26\u0c4d\u0c27 \u0c38\u0c28\u0c4d\u0c2f\u0c3e\u0c38\u0c41\u0c32 \u0c2c\u0c39\u0c3f\u0c37\u0c4d\u0c15\u0c30\u0c23",
    "is_bot": false,
    "length_old": null,
-   "length_new": null
+   "length_new": 13408
+  },
+  {
+   "event_id": "0bb469ad-ca5c-42ac-8eb3-d2b20d347663",
+   "event_ts": "2026-11-13T15:33:23.103000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:NAJDA-154-0133 \u6821\u6b63\u53e4\u5200\u9298\u94512.pdf",
+   "is_bot": true,
+   "length_old": 4389,
+   "length_new": 4295
   }
  ],
  "dq": [
@@ -259,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4525,
+   "observed": 4545,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -305,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4525,
-    "silver": 4525,
+    "bronze": 4545,
+    "silver": 4545,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -319,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 1573,
-    "gold_edits": 1573
+    "silver_edits": 2579,
+    "gold_edits": 2579
    },
    "threshold": "equal",
    "severity": "error",
@@ -339,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 1573,
-  "bot_share": 0.4921,
+  "edits": 2579,
+  "bot_share": 0.361,
   "top_wikis": [
    {
-    "wiki": "commonswiki",
-    "edits": 446
+    "wiki": "wikidatawiki",
+    "edits": 848
    },
    {
-    "wiki": "wikidatawiki",
-    "edits": 363
+    "wiki": "commonswiki",
+    "edits": 624
    },
    {
     "wiki": "enwiki",
-    "edits": 216
+    "edits": 293
    },
    {
-    "wiki": "ttwiki",
-    "edits": 58
+    "wiki": "zhwikisource",
+    "edits": 115
    },
    {
-    "wiki": "arwiki",
-    "edits": 46
+    "wiki": "frwiki",
+    "edits": 73
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q117049939",
-    "edits": 9
+    "title": "Q117050409",
+    "edits": 13
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142138307",
-    "edits": 7
+    "title": "Q26066",
+    "edits": 13
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q117049937",
-    "edits": 5
+    "title": "Q142142725",
+    "edits": 12
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142135302",
-    "edits": 5
+    "title": "Q26156684",
+    "edits": 12
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q7281662",
-    "edits": 5
+    "title": "Q142142499",
+    "edits": 11
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 26689,
-  "silver.recentchange": 26689,
+  "bronze.recentchange": 31234,
+  "silver.recentchange": 31234,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 520,
-  "gold.bot_share_hour": 7,
-  "gold.top_pages_hour": 70,
+  "gold.edits_per_wiki_hour": 615,
+  "gold.bot_share_hour": 8,
+  "gold.top_pages_hour": 80,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -406,7 +404,7 @@
  "code": {
   "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43382391421"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43453418255"
  },
  "schema_version": 1
 }
