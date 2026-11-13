@@ -1,0 +1,412 @@
+{
+ "run_id": "20261113T065858Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-13T06:58:58Z",
+ "status": "passed",
+ "finished_at": "2026-11-13T07:01:25Z",
+ "duration_s": 146.62,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 4525,
+  "bytes": 5608555,
+  "window_start": "2026-11-13T06:58:59Z",
+  "window_end": "2026-11-13T07:00:58Z"
+ },
+ "partitions": [
+  "2026-11-13T06",
+  "2026-11-13T07"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-13T06:58:58Z",
+   "duration_s": 120.01,
+   "rows_in": null,
+   "rows_out": 4525,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-13T07:00:58Z",
+   "duration_s": 9.17,
+   "rows_in": 4525,
+   "rows_out": 4525,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-13T06",
+     "2026-11-13T07"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-13T07:01:08Z",
+   "duration_s": 0.17,
+   "rows_in": 4525,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-13T07:01:08Z",
+   "duration_s": 6.09,
+   "rows_in": 4525,
+   "rows_out": 4525,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-13T07:01:14Z",
+   "duration_s": 7.35,
+   "rows_in": 4525,
+   "rows_out": 139,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 117,
+     "gold.bot_share_hour": 2,
+     "gold.top_pages_hour": 20
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-13T07:01:21Z",
+   "duration_s": 2.35,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-13T07:01:24Z",
+   "duration_s": 1.49,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4525,
+  "bronze": 4525,
+  "silver": 4525,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "14496192-1e14-40f8-af86-d831b980a6f8",
+   "event_ts": "2026-11-13T07:00:11.829000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 3,
+   "title": "User talk:~2026-60005-08",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "a7416e7a-ba80-452d-aa3f-114f45b849d9",
+   "event_ts": "2026-11-13T07:00:44.352000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:English borrowed terms",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0b02b77c-48b8-43ca-bf90-13bcb0d5f0aa",
+   "event_ts": "2026-11-13T06:59:00.216000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 3,
+   "title": "User talk:~2026-60005-08",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "1c310677-ddfe-484e-b7ef-6dac4cbf7af8",
+   "event_ts": "2026-11-13T07:00:41.433000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:H1112345678",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ad096fed-2a70-49a1-afef-3650866afa5a",
+   "event_ts": "2026-11-13T06:59:02.341000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:763 in the Northern Hemisphere",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "aee27f67-d985-45a8-b8e2-2923977156ec",
+   "event_ts": "2026-11-13T07:00:22.211000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:YssyBC",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b94e505f-e897-4a2b-af2a-4718bb70b923",
+   "event_ts": "2026-11-13T07:00:17.238000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Indian Air Force air marshals",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ffa8e72b-65e8-4f98-9d67-379534fb47db",
+   "event_ts": "2026-11-13T07:00:36.749000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:Diginexora",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "23534ad0-9ebe-424f-adad-726057069fea",
+   "event_ts": "2026-11-13T07:00:39.413000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:Sanyn00",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "1f9711b1-2de5-48da-9c84-2809046f4144",
+   "event_ts": "2026-11-13T06:59:59.124000Z",
+   "wiki": "jawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u6620\u753b\u306e\u30ca\u30d3\u30b2\u30fc\u30b7\u30e7\u30f3\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9862f7cd-654f-454e-8efb-76f53d660222",
+   "event_ts": "2026-11-13T07:00:42.293000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Flickr images reviewed by FlickreviewR 2",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "14565624-339d-426e-b437-69684fdd95b8",
+   "event_ts": "2026-11-13T06:59:16.104000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Turkish lemmas",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4525,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4525,
+    "silver": 4525,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 1573,
+    "gold_edits": 1573
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 1573,
+  "bot_share": 0.4921,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 446
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 363
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 216
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 58
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 46
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q117049939",
+    "edits": 9
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142138307",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q117049937",
+    "edits": 5
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142135302",
+    "edits": 5
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q7281662",
+    "edits": 5
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 26689,
+  "silver.recentchange": 26689,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 520,
+  "gold.bot_share_hour": 7,
+  "gold.top_pages_hour": 70,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43382391421"
+ },
+ "schema_version": 1
+}
