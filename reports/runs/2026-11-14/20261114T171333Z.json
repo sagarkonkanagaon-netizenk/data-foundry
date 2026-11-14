@@ -1,0 +1,410 @@
+{
+ "run_id": "20261114T171333Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-14T17:13:33Z",
+ "status": "passed",
+ "finished_at": "2026-11-14T17:16:07Z",
+ "duration_s": 153.53,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4708,
+  "bytes": 5868425,
+  "window_start": "2026-11-14T17:13:33Z",
+  "window_end": "2026-11-14T17:15:33Z"
+ },
+ "partitions": [
+  "2026-11-14T17"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-14T17:13:33Z",
+   "duration_s": 120.1,
+   "rows_in": null,
+   "rows_out": 4708,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-14T17:15:33Z",
+   "duration_s": 11.71,
+   "rows_in": 4708,
+   "rows_out": 4708,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-14T17"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-14T17:15:45Z",
+   "duration_s": 0.23,
+   "rows_in": 4708,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-14T17:15:45Z",
+   "duration_s": 7.25,
+   "rows_in": 4708,
+   "rows_out": 4708,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-14T17:15:52Z",
+   "duration_s": 9.4,
+   "rows_in": 4708,
+   "rows_out": 102,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 91,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-14T17:16:02Z",
+   "duration_s": 3.31,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-14T17:16:05Z",
+   "duration_s": 1.52,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4708,
+  "bronze": 4708,
+  "silver": 4708,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "e2d2d290-6446-41f3-8133-9b99dc4ac020",
+   "event_ts": "2026-11-14T17:14:19.141000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Image page sandbox.png",
+   "is_bot": false,
+   "length_old": 1007,
+   "length_new": 1016
+  },
+  {
+   "event_id": "d5052c4c-ff6f-4d3d-8a89-672b64a794a9",
+   "event_ts": "2026-11-14T17:14:18.037000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q19944426",
+   "is_bot": false,
+   "length_old": 5069,
+   "length_new": 5495
+  },
+  {
+   "event_id": "412418ef-675b-4ee3-acf2-8b274b5ca0fe",
+   "event_ts": "2026-11-14T17:15:31.406000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pannonian Rusyn perfective verbs",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9172759b-5a9f-4d94-b474-117b9d9cf6c1",
+   "event_ts": "2026-11-14T17:14:08.407000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u6e05\u671d\u4f5c\u8005",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9260c6c3-f566-4306-9118-cc65a6a7c7fe",
+   "event_ts": "2026-11-14T17:13:36.522000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:AS08-13-2253 (21331576283).jpg",
+   "is_bot": false,
+   "length_old": 8708,
+   "length_new": 8768
+  },
+  {
+   "event_id": "05cf3449-cc77-40b7-b6f7-7c84aea88281",
+   "event_ts": "2026-11-14T17:14:36.674000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pannonian Rusyn imperfective verbs",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f78886ef-52e5-4781-90ca-92d96046fcd1",
+   "event_ts": "2026-11-14T17:13:49.912000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files of the United States with bad file names",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "739492d5-f45d-4a2a-9331-6976f66a028a",
+   "event_ts": "2026-11-14T17:13:55.884000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files of the United States with bad file names",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b57ceeaa-6d97-41a7-98e2-4554eb708c1b",
+   "event_ts": "2026-11-14T17:14:02.416000Z",
+   "wiki": "enwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u043e\u0447\u0438\u0441\u0446\u0438\u0446",
+   "is_bot": true,
+   "length_old": 970,
+   "length_new": 981
+  },
+  {
+   "event_id": "6c14509d-6b24-4026-ab08-f92dfb2cd590",
+   "event_ts": "2026-11-14T17:14:47.774000Z",
+   "wiki": "ptwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categoria:Pessoas vivas",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c6fbc5cb-4b8a-49f3-9f1c-c25cc3d6a677",
+   "event_ts": "2026-11-14T17:15:03.325000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages with module errors",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "3ae94a40-3b5b-417a-ab84-2fc639b7234d",
+   "event_ts": "2026-11-14T17:13:55.661000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u8b1d\u9707",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4708,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4708,
+    "silver": 4708,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2595,
+    "gold_edits": 2595
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2595,
+  "bot_share": 0.3865,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 730
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 668
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 234
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 161
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 120
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142165855",
+    "edits": 16
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142165888",
+    "edits": 11
+   },
+   {
+    "wiki": "arwiki",
+    "title": "\u0622\u0631\u062b\u0631 \u0628\u0631\u064a\u0646\u0627\u0646",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142165873",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142165924",
+    "edits": 7
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 46198,
+  "silver.recentchange": 46198,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 947,
+  "gold.bot_share_hour": 12,
+  "gold.top_pages_hour": 120,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43619887692"
+ },
+ "schema_version": 1
+}
