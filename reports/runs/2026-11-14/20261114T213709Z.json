@@ -1,0 +1,410 @@
+{
+ "run_id": "20261114T213709Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-14T21:37:09Z",
+ "status": "passed",
+ "finished_at": "2026-11-14T21:41:21Z",
+ "duration_s": 251.83,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 5283,
+  "bytes": 6765640,
+  "window_start": "2026-11-14T21:37:10Z",
+  "window_end": "2026-11-14T21:39:09Z"
+ },
+ "partitions": [
+  "2026-11-14T21"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-14T21:37:09Z",
+   "duration_s": 120.03,
+   "rows_in": null,
+   "rows_out": 5283,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:09Z",
+   "duration_s": 12.57,
+   "rows_in": 5283,
+   "rows_out": 5283,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-14T21"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:22Z",
+   "duration_s": 0.33,
+   "rows_in": 5283,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:22Z",
+   "duration_s": 9.13,
+   "rows_in": 5283,
+   "rows_out": 5283,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:31Z",
+   "duration_s": 10.12,
+   "rows_in": 5283,
+   "rows_out": 96,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 85,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:41Z",
+   "duration_s": 3.31,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-14T21:39:45Z",
+   "duration_s": 96.33,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 8909,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 5283,
+  "bronze": 5283,
+  "silver": 5283,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "6eb76fb3-256f-49ed-852c-3c0161a83fdd",
+   "event_ts": "2026-11-14T21:38:36.775000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:SVG topographic maps of Europe",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "36eea9df-360e-47f2-b613-60a38c6920f3",
+   "event_ts": "2026-11-14T21:38:12.841000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files with coordinates missing SDC location of creation",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4cf2961c-cd38-48aa-aa8c-e37f8984a44f",
+   "event_ts": "2026-11-14T21:38:23.434000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q1405752",
+   "is_bot": false,
+   "length_old": 65561,
+   "length_new": 68212
+  },
+  {
+   "event_id": "fad37d33-afb8-4f98-bd85-fa30395e278d",
+   "event_ts": "2026-11-14T21:38:50.047000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q95138072",
+   "is_bot": false,
+   "length_old": 55252,
+   "length_new": 56747
+  },
+  {
+   "event_id": "4fff1fa3-4ab6-4b6f-89c9-549be5021fb0",
+   "event_ts": "2026-11-14T21:37:31.533000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q59620",
+   "is_bot": false,
+   "length_old": 310010,
+   "length_new": 312189
+  },
+  {
+   "event_id": "ccac5551-6bfd-4235-a163-7d75d2acaa8c",
+   "event_ts": "2026-11-14T21:37:52.444000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Steve Wojciechowski",
+   "is_bot": true,
+   "length_old": 14683,
+   "length_new": 14739
+  },
+  {
+   "event_id": "ae1aaaf8-1246-4da9-acc9-08c3157aadaa",
+   "event_ts": "2026-11-14T21:37:40.036000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q176694",
+   "is_bot": false,
+   "length_old": 261084,
+   "length_new": 263255
+  },
+  {
+   "event_id": "3ea93df1-4f1a-4bb3-8e54-6475549822ee",
+   "event_ts": "2026-11-14T21:37:26.804000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:NAJDA-174-0160 \u65b0\u7de8\u5e38\u9678\u56fd\u8a8c11.pdf",
+   "is_bot": true,
+   "length_old": 1089,
+   "length_new": 995
+  },
+  {
+   "event_id": "30bd2e23-7969-40cc-8fb3-17434af14030",
+   "event_ts": "2026-11-14T21:38:11.964000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Images from Geograph Britain and Ireland missing SDC source of file",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "21295e39-3446-442e-8e38-34f7d2af8828",
+   "event_ts": "2026-11-14T21:38:49.039000Z",
+   "wiki": "enwikivoyage",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Kirov",
+   "is_bot": false,
+   "length_old": 21076,
+   "length_new": 21076
+  },
+  {
+   "event_id": "deb31a32-dab5-4bcd-b890-eeeef6a12a72",
+   "event_ts": "2026-11-14T21:38:15.319000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:LL-Q5287 (jpn)-Fukujinzuke-\u30b3\u30e8\u30fc\u30c6.wav",
+   "is_bot": false,
+   "length_old": 316,
+   "length_new": 6230
+  },
+  {
+   "event_id": "fc29cf86-6ea2-4110-a296-fcd799bf7157",
+   "event_ts": "2026-11-14T21:38:16.573000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages with local camera coordinates and missing SDC coordinates",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 5283,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 5283,
+    "silver": 5283,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2759,
+    "gold_edits": 2759
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2759,
+  "bot_share": 0.349,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 1102
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 691
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 286
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 119
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 82
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q434907",
+    "edits": 52
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140519417",
+    "edits": 24
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140519552",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q272599",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140527223",
+    "edits": 15
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 47076,
+  "silver.recentchange": 47076,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 944,
+  "gold.bot_share_hour": 12,
+  "gold.top_pages_hour": 120,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43643712385"
+ },
+ "schema_version": 1
+}
