@@ -1,0 +1,410 @@
+{
+ "run_id": "20261115T215502Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-15T21:55:02Z",
+ "status": "passed",
+ "finished_at": "2026-11-15T21:58:23Z",
+ "duration_s": 201.18,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4360,
+  "bytes": 5487837,
+  "window_start": "2026-11-15T21:55:03Z",
+  "window_end": "2026-11-15T21:57:02Z"
+ },
+ "partitions": [
+  "2026-11-15T21"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-15T21:55:02Z",
+   "duration_s": 120.1,
+   "rows_in": null,
+   "rows_out": 4360,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:02Z",
+   "duration_s": 8.41,
+   "rows_in": 4360,
+   "rows_out": 4360,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-15T21"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:11Z",
+   "duration_s": 0.1,
+   "rows_in": 4360,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:11Z",
+   "duration_s": 6.3,
+   "rows_in": 4360,
+   "rows_out": 4360,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:17Z",
+   "duration_s": 6.55,
+   "rows_in": 4360,
+   "rows_out": 105,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 94,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:24Z",
+   "duration_s": 2.07,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-15T21:57:26Z",
+   "duration_s": 57.64,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 10122,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4360,
+  "bronze": 4360,
+  "silver": 4360,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "0372d390-c17d-4c88-8176-dcca2e475683",
+   "event_ts": "2026-11-15T21:55:53.829000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Goniobranchus verrieri 348227565.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "63b94398-9d74-4ff9-8b0a-5e52747de346",
+   "event_ts": "2026-11-15T21:55:14.175000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q53267",
+   "is_bot": false,
+   "length_old": 56216,
+   "length_new": 58924
+  },
+  {
+   "event_id": "56f46daf-5e77-425b-9ea1-cdd0a7b6a36c",
+   "event_ts": "2026-11-15T21:55:47.497000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Raumati",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "06aad94f-4055-4e19-a929-39fe0522c28b",
+   "event_ts": "2026-11-15T21:56:22.991000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:CC-BY-4.0",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4a7021ea-43fb-45c3-a439-9d2e1a66639b",
+   "event_ts": "2026-11-15T21:56:51.159000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Michel Seydoux",
+   "is_bot": false,
+   "length_old": 10220,
+   "length_new": 10220
+  },
+  {
+   "event_id": "69d4b266-0274-457b-9e83-dbcf474efd01",
+   "event_ts": "2026-11-15T21:55:44.251000Z",
+   "wiki": "eswiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "Usuario:Silvia.jerez/Taller",
+   "is_bot": false,
+   "length_old": 16142,
+   "length_new": 16539
+  },
+  {
+   "event_id": "bf8eda6b-27ea-4548-9051-7bd875a63f85",
+   "event_ts": "2026-11-15T21:56:16.904000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "Utilisateur:Hektor/Christa Pike",
+   "is_bot": false,
+   "length_old": 97834,
+   "length_new": 98221
+  },
+  {
+   "event_id": "9019b26d-8300-4808-b580-dbfd7cb5c063",
+   "event_ts": "2026-11-15T21:55:11.437000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Blue Qur'an",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "7853df5f-f068-48a0-b04d-b50676268bc3",
+   "event_ts": "2026-11-15T21:56:20.575000Z",
+   "wiki": "cewiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438:\u041f\u043e\u0448\u0442\u0430\u043d \u0438\u043d\u0434\u0435\u043a\u0441 \u0439\u043e\u0446\u0443 \u043d\u0430\u0445 \u0431\u0435\u0445\u0430 \u043c\u0435\u0442\u0442\u0438\u0433\u0430\u0448",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f031a2ea-c405-4477-be0f-cecf1ca35dee",
+   "event_ts": "2026-11-15T21:56:32.825000Z",
+   "wiki": "kaawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:\u00d3simlikler joybar\u0131n\u0131\u0144 maqalalar\u0131",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ca271f58-ce59-46c1-ad43-32e8162eaa49",
+   "event_ts": "2026-11-15T21:56:21.121000Z",
+   "wiki": "jawiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u30ab\u30c6\u30b4\u30ea:\u975e\u63a8\u5968\u306e\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8\u3092\u4f7f\u7528\u3057\u3066\u3044\u308b\u30da\u30fc\u30b8",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "94fdc5b9-e7d7-40bc-917c-0c85d1207731",
+   "event_ts": "2026-11-15T21:55:39.340000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Fr\u00e9d\u00e9ric Boilet",
+   "is_bot": false,
+   "length_old": 10709,
+   "length_new": 11114
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4360,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4360,
+    "silver": 4360,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2859,
+    "gold_edits": 2859
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2859,
+  "bot_share": 0.326,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 1116
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 449
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 390
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 119
+   },
+   {
+    "wiki": "cawiki",
+    "edits": 108
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q573079",
+    "edits": 20
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q21545923",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q5801635",
+    "edits": 11
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142176550",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142176626",
+    "edits": 6
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 49638,
+  "silver.recentchange": 49638,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 1043,
+  "gold.bot_share_hour": 13,
+  "gold.top_pages_hour": 130,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43766274572"
+ },
+ "schema_version": 1
+}
