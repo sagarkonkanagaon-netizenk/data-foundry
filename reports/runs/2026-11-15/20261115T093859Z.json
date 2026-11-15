@@ -1,0 +1,410 @@
+{
+ "run_id": "20261115T093859Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-15T09:38:59Z",
+ "status": "passed",
+ "finished_at": "2026-11-15T09:43:07Z",
+ "duration_s": 248.66,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 4496,
+  "bytes": 5767209,
+  "window_start": "2026-11-15T09:38:59Z",
+  "window_end": "2026-11-15T09:40:59Z"
+ },
+ "partitions": [
+  "2026-11-15T09"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-15T09:38:59Z",
+   "duration_s": 120.04,
+   "rows_in": null,
+   "rows_out": 4496,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-15T09:40:59Z",
+   "duration_s": 12.31,
+   "rows_in": 4496,
+   "rows_out": 4496,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-15T09"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-15T09:41:11Z",
+   "duration_s": 0.16,
+   "rows_in": 4496,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-15T09:41:11Z",
+   "duration_s": 9.2,
+   "rows_in": 4496,
+   "rows_out": 4496,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-15T09:41:20Z",
+   "duration_s": 10.04,
+   "rows_in": 4496,
+   "rows_out": 92,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 81,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-15T09:41:30Z",
+   "duration_s": 3.07,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-15T09:41:33Z",
+   "duration_s": 93.84,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 18627,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4496,
+  "bronze": 4496,
+  "silver": 4496,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "d4eca903-5aff-49ab-9167-b5502b90150a",
+   "event_ts": "2026-11-15T09:40:58.287000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Sweden (1).png",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "12b0dceb-4ba3-44a8-b87d-afb46fda55c5",
+   "event_ts": "2026-11-15T09:40:40.239000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Number 293 (Serial 293) (Part 1 of 2) - DPLA - 5809d99976bffed15940972834661ff5 (page 789).jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "76146c8c-9485-4739-a1dd-62693564651a",
+   "event_ts": "2026-11-15T09:40:07.090000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q3458810",
+   "is_bot": false,
+   "length_old": 10613,
+   "length_new": 10809
+  },
+  {
+   "event_id": "659d5d37-2589-4abc-b5c1-ec51e06a8da3",
+   "event_ts": "2026-11-15T09:39:07.832000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Self-published work",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8c37c6a8-4a3e-4ff8-bc72-ad4a041e2328",
+   "event_ts": "2026-11-15T09:39:20.809000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Art Space of The Pantip Lifestyle Hub",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ec37ccb3-de44-4a46-8efd-1cf65a5225d3",
+   "event_ts": "2026-11-15T09:39:50.726000Z",
+   "wiki": "cawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Organitzaci\u00f3 Electoral de Treballadors Socialistes i Petits Agricultors",
+   "is_bot": true,
+   "length_old": 7169,
+   "length_new": 7167
+  },
+  {
+   "event_id": "9d4320db-a615-433c-9d60-2cd1138e2a0a",
+   "event_ts": "2026-11-15T09:39:12.108000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Self-published work",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "08541004-6ac2-4a46-a1d4-3ab2203fbdda",
+   "event_ts": "2026-11-15T09:40:34.548000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Zeewijk",
+   "is_bot": false,
+   "length_old": 17595,
+   "length_new": 17582
+  },
+  {
+   "event_id": "ff15ad4a-4713-443b-bb49-7f4f8c2b81cf",
+   "event_ts": "2026-11-15T09:39:36.515000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files with coordinates missing SDC location of creation",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b1bea841-4c78-4e17-a663-92287f0545ee",
+   "event_ts": "2026-11-15T09:40:30.663000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Billboard Year-End Hot 100 singles of 2003",
+   "is_bot": false,
+   "length_old": 11060,
+   "length_new": 11216
+  },
+  {
+   "event_id": "2f09f396-3532-4fc6-8ebf-954799dff547",
+   "event_ts": "2026-11-15T09:40:36.923000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q61912899",
+   "is_bot": false,
+   "length_old": 13118,
+   "length_new": 13192
+  },
+  {
+   "event_id": "37579959-3f2b-42af-b973-b5b0fbe69f7c",
+   "event_ts": "2026-11-15T09:40:41.799000Z",
+   "wiki": "enwiki",
+   "change_type": "log",
+   "namespace": 0,
+   "title": "Voyager 2",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4496,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4496,
+    "silver": 4496,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2341,
+    "gold_edits": 2341
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2341,
+  "bot_share": 0.3131,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 857
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 405
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 198
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 120
+   },
+   {
+    "wiki": "kawiki",
+    "edits": 80
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140484237",
+    "edits": 34
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140484228",
+    "edits": 20
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140484210",
+    "edits": 19
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140484212",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140484220",
+    "edits": 13
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 45963,
+  "silver.recentchange": 45963,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 943,
+  "gold.bot_share_hour": 12,
+  "gold.top_pages_hour": 120,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43700209146"
+ },
+ "schema_version": 1
+}
