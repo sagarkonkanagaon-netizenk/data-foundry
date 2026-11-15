@@ -1,0 +1,410 @@
+{
+ "run_id": "20261115T171727Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-15T17:17:27Z",
+ "status": "passed",
+ "finished_at": "2026-11-15T17:19:59Z",
+ "duration_s": 152.58,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4326,
+  "bytes": 5431971,
+  "window_start": "2026-11-15T17:17:26Z",
+  "window_end": "2026-11-15T17:19:26Z"
+ },
+ "partitions": [
+  "2026-11-15T17"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-15T17:17:27Z",
+   "duration_s": 120.11,
+   "rows_in": null,
+   "rows_out": 4326,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:27Z",
+   "duration_s": 11.71,
+   "rows_in": 4326,
+   "rows_out": 4326,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-15T17"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:38Z",
+   "duration_s": 0.13,
+   "rows_in": 4326,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:38Z",
+   "duration_s": 7.29,
+   "rows_in": 4326,
+   "rows_out": 4326,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:46Z",
+   "duration_s": 9.51,
+   "rows_in": 4326,
+   "rows_out": 106,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 95,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:55Z",
+   "duration_s": 2.32,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-15T17:19:58Z",
+   "duration_s": 1.5,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4326,
+  "bronze": 4326,
+  "silver": 4326,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "4a34da7f-812d-4dbb-9eea-f665118a6ebc",
+   "event_ts": "2026-11-15T17:18:47.810000Z",
+   "wiki": "elwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Pegoli",
+   "is_bot": true,
+   "length_old": 354,
+   "length_new": 236
+  },
+  {
+   "event_id": "5966acdb-11da-4246-92bd-08b0ea652c7e",
+   "event_ts": "2026-11-15T17:18:32.733000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0037\u518a.djvu/642",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2582
+  },
+  {
+   "event_id": "ac9f93ff-0218-489e-9c37-5acffdd2b28a",
+   "event_ts": "2026-11-15T17:17:58.709000Z",
+   "wiki": "kaawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:Aubrieta",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "72f26857-b8ef-4098-a688-ef5d63d1e540",
+   "event_ts": "2026-11-15T17:17:45.886000Z",
+   "wiki": "kaawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Larsenianthus careyanus",
+   "is_bot": false,
+   "length_old": 1521,
+   "length_new": 1550
+  },
+  {
+   "event_id": "9c97f1f8-e6a6-47cf-bebc-61dbe0602672",
+   "event_ts": "2026-11-15T17:17:28.204000Z",
+   "wiki": "kaawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:Orcuttia",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "e6e7604c-9d09-44e9-a15c-414ccfcbef8e",
+   "event_ts": "2026-11-15T17:19:24.638000Z",
+   "wiki": "ruwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u0432\u043e \u043c\u043d\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u043c \u0447\u0438\u0441\u043b\u0435/bg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "bb442d1c-b6b3-4c5b-a677-86d7e698d746",
+   "event_ts": "2026-11-15T17:17:52.705000Z",
+   "wiki": "kaawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:Hydrocharitaceae",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "962357bc-5111-4849-8e8e-662b4bd46c79",
+   "event_ts": "2026-11-15T17:18:22.803000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:August 2026 in Berlin-Sch\u00f6neberg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "bf31d4ed-b6d3-4001-8ab8-bbf873cf1b36",
+   "event_ts": "2026-11-15T17:18:20.418000Z",
+   "wiki": "ruwiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a:Dan watcher 32/\u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a/\u0416\u0435\u043d\u0449\u0438\u043d\u0430-\u043d\u0435\u0432\u0438\u0434\u0438\u043c\u043a\u0430 (Marvel Rivals)",
+   "is_bot": false,
+   "length_old": 22657,
+   "length_new": 22690
+  },
+  {
+   "event_id": "aa762791-ae18-450b-8a64-bf97e166e978",
+   "event_ts": "2026-11-15T17:17:52.745000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Aug\u00e8res Villard paysage NE cimeti\u00e8re (1).jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "33ea546d-132b-4532-bf8c-cc3886a09592",
+   "event_ts": "2026-11-15T17:18:55.460000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q130833490",
+   "is_bot": false,
+   "length_old": 4580,
+   "length_new": 6170
+  },
+  {
+   "event_id": "36a74101-4993-4c17-aa83-9d239b4a4daa",
+   "event_ts": "2026-11-15T17:17:47.587000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u672a\u6821\u5bf9",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4326,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4326,
+    "silver": 4326,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2628,
+    "gold_edits": 2628
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2628,
+  "bot_share": 0.3075,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 720
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 580
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 196
+   },
+   {
+    "wiki": "kaawiki",
+    "edits": 172
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 121
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140539785",
+    "edits": 27
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q937750",
+    "edits": 24
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140539793",
+    "edits": 19
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142175123",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140539791",
+    "edits": 14
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 50289,
+  "silver.recentchange": 50289,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 1038,
+  "gold.bot_share_hour": 13,
+  "gold.top_pages_hour": 130,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43740221982"
+ },
+ "schema_version": 1
+}
