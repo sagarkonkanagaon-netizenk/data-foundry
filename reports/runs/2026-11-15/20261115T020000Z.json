@@ -1,0 +1,410 @@
+{
+ "run_id": "20261115T020000Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-15T02:00:00Z",
+ "status": "passed",
+ "finished_at": "2026-11-15T02:02:23Z",
+ "duration_s": 143.81,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 3616,
+  "bytes": 4619707,
+  "window_start": "2026-11-15T02:00:00Z",
+  "window_end": "2026-11-15T02:01:59Z"
+ },
+ "partitions": [
+  "2026-11-15T02"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-15T02:00:00Z",
+   "duration_s": 120.08,
+   "rows_in": null,
+   "rows_out": 3616,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:00Z",
+   "duration_s": 8.41,
+   "rows_in": 3616,
+   "rows_out": 3616,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-15T02"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:08Z",
+   "duration_s": 0.12,
+   "rows_in": 3616,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:08Z",
+   "duration_s": 5.36,
+   "rows_in": 3616,
+   "rows_out": 3616,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:14Z",
+   "duration_s": 6.17,
+   "rows_in": 3616,
+   "rows_out": 84,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 73,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:20Z",
+   "duration_s": 2.23,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-15T02:02:22Z",
+   "duration_s": 1.44,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3616,
+  "bronze": 3616,
+  "silver": 3616,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "fad98fac-3bb1-474b-b738-8341b0bb5cd5",
+   "event_ts": "2026-11-15T02:00:39.177000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q135016078",
+   "is_bot": false,
+   "length_old": 58649,
+   "length_new": 58997
+  },
+  {
+   "event_id": "e6a559eb-5319-4721-93d2-7ac83a6e907d",
+   "event_ts": "2026-11-15T02:00:00.177000Z",
+   "wiki": "metawiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:Duckplantduck",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "abbc2a97-983c-4362-8f24-0e1d08e8669a",
+   "event_ts": "2026-11-15T02:01:46.173000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "A Current Affair (Australian TV program)",
+   "is_bot": true,
+   "length_old": 24300,
+   "length_new": 24279
+  },
+  {
+   "event_id": "41882fd4-99f9-478c-9191-ca3b45f40092",
+   "event_ts": "2026-11-15T02:00:42.774000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0623\u0646\u062f\u064a \u0645\u0627\u0646\u063a\u0627\u0646",
+   "is_bot": true,
+   "length_old": 5746,
+   "length_new": 6236
+  },
+  {
+   "event_id": "5749fe3f-588f-4066-be55-8b5c5be23114",
+   "event_ts": "2026-11-15T02:01:51.477000Z",
+   "wiki": "elwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Eulogi",
+   "is_bot": true,
+   "length_old": 597,
+   "length_new": 479
+  },
+  {
+   "event_id": "cc9be764-e033-4223-8a6e-7bd7cc81dc5d",
+   "event_ts": "2026-11-15T02:00:38.709000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q141284288",
+   "is_bot": false,
+   "length_old": 108867,
+   "length_new": 110409
+  },
+  {
+   "event_id": "5e80798f-2ebf-457d-a72a-72c1e7bdf000",
+   "event_ts": "2026-11-15T02:01:48.434000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q135015290",
+   "is_bot": false,
+   "length_old": 25362,
+   "length_new": 25710
+  },
+  {
+   "event_id": "19ec1caa-7217-46bb-95c2-e68397fa14f7",
+   "event_ts": "2026-11-15T02:00:25.993000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q141284288",
+   "is_bot": false,
+   "length_old": 73401,
+   "length_new": 74943
+  },
+  {
+   "event_id": "8f66f0f1-980c-491f-8863-53c39f7a2530",
+   "event_ts": "2026-11-15T02:00:39.015000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Kenosha History Center August 2026 17.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "5ddfec88-5bf0-4afd-9677-162b64b72cc2",
+   "event_ts": "2026-11-15T02:01:43.775000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q1430939",
+   "is_bot": false,
+   "length_old": 19259,
+   "length_new": 19480
+  },
+  {
+   "event_id": "fba88075-62f1-4c30-9a50-2b4e0d19d40c",
+   "event_ts": "2026-11-15T02:00:34.384000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Kenosha History Center",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c6913735-d972-4d5a-8dda-af8138e1b49d",
+   "event_ts": "2026-11-15T02:00:36.678000Z",
+   "wiki": "mgwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Sokajy:Pages avec des erreurs de script",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3616,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3616,
+    "silver": 3616,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2265,
+    "gold_edits": 2265
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2265,
+  "bot_share": 0.4689,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 778
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 435
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 360
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 120
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 119
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141284288",
+    "edits": 72
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141284353",
+    "edits": 42
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q117050421",
+    "edits": 16
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141284338",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141284343",
+    "edits": 10
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 50692,
+  "silver.recentchange": 50692,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 1017,
+  "gold.bot_share_hour": 13,
+  "gold.top_pages_hour": 130,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43665629798"
+ },
+ "schema_version": 1
+}
