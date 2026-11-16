@@ -1,0 +1,410 @@
+{
+ "run_id": "20261116T203535Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-16T20:35:35Z",
+ "status": "passed",
+ "finished_at": "2026-11-16T20:39:27Z",
+ "duration_s": 231.63,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 6006,
+  "bytes": 7547598,
+  "window_start": "2026-11-16T20:35:35Z",
+  "window_end": "2026-11-16T20:37:35Z"
+ },
+ "partitions": [
+  "2026-11-16T20"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-16T20:35:35Z",
+   "duration_s": 120.01,
+   "rows_in": null,
+   "rows_out": 6006,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-16T20:37:35Z",
+   "duration_s": 10.87,
+   "rows_in": 6006,
+   "rows_out": 6006,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-16T20"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-16T20:37:46Z",
+   "duration_s": 0.27,
+   "rows_in": 6006,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-16T20:37:46Z",
+   "duration_s": 7.53,
+   "rows_in": 6006,
+   "rows_out": 6006,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-16T20:37:54Z",
+   "duration_s": 8.66,
+   "rows_in": 6006,
+   "rows_out": 99,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 88,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-16T20:38:02Z",
+   "duration_s": 2.77,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-16T20:38:05Z",
+   "duration_s": 81.51,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 9196,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 6006,
+  "bronze": 6006,
+  "silver": 6006,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "f9a24175-8c3e-48a8-b944-74bb7aa5f44e",
+   "event_ts": "2026-11-16T20:36:23.182000Z",
+   "wiki": "astwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categor\u00eda:Wikipedia:P\u00e1xines con argumentos duplicaos nes llamaes a plant\u00edes",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "bb8c9f6c-4e87-458c-99a3-ea75facec047",
+   "event_ts": "2026-11-16T20:35:48.628000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Santa Maria delle Grazie Milan 2013.jpg",
+   "is_bot": false,
+   "length_old": 5332,
+   "length_new": 5495
+  },
+  {
+   "event_id": "ae0857d6-1f2a-4a74-9061-dc935de09dee",
+   "event_ts": "2026-11-16T20:35:36.460000Z",
+   "wiki": "trwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategori:Yunanca s\u00f6zc\u00fckler",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0545895c-7eaf-4c69-a038-c34c7fdddf49",
+   "event_ts": "2026-11-16T20:36:42.974000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q4971359",
+   "is_bot": false,
+   "length_old": 7212,
+   "length_new": 7450
+  },
+  {
+   "event_id": "5e07536b-4ae7-4e15-9030-07ba8d679249",
+   "event_ts": "2026-11-16T20:36:28.386000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:WrestHouse3.jpg",
+   "is_bot": false,
+   "length_old": 8950,
+   "length_new": 8968
+  },
+  {
+   "event_id": "6b79d5b7-d97c-488c-ac8a-24b933c84afd",
+   "event_ts": "2026-11-16T20:37:24.732000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 1,
+   "title": "Talk:Compass, Inc.",
+   "is_bot": false,
+   "length_old": 869,
+   "length_new": 977
+  },
+  {
+   "event_id": "b86a76de-2b52-47d3-9b24-23139c779988",
+   "event_ts": "2026-11-16T20:37:23.732000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Sean M. Carroll",
+   "is_bot": false,
+   "length_old": 40068,
+   "length_new": 40054
+  },
+  {
+   "event_id": "7c273aeb-43e6-4c16-84be-7a0268bee932",
+   "event_ts": "2026-11-16T20:36:54.177000Z",
+   "wiki": "enwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Proofread",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "1a844332-e3ef-4398-b430-bf6682c42a51",
+   "event_ts": "2026-11-16T20:35:44.354000Z",
+   "wiki": "astwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categor\u00eda:Wikipedia:P\u00e1xines con argumentos duplicaos nes llamaes a plant\u00edes",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ce64c450-359c-433a-8dc2-75d32ffeb4ad",
+   "event_ts": "2026-11-16T20:35:43.195000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using Occupation template with incorrect parameters",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c6c470ce-fcd8-42df-b953-bb6882a25324",
+   "event_ts": "2026-11-16T20:35:56.688000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Honor Flight 20151019-01-036 (22150375550).jpg",
+   "is_bot": true,
+   "length_old": 9093,
+   "length_new": 11115
+  },
+  {
+   "event_id": "291deb5b-2dbd-45db-834c-5d547c8d65c3",
+   "event_ts": "2026-11-16T20:35:40.137000Z",
+   "wiki": "elwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u039a\u03b1\u03c4\u03b7\u03b3\u03bf\u03c1\u03af\u03b1:\u0395\u03c0\u03ce\u03bd\u03c5\u03bc\u03b1 \u03ba\u03bf\u03b9\u03bd\u03bf\u03cd \u03b3\u03ad\u03bd\u03bf\u03c5\u03c2 (\u03b9\u03c4\u03b1\u03bb\u03b9\u03ba\u03ac)",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 6006,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 6006,
+    "silver": 6006,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2830,
+    "gold_edits": 2830
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2830,
+  "bot_share": 0.3781,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 830
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 661
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 281
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 224
+   },
+   {
+    "wiki": "kaawiki",
+    "edits": 152
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140999485",
+    "edits": 35
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q296328",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q97013282",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Lexeme:L1497689",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142187660",
+    "edits": 7
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 51289,
+  "silver.recentchange": 51289,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 1005,
+  "gold.bot_share_hour": 12,
+  "gold.top_pages_hour": 120,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43951297531"
+ },
+ "schema_version": 1
+}
