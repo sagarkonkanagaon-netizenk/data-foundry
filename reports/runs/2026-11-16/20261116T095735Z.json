@@ -1,0 +1,410 @@
+{
+ "run_id": "20261116T095735Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-16T09:57:35Z",
+ "status": "passed",
+ "finished_at": "2026-11-16T10:01:22Z",
+ "duration_s": 226.97,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.3,
+  "events": 4689,
+  "bytes": 5922144,
+  "window_start": "2026-11-16T09:57:35Z",
+  "window_end": "2026-11-16T09:59:35Z"
+ },
+ "partitions": [
+  "2026-11-16T09"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-16T09:57:35Z",
+   "duration_s": 120.27,
+   "rows_in": null,
+   "rows_out": 4689,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-16T09:59:35Z",
+   "duration_s": 9.84,
+   "rows_in": 4689,
+   "rows_out": 4689,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-16T09"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-16T09:59:45Z",
+   "duration_s": 0.15,
+   "rows_in": 4689,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-16T09:59:45Z",
+   "duration_s": 6.55,
+   "rows_in": 4689,
+   "rows_out": 4689,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-16T09:59:52Z",
+   "duration_s": 7.46,
+   "rows_in": 4689,
+   "rows_out": 100,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 89,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-16T09:59:59Z",
+   "duration_s": 2.53,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-16T10:00:02Z",
+   "duration_s": 80.18,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 9189,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4689,
+  "bronze": 4689,
+  "silver": 4689,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "021dc21b-26c5-4e12-b36e-4703d90d1c7b",
+   "event_ts": "2026-11-16T09:59:08.420000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Infrared aerial photographs by swisstopo of Fl\u00fchli",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "80db408d-4f6c-4749-9d39-1a7ff26d5762",
+   "event_ts": "2026-11-16T09:58:22.910000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Lisa-ann Gershwin",
+   "is_bot": true,
+   "length_old": 15210,
+   "length_new": 15216
+  },
+  {
+   "event_id": "d8be067b-3ecd-40c5-9083-97375e51ae4f",
+   "event_ts": "2026-11-16T09:59:01.792000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD US expired",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "db9b30b6-9c05-4883-94b4-bd8340c735bf",
+   "event_ts": "2026-11-16T09:59:16.869000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Taken with Nikon Z 9",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9e9ca4d5-122f-4051-a053-cd532b43d810",
+   "event_ts": "2026-11-16T09:58:09.059000Z",
+   "wiki": "kowiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\ubd84\ub958:\uc911\uad6d\uc5b4 \ud45c\uae30\ub97c \ud3ec\ud568\ud55c \ubb38\uc11c",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "58103d64-701b-4521-b9d4-59ba0bb7ac80",
+   "event_ts": "2026-11-16T09:58:27.479000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Categories by size (flat list)",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "7b6d899e-d0c6-488d-9e04-da94589858dc",
+   "event_ts": "2026-11-16T09:58:43.963000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "1989 Indian general election in Tamil Nadu",
+   "is_bot": false,
+   "length_old": 43882,
+   "length_new": 43882
+  },
+  {
+   "event_id": "b433617f-a7f6-4693-88d6-1fae770dd849",
+   "event_ts": "2026-11-16T09:58:48.309000Z",
+   "wiki": "ukwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u044f:\u0406\u0441\u0442\u043e\u0440\u0456\u044f \u043f\u0440\u0430\u0432\u0430 \u0423\u043a\u0440\u0430\u0457\u043d\u0438",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "fec2f382-a548-4779-9e00-1e2207296a73",
+   "event_ts": "2026-11-16T09:59:20.169000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q121820562",
+   "is_bot": false,
+   "length_old": 16298,
+   "length_new": 17888
+  },
+  {
+   "event_id": "611662a4-81e7-4e79-affd-93418a4c8e69",
+   "event_ts": "2026-11-16T09:58:01.887000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:2026-11-03 will rename and categorize soon 305.jpg",
+   "is_bot": false,
+   "length_old": 7331,
+   "length_new": 7226
+  },
+  {
+   "event_id": "74746c7e-e2f1-469b-8780-1dcb9ddb5515",
+   "event_ts": "2026-11-16T09:59:11.509000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q39694608",
+   "is_bot": false,
+   "length_old": 23755,
+   "length_new": 25344
+  },
+  {
+   "event_id": "b97f36bc-162e-4205-905f-f01326f52d13",
+   "event_ts": "2026-11-16T09:58:14.088000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q137092068",
+   "is_bot": false,
+   "length_old": 7702,
+   "length_new": 9292
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4689,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4689,
+    "silver": 4689,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2313,
+    "gold_edits": 2313
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2313,
+  "bot_share": 0.3121,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 775
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 643
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 200
+   },
+   {
+    "wiki": "frwiki",
+    "edits": 60
+   },
+   {
+    "wiki": "trwiktionary",
+    "edits": 52
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q137009881",
+    "edits": 67
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140952859",
+    "edits": 40
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140952862",
+    "edits": 26
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140952861",
+    "edits": 9
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q120983457",
+    "edits": 8
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 49828,
+  "silver.recentchange": 49828,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 1012,
+  "gold.bot_share_hour": 12,
+  "gold.top_pages_hour": 120,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/43844379303"
+ },
+ "schema_version": 1
+}
