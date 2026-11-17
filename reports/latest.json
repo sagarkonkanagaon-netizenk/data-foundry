@@ -1,52 +1,52 @@
 {
- "run_id": "20261117T134011Z",
+ "run_id": "20261117T223021Z",
  "trigger": "schedule",
- "started_at": "2026-11-17T13:40:11Z",
+ "started_at": "2026-11-17T22:30:21Z",
  "status": "passed",
- "finished_at": "2026-11-17T13:44:30Z",
- "duration_s": 258.53,
+ "finished_at": "2026-11-17T22:34:33Z",
+ "duration_s": 251.87,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.3,
-  "events": 3768,
-  "bytes": 4784862,
-  "window_start": "2026-11-17T13:40:12Z",
-  "window_end": "2026-11-17T13:42:11Z"
+  "sample_seconds": 120.1,
+  "events": 3577,
+  "bytes": 4751829,
+  "window_start": "2026-11-17T22:30:21Z",
+  "window_end": "2026-11-17T22:32:21Z"
  },
  "partitions": [
-  "2026-11-17T13"
+  "2026-11-17T22"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-17T13:40:11Z",
-   "duration_s": 120.33,
+   "started_at": "2026-11-17T22:30:21Z",
+   "duration_s": 120.05,
    "rows_in": null,
-   "rows_out": 3768,
+   "rows_out": 3577,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:12Z",
-   "duration_s": 12.84,
-   "rows_in": 3768,
-   "rows_out": 3768,
+   "started_at": "2026-11-17T22:32:21Z",
+   "duration_s": 12.41,
+   "rows_in": 3577,
+   "rows_out": 3577,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-17T13"
+     "2026-11-17T22"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:25Z",
-   "duration_s": 0.26,
-   "rows_in": 3768,
+   "started_at": "2026-11-17T22:32:33Z",
+   "duration_s": 0.13,
+   "rows_in": 3577,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:25Z",
-   "duration_s": 9.2,
-   "rows_in": 3768,
-   "rows_out": 3768,
+   "started_at": "2026-11-17T22:32:33Z",
+   "duration_s": 8.86,
+   "rows_in": 3577,
+   "rows_out": 3577,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:34Z",
-   "duration_s": 11.48,
-   "rows_in": 3768,
-   "rows_out": 110,
+   "started_at": "2026-11-17T22:32:42Z",
+   "duration_s": 10.36,
+   "rows_in": 3577,
+   "rows_out": 83,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 99,
+     "gold.edits_per_wiki_hour": 72,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:46Z",
-   "duration_s": 4.97,
+   "started_at": "2026-11-17T22:32:53Z",
+   "duration_s": 3.75,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-17T13:42:51Z",
-   "duration_s": 99.44,
+   "started_at": "2026-11-17T22:32:56Z",
+   "duration_s": 96.3,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 7536,
+    "rows_deleted": 20180,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3768,
-  "bronze": 3768,
-  "silver": 3768,
+  "landed": 3577,
+  "bronze": 3577,
+  "silver": 3577,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "c1b5196b-f659-46ea-afcd-ee6319d9b2c2",
-   "event_ts": "2026-11-17T13:40:33.844000Z",
+   "event_id": "fbac9212-d220-44cc-894c-3e645f1895ec",
+   "event_ts": "2026-11-17T22:30:37.135000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q3339035",
+   "title": "Q124517808",
    "is_bot": false,
-   "length_old": 8750,
-   "length_new": 8741
+   "length_old": 20797,
+   "length_new": 22584
   },
   {
-   "event_id": "830f7f9e-eb48-4b02-948d-7fd78686878f",
-   "event_ts": "2026-11-17T13:40:42.810000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q139167206",
-   "is_bot": false,
-   "length_old": 2849,
-   "length_new": 4437
-  },
-  {
-   "event_id": "9caa6097-0da7-4539-b895-cc478f3a60c8",
-   "event_ts": "2026-11-17T13:41:45.654000Z",
-   "wiki": "eswiki",
-   "change_type": "edit",
-   "namespace": 2,
-   "title": "Usuario:VM Stats Bot/Tareas sctipt 1",
-   "is_bot": false,
-   "length_old": 10939,
-   "length_new": 11774
-  },
-  {
-   "event_id": "0259b55a-2f3d-4a54-9411-1c035ec1d424",
-   "event_ts": "2026-11-17T13:40:21.908000Z",
-   "wiki": "trwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Caudina",
-   "is_bot": false,
-   "length_old": 1380,
-   "length_new": 1391
-  },
-  {
-   "event_id": "aa1beb6c-bbaf-47c2-84dd-bde9c27ef91e",
-   "event_ts": "2026-11-17T13:40:34.553000Z",
+   "event_id": "2d34fdf1-9082-4c4b-a73a-76ccc0959cbd",
+   "event_ts": "2026-11-17T22:31:55.582000Z",
    "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Covered hopper railway wagons of Canada",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "7fd2470b-d0a9-4bd2-b8b7-671515a70bc5",
-   "event_ts": "2026-11-17T13:40:19.103000Z",
-   "wiki": "dewiki",
    "change_type": "edit",
-   "namespace": 2,
-   "title": "Benutzer:Granpar/BW-MOS-Flie\u00dfgew\u00e4sser",
-   "is_bot": true,
-   "length_old": 40451,
-   "length_new": 40486
-  },
-  {
-   "event_id": "beb84920-cd6a-4e2d-bc50-5f41bde17c2e",
-   "event_ts": "2026-11-17T13:41:19.077000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
    "namespace": 6,
-   "title": "File:Narzedzia rolnicze typu rylcowego 1931 (172855268).jpg",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "title": "File:Posener Zeitung. 1864, (\u2116) 22 (27 Januar) + dod. (IA jbc.bj.uj.edu pl.0022 NDIGCZAS040439 106748599).pdf",
+   "is_bot": true,
+   "length_old": 1133,
+   "length_new": 4462
   },
   {
-   "event_id": "0cf2efcb-2b53-4702-beba-5e79a087dbbb",
-   "event_ts": "2026-11-17T13:41:27.816000Z",
-   "wiki": "enwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:bg:Japanese culture",
+   "event_id": "ebf8f71b-4e15-4f02-b106-8e9a42842f11",
+   "event_ts": "2026-11-17T22:30:47.040000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q16161857",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 5672,
+   "length_new": 5909
   },
   {
-   "event_id": "31ecfe9e-9487-4f3a-9ffa-dfbdca0c1f3a",
-   "event_ts": "2026-11-17T13:42:08.202000Z",
+   "event_id": "27697e12-d7bb-402a-b331-7393f54c8832",
+   "event_ts": "2026-11-17T22:31:01.505000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q58551207",
+   "is_bot": false,
+   "length_old": 6107,
+   "length_new": 7668
+  },
+  {
+   "event_id": "6db10063-f60a-4fa9-846c-a1ab791be09f",
+   "event_ts": "2026-11-17T22:30:23.557000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:METZ Philippe Gisselbrecht 14.jpg",
+   "is_bot": true,
+   "length_old": 1036,
+   "length_new": 6307
+  },
+  {
+   "event_id": "984b6f22-ae13-4f0a-8bc5-637e2551e2fd",
+   "event_ts": "2026-11-17T22:31:51.886000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q95733099",
+   "is_bot": false,
+   "length_old": 7304,
+   "length_new": 8894
+  },
+  {
+   "event_id": "2f6e6b37-d7bc-424f-b6bc-51072455e2d7",
+   "event_ts": "2026-11-17T22:30:44.433000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Mapillary (osmplus org) 2026-02-25 08H11M47S000 (884646307907886 at c4WOzsoTAYRf0DgXPjMZI2).jpg",
+   "is_bot": true,
+   "length_old": 6888,
+   "length_new": 8065
+  },
+  {
+   "event_id": "4dc21dab-024c-487d-99ee-385991d2fce7",
+   "event_ts": "2026-11-17T22:31:10.689000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Amtsblatt zur Lemberger Zeitung = Dziennik Urz\u0119dowy do Gazety Lwowskiej. 1862, nr 136 (IA jbc.bj.uj.edu pl.DIGCZAS002001 1862 136 DODATEK06).pdf",
+   "is_bot": true,
+   "length_old": 1083,
+   "length_new": 1570
+  },
+  {
+   "event_id": "608538fb-e6ee-4d5a-a295-cc65354ca397",
+   "event_ts": "2026-11-17T22:31:50.673000Z",
    "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 1,
-   "title": "Talk:2026-27 Super Smash (men's cricket)",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "Atriculicoides macrophthalmus",
    "is_bot": false,
    "length_old": null,
-   "length_new": null
+   "length_new": 755
   },
   {
-   "event_id": "f8ecd75c-2a2a-47d9-be47-e3cc392a6f68",
-   "event_ts": "2026-11-17T13:42:00.896000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:ISS073-E-1077786 - View of Earth.jpg",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "4f983877-24ce-4995-b237-18f965ef1d29",
-   "event_ts": "2026-11-17T13:41:56.361000Z",
-   "wiki": "jawiktionary",
+   "event_id": "8b46e9a9-0db9-4ba9-a18f-9aaa68423a2b",
+   "event_ts": "2026-11-17T22:31:26.910000Z",
+   "wiki": "ttwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "cumuler",
+   "title": "\u041b\u0430\u0441 \u0412\u0438\u0440\u0445\u0438\u043d\u0438\u044f\u0441, \u041a\u0430\u043c\u043f\u043e \u041d\u0443\u0435\u0432\u0435 (\u0425\u0430\u043d\u043e\u0441)",
    "is_bot": true,
-   "length_old": 490,
-   "length_new": 494
+   "length_old": 6821,
+   "length_new": 6988
   },
   {
-   "event_id": "68ce683b-8e15-475d-b8a9-08bf2535bc6c",
-   "event_ts": "2026-11-17T13:40:52.182000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Uses of Wikidata Infobox with maps",
+   "event_id": "25fddb1b-69fc-4b8c-9657-75bb5663d9f4",
+   "event_ts": "2026-11-17T22:31:09.041000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Ermedin Demirovi\u0107",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 24403,
+   "length_new": 24403
+  },
+  {
+   "event_id": "08374372-61ac-4f38-8d5d-58935cfeb392",
+   "event_ts": "2026-11-17T22:31:52.444000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Mapillary 2026-08-27 06H08M49S000 (28765177076421212 at 56E9NSV8vPhDebqxTiOluH) (uwrapid).jpg",
+   "is_bot": true,
+   "length_old": 6629,
+   "length_new": 6982
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3768,
+   "observed": 3577,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3768,
-    "silver": 3768,
+    "bronze": 3577,
+    "silver": 3577,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2000,
-    "gold_edits": 2000
+    "silver_edits": 2251,
+    "gold_edits": 2251
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2000,
-  "bot_share": 0.3235,
+  "edits": 2251,
+  "bot_share": 0.4016,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 659
+    "edits": 747
    },
    {
     "wiki": "commonswiki",
-    "edits": 494
+    "edits": 522
    },
    {
     "wiki": "enwiki",
-    "edits": 182
+    "edits": 309
    },
    {
-    "wiki": "frwiki",
-    "edits": 51
+    "wiki": "zhwikisource",
+    "edits": 114
    },
    {
     "wiki": "arwiki",
-    "edits": 44
+    "edits": 80
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q381084",
-    "edits": 15
+    "title": "Q142199659",
+    "edits": 17
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142188843",
+    "title": "Q17243239",
+    "edits": 16
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q58544577",
+    "edits": 14
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q58560014",
     "edits": 11
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q111913765",
-    "edits": 8
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q142195107",
-    "edits": 8
-   },
-   {
-    "wiki": "arwiki",
-    "title": "\u0623\u0633\u0627\u0633\u0646\u0632 \u0643\u0631\u064a\u062f 3",
-    "edits": 7
+    "title": "Q58560080",
+    "edits": 11
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 48841,
-  "silver.recentchange": 48841,
+  "bronze.recentchange": 42427,
+  "silver.recentchange": 42427,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 944,
-  "gold.bot_share_hour": 11,
-  "gold.top_pages_hour": 110,
+  "gold.edits_per_wiki_hour": 840,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44094955985"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44190587522"
  },
  "schema_version": 1
 }

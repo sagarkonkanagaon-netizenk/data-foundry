@@ -1,8 +1,27 @@
 {
  "schema_version": 1,
- "updated_at": "2026-11-17T13:40:11.943868+00:00",
+ "updated_at": "2026-11-17T22:30:21.265944+00:00",
  "keep_days": 30,
  "runs": [
+  {
+   "run_id": "20261117T223021Z",
+   "trigger": "schedule",
+   "status": "passed",
+   "started_at": "2026-11-17T22:30:21Z",
+   "duration_s": 251.87,
+   "partitions": [
+    "2026-11-17T22"
+   ],
+   "rows_in": 3577,
+   "rows_out": 3577,
+   "rejects": 0,
+   "duplicates": 0,
+   "dq_failed": 0,
+   "dq_warned": 0,
+   "schema_changes": 0,
+   "error": null,
+   "path": "runs/2026-11-17/20261117T223021Z.json"
+  },
   {
    "run_id": "20261117T134011Z",
    "trigger": "schedule",
