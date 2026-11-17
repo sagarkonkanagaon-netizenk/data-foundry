@@ -1,0 +1,410 @@
+{
+ "run_id": "20261117T040103Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-17T04:01:03Z",
+ "status": "passed",
+ "finished_at": "2026-11-17T04:04:52Z",
+ "duration_s": 229.12,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.2,
+  "events": 4040,
+  "bytes": 5185669,
+  "window_start": "2026-11-17T04:01:04Z",
+  "window_end": "2026-11-17T04:03:03Z"
+ },
+ "partitions": [
+  "2026-11-17T04"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-17T04:01:03Z",
+   "duration_s": 120.21,
+   "rows_in": null,
+   "rows_out": 4040,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:04Z",
+   "duration_s": 10.66,
+   "rows_in": 4040,
+   "rows_out": 4040,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-17T04"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:14Z",
+   "duration_s": 0.13,
+   "rows_in": 4040,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:14Z",
+   "duration_s": 6.7,
+   "rows_in": 4040,
+   "rows_out": 4040,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:21Z",
+   "duration_s": 8.11,
+   "rows_in": 4040,
+   "rows_out": 92,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 81,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:29Z",
+   "duration_s": 2.51,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-17T04:03:32Z",
+   "duration_s": 80.78,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 13250,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4040,
+  "bronze": 4040,
+  "silver": 4040,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "42fd6db4-5ac3-4729-80c0-6a53408dccd6",
+   "event_ts": "2026-11-17T04:02:40.076000Z",
+   "wiki": "commonswiki",
+   "change_type": "new",
+   "namespace": 14,
+   "title": "Category:Cultural properties of national significance in Seewis im Pr\u00e4ttigau",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 473
+  },
+  {
+   "event_id": "e4502ed8-4ae5-4453-be6e-47245229b258",
+   "event_ts": "2026-11-17T04:03:00.901000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 10,
+   "title": "Template:Campaignbox Wars of Justinian I",
+   "is_bot": false,
+   "length_old": 2720,
+   "length_new": 2719
+  },
+  {
+   "event_id": "30ee9bd0-9de2-426e-b1d1-5e33296be14f",
+   "event_ts": "2026-11-17T04:01:45.141000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q5578372",
+   "is_bot": false,
+   "length_old": 9113,
+   "length_new": 9291
+  },
+  {
+   "event_id": "80bbe4ba-3e3a-4f10-afbb-ca9327a1fe27",
+   "event_ts": "2026-11-17T04:01:08.636000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:United States House of Representatives election maps of Alaska",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "956f680e-a86a-4519-99ae-e75720014a89",
+   "event_ts": "2026-11-17T04:02:18.040000Z",
+   "wiki": "urwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u06cc\u0648\u0631\u0648\u06a9\u0627\u067e\u0679\u0631 \u0627\u06d2 \u0627\u06cc\u0633 350",
+   "is_bot": false,
+   "length_old": 5152,
+   "length_new": 5158
+  },
+  {
+   "event_id": "7fa4d348-805b-4fa7-afb4-b06805973596",
+   "event_ts": "2026-11-17T04:02:13.311000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q6157398",
+   "is_bot": false,
+   "length_old": 26565,
+   "length_new": 26790
+  },
+  {
+   "event_id": "2bad52bf-933b-4937-b463-6db2875da9a9",
+   "event_ts": "2026-11-17T04:02:09.947000Z",
+   "wiki": "arwiktionary",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "\u0635\u064e\u0647\u0650\u064a\u0646\u064e\u0627",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 92
+  },
+  {
+   "event_id": "66c14c1d-5401-48fd-8d63-b1c30b76cb28",
+   "event_ts": "2026-11-17T04:02:45.986000Z",
+   "wiki": "arwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0641\u0639\u0644 \u0623\u0645\u0631 \u0645\u0641\u0631\u062f \u0645\u0630\u0643\u0631",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "11f0b70b-5004-4624-84b0-4f68c7d4c5d6",
+   "event_ts": "2026-11-17T04:02:25.870000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hope May 2018 26 (Hempstead County Courthouse).jpg",
+   "is_bot": true,
+   "length_old": 8251,
+   "length_new": 10274
+  },
+  {
+   "event_id": "ff453de2-9016-4d1c-a8d8-8ef5ad34f74a",
+   "event_ts": "2026-11-17T04:02:58.813000Z",
+   "wiki": "arwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0639\u0631\u0628\u064a\u0629",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4edf3ee3-2137-4530-8ccf-3652bc72451a",
+   "event_ts": "2026-11-17T04:02:26.037000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q141058105",
+   "is_bot": false,
+   "length_old": 5746,
+   "length_new": 7312
+  },
+  {
+   "event_id": "c1c34cf2-736e-426c-8539-7c64c378671d",
+   "event_ts": "2026-11-17T04:02:07.272000Z",
+   "wiki": "zhwikisource",
+   "change_type": "log",
+   "namespace": 0,
+   "title": "\u7533\u5831/1918/04/09",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4040,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4040,
+    "silver": 4040,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2070,
+    "gold_edits": 2070
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2070,
+  "bot_share": 0.4589,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 627
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 586
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 268
+   },
+   {
+    "wiki": "arwiktionary",
+    "edits": 73
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 67
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q139687542",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q1421478",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141058237",
+    "edits": 10
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q139687540",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057908",
+    "edits": 8
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 48789,
+  "silver.recentchange": 48789,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 938,
+  "gold.bot_share_hour": 11,
+  "gold.top_pages_hour": 110,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44014119149"
+ },
+ "schema_version": 1
+}
