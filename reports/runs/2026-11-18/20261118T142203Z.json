@@ -1,0 +1,410 @@
+{
+ "run_id": "20261118T142203Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-18T14:22:03Z",
+ "status": "passed",
+ "finished_at": "2026-11-18T14:26:20Z",
+ "duration_s": 257.39,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 3977,
+  "bytes": 5057344,
+  "window_start": "2026-11-18T14:22:03Z",
+  "window_end": "2026-11-18T14:24:03Z"
+ },
+ "partitions": [
+  "2026-11-18T14"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-18T14:22:03Z",
+   "duration_s": 120.01,
+   "rows_in": null,
+   "rows_out": 3977,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:03Z",
+   "duration_s": 13.58,
+   "rows_in": 3977,
+   "rows_out": 3977,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-18T14"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:16Z",
+   "duration_s": 0.29,
+   "rows_in": 3977,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:16Z",
+   "duration_s": 9.72,
+   "rows_in": 3977,
+   "rows_out": 3977,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:26Z",
+   "duration_s": 11.1,
+   "rows_in": 3977,
+   "rows_out": 100,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 89,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:37Z",
+   "duration_s": 3.52,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-18T14:24:41Z",
+   "duration_s": 99.17,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 9084,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3977,
+  "bronze": 3977,
+  "silver": 3977,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "15727f0c-7e32-48b6-89a2-b11614c0115f",
+   "event_ts": "2026-11-18T14:23:24.630000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:National Archives of Japan Digital Archive links to be updated",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "60a76278-d86f-4e3f-8870-d6181139b98c",
+   "event_ts": "2026-11-18T14:23:15.714000Z",
+   "wiki": "commonswiki",
+   "change_type": "new",
+   "namespace": 14,
+   "title": "Category:Photographs of Santa Fe, New Mexico from Mapillary",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 156
+  },
+  {
+   "event_id": "e3ffa138-990f-47ea-ac56-434943409dc5",
+   "event_ts": "2026-11-18T14:23:05.441000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q617888",
+   "is_bot": false,
+   "length_old": 51981,
+   "length_new": 52396
+  },
+  {
+   "event_id": "d12aad20-6bbd-45db-bef0-f82018c40a7e",
+   "event_ts": "2026-11-18T14:22:09.748000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hotel Industry is 2000 workers short (FL62842668).jpg",
+   "is_bot": true,
+   "length_old": 7771,
+   "length_new": 10151
+  },
+  {
+   "event_id": "302fca26-db46-4759-b649-97910c11294c",
+   "event_ts": "2026-11-18T14:23:12.697000Z",
+   "wiki": "hrwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "NGC 6488",
+   "is_bot": true,
+   "length_old": 1839,
+   "length_new": 1882
+  },
+  {
+   "event_id": "000d7518-2840-407a-903a-ee02ae8c69b0",
+   "event_ts": "2026-11-18T14:22:42.094000Z",
+   "wiki": "aswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u09b6\u09cd\u09f0\u09c7\u09a3\u09c0:Articles containing Pali-language text",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "6174c97f-7384-4016-81f0-9ccde8aab3f7",
+   "event_ts": "2026-11-18T14:22:17.403000Z",
+   "wiki": "afwiki",
+   "change_type": "new",
+   "namespace": 1,
+   "title": "Bespreking:Xanthomelanodes arcuatus",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 44
+  },
+  {
+   "event_id": "c18a9e85-8188-4e04-8761-54cb26bbd63c",
+   "event_ts": "2026-11-18T14:22:39.661000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 1,
+   "title": "Talk:Yahweh",
+   "is_bot": false,
+   "length_old": 30745,
+   "length_new": 31384
+  },
+  {
+   "event_id": "7366ceb7-7609-4575-b16b-c6e8afe434b6",
+   "event_ts": "2026-11-18T14:22:46.998000Z",
+   "wiki": "zhwikisource",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u4f0a\u543e\u5eec\u8ecd\u6b21/1",
+   "is_bot": true,
+   "length_old": 271,
+   "length_new": 344
+  },
+  {
+   "event_id": "d9ffb827-ae0d-414d-a21b-77101bb90557",
+   "event_ts": "2026-11-18T14:22:46.027000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Early English Books, 1641-1700",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b6324491-b854-4c30-a15b-52e66528c2d4",
+   "event_ts": "2026-11-18T14:24:00.760000Z",
+   "wiki": "jawiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u30ab\u30c6\u30b4\u30ea:\u975e\u63a8\u5968\u306e\u30c6\u30f3\u30d7\u30ec\u30fc\u30c8\u3092\u4f7f\u7528\u3057\u3066\u3044\u308b\u30da\u30fc\u30b8",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "5cf13102-acc6-4b46-a1cb-3323efd164bf",
+   "event_ts": "2026-11-18T14:22:27.730000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Aichi Yoshida jinja Tedutsu hanabi xl.jpg",
+   "is_bot": true,
+   "length_old": 3102,
+   "length_new": 6003
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3977,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3977,
+    "silver": 3977,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2329,
+    "gold_edits": 2329
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2329,
+  "bot_share": 0.4023,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 700
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 478
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 232
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 217
+   },
+   {
+    "wiki": "euwiki",
+    "edits": 77
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q104417842",
+    "edits": 30
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q104417877",
+    "edits": 25
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q104245006",
+    "edits": 14
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q109915332",
+    "edits": 11
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q100719894",
+    "edits": 10
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 41681,
+  "silver.recentchange": 41681,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 847,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "e01d8c4fb86a42c9c59e1a5e77dd2080c8ee6620",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44323347179"
+ },
+ "schema_version": 1
+}
