@@ -1,52 +1,52 @@
 {
- "run_id": "20261117T223021Z",
+ "run_id": "20261118T043619Z",
  "trigger": "schedule",
- "started_at": "2026-11-17T22:30:21Z",
+ "started_at": "2026-11-18T04:36:19Z",
  "status": "passed",
- "finished_at": "2026-11-17T22:34:33Z",
- "duration_s": 251.87,
+ "finished_at": "2026-11-18T04:40:32Z",
+ "duration_s": 252.68,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.1,
-  "events": 3577,
-  "bytes": 4751829,
-  "window_start": "2026-11-17T22:30:21Z",
-  "window_end": "2026-11-17T22:32:21Z"
+  "sample_seconds": 120.0,
+  "events": 3389,
+  "bytes": 4444603,
+  "window_start": "2026-11-18T04:36:19Z",
+  "window_end": "2026-11-18T04:38:19Z"
  },
  "partitions": [
-  "2026-11-17T22"
+  "2026-11-18T04"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-17T22:30:21Z",
-   "duration_s": 120.05,
+   "started_at": "2026-11-18T04:36:19Z",
+   "duration_s": 120.04,
    "rows_in": null,
-   "rows_out": 3577,
+   "rows_out": 3389,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:21Z",
-   "duration_s": 12.41,
-   "rows_in": 3577,
-   "rows_out": 3577,
+   "started_at": "2026-11-18T04:38:19Z",
+   "duration_s": 11.66,
+   "rows_in": 3389,
+   "rows_out": 3389,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-17T22"
+     "2026-11-18T04"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:33Z",
+   "started_at": "2026-11-18T04:38:31Z",
    "duration_s": 0.13,
-   "rows_in": 3577,
+   "rows_in": 3389,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:33Z",
-   "duration_s": 8.86,
-   "rows_in": 3577,
-   "rows_out": 3577,
+   "started_at": "2026-11-18T04:38:31Z",
+   "duration_s": 8.24,
+   "rows_in": 3389,
+   "rows_out": 3389,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,9 +68,9 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:42Z",
-   "duration_s": 10.36,
-   "rows_in": 3577,
+   "started_at": "2026-11-18T04:38:39Z",
+   "duration_s": 9.43,
+   "rows_in": 3389,
    "rows_out": 83,
    "detail": {
     "tables": {
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:53Z",
-   "duration_s": 3.75,
+   "started_at": "2026-11-18T04:38:48Z",
+   "duration_s": 2.99,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-17T22:32:56Z",
-   "duration_s": 96.3,
+   "started_at": "2026-11-18T04:38:51Z",
+   "duration_s": 100.19,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 20180,
+    "rows_deleted": 7316,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3577,
-  "bronze": 3577,
-  "silver": 3577,
+  "landed": 3389,
+  "bronze": 3389,
+  "silver": 3389,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "fbac9212-d220-44cc-894c-3e645f1895ec",
-   "event_ts": "2026-11-17T22:30:37.135000Z",
+   "event_id": "8c8b38bb-2d30-440b-ab73-8c10b56b5a79",
+   "event_ts": "2026-11-18T04:38:10.887000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q124517808",
+   "title": "Q15140861",
    "is_bot": false,
-   "length_old": 20797,
-   "length_new": 22584
+   "length_old": 6971,
+   "length_new": 7266
   },
   {
-   "event_id": "2d34fdf1-9082-4c4b-a73a-76ccc0959cbd",
-   "event_ts": "2026-11-17T22:31:55.582000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Posener Zeitung. 1864, (\u2116) 22 (27 Januar) + dod. (IA jbc.bj.uj.edu pl.0022 NDIGCZAS040439 106748599).pdf",
+   "event_id": "c8f9ee46-7be2-4a41-85cb-85edf5fb4c99",
+   "event_ts": "2026-11-18T04:37:35.335000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u672a\u6821\u5bf9",
    "is_bot": true,
-   "length_old": 1133,
-   "length_new": 4462
+   "length_old": null,
+   "length_new": null
   },
   {
-   "event_id": "ebf8f71b-4e15-4f02-b106-8e9a42842f11",
-   "event_ts": "2026-11-17T22:30:47.040000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q16161857",
-   "is_bot": false,
-   "length_old": 5672,
-   "length_new": 5909
-  },
-  {
-   "event_id": "27697e12-d7bb-402a-b331-7393f54c8832",
-   "event_ts": "2026-11-17T22:31:01.505000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q58551207",
-   "is_bot": false,
-   "length_old": 6107,
-   "length_new": 7668
-  },
-  {
-   "event_id": "6db10063-f60a-4fa9-846c-a1ab791be09f",
-   "event_ts": "2026-11-17T22:30:23.557000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:METZ Philippe Gisselbrecht 14.jpg",
-   "is_bot": true,
-   "length_old": 1036,
-   "length_new": 6307
-  },
-  {
-   "event_id": "984b6f22-ae13-4f0a-8bc5-637e2551e2fd",
-   "event_ts": "2026-11-17T22:31:51.886000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q95733099",
-   "is_bot": false,
-   "length_old": 7304,
-   "length_new": 8894
-  },
-  {
-   "event_id": "2f6e6b37-d7bc-424f-b6bc-51072455e2d7",
-   "event_ts": "2026-11-17T22:30:44.433000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Mapillary (osmplus org) 2026-02-25 08H11M47S000 (884646307907886 at c4WOzsoTAYRf0DgXPjMZI2).jpg",
-   "is_bot": true,
-   "length_old": 6888,
-   "length_new": 8065
-  },
-  {
-   "event_id": "4dc21dab-024c-487d-99ee-385991d2fce7",
-   "event_ts": "2026-11-17T22:31:10.689000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Amtsblatt zur Lemberger Zeitung = Dziennik Urz\u0119dowy do Gazety Lwowskiej. 1862, nr 136 (IA jbc.bj.uj.edu pl.DIGCZAS002001 1862 136 DODATEK06).pdf",
-   "is_bot": true,
-   "length_old": 1083,
-   "length_new": 1570
-  },
-  {
-   "event_id": "608538fb-e6ee-4d5a-a295-cc65354ca397",
-   "event_ts": "2026-11-17T22:31:50.673000Z",
-   "wiki": "enwiki",
+   "event_id": "87637bee-827f-4c7c-bc9c-0eab045e4363",
+   "event_ts": "2026-11-18T04:37:14.587000Z",
+   "wiki": "zhwikisource",
    "change_type": "new",
    "namespace": 0,
-   "title": "Atriculicoides macrophthalmus",
+   "title": "\u7533\u5831/1902/01/28",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 35920
+  },
+  {
+   "event_id": "24dc1ef8-415c-48eb-bbf3-2e3b329f8da6",
+   "event_ts": "2026-11-18T04:37:07.138000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages with 1 entry",
    "is_bot": false,
    "length_old": null,
-   "length_new": 755
+   "length_new": null
   },
   {
-   "event_id": "8b46e9a9-0db9-4ba9-a18f-9aaa68423a2b",
-   "event_ts": "2026-11-17T22:31:26.910000Z",
-   "wiki": "ttwiki",
+   "event_id": "985c7017-0b46-4a1c-aab3-64af81f218d4",
+   "event_ts": "2026-11-18T04:36:40.077000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files from Mapillary uploaded by PantheraLeo1359531",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ce5a3664-2bb0-4f60-8272-02727b2c880c",
+   "event_ts": "2026-11-18T04:36:33.228000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Articles with dead external links from November 2026",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b198ac91-f54a-4c0b-b859-b3d25208645c",
+   "event_ts": "2026-11-18T04:37:01.194000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0091\u518a.djvu/119",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 1184
+  },
+  {
+   "event_id": "29621f56-a7f0-42f9-88d1-52f7285d63a0",
+   "event_ts": "2026-11-18T04:37:46.849000Z",
+   "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u041b\u0430\u0441 \u0412\u0438\u0440\u0445\u0438\u043d\u0438\u044f\u0441, \u041a\u0430\u043c\u043f\u043e \u041d\u0443\u0435\u0432\u0435 (\u0425\u0430\u043d\u043e\u0441)",
+   "title": "Q101086420",
    "is_bot": true,
-   "length_old": 6821,
-   "length_new": 6988
+   "length_old": 11605,
+   "length_new": 11753
   },
   {
-   "event_id": "25fddb1b-69fc-4b8c-9657-75bb5663d9f4",
-   "event_ts": "2026-11-17T22:31:09.041000Z",
+   "event_id": "2bd38c23-2607-412e-aaf0-8a7c374abda3",
+   "event_ts": "2026-11-18T04:36:48.824000Z",
    "wiki": "enwiki",
    "change_type": "edit",
-   "namespace": 0,
-   "title": "Ermedin Demirovi\u0107",
+   "namespace": 1,
+   "title": "Talk:Buli, Bhutan",
    "is_bot": false,
-   "length_old": 24403,
-   "length_new": 24403
+   "length_old": 347,
+   "length_new": 348
   },
   {
-   "event_id": "08374372-61ac-4f38-8d5d-58935cfeb392",
-   "event_ts": "2026-11-17T22:31:52.444000Z",
+   "event_id": "b600053b-b7fa-413f-b30b-870b025f5055",
+   "event_ts": "2026-11-18T04:38:18.425000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Mapillary 2026-08-27 06H08M49S000 (28765177076421212 at 56E9NSV8vPhDebqxTiOluH) (uwrapid).jpg",
+   "title": "File:2026-04-05 Bad Mergentheim 02.jpg",
    "is_bot": true,
-   "length_old": 6629,
-   "length_new": 6982
+   "length_old": 2968,
+   "length_new": 6297
+  },
+  {
+   "event_id": "c11838f3-ed75-4c90-b483-37f82fd8e68a",
+   "event_ts": "2026-11-18T04:37:09.079000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 4,
+   "title": "Wikipedia:WikiProject Deletion sorting/Texas/archive",
+   "is_bot": true,
+   "length_old": 527923,
+   "length_new": 528095
+  },
+  {
+   "event_id": "49ceecea-6733-48df-89b8-bfcc85afc45d",
+   "event_ts": "2026-11-18T04:37:31.915000Z",
+   "wiki": "dewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Hans Peter Reutter",
+   "is_bot": false,
+   "length_old": 16066,
+   "length_new": 16066
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3577,
+   "observed": 3389,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3577,
-    "silver": 3577,
+    "bronze": 3389,
+    "silver": 3389,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2251,
-    "gold_edits": 2251
+    "silver_edits": 2062,
+    "gold_edits": 2062
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2251,
-  "bot_share": 0.4016,
+  "edits": 2062,
+  "bot_share": 0.4578,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 747
+    "edits": 779
    },
    {
     "wiki": "commonswiki",
-    "edits": 522
+    "edits": 529
    },
    {
     "wiki": "enwiki",
-    "edits": 309
+    "edits": 256
    },
    {
     "wiki": "zhwikisource",
-    "edits": 114
+    "edits": 119
    },
    {
-    "wiki": "arwiki",
-    "edits": 80
+    "wiki": "zhwiki",
+    "edits": 41
    }
   ],
   "top_pages": [
    {
+    "wiki": "enwiki",
+    "title": "Talk:Buli, Bhutan",
+    "edits": 24
+   },
+   {
     "wiki": "wikidatawiki",
-    "title": "Q142199659",
+    "title": "Q140851322",
     "edits": 17
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q17243239",
-    "edits": 16
+    "title": "Q140851333",
+    "edits": 12
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q58544577",
-    "edits": 14
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q58560014",
+    "title": "Q140851299",
     "edits": 11
    },
    {
-    "wiki": "wikidatawiki",
-    "title": "Q58560080",
-    "edits": 11
+    "wiki": "zhwiki",
+    "title": "User talk:KirkLU",
+    "edits": 10
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 42427,
-  "silver.recentchange": 42427,
+  "bronze.recentchange": 42200,
+  "silver.recentchange": 42200,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 840,
+  "gold.edits_per_wiki_hour": 839,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44190587522"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44238412501"
  },
  "schema_version": 1
 }

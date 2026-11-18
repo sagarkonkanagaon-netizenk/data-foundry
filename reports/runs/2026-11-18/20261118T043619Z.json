@@ -1,0 +1,410 @@
+{
+ "run_id": "20261118T043619Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-18T04:36:19Z",
+ "status": "passed",
+ "finished_at": "2026-11-18T04:40:32Z",
+ "duration_s": 252.68,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 3389,
+  "bytes": 4444603,
+  "window_start": "2026-11-18T04:36:19Z",
+  "window_end": "2026-11-18T04:38:19Z"
+ },
+ "partitions": [
+  "2026-11-18T04"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-18T04:36:19Z",
+   "duration_s": 120.04,
+   "rows_in": null,
+   "rows_out": 3389,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:19Z",
+   "duration_s": 11.66,
+   "rows_in": 3389,
+   "rows_out": 3389,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-18T04"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:31Z",
+   "duration_s": 0.13,
+   "rows_in": 3389,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:31Z",
+   "duration_s": 8.24,
+   "rows_in": 3389,
+   "rows_out": 3389,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:39Z",
+   "duration_s": 9.43,
+   "rows_in": 3389,
+   "rows_out": 83,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 72,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:48Z",
+   "duration_s": 2.99,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-18T04:38:51Z",
+   "duration_s": 100.19,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7316,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3389,
+  "bronze": 3389,
+  "silver": 3389,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "8c8b38bb-2d30-440b-ab73-8c10b56b5a79",
+   "event_ts": "2026-11-18T04:38:10.887000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q15140861",
+   "is_bot": false,
+   "length_old": 6971,
+   "length_new": 7266
+  },
+  {
+   "event_id": "c8f9ee46-7be2-4a41-85cb-85edf5fb4c99",
+   "event_ts": "2026-11-18T04:37:35.335000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u672a\u6821\u5bf9",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "87637bee-827f-4c7c-bc9c-0eab045e4363",
+   "event_ts": "2026-11-18T04:37:14.587000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "\u7533\u5831/1902/01/28",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 35920
+  },
+  {
+   "event_id": "24dc1ef8-415c-48eb-bbf3-2e3b329f8da6",
+   "event_ts": "2026-11-18T04:37:07.138000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages with 1 entry",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "985c7017-0b46-4a1c-aab3-64af81f218d4",
+   "event_ts": "2026-11-18T04:36:40.077000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files from Mapillary uploaded by PantheraLeo1359531",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ce5a3664-2bb0-4f60-8272-02727b2c880c",
+   "event_ts": "2026-11-18T04:36:33.228000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Articles with dead external links from November 2026",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b198ac91-f54a-4c0b-b859-b3d25208645c",
+   "event_ts": "2026-11-18T04:37:01.194000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0091\u518a.djvu/119",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 1184
+  },
+  {
+   "event_id": "29621f56-a7f0-42f9-88d1-52f7285d63a0",
+   "event_ts": "2026-11-18T04:37:46.849000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q101086420",
+   "is_bot": true,
+   "length_old": 11605,
+   "length_new": 11753
+  },
+  {
+   "event_id": "2bd38c23-2607-412e-aaf0-8a7c374abda3",
+   "event_ts": "2026-11-18T04:36:48.824000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 1,
+   "title": "Talk:Buli, Bhutan",
+   "is_bot": false,
+   "length_old": 347,
+   "length_new": 348
+  },
+  {
+   "event_id": "b600053b-b7fa-413f-b30b-870b025f5055",
+   "event_ts": "2026-11-18T04:38:18.425000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:2026-04-05 Bad Mergentheim 02.jpg",
+   "is_bot": true,
+   "length_old": 2968,
+   "length_new": 6297
+  },
+  {
+   "event_id": "c11838f3-ed75-4c90-b483-37f82fd8e68a",
+   "event_ts": "2026-11-18T04:37:09.079000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 4,
+   "title": "Wikipedia:WikiProject Deletion sorting/Texas/archive",
+   "is_bot": true,
+   "length_old": 527923,
+   "length_new": 528095
+  },
+  {
+   "event_id": "49ceecea-6733-48df-89b8-bfcc85afc45d",
+   "event_ts": "2026-11-18T04:37:31.915000Z",
+   "wiki": "dewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Hans Peter Reutter",
+   "is_bot": false,
+   "length_old": 16066,
+   "length_new": 16066
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3389,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3389,
+    "silver": 3389,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2062,
+    "gold_edits": 2062
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2062,
+  "bot_share": 0.4578,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 779
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 529
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 256
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 119
+   },
+   {
+    "wiki": "zhwiki",
+    "edits": 41
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "enwiki",
+    "title": "Talk:Buli, Bhutan",
+    "edits": 24
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140851322",
+    "edits": 17
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140851333",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140851299",
+    "edits": 11
+   },
+   {
+    "wiki": "zhwiki",
+    "title": "User talk:KirkLU",
+    "edits": 10
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 42200,
+  "silver.recentchange": 42200,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 839,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "f243a18101db732fe0737e34c03f8723c41a612f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44238412501"
+ },
+ "schema_version": 1
+}
