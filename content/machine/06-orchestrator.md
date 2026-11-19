@@ -20,8 +20,9 @@ Nothing in a pipeline runs on its own. The orchestrator decides **what runs, in 
 order, and what happens when something fails**: retries with backoff, sensors that
 wait for late files, SLAs that page a human only when it matters.
 
-At eBay I migrated **300+ production pipelines** from UC4 (Automic) to Data Lake
-Studio, and I carry the PagerDuty pager when they misbehave. Before that: Airflow DAGs
-on Cloud Composer and ADF triggers at Tiger Analytics, shipped through Jenkins.
+At eBay I migrated **350+ SLA-critical workflows** from UC4 (Automic) to DLS (Data Lake
+Studio), watch them in iDO, and carry the PagerDuty pager when they misbehave. Before
+that: Azure Data Factory triggers at Tiger Analytics and RedBlackTree, shipped through
+Jenkins.
 
-**Built with:** UC4 / Automic, DLS, Airflow, Cloud Composer, ADF, Jenkins, PagerDuty.
+**Built with:** UC4 / Automic, DLS, iDO, ADF, ADLC CI/CD, Jenkins, PagerDuty.

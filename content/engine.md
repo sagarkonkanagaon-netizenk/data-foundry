@@ -40,11 +40,40 @@ confirmed facts belong here; open questions for Sagar are hidden from the chat.
 - How to reach him: the contact form at the bottom of this site, or
   sagarkonkanagaon@gmail.com. He replies within two working days. His résumé is
   linked in the contact section (/resume.pdf).
-
-TODO-SAGAR: These were listed here before but go beyond the four confirmed results, so the chat no longer uses them. Move back any that are true, as plain bullets above.
-- Summary: 5+ years across e-commerce, finance, automotive and industrial IoT, on on-premise Hadoop and multi-cloud (Azure, GCP).
-- Also skilled in: Python, SQL, shell scripting, PostgreSQL, MapReduce, Parquet, ORC, dimensional modelling, SCD Type 1 & 2, incremental loading, data governance, Collibra, metadata management, lineage, reconciliation, audit and compliance controls, Linux, Tableau, HLD/LLD design documents.
-- Certifications: Databricks Fundamentals; Build a Data Warehouse with BigQuery (Google Cloud skill badge); Build Batch Data Pipelines on Google Cloud: Cloud Composer (Google Cloud skill badge).
+- Employer label: at eBay he is a Senior Data Engineer; say "eBay" (no agency or payroll name).
+- Summary: Senior Data Engineer with 5+ years building and operating petabyte-scale
+  distributed batch pipelines and cloud lakehouses on Apache Spark, Hadoop, Azure
+  Databricks and Delta Lake. Domains: e-commerce (eBay), industrial IoT (RedBlackTree),
+  automotive (Tiger Analytics) and finance (XL Dynamics).
+- Highlights: 350+ pipeline migrations at eBay; 975B-row data reconciliation (eBay); 12.4B-row
+  AES-encrypted backfill (eBay); 35% faster Spark on Databricks (Tiger Analytics);
+  petabyte-scale Spark and Hadoop on ~2 trillion-row tables (eBay).
+- eBay detail: 350+ SLA/SLE-critical workflows migrated from UC4 (Automic) to DLS (Data Lake
+  Studio); 3 ZeroETL Oracle replication pipelines built from scratch and reconciled across
+  ~975B and ~300B rows; AES-encrypted backfills of 13.2M rows (zero-gap, after DistCP and
+  path swaps) and 12.4B rows (full completeness validation) into a new internal database;
+  PII, lineage and data-contract governance in BDP (Big Data Portal); SLA/SLE reliability
+  through iDO (Intelligent Data Operation) monitoring, Zeta notebooks and PagerDuty on-call.
+- ADLC: eBay's internal CI/CD for Hadoop applications. Sagar moved Scala Spark UDF JAR
+  deployments from manual HDFS placement to ADLC: commit-triggered builds, CVE scanning,
+  a push to the container image registry, and artifacts unpacked and copied to Hadoop.
+- AI-assisted engineering: he uses AI coding assistants daily, with custom skills and
+  slash commands for recurring work (workflow migrations, backfill validation,
+  reconciliation queries), and manages context and token usage so output stays accurate
+  and cost-efficient. It sped up delivery and onboarding across his migration and
+  backfill work.
+- Daily production use: PySpark, Spark SQL, Apache Spark, Scala (Spark UDFs), Hive,
+  Hadoop / HDFS, Python, SQL.
+- Lakehouse and cloud: Azure Databricks, Delta Lake, medallion architecture, Azure Data
+  Factory, ADLS Gen2, Parquet, ORC. His cloud experience is Azure.
+- Orchestration and ops: UC4 / Automic, DLS, iDO, Zeta, BDP, Oracle, DistCP.
+- Modelling and quality: dimensional modelling, SCD Type 1 & 2, incremental loading, schema
+  evolution, ZeroETL replication, data contracts, PII and AES encryption, reconciliation.
+- CI/CD and infrastructure: ADLC CI/CD, Git, Jenkins, CVE scanning, shell scripting, Linux,
+  multi-cluster Hadoop, PagerDuty.
+- Also worked with: PostgreSQL, Tableau.
+- Certification: Databricks Fundamentals.
 - Education: B.E., National Institute of Engineering (NIE), Mysore, 2017 – 2020.
-- Roles: lakehouse platforms (Databricks and Delta Lake, BigQuery), orchestration (Airflow, Cloud Composer) and data quality.
-- Where he would add value fastest: migrating or modernising pipelines, Spark performance tuning, safe backfills, medallion lakehouse design, governance-heavy domains like finance.
+- Where he adds value fastest: large migrations and backfills that must not lose a row,
+  Spark performance tuning, medallion lakehouse design on Azure, and reconciliation and
+  governance in domains with sensitive or regulated data.

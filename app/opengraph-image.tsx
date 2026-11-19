@@ -26,20 +26,20 @@ export default async function Image() {
 
   return new ImageResponse(
     (
-      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: C.void, color: C.ink, padding: "64px 72px", fontFamily: "sans-serif" }}>
+      <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", background: C.void, color: C.ink, padding: "52px 72px", fontFamily: "sans-serif" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 14, color: C.mute, fontSize: 20, letterSpacing: 6, textTransform: "uppercase" }}>
           <div style={{ width: 10, height: 10, borderRadius: 10, background: C.cyan }} />
           The Data Foundry
         </div>
-        <div style={{ display: "flex", flexDirection: "column", marginTop: 40 }}>
-          <div style={{ fontSize: 76, fontWeight: 300, letterSpacing: -2 }}>{site.name}</div>
-          <div style={{ fontSize: 24, color: C.mute, letterSpacing: 8, textTransform: "uppercase", marginTop: 8 }}>{site.title}</div>
+        <div style={{ display: "flex", flexDirection: "column", marginTop: 28 }}>
+          <div style={{ fontSize: 66, fontWeight: 300, letterSpacing: -2 }}>{site.name}</div>
+          <div style={{ fontSize: 22, color: C.mute, letterSpacing: 8, textTransform: "uppercase", marginTop: 8 }}>{site.title}</div>
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap", marginTop: 40, gap: "18px 40px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", marginTop: 28, gap: "14px 40px" }}>
           {site.results.map((r) => (
-            <div key={r.org} style={{ display: "flex", flexDirection: "column", width: 500, borderLeft: `2px solid ${C.cyan}55`, paddingLeft: 16 }}>
+            <div key={r.org + r.text} style={{ display: "flex", flexDirection: "column", width: 500, borderLeft: `2px solid ${C.cyan}55`, paddingLeft: 16 }}>
               <div style={{ fontSize: 15, color: C.cyan, letterSpacing: 4, textTransform: "uppercase" }}>{r.org}</div>
-              <div style={{ fontSize: 21, color: C.ink, marginTop: 4 }}>{r.text}</div>
+              <div style={{ fontSize: 19, color: C.ink, marginTop: 2 }}>{r.text}</div>
             </div>
           ))}
         </div>

@@ -7,7 +7,7 @@ export function Results({ site, className = "" }: { site: Site; className?: stri
   return (
     <ul className={`grid gap-x-8 gap-y-2.5 sm:grid-cols-2 sm:gap-y-4 ${className}`} aria-label="Selected results">
       {site.results.map((r) => (
-        <li key={r.org} className="border-l border-cyan/30 pl-3">
+        <li key={r.org + r.text} className="border-l border-cyan/30 pl-3">
           <span className="block font-mono text-[9px] tracking-[0.22em] text-cyan/80 uppercase sm:text-[10px]">{r.org}</span>
           <span className="mt-0.5 block text-[13px] leading-snug text-ink/85 sm:text-sm">{r.text}</span>
         </li>

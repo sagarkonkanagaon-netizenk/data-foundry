@@ -8,7 +8,7 @@ title: "A backfill you can run twice"
 status: Mini project
 problem: "A two-year backfill fails on day 412, someone restarts it from the top, and now half the history is loaded twice."
 diagram: [Date range planner, One partition per run, replaceWhere overwrite, Row-count audit, Resume from checkpoint]
-stack: [PySpark, Delta Lake replaceWhere, Airflow, Python]
+stack: [PySpark, Delta Lake replaceWhere, Python]
 impact:
   value: "1×"
   label: "rows per day, however many reruns"
@@ -26,5 +26,5 @@ the range into days, records which ones finished, and resumes from the first gap
 audit compares source and target row counts per day before marking it done.
 
 **What it shows.** Kill the job anywhere, start it again, run the whole range twice:
-the target ends up identical. It is the property a multi-year backfill, like the
-two-year one I ran at eBay, cannot do without.
+the target ends up identical. It is the property a large backfill, like the
+12.4B-row one I ran at eBay, cannot do without.
