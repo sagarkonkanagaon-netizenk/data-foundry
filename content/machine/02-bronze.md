@@ -17,7 +17,7 @@ history when a downstream bug is found.
 Malformed records (the red flickers) are kept, not dropped. Throwing data away at the
 door is how you lose the evidence you need later.
 
-At Trane this was raw HVAC telemetry from 10,000+ devices, landed as Parquet in HDFS
-before any transformation touched it.
+At RedBlackTree this was raw telemetry from 10,000+ IoT streams, landed as Parquet on
+ADLS Gen2 and HDFS before any transformation touched it.
 
 **Built with:** ADF, ADLS Gen2, HDFS, Parquet / ORC, Delta Lake.

@@ -18,9 +18,9 @@ ranges, referential checks). Records that fail are not silently dropped. They ar
 routed to the **quarantine pod** with the reason attached, so they can be fixed and
 replayed.
 
-At XL Dynamics I built DQ rule frameworks and reconciliation checks over 20M+ mortgage
-and loan records; at Trane, schema evolution that absorbed firmware changes without a
-redeploy.
+At eBay I reconcile ZeroETL Oracle replicas across ~975B and ~300B rows; at XL Dynamics,
+validation and reconciliation over 20M+ mortgage and loan records; at RedBlackTree,
+schema evolution that absorbed upstream changes without a redeploy.
 
 **Built with:** Delta `MERGE`, DQ rule frameworks, reconciliation, SCD Type 1 & 2,
-lineage and metadata governance (Collibra).
+PII governance and lineage in BDP.

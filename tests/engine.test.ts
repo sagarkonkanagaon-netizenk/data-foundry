@@ -11,8 +11,8 @@ import type { RunIndex, RunReport } from "@/lib/runs";
 const labels = (q: string) => retrieve(q).map((p) => p.label);
 
 test("questions about a result retrieve its case study", () => {
-  assert.ok(labels("What did Sagar do at eBay with UC4?").some((l) => /300\+ pipelines/.test(l)));
-  assert.ok(labels("schema evolution IoT devices Trane").some((l) => /Schema evolution for 10,000\+/.test(l)));
+  assert.ok(labels("What did Sagar do at eBay with UC4?").some((l) => /350\+ workflows/.test(l)));
+  assert.ok(labels("schema evolution IoT telemetry streams").some((l) => /Schema evolution for 10,000\+/.test(l)));
   assert.ok(labels("XL Dynamics reconciliation records").some((l) => /20M\+ records/.test(l)));
   assert.ok(labels("Tiger Analytics Spark runtime Databricks").some((l) => /medallion lakehouse/.test(l)));
 });

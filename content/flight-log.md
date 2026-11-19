@@ -10,20 +10,22 @@ entries:
     end: present
     location: Bengaluru
     lines:
-      - "Migrated 300+ production pipelines from UC4 (Automic) to Data Lake Studio, rebuilding them on the new orchestration layer."
-      - "Ran a two-year historical backfill across high-volume pipelines with full completeness checks."
-      - "On-call via PagerDuty: diagnosing Spark and Hive failures before they reach downstream analytics."
-  - company: Trane Technologies
-    client: RedBlackTree
-    role: Senior Data Engineer (client engagement)
+      - "Migrated 350+ SLA- and SLE-critical workflows from UC4 (Automic) to DLS (Data Lake Studio), split into modular, independently schedulable workflows."
+      - "Built 3 ZeroETL Oracle replication pipelines from scratch and reconciled ~975B-row and ~300B-row datasets end to end."
+      - "Ran AES-encrypted backfills into a new internal database: a zero-gap 13.2M-row backfill and a 12.4B-row backfill with full completeness validation."
+      - "Moved Scala Spark UDF JARs onto ADLC, eBay's internal CI/CD for Hadoop apps: commit-triggered builds, CVE scanning, image registry push, artifacts copied to Hadoop."
+      - "Govern PII, lineage and data contracts in BDP; own SLA/SLE reliability through iDO monitoring, Zeta and PagerDuty on ~2 trillion-row tables."
+      - "Use AI coding assistants with custom skills and slash commands for migrations, backfill validation and reconciliation queries, keeping context and token use tight."
+  - company: RedBlackTree
+    role: Senior Data Engineer
     domain: Industrial IoT
     start: "2025-08"
     end: "2026-01"
     location: Bengaluru
     lines:
-      - "Built Hadoop–Spark pipelines for telemetry from 10,000+ connected HVAC devices."
-      - "Implemented schema evolution so firmware changes never forced a pipeline redeploy."
-      - "Set up validation, lineage and metadata governance for compliance and audit."
+      - "Built Azure Databricks, PySpark and Hadoop pipelines for connected IoT devices into ADLS Gen2 and partitioned Hive tables."
+      - "Organised telemetry into Bronze, Silver and Gold Delta Lake layers, orchestrated by Azure Data Factory."
+      - "Zero-downtime schema evolution for 10,000+ telemetry streams: upstream changes flowed through with no redeploy."
   - company: Tiger Analytics
     role: Data Engineer
     domain: Automotive
@@ -32,8 +34,8 @@ entries:
     location: Bengaluru
     lines:
       - "Cut Spark pipeline runtime by 35% with partition pruning, caching, broadcast joins and AQE."
-      - "Built a Bronze–Silver–Gold lakehouse on Azure Databricks and Delta Lake with SCD Type 1 & 2."
-      - "Replaced full loads with watermark-based incremental ingestion on ADF and Cloud Composer."
+      - "Built a Bronze–Silver–Gold lakehouse on Azure Databricks, Delta Lake and ADLS Gen2 with SCD Type 1 & 2."
+      - "Replaced full reloads with watermark-based incremental ingestion on Azure Data Factory."
   - company: XL Dynamics
     role: Associate Data Engineer
     domain: Finance
@@ -41,8 +43,8 @@ entries:
     end: "2024-08"
     location: Mumbai
     lines:
-      - "Built ETL over 20M+ mortgage, loan and risk records with full lineage and audit controls."
-      - "Designed DQ rule frameworks and reconciliation checks across every pipeline stage."
+      - "Built ETL over 20M+ mortgage, loan and risk records with lineage and audit controls."
+      - "Implemented validation rules and reconciliation checks across pipeline stages, source to reporting."
       - "Automated ingestion, scheduling and alerting with shell scripts, cutting manual ops work by 40%."
 draft: false
 ---

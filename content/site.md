@@ -7,19 +7,21 @@ email: sagarkonkanagaon@gmail.com
 years: "5+"
 # Shown in browser tabs and search results.
 seoTitle: "Sagar · Senior Data Engineer · The Data Foundry"
-seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Spark, Hadoop/Hive, Databricks, Delta Lake, ADF, Airflow and BigQuery across e-commerce, automotive, finance and industrial IoT. See a real medallion pipeline run every hour."
+seoDescription: "Sagar Konkanagaon, Senior Data Engineer at eBay, Bengaluru. Petabyte-scale Spark and Hadoop, Azure Databricks, Delta Lake and ADF across e-commerce, automotive, finance and industrial IoT. See a real medallion pipeline run every hour."
 # The one line under the name. Keep it under ~90 characters.
 tagline: "I build data pipelines that check their own data and are safe to run twice."
-# The four results on the first screen. Only real, citable results go here.
+# The highlights on the first screen. Only real, citable results go here.
 results:
   - org: eBay
-    text: "300+ pipelines migrated from UC4 (Automic) to the in-house DLS platform, plus a 2-year backfill"
+    text: "350+ pipeline migrations, from UC4 (Automic) to DLS"
+  - org: eBay
+    text: "975B-row data reconciliation across ZeroETL Oracle replication"
+  - org: eBay
+    text: "12.4B-row AES-encrypted data backfill"
   - org: Tiger Analytics
-    text: "Spark runtimes cut by 35%, and a medallion lakehouse on Databricks and Delta Lake"
-  - org: RedBlackTree · client Trane
-    text: "Schema evolution for telemetry from 10,000+ IoT devices"
-  - org: XL Dynamics
-    text: "Validation and reconciliation over 20M+ records"
+    text: "35% faster Spark on Databricks"
+  - org: eBay
+    text: "Petabyte-scale Spark & Hadoop, on tables of ~2 trillion rows"
 # The four buttons on the first screen, in order. The first one is the primary button.
 actions:
   - label: Résumé (PDF)

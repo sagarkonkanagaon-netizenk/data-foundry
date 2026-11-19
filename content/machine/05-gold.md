@@ -17,5 +17,5 @@ The crystal rotates slowly because Gold should be **boring**: stable schemas,
 documented columns, predictable freshness, and a cost per query someone has actually
 looked at.
 
-**Built with:** Delta Lake on Databricks, BigQuery, dimensional modelling with
+**Built with:** Delta Lake on Databricks, dimensional modelling with
 surrogate keys, Tableau.
