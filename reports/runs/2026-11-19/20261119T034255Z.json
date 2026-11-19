@@ -1,0 +1,410 @@
+{
+ "run_id": "20261119T034255Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-19T03:42:55Z",
+ "status": "passed",
+ "finished_at": "2026-11-19T03:46:38Z",
+ "duration_s": 223.01,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 3719,
+  "bytes": 4827540,
+  "window_start": "2026-11-19T03:42:56Z",
+  "window_end": "2026-11-19T03:44:55Z"
+ },
+ "partitions": [
+  "2026-11-19T03"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-19T03:42:55Z",
+   "duration_s": 120.02,
+   "rows_in": null,
+   "rows_out": 3719,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-19T03:44:55Z",
+   "duration_s": 9.96,
+   "rows_in": 3719,
+   "rows_out": 3719,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-19T03"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-19T03:45:05Z",
+   "duration_s": 0.2,
+   "rows_in": 3719,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-19T03:45:05Z",
+   "duration_s": 7.19,
+   "rows_in": 3719,
+   "rows_out": 3719,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-19T03:45:13Z",
+   "duration_s": 7.83,
+   "rows_in": 3719,
+   "rows_out": 84,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 73,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-19T03:45:20Z",
+   "duration_s": 2.59,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-19T03:45:23Z",
+   "duration_s": 75.22,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7177,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3719,
+  "bronze": 3719,
+  "silver": 3719,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "b7192856-65e4-4f55-ba4c-64d8f23984bf",
+   "event_ts": "2026-11-19T03:44:28.429000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0195\u518a.djvu/471",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 3866
+  },
+  {
+   "event_id": "6bdc90c6-9df6-4f42-a57f-7d6490d5c66b",
+   "event_ts": "2026-11-19T03:44:10.452000Z",
+   "wiki": "zhwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:Gnawadad",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "32ae6b1c-1217-43ee-ae7e-23e2684c9bae",
+   "event_ts": "2026-11-19T03:44:32.683000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Contract Signing of the Philippines North-South Commuter Railway Project (Speech) - 6 October 2022.webm",
+   "is_bot": true,
+   "length_old": 1707,
+   "length_new": 4516
+  },
+  {
+   "event_id": "d6d79301-df1e-4c5a-b4d8-c69619c84e5a",
+   "event_ts": "2026-11-19T03:44:16.550000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q1360258",
+   "is_bot": false,
+   "length_old": 37667,
+   "length_new": 38714
+  },
+  {
+   "event_id": "6043ccd3-f318-42e6-9774-8bd3b5c2efe4",
+   "event_ts": "2026-11-19T03:43:57.885000Z",
+   "wiki": "arwiktionary",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "\u0632\u064e\u062c\u064e\u062c\u0652\u062a\u064f\u0646\u064e\u0651",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 92
+  },
+  {
+   "event_id": "25d7e1e6-34c6-4a8d-b385-f52a37252b9a",
+   "event_ts": "2026-11-19T03:44:29.567000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Wire fence and lone tree on slickrock at dusk at Horsethief Campground, Grand County, Utah.jpg",
+   "is_bot": true,
+   "length_old": 702,
+   "length_new": 4977
+  },
+  {
+   "event_id": "bc667814-c7fb-4065-9e7f-ae893bbf7a70",
+   "event_ts": "2026-11-19T03:44:34.600000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Elizabeth Southwell",
+   "is_bot": true,
+   "length_old": 9296,
+   "length_new": 9271
+  },
+  {
+   "event_id": "c50836a4-ad96-4bef-a180-764fb8ef7bbe",
+   "event_ts": "2026-11-19T03:44:08.502000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files with coordinates missing SDC location of creation",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "7ce0c1cb-5f64-40f9-9cef-30fa133432a8",
+   "event_ts": "2026-11-19T03:43:13.372000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 1,
+   "title": "Talk:Main Page",
+   "is_bot": false,
+   "length_old": 85639,
+   "length_new": 86037
+  },
+  {
+   "event_id": "8a913c4e-a51a-44b9-a894-834096724642",
+   "event_ts": "2026-11-19T03:44:28.015000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Patrick Scales (American football)",
+   "is_bot": true,
+   "length_old": 13349,
+   "length_new": 13401
+  },
+  {
+   "event_id": "c2111db2-dd7c-4857-9262-e0a9db259b30",
+   "event_ts": "2026-11-19T03:44:31.059000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Degersheim - Swisstopo infrared aerial photograph 150834.tif",
+   "is_bot": true,
+   "length_old": 8959,
+   "length_new": 9312
+  },
+  {
+   "event_id": "2c9bdbf0-6b12-4102-857e-076fdbb7b782",
+   "event_ts": "2026-11-19T03:44:48.661000Z",
+   "wiki": "zhwikisource",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:\u672a\u6821\u5bf9",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3719,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3719,
+    "silver": 3719,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2089,
+    "gold_edits": 2089
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2089,
+  "bot_share": 0.4864,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 634
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 527
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 299
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 136
+   },
+   {
+    "wiki": "arwiktionary",
+    "edits": 72
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140979927",
+    "edits": 26
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140979929",
+    "edits": 23
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140979934",
+    "edits": 23
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140979938",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140979931",
+    "edits": 15
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 37409,
+  "silver.recentchange": 37409,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 741,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "e01d8c4fb86a42c9c59e1a5e77dd2080c8ee6620",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44453276817"
+ },
+ "schema_version": 1
+}
