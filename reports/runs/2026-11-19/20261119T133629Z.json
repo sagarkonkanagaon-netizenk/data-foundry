@@ -1,0 +1,410 @@
+{
+ "run_id": "20261119T133629Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-19T13:36:29Z",
+ "status": "passed",
+ "finished_at": "2026-11-19T13:40:40Z",
+ "duration_s": 250.76,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 5375,
+  "bytes": 6807939,
+  "window_start": "2026-11-19T13:36:29Z",
+  "window_end": "2026-11-19T13:38:29Z"
+ },
+ "partitions": [
+  "2026-11-19T13"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-19T13:36:29Z",
+   "duration_s": 120.05,
+   "rows_in": null,
+   "rows_out": 5375,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-19T13:38:29Z",
+   "duration_s": 13.36,
+   "rows_in": 5375,
+   "rows_out": 5375,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-19T13"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-19T13:38:42Z",
+   "duration_s": 0.33,
+   "rows_in": 5375,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-19T13:38:43Z",
+   "duration_s": 8.9,
+   "rows_in": 5375,
+   "rows_out": 5375,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-19T13:38:52Z",
+   "duration_s": 9.95,
+   "rows_in": 5375,
+   "rows_out": 105,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 94,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-19T13:39:02Z",
+   "duration_s": 3.22,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-19T13:39:05Z",
+   "duration_s": 94.95,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 9478,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 5375,
+  "bronze": 5375,
+  "silver": 5375,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "1ca7a37c-8ddb-45b2-98d2-c501b66c212a",
+   "event_ts": "2026-11-19T13:38:21.972000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Anteros carausius 715222953.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b21a04d8-12a0-4710-9a20-02cc8e2f07fa",
+   "event_ts": "2026-11-19T13:38:21.800000Z",
+   "wiki": "viwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Th\u1ec3 lo\u1ea1i:Th\u1ef1c v\u1eadt \u0111\u1eb7c h\u1eefu \u00dac",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "73d93131-f707-4ad6-9e5b-782d54a0aadd",
+   "event_ts": "2026-11-19T13:38:28.541000Z",
+   "wiki": "nowiki",
+   "change_type": "log",
+   "namespace": 0,
+   "title": "Desucon",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0a0350b7-8606-4df7-bc55-8965e377c7fb",
+   "event_ts": "2026-11-19T13:36:46.843000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:House on 3rd Avenue South - DPLA - 675d2d11e272bd07104e027c04d2ad22.jpg",
+   "is_bot": true,
+   "length_old": 507,
+   "length_new": 3806
+  },
+  {
+   "event_id": "4b176aa2-a43d-4f5b-a939-4fd2abff461f",
+   "event_ts": "2026-11-19T13:37:27.453000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q23641157",
+   "is_bot": false,
+   "length_old": 4579,
+   "length_new": 4825
+  },
+  {
+   "event_id": "f790e92d-f5aa-4802-bf49-612571fbb41d",
+   "event_ts": "2026-11-19T13:37:57.729000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 14,
+   "title": "Category:Gel\u00e9e blanche",
+   "is_bot": false,
+   "length_old": 503,
+   "length_new": 566
+  },
+  {
+   "event_id": "5703a326-0e4c-4675-a253-6d2633e28c7b",
+   "event_ts": "2026-11-19T13:37:12.175000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Bixby coast and Pacific cliffs under a clear sky, Big Sur, California, USA (DSC08709).jpg",
+   "is_bot": false,
+   "length_old": 351,
+   "length_new": 1131
+  },
+  {
+   "event_id": "b0bdb440-0558-4a36-a109-a46c52aeb72a",
+   "event_ts": "2026-11-19T13:38:10.393000Z",
+   "wiki": "frwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Cat\u00e9gorie:Page utilisant Lien pour un article existant",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "dbf70caa-639f-4aa7-936d-99202335b181",
+   "event_ts": "2026-11-19T13:37:55.947000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Taken on missing SDC inception",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "425c3c6d-8795-4679-99d5-d45b177048c3",
+   "event_ts": "2026-11-19T13:36:57.702000Z",
+   "wiki": "jawiki",
+   "change_type": "edit",
+   "namespace": 10,
+   "title": "Template:Sapporo weatherbox",
+   "is_bot": false,
+   "length_old": 5020,
+   "length_new": 5150
+  },
+  {
+   "event_id": "f7cd60c1-8d42-4e1d-9eb0-3c58f12bab56",
+   "event_ts": "2026-11-19T13:36:38.992000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142213001",
+   "is_bot": false,
+   "length_old": 1160,
+   "length_new": 1257
+  },
+  {
+   "event_id": "379042d1-5ebb-497d-8db2-f4f37e80edcf",
+   "event_ts": "2026-11-19T13:36:47.460000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:WikiProject Ice Hockey biographical articles",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 5375,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 5375,
+    "silver": 5375,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2552,
+    "gold_edits": 2552
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2552,
+  "bot_share": 0.3805,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 690
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 596
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 238
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 160
+   },
+   {
+    "wiki": "elwiktionary",
+    "edits": 138
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141071959",
+    "edits": 26
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140266233",
+    "edits": 20
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141071964",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140156637",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Lexeme:L1487702",
+    "edits": 10
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 38095,
+  "silver.recentchange": 38095,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 746,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "e01d8c4fb86a42c9c59e1a5e77dd2080c8ee6620",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44535051005"
+ },
+ "schema_version": 1
+}
