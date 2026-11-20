@@ -1,52 +1,52 @@
 {
- "run_id": "20261120T033701Z",
+ "run_id": "20261120T131814Z",
  "trigger": "schedule",
- "started_at": "2026-11-20T03:37:01Z",
+ "started_at": "2026-11-20T13:18:14Z",
  "status": "passed",
- "finished_at": "2026-11-20T03:39:35Z",
- "duration_s": 154.48,
+ "finished_at": "2026-11-20T13:22:29Z",
+ "duration_s": 254.83,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.1,
-  "events": 3909,
-  "bytes": 5038226,
-  "window_start": "2026-11-20T03:37:01Z",
-  "window_end": "2026-11-20T03:39:01Z"
+  "sample_seconds": 120.0,
+  "events": 5810,
+  "bytes": 7289814,
+  "window_start": "2026-11-20T13:18:15Z",
+  "window_end": "2026-11-20T13:20:14Z"
  },
  "partitions": [
-  "2026-11-20T03"
+  "2026-11-20T13"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-20T03:37:01Z",
-   "duration_s": 120.13,
+   "started_at": "2026-11-20T13:18:14Z",
+   "duration_s": 120.04,
    "rows_in": null,
-   "rows_out": 3909,
+   "rows_out": 5810,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:01Z",
-   "duration_s": 11.9,
-   "rows_in": 3909,
-   "rows_out": 3909,
+   "started_at": "2026-11-20T13:20:14Z",
+   "duration_s": 13.16,
+   "rows_in": 5810,
+   "rows_out": 5810,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-20T03"
+     "2026-11-20T13"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:13Z",
-   "duration_s": 0.13,
-   "rows_in": 3909,
+   "started_at": "2026-11-20T13:20:28Z",
+   "duration_s": 0.27,
+   "rows_in": 5810,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:13Z",
-   "duration_s": 7.61,
-   "rows_in": 3909,
-   "rows_out": 3909,
+   "started_at": "2026-11-20T13:20:28Z",
+   "duration_s": 9.45,
+   "rows_in": 5810,
+   "rows_out": 5810,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:21Z",
-   "duration_s": 9.57,
-   "rows_in": 3909,
-   "rows_out": 75,
+   "started_at": "2026-11-20T13:20:37Z",
+   "duration_s": 10.35,
+   "rows_in": 5810,
+   "rows_out": 99,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 64,
+     "gold.edits_per_wiki_hour": 88,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:30Z",
-   "duration_s": 3.08,
+   "started_at": "2026-11-20T13:20:48Z",
+   "duration_s": 3.57,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-20T03:39:33Z",
-   "duration_s": 2.06,
+   "started_at": "2026-11-20T13:20:51Z",
+   "duration_s": 97.99,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 0,
+    "rows_deleted": 8172,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3909,
-  "bronze": 3909,
-  "silver": 3909,
+  "landed": 5810,
+  "bronze": 5810,
+  "silver": 5810,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "1ca7e86f-cfff-4622-a6aa-d80ded9463c1",
-   "event_ts": "2026-11-20T03:37:46.151000Z",
-   "wiki": "commonswiki",
+   "event_id": "2867e26f-cf7c-4842-8322-0612554d3998",
+   "event_ts": "2026-11-20T13:19:44.405000Z",
+   "wiki": "enwiki",
    "change_type": "log",
-   "namespace": 6,
-   "title": "File:Wealth share richest, Richest 1%, Europe, 1991.svg",
+   "namespace": 3,
+   "title": "User talk:~2026-61314-74",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "0b198af2-1a0f-42b4-9c15-0fb18a35e858",
-   "event_ts": "2026-11-20T03:37:24.787000Z",
+   "event_id": "8e0db7cc-dc1c-4fcc-88c4-ae61f8214fd5",
+   "event_ts": "2026-11-20T13:20:02.397000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:INaturalist review needed",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "59d41e94-f448-46d2-af0a-6936aa5e0ba6",
+   "event_ts": "2026-11-20T13:18:29.627000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Friedhof bei Sulz am Eck, Ortsteil von Wildberg 07.jpg",
+   "is_bot": false,
+   "length_old": 9083,
+   "length_new": 9119
+  },
+  {
+   "event_id": "f6f55140-2ea8-46e3-8f08-1aa49e6e0000",
+   "event_ts": "2026-11-20T13:19:01.096000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:INaturalist images missing SDC depicts",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "606586db-aee4-4ed7-821d-13f26a89b00d",
+   "event_ts": "2026-11-20T13:18:40.212000Z",
+   "wiki": "arwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0635\u064a\u0627\u0646\u0629 \u0627\u0644\u0627\u0633\u062a\u0634\u0647\u0627\u062f: \u0627\u0633\u062a\u0634\u0647\u0627\u062f\u0627\u062a \u0628\u0645\u0633\u0627\u0631\u0627\u062a \u063a\u064a\u0631 \u0645\u0624\u0631\u0634\u0641\u0629",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f4c7a5d5-0154-4705-a521-24c3bc966b7b",
+   "event_ts": "2026-11-20T13:19:21.812000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Naito clan",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8818b13c-7378-4d42-86ea-1e050ac5a425",
+   "event_ts": "2026-11-20T13:19:55.442000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Articles with specifically marked weasel-worded phrases from November 2026",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "6aff50cd-ab4a-4100-8493-6c83d927a3f8",
+   "event_ts": "2026-11-20T13:18:29.018000Z",
+   "wiki": "plwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoria:Gminy w okr\u0119gu Dijon",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "af8f0051-f626-428c-98d3-4e1b31b702b6",
+   "event_ts": "2026-11-20T13:18:30.883000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:2018 in Landkreis Calw",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "7daeea80-64ea-4638-a1a6-e8dfa393dd80",
+   "event_ts": "2026-11-20T13:18:30.881000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q113825478",
+   "title": "Q18126511",
    "is_bot": false,
-   "length_old": 33560,
-   "length_new": 35089
+   "length_old": 19109,
+   "length_new": 19198
   },
   {
-   "event_id": "c592b8f2-9da4-48b1-b64e-1e5f30742fbd",
-   "event_ts": "2026-11-20T03:38:44.786000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Number 530 - DPLA - 8a2140bdfa5643af464711407e147a50 (page 1105).tiff",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "ccc516c8-be54-4aac-80d0-7a611af01705",
-   "event_ts": "2026-11-20T03:38:27.622000Z",
-   "wiki": "commonswiki",
+   "event_id": "93b83880-a489-4264-9410-c7ddeee74a7b",
+   "event_ts": "2026-11-20T13:19:53.697000Z",
+   "wiki": "glwiktionary",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:National Archives of Japan Digital Archive links to be updated",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "e37e53d4-8497-455d-a2c8-f13ac9c56855",
-   "event_ts": "2026-11-20T03:38:42.255000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Files with coordinates missing SDC location of creation",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8e1d4496-3d1c-4fb4-b25e-8c5fc4406c0b",
-   "event_ts": "2026-11-20T03:38:57.002000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 14,
-   "title": "Category:Gota de Leche Building",
+   "title": "Categor\u00eda:Entradas en galego con traduci\u00f3n ao franc\u00e9s",
    "is_bot": false,
-   "length_old": 289,
-   "length_new": 340
-  },
-  {
-   "event_id": "3c66d41c-4857-4b84-95d6-ac442e330e51",
-   "event_ts": "2026-11-20T03:38:08.560000Z",
-   "wiki": "trwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Elektrostatik end\u00fcksiyon",
-   "is_bot": false,
-   "length_old": 16643,
-   "length_new": 16621
-  },
-  {
-   "event_id": "6f797bd9-44b3-4454-afa2-fcf505ecfc85",
-   "event_ts": "2026-11-20T03:38:07.126000Z",
-   "wiki": "arwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0641\u0639\u0644 \u0645\u0628\u0646\u064a \u0644\u0644\u0645\u0639\u0644\u0648\u0645 \u0645\u0636\u0627\u0631\u0639 \u0645\u0641\u0631\u062f \u0645\u0624\u0646\u062b \u0645\u062e\u0627\u0637\u0628",
-   "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "13624187-3713-4309-9a0d-87d673c5c28d",
-   "event_ts": "2026-11-20T03:37:06.710000Z",
-   "wiki": "arwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0639\u0631\u0628\u064a\u0629",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "e3720ba5-93d1-41b4-b62b-b57a550e73b5",
-   "event_ts": "2026-11-20T03:38:51.350000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Nl-duikmaskertjes.ogg",
-   "is_bot": true,
-   "length_old": 3473,
-   "length_new": 5426
-  },
-  {
-   "event_id": "592b9e8e-cf24-45b5-9d6c-d396d16e3575",
-   "event_ts": "2026-11-20T03:38:58.158000Z",
+   "event_id": "8f66be13-dfe0-4d79-88f2-30d95eb9a810",
+   "event_ts": "2026-11-20T13:19:06.434000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q126572387",
+   "title": "Q18129403",
    "is_bot": false,
-   "length_old": 21510,
-   "length_new": 23039
-  },
-  {
-   "event_id": "3a08999a-d0c1-4d57-84a2-ad2814edc193",
-   "event_ts": "2026-11-20T03:38:45.465000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:House on Irving Avenue North - DPLA - b92b42d9bcca7a3e67227b8672d44325.jpg",
-   "is_bot": true,
-   "length_old": 510,
-   "length_new": 3805
+   "length_old": 15987,
+   "length_new": 16076
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3909,
+   "observed": 5810,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3909,
-    "silver": 3909,
+    "bronze": 5810,
+    "silver": 5810,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 1727,
-    "gold_edits": 1727
+    "silver_edits": 2601,
+    "gold_edits": 2601
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 1727,
-  "bot_share": 0.4754,
+  "edits": 2601,
+  "bot_share": 0.3256,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 571
+    "edits": 992
    },
    {
     "wiki": "commonswiki",
-    "edits": 466
+    "edits": 555
    },
    {
     "wiki": "enwiki",
-    "edits": 145
+    "edits": 166
    },
    {
-    "wiki": "zhwikisource",
-    "edits": 112
+    "wiki": "zhwiki",
+    "edits": 96
    },
    {
-    "wiki": "arwiktionary",
-    "edits": 72
+    "wiki": "plwiki",
+    "edits": 70
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q113825502",
-    "edits": 20
+    "title": "Q11317388",
+    "edits": 49
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q114257029",
-    "edits": 17
+    "title": "Q140772508",
+    "edits": 28
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q125844261",
-    "edits": 17
+    "title": "Q140772462",
+    "edits": 26
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q123219594",
-    "edits": 16
+    "title": "Q140772506",
+    "edits": 25
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q113825478",
-    "edits": 12
+    "title": "Q140772460",
+    "edits": 21
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 39788,
-  "silver.recentchange": 39788,
+  "bronze.recentchange": 41558,
+  "silver.recentchange": 41558,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 806,
+  "gold.edits_per_wiki_hour": 813,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44668889002"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44743032983"
  },
  "schema_version": 1
 }
