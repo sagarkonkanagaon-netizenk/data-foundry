@@ -1,52 +1,52 @@
 {
- "run_id": "20261119T222008Z",
+ "run_id": "20261120T033701Z",
  "trigger": "schedule",
- "started_at": "2026-11-19T22:20:08Z",
+ "started_at": "2026-11-20T03:37:01Z",
  "status": "passed",
- "finished_at": "2026-11-19T22:23:57Z",
- "duration_s": 228.44,
+ "finished_at": "2026-11-20T03:39:35Z",
+ "duration_s": 154.48,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 3790,
-  "bytes": 4888286,
-  "window_start": "2026-11-19T22:20:08Z",
-  "window_end": "2026-11-19T22:22:08Z"
+  "sample_seconds": 120.1,
+  "events": 3909,
+  "bytes": 5038226,
+  "window_start": "2026-11-20T03:37:01Z",
+  "window_end": "2026-11-20T03:39:01Z"
  },
  "partitions": [
-  "2026-11-19T22"
+  "2026-11-20T03"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-19T22:20:08Z",
-   "duration_s": 120.0,
+   "started_at": "2026-11-20T03:37:01Z",
+   "duration_s": 120.13,
    "rows_in": null,
-   "rows_out": 3790,
+   "rows_out": 3909,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:08Z",
-   "duration_s": 10.29,
-   "rows_in": 3790,
-   "rows_out": 3790,
+   "started_at": "2026-11-20T03:39:01Z",
+   "duration_s": 11.9,
+   "rows_in": 3909,
+   "rows_out": 3909,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-19T22"
+     "2026-11-20T03"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:19Z",
-   "duration_s": 0.19,
-   "rows_in": 3790,
+   "started_at": "2026-11-20T03:39:13Z",
+   "duration_s": 0.13,
+   "rows_in": 3909,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:19Z",
-   "duration_s": 7.01,
-   "rows_in": 3790,
-   "rows_out": 3790,
+   "started_at": "2026-11-20T03:39:13Z",
+   "duration_s": 7.61,
+   "rows_in": 3909,
+   "rows_out": 3909,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:26Z",
-   "duration_s": 8.55,
-   "rows_in": 3790,
-   "rows_out": 95,
+   "started_at": "2026-11-20T03:39:21Z",
+   "duration_s": 9.57,
+   "rows_in": 3909,
+   "rows_out": 75,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 84,
+     "gold.edits_per_wiki_hour": 64,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:34Z",
-   "duration_s": 2.82,
+   "started_at": "2026-11-20T03:39:30Z",
+   "duration_s": 3.08,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-19T22:22:37Z",
-   "duration_s": 79.57,
+   "started_at": "2026-11-20T03:39:33Z",
+   "duration_s": 2.06,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 12111,
+    "rows_deleted": 0,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3790,
-  "bronze": 3790,
-  "silver": 3790,
+  "landed": 3909,
+  "bronze": 3909,
+  "silver": 3909,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "cc608763-f5a6-43ef-8f6c-79c5ef68113d",
-   "event_ts": "2026-11-19T22:21:02.224000Z",
-   "wiki": "nowiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Kategori:Sport i Tsjad i 2011",
+   "event_id": "1ca7e86f-cfff-4622-a6aa-d80ded9463c1",
+   "event_ts": "2026-11-20T03:37:46.151000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Wealth share richest, Richest 1%, Europe, 1991.svg",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "cc498d6c-aa73-409b-9339-d520dff62a8a",
-   "event_ts": "2026-11-19T22:22:07.801000Z",
+   "event_id": "0b198af2-1a0f-42b4-9c15-0fb18a35e858",
+   "event_ts": "2026-11-20T03:37:24.787000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q113825478",
+   "is_bot": false,
+   "length_old": 33560,
+   "length_new": 35089
+  },
+  {
+   "event_id": "c592b8f2-9da4-48b1-b64e-1e5f30742fbd",
+   "event_ts": "2026-11-20T03:38:44.786000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Number 530 - DPLA - 8a2140bdfa5643af464711407e147a50 (page 1105).tiff",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ccc516c8-be54-4aac-80d0-7a611af01705",
+   "event_ts": "2026-11-20T03:38:27.622000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Creative Commons Attribution-Share Alike missing SDC copyright status",
-   "is_bot": false,
+   "title": "Category:National Archives of Japan Digital Archive links to be updated",
+   "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "8cee6b80-dcd7-4ce7-acbe-529fa484c701",
-   "event_ts": "2026-11-19T22:21:09.315000Z",
+   "event_id": "e37e53d4-8497-455d-a2c8-f13ac9c56855",
+   "event_ts": "2026-11-20T03:38:42.255000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Files with coordinates missing SDC location of creation",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8e1d4496-3d1c-4fb4-b25e-8c5fc4406c0b",
+   "event_ts": "2026-11-20T03:38:57.002000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 14,
+   "title": "Category:Gota de Leche Building",
+   "is_bot": false,
+   "length_old": 289,
+   "length_new": 340
+  },
+  {
+   "event_id": "3c66d41c-4857-4b84-95d6-ac442e330e51",
+   "event_ts": "2026-11-20T03:38:08.560000Z",
+   "wiki": "trwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Elektrostatik end\u00fcksiyon",
+   "is_bot": false,
+   "length_old": 16643,
+   "length_new": 16621
+  },
+  {
+   "event_id": "6f797bd9-44b3-4454-afa2-fcf505ecfc85",
+   "event_ts": "2026-11-20T03:38:07.126000Z",
+   "wiki": "arwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0641\u0639\u0644 \u0645\u0628\u0646\u064a \u0644\u0644\u0645\u0639\u0644\u0648\u0645 \u0645\u0636\u0627\u0631\u0639 \u0645\u0641\u0631\u062f \u0645\u0624\u0646\u062b \u0645\u062e\u0627\u0637\u0628",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "13624187-3713-4309-9a0d-87d673c5c28d",
+   "event_ts": "2026-11-20T03:37:06.710000Z",
+   "wiki": "arwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0639\u0631\u0628\u064a\u0629",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "e3720ba5-93d1-41b4-b62b-b57a550e73b5",
+   "event_ts": "2026-11-20T03:38:51.350000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Bayerische Vermessungsverwaltung - DOP - 690000 5544000 (2008).tif",
+   "title": "File:Nl-duikmaskertjes.ogg",
    "is_bot": true,
-   "length_old": 2041,
-   "length_new": 5294
+   "length_old": 3473,
+   "length_new": 5426
   },
   {
-   "event_id": "ead20660-b20b-48ce-9ce1-5cb338d7f56c",
-   "event_ts": "2026-11-19T22:21:03.849000Z",
+   "event_id": "592b9e8e-cf24-45b5-9d6c-d396d16e3575",
+   "event_ts": "2026-11-20T03:38:58.158000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q24952890",
+   "title": "Q126572387",
    "is_bot": false,
-   "length_old": 9301,
-   "length_new": 9581
+   "length_old": 21510,
+   "length_new": 23039
   },
   {
-   "event_id": "99d5e628-87f7-4e16-bf1f-ed1eb26cced5",
-   "event_ts": "2026-11-19T22:21:08.719000Z",
+   "event_id": "3a08999a-d0c1-4d57-84a2-ad2814edc193",
+   "event_ts": "2026-11-20T03:38:45.465000Z",
    "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Takahashi Sh\u014dtei",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "859a00e6-1cc6-4afb-b647-fa66b4471ff6",
-   "event_ts": "2026-11-19T22:20:24.728000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:\u6f22\u8a9e \u5e7e\u4f55\u5b78",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "3d3ec2bc-4f8d-4eb8-b4ae-a30079089ee7",
-   "event_ts": "2026-11-19T22:21:19.466000Z",
-   "wiki": "wikidatawiki",
    "change_type": "edit",
-   "namespace": 0,
-   "title": "Q113802154",
-   "is_bot": false,
-   "length_old": 12620,
-   "length_new": 14120
-  },
-  {
-   "event_id": "a9dce511-dfb4-4486-94f4-d0486a213850",
-   "event_ts": "2026-11-19T22:20:17.365000Z",
-   "wiki": "bewiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u041b\u044e\u0431\u043e\u045e \u0413\u0440\u044b\u043d\u0447\u044b\u043a",
+   "namespace": 6,
+   "title": "File:House on Irving Avenue North - DPLA - b92b42d9bcca7a3e67227b8672d44325.jpg",
    "is_bot": true,
-   "length_old": 7145,
-   "length_new": 7145
-  },
-  {
-   "event_id": "a5cb63ce-15ef-4127-bece-910670cad457",
-   "event_ts": "2026-11-19T22:21:20.045000Z",
-   "wiki": "enwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Warwick railway station",
-   "is_bot": false,
-   "length_old": 9011,
-   "length_new": 9087
-  },
-  {
-   "event_id": "e2133892-b16f-4883-a994-0eb62aa0fd99",
-   "event_ts": "2026-11-19T22:20:27.771000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:XXYW",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8782dd58-b1b5-498e-a245-74c59ff75c9d",
-   "event_ts": "2026-11-19T22:21:47.347000Z",
-   "wiki": "enwiki",
-   "change_type": "edit",
-   "namespace": 2,
-   "title": "User:Bleff/sandboxgauchito",
-   "is_bot": false,
-   "length_old": 9744,
-   "length_new": 9783
-  },
-  {
-   "event_id": "b2f9546d-d78a-484f-b5a6-ad4e22fd731e",
-   "event_ts": "2026-11-19T22:22:02.442000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q110481525",
-   "is_bot": false,
-   "length_old": 3868,
-   "length_new": 4220
+   "length_old": 510,
+   "length_new": 3805
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3790,
+   "observed": 3909,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3790,
-    "silver": 3790,
+    "bronze": 3909,
+    "silver": 3909,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2136,
-    "gold_edits": 2136
+    "silver_edits": 1727,
+    "gold_edits": 1727
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2136,
-  "bot_share": 0.3876,
+  "edits": 1727,
+  "bot_share": 0.4754,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 768
+    "edits": 571
    },
    {
     "wiki": "commonswiki",
-    "edits": 453
+    "edits": 466
    },
    {
     "wiki": "enwiki",
-    "edits": 201
+    "edits": 145
    },
    {
     "wiki": "zhwikisource",
-    "edits": 114
+    "edits": 112
    },
    {
-    "wiki": "ttwiki",
-    "edits": 48
+    "wiki": "arwiktionary",
+    "edits": 72
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q59794618",
-    "edits": 40
+    "title": "Q113825502",
+    "edits": 20
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q58614070",
-    "edits": 30
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q59448082",
+    "title": "Q114257029",
     "edits": 17
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q58614076",
+    "title": "Q125844261",
+    "edits": 17
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q123219594",
     "edits": 16
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q58362129",
-    "edits": 15
+    "title": "Q113825478",
+    "edits": 12
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 35879,
-  "silver.recentchange": 35879,
+  "bronze.recentchange": 39788,
+  "silver.recentchange": 39788,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 742,
-  "gold.bot_share_hour": 9,
-  "gold.top_pages_hour": 90,
+  "gold.edits_per_wiki_hour": 806,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44627536281"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44668889002"
  },
  "schema_version": 1
 }
