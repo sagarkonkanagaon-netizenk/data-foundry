@@ -1,52 +1,52 @@
 {
- "run_id": "20261120T131814Z",
+ "run_id": "20261120T212137Z",
  "trigger": "schedule",
- "started_at": "2026-11-20T13:18:14Z",
+ "started_at": "2026-11-20T21:21:37Z",
  "status": "passed",
- "finished_at": "2026-11-20T13:22:29Z",
- "duration_s": 254.83,
+ "finished_at": "2026-11-20T21:25:59Z",
+ "duration_s": 262.14,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
   "sample_seconds": 120.0,
-  "events": 5810,
-  "bytes": 7289814,
-  "window_start": "2026-11-20T13:18:15Z",
-  "window_end": "2026-11-20T13:20:14Z"
+  "events": 6132,
+  "bytes": 7419992,
+  "window_start": "2026-11-20T21:21:37Z",
+  "window_end": "2026-11-20T21:23:36Z"
  },
  "partitions": [
-  "2026-11-20T13"
+  "2026-11-20T21"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-20T13:18:14Z",
-   "duration_s": 120.04,
+   "started_at": "2026-11-20T21:21:37Z",
+   "duration_s": 120.0,
    "rows_in": null,
-   "rows_out": 5810,
+   "rows_out": 6132,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:14Z",
-   "duration_s": 13.16,
-   "rows_in": 5810,
-   "rows_out": 5810,
+   "started_at": "2026-11-20T21:23:37Z",
+   "duration_s": 13.73,
+   "rows_in": 6132,
+   "rows_out": 6132,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-20T13"
+     "2026-11-20T21"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:28Z",
-   "duration_s": 0.27,
-   "rows_in": 5810,
+   "started_at": "2026-11-20T21:23:51Z",
+   "duration_s": 0.38,
+   "rows_in": 6132,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:28Z",
-   "duration_s": 9.45,
-   "rows_in": 5810,
-   "rows_out": 5810,
+   "started_at": "2026-11-20T21:23:51Z",
+   "duration_s": 10.27,
+   "rows_in": 6132,
+   "rows_out": 6132,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:37Z",
-   "duration_s": 10.35,
-   "rows_in": 5810,
-   "rows_out": 99,
+   "started_at": "2026-11-20T21:24:01Z",
+   "duration_s": 10.75,
+   "rows_in": 6132,
+   "rows_out": 90,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 88,
+     "gold.edits_per_wiki_hour": 79,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:48Z",
-   "duration_s": 3.57,
+   "started_at": "2026-11-20T21:24:12Z",
+   "duration_s": 4.91,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-20T13:20:51Z",
-   "duration_s": 97.99,
+   "started_at": "2026-11-20T21:24:17Z",
+   "duration_s": 102.09,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 8172,
+    "rows_deleted": 7646,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 5810,
-  "bronze": 5810,
-  "silver": 5810,
+  "landed": 6132,
+  "bronze": 6132,
+  "silver": 6132,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "2867e26f-cf7c-4842-8322-0612554d3998",
-   "event_ts": "2026-11-20T13:19:44.405000Z",
-   "wiki": "enwiki",
-   "change_type": "log",
-   "namespace": 3,
-   "title": "User talk:~2026-61314-74",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8e0db7cc-dc1c-4fcc-88c4-ae61f8214fd5",
-   "event_ts": "2026-11-20T13:20:02.397000Z",
+   "event_id": "3b215b97-9a8d-4610-b992-a659c4d8b4d0",
+   "event_ts": "2026-11-20T21:21:58.005000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:INaturalist review needed",
+   "title": "Category:Arrhenia",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "59d41e94-f448-46d2-af0a-6936aa5e0ba6",
-   "event_ts": "2026-11-20T13:18:29.627000Z",
-   "wiki": "commonswiki",
+   "event_id": "9321c167-a9db-4816-905a-1f33c3c81bfe",
+   "event_ts": "2026-11-20T21:22:21.353000Z",
+   "wiki": "frwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:Dictionnaire de spiritualit\u00e9, tome 1, Aa-Byzance, 1937.djvu/591",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 3758
+  },
+  {
+   "event_id": "450c76e3-60ff-41db-be99-8c36adc71ded",
+   "event_ts": "2026-11-20T21:23:23.525000Z",
+   "wiki": "enwiktionary",
    "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Friedhof bei Sulz am Eck, Ortsteil von Wildberg 07.jpg",
-   "is_bot": false,
-   "length_old": 9083,
-   "length_new": 9119
+   "namespace": 0,
+   "title": "\ud85c\udf04\u45cb",
+   "is_bot": true,
+   "length_old": 210,
+   "length_new": 214
   },
   {
-   "event_id": "f6f55140-2ea8-46e3-8f08-1aa49e6e0000",
-   "event_ts": "2026-11-20T13:19:01.096000Z",
+   "event_id": "453ef711-5414-41f3-9b4b-b6d6eac45b6a",
+   "event_ts": "2026-11-20T21:23:02.414000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q8529655",
+   "is_bot": false,
+   "length_old": 17743,
+   "length_new": 17855
+  },
+  {
+   "event_id": "fd51fdfc-2b00-475f-96d3-4673197b4710",
+   "event_ts": "2026-11-20T21:22:04.088000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:INaturalist images missing SDC depicts",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "606586db-aee4-4ed7-821d-13f26a89b00d",
-   "event_ts": "2026-11-20T13:18:40.212000Z",
-   "wiki": "arwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0635\u064a\u0627\u0646\u0629 \u0627\u0644\u0627\u0633\u062a\u0634\u0647\u0627\u062f: \u0627\u0633\u062a\u0634\u0647\u0627\u062f\u0627\u062a \u0628\u0645\u0633\u0627\u0631\u0627\u062a \u063a\u064a\u0631 \u0645\u0624\u0631\u0634\u0641\u0629",
+   "title": "Category:PD NASA",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "f4c7a5d5-0154-4705-a521-24c3bc966b7b",
-   "event_ts": "2026-11-20T13:19:21.812000Z",
+   "event_id": "17fe72fd-53d8-4c32-ac25-b1d3d46e942b",
+   "event_ts": "2026-11-20T21:21:49.923000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Naito clan",
+   "title": "Category:Self-published work missing SDC copyright license",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "8818b13c-7378-4d42-86ea-1e050ac5a425",
-   "event_ts": "2026-11-20T13:19:55.442000Z",
-   "wiki": "enwiki",
+   "event_id": "8548d9c6-ad3b-4840-8fc6-1ac33dde5465",
+   "event_ts": "2026-11-20T21:22:37.590000Z",
+   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Articles with specifically marked weasel-worded phrases from November 2026",
-   "is_bot": false,
+   "title": "Category:Images from Geograph Britain and Ireland with broken templates",
+   "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "6aff50cd-ab4a-4100-8493-6c83d927a3f8",
-   "event_ts": "2026-11-20T13:18:29.018000Z",
+   "event_id": "db0a747f-9ffc-4179-991f-adbc66219511",
+   "event_ts": "2026-11-20T21:22:15.560000Z",
    "wiki": "plwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Kategoria:Gminy w okr\u0119gu Dijon",
+   "title": "Kategoria:Gminy w okr\u0119gu Briey",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "af8f0051-f626-428c-98d3-4e1b31b702b6",
-   "event_ts": "2026-11-20T13:18:30.883000Z",
+   "event_id": "54ecb43c-0541-4cbb-b635-653c0df6e9c3",
+   "event_ts": "2026-11-20T21:22:16.614000Z",
    "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Robert Devereux, 2nd Earl of Essex by Marcus Gheeraerts the Younger (2).jpg",
+   "is_bot": false,
+   "length_old": 5801,
+   "length_new": 5795
+  },
+  {
+   "event_id": "d2ea4fce-3248-46c9-b9a4-2f1e011030e2",
+   "event_ts": "2026-11-20T21:21:45.449000Z",
+   "wiki": "viwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:2018 in Landkreis Calw",
+   "title": "Th\u1ec3 lo\u1ea1i:L\u1ed7i CS1: tham s\u1ed1 kh\u00f4ng r\u00f5",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "5a4afbb1-6b46-431a-a010-2eabf7ee7cd4",
+   "event_ts": "2026-11-20T21:22:57.791000Z",
+   "wiki": "nlwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categorie:Woorden in het Nederlands met IPA-weergave",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "7daeea80-64ea-4638-a1a6-e8dfa393dd80",
-   "event_ts": "2026-11-20T13:18:30.881000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "63a4ec81-f962-476e-82be-80689086b8e1",
+   "event_ts": "2026-11-20T21:21:48.830000Z",
+   "wiki": "commonswiki",
    "change_type": "edit",
-   "namespace": 0,
-   "title": "Q18126511",
-   "is_bot": false,
-   "length_old": 19109,
-   "length_new": 19198
-  },
-  {
-   "event_id": "93b83880-a489-4264-9410-c7ddeee74a7b",
-   "event_ts": "2026-11-20T13:19:53.697000Z",
-   "wiki": "glwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Categor\u00eda:Entradas en galego con traduci\u00f3n ao franc\u00e9s",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8f66be13-dfe0-4d79-88f2-30d95eb9a810",
-   "event_ts": "2026-11-20T13:19:06.434000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q18129403",
-   "is_bot": false,
-   "length_old": 15987,
-   "length_new": 16076
+   "namespace": 6,
+   "title": "File:Puerto de Villatoro 0.jpg",
+   "is_bot": true,
+   "length_old": 1576,
+   "length_new": 3557
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 5810,
+   "observed": 6132,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 5810,
-    "silver": 5810,
+    "bronze": 6132,
+    "silver": 6132,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2601,
-    "gold_edits": 2601
+    "silver_edits": 3847,
+    "gold_edits": 3847
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2601,
-  "bot_share": 0.3256,
+  "edits": 3847,
+  "bot_share": 0.5584,
   "top_wikis": [
    {
+    "wiki": "enwiktionary",
+    "edits": 1132
+   },
+   {
     "wiki": "wikidatawiki",
-    "edits": 992
+    "edits": 1001
    },
    {
     "wiki": "commonswiki",
-    "edits": 555
+    "edits": 590
    },
    {
     "wiki": "enwiki",
-    "edits": 166
+    "edits": 246
    },
    {
-    "wiki": "zhwiki",
-    "edits": 96
-   },
-   {
-    "wiki": "plwiki",
-    "edits": 70
+    "wiki": "viwiki",
+    "edits": 141
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q11317388",
-    "edits": 49
+    "title": "Q141057563",
+    "edits": 18
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140772508",
-    "edits": 28
+    "title": "Q141057561",
+    "edits": 16
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140772462",
-    "edits": 26
+    "title": "Q141057509",
+    "edits": 13
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140772506",
-    "edits": 25
+    "title": "Q141057510",
+    "edits": 13
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140772460",
-    "edits": 21
+    "title": "Q141057559",
+    "edits": 13
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 41558,
-  "silver.recentchange": 41558,
+  "bronze.recentchange": 43922,
+  "silver.recentchange": 43922,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 813,
+  "gold.edits_per_wiki_hour": 793,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44743032983"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44819539083"
  },
  "schema_version": 1
 }

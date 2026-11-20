@@ -1,0 +1,410 @@
+{
+ "run_id": "20261120T212137Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-20T21:21:37Z",
+ "status": "passed",
+ "finished_at": "2026-11-20T21:25:59Z",
+ "duration_s": 262.14,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 6132,
+  "bytes": 7419992,
+  "window_start": "2026-11-20T21:21:37Z",
+  "window_end": "2026-11-20T21:23:36Z"
+ },
+ "partitions": [
+  "2026-11-20T21"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-20T21:21:37Z",
+   "duration_s": 120.0,
+   "rows_in": null,
+   "rows_out": 6132,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-20T21:23:37Z",
+   "duration_s": 13.73,
+   "rows_in": 6132,
+   "rows_out": 6132,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-20T21"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-20T21:23:51Z",
+   "duration_s": 0.38,
+   "rows_in": 6132,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-20T21:23:51Z",
+   "duration_s": 10.27,
+   "rows_in": 6132,
+   "rows_out": 6132,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-20T21:24:01Z",
+   "duration_s": 10.75,
+   "rows_in": 6132,
+   "rows_out": 90,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 79,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-20T21:24:12Z",
+   "duration_s": 4.91,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-20T21:24:17Z",
+   "duration_s": 102.09,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7646,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 6132,
+  "bronze": 6132,
+  "silver": 6132,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "3b215b97-9a8d-4610-b992-a659c4d8b4d0",
+   "event_ts": "2026-11-20T21:21:58.005000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Arrhenia",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9321c167-a9db-4816-905a-1f33c3c81bfe",
+   "event_ts": "2026-11-20T21:22:21.353000Z",
+   "wiki": "frwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:Dictionnaire de spiritualit\u00e9, tome 1, Aa-Byzance, 1937.djvu/591",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 3758
+  },
+  {
+   "event_id": "450c76e3-60ff-41db-be99-8c36adc71ded",
+   "event_ts": "2026-11-20T21:23:23.525000Z",
+   "wiki": "enwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\ud85c\udf04\u45cb",
+   "is_bot": true,
+   "length_old": 210,
+   "length_new": 214
+  },
+  {
+   "event_id": "453ef711-5414-41f3-9b4b-b6d6eac45b6a",
+   "event_ts": "2026-11-20T21:23:02.414000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q8529655",
+   "is_bot": false,
+   "length_old": 17743,
+   "length_new": 17855
+  },
+  {
+   "event_id": "fd51fdfc-2b00-475f-96d3-4673197b4710",
+   "event_ts": "2026-11-20T21:22:04.088000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD NASA",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "17fe72fd-53d8-4c32-ac25-b1d3d46e942b",
+   "event_ts": "2026-11-20T21:21:49.923000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Self-published work missing SDC copyright license",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "8548d9c6-ad3b-4840-8fc6-1ac33dde5465",
+   "event_ts": "2026-11-20T21:22:37.590000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Images from Geograph Britain and Ireland with broken templates",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "db0a747f-9ffc-4179-991f-adbc66219511",
+   "event_ts": "2026-11-20T21:22:15.560000Z",
+   "wiki": "plwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoria:Gminy w okr\u0119gu Briey",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "54ecb43c-0541-4cbb-b635-653c0df6e9c3",
+   "event_ts": "2026-11-20T21:22:16.614000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Robert Devereux, 2nd Earl of Essex by Marcus Gheeraerts the Younger (2).jpg",
+   "is_bot": false,
+   "length_old": 5801,
+   "length_new": 5795
+  },
+  {
+   "event_id": "d2ea4fce-3248-46c9-b9a4-2f1e011030e2",
+   "event_ts": "2026-11-20T21:21:45.449000Z",
+   "wiki": "viwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Th\u1ec3 lo\u1ea1i:L\u1ed7i CS1: tham s\u1ed1 kh\u00f4ng r\u00f5",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "5a4afbb1-6b46-431a-a010-2eabf7ee7cd4",
+   "event_ts": "2026-11-20T21:22:57.791000Z",
+   "wiki": "nlwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Categorie:Woorden in het Nederlands met IPA-weergave",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "63a4ec81-f962-476e-82be-80689086b8e1",
+   "event_ts": "2026-11-20T21:21:48.830000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Puerto de Villatoro 0.jpg",
+   "is_bot": true,
+   "length_old": 1576,
+   "length_new": 3557
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 6132,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 6132,
+    "silver": 6132,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 3847,
+    "gold_edits": 3847
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 3847,
+  "bot_share": 0.5584,
+  "top_wikis": [
+   {
+    "wiki": "enwiktionary",
+    "edits": 1132
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 1001
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 590
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 246
+   },
+   {
+    "wiki": "viwiki",
+    "edits": 141
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057563",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057561",
+    "edits": 16
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057509",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057510",
+    "edits": 13
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141057559",
+    "edits": 13
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 43922,
+  "silver.recentchange": 43922,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 793,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44819539083"
+ },
+ "schema_version": 1
+}
