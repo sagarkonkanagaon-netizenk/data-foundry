@@ -1,0 +1,410 @@
+{
+ "run_id": "20261121T024012Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-21T02:40:12Z",
+ "status": "passed",
+ "finished_at": "2026-11-21T02:43:52Z",
+ "duration_s": 220.82,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.3,
+  "events": 3915,
+  "bytes": 4936347,
+  "window_start": "2026-11-21T02:40:12Z",
+  "window_end": "2026-11-21T02:42:11Z"
+ },
+ "partitions": [
+  "2026-11-21T02"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-21T02:40:12Z",
+   "duration_s": 120.26,
+   "rows_in": null,
+   "rows_out": 3915,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:12Z",
+   "duration_s": 9.21,
+   "rows_in": 3915,
+   "rows_out": 3915,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-21T02"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:21Z",
+   "duration_s": 0.15,
+   "rows_in": 3915,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:21Z",
+   "duration_s": 6.08,
+   "rows_in": 3915,
+   "rows_out": 3915,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:27Z",
+   "duration_s": 7.3,
+   "rows_in": 3915,
+   "rows_out": 79,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 68,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:35Z",
+   "duration_s": 2.34,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-21T02:42:37Z",
+   "duration_s": 75.49,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7237,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3915,
+  "bronze": 3915,
+  "silver": 3915,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "7695da3c-f3e2-484c-a42a-b3bbefc51ae8",
+   "event_ts": "2026-11-21T02:40:56.837000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Flickr images missing SDC inception",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "1cb6cb66-4a40-44e6-9fe9-0c3374bcf03f",
+   "event_ts": "2026-11-21T02:41:29.468000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Championnat d'Alg\u00e9rie de football de deuxi\u00e8me division 1969-1970",
+   "is_bot": false,
+   "length_old": 49048,
+   "length_new": 49048
+  },
+  {
+   "event_id": "201a6e32-04b0-4ac0-80fc-4f72845e0e28",
+   "event_ts": "2026-11-21T02:40:16.899000Z",
+   "wiki": "ruwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u041d\u0443\u0436\u043d\u044b \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043e \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0435/bg",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "3cfbc54c-53ab-402e-ba36-e70a811661a4",
+   "event_ts": "2026-11-21T02:41:13.142000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Guides at Bamiyan.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "5aed7994-bb3d-401b-b9fd-a0b20e6de4ea",
+   "event_ts": "2026-11-21T02:41:24.702000Z",
+   "wiki": "ruwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u041f\u0420\u041e:\u0410\u0422\u0414:\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044f\u044f \u043f\u0440\u0430\u0432\u043a\u0430: \u0432 \u0442\u0435\u043a\u0443\u0449\u0435\u043c \u043c\u0435\u0441\u044f\u0446\u0435",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "69ec2847-c542-45b8-ab55-4b1c5331b772",
+   "event_ts": "2026-11-21T02:41:32.060000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Brugge Dijver R26.jpg",
+   "is_bot": true,
+   "length_old": 3807,
+   "length_new": 7577
+  },
+  {
+   "event_id": "9977165e-db92-4b1f-aa11-7593417aff94",
+   "event_ts": "2026-11-21T02:41:43.641000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Galatasaray MV vs Fenerbah\u00e7e MV TMVL 20261114",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "92de0260-3eaf-4f9f-a254-424c2dddd001",
+   "event_ts": "2026-11-21T02:41:57.668000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q103782091",
+   "is_bot": false,
+   "length_old": 5833,
+   "length_new": 6050
+  },
+  {
+   "event_id": "cc38c920-e2c4-4531-a647-60f1fb787bf7",
+   "event_ts": "2026-11-21T02:40:59.208000Z",
+   "wiki": "enwikinews",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "User:Galileo2402",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "cdfdf72f-50ff-49a7-8e93-460e110d5b9e",
+   "event_ts": "2026-11-21T02:40:38.257000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Three men sitting against a mud-brick wall in Bamyan Province.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "a7320742-4369-4883-af16-e0242bfd98e1",
+   "event_ts": "2026-11-21T02:41:55.590000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142231645",
+   "is_bot": false,
+   "length_old": 1078,
+   "length_new": 1501
+  },
+  {
+   "event_id": "18d7ede2-ec41-41bc-81f2-57f2231616d0",
+   "event_ts": "2026-11-21T02:40:42.144000Z",
+   "wiki": "commonswiki",
+   "change_type": "new",
+   "namespace": 14,
+   "title": "Category:United Kingdom photographs taken on 1929-06-21",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": 45
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3915,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3915,
+    "silver": 3915,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2016,
+    "gold_edits": 2016
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2016,
+  "bot_share": 0.4117,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 838
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 357
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 197
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 100
+   },
+   {
+    "wiki": "metawiki",
+    "edits": 58
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140536030",
+    "edits": 23
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140536035",
+    "edits": 22
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140536036",
+    "edits": 19
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140536026",
+    "edits": 18
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140536031",
+    "edits": 14
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 44260,
+  "silver.recentchange": 44260,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 789,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44857095337"
+ },
+ "schema_version": 1
+}
