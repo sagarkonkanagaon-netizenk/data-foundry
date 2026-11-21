@@ -1,52 +1,52 @@
 {
- "run_id": "20261121T024012Z",
+ "run_id": "20261121T112845Z",
  "trigger": "schedule",
- "started_at": "2026-11-21T02:40:12Z",
+ "started_at": "2026-11-21T11:28:45Z",
  "status": "passed",
- "finished_at": "2026-11-21T02:43:52Z",
- "duration_s": 220.82,
+ "finished_at": "2026-11-21T11:32:51Z",
+ "duration_s": 245.98,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.3,
-  "events": 3915,
-  "bytes": 4936347,
-  "window_start": "2026-11-21T02:40:12Z",
-  "window_end": "2026-11-21T02:42:11Z"
+  "sample_seconds": 120.2,
+  "events": 4102,
+  "bytes": 5301909,
+  "window_start": "2026-11-21T11:28:46Z",
+  "window_end": "2026-11-21T11:30:45Z"
  },
  "partitions": [
-  "2026-11-21T02"
+  "2026-11-21T11"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-21T02:40:12Z",
-   "duration_s": 120.26,
+   "started_at": "2026-11-21T11:28:45Z",
+   "duration_s": 120.18,
    "rows_in": null,
-   "rows_out": 3915,
+   "rows_out": 4102,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:12Z",
-   "duration_s": 9.21,
-   "rows_in": 3915,
-   "rows_out": 3915,
+   "started_at": "2026-11-21T11:30:46Z",
+   "duration_s": 11.62,
+   "rows_in": 4102,
+   "rows_out": 4102,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-21T02"
+     "2026-11-21T11"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:21Z",
-   "duration_s": 0.15,
-   "rows_in": 3915,
+   "started_at": "2026-11-21T11:30:57Z",
+   "duration_s": 0.22,
+   "rows_in": 4102,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:21Z",
-   "duration_s": 6.08,
-   "rows_in": 3915,
-   "rows_out": 3915,
+   "started_at": "2026-11-21T11:30:57Z",
+   "duration_s": 7.35,
+   "rows_in": 4102,
+   "rows_out": 4102,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:27Z",
-   "duration_s": 7.3,
-   "rows_in": 3915,
-   "rows_out": 79,
+   "started_at": "2026-11-21T11:31:05Z",
+   "duration_s": 9.17,
+   "rows_in": 4102,
+   "rows_out": 99,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 68,
+     "gold.edits_per_wiki_hour": 88,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:35Z",
-   "duration_s": 2.34,
+   "started_at": "2026-11-21T11:31:14Z",
+   "duration_s": 3.11,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-21T02:42:37Z",
-   "duration_s": 75.49,
+   "started_at": "2026-11-21T11:31:17Z",
+   "duration_s": 94.34,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 7237,
+    "rows_deleted": 6861,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3915,
-  "bronze": 3915,
-  "silver": 3915,
+  "landed": 4102,
+  "bronze": 4102,
+  "silver": 4102,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "7695da3c-f3e2-484c-a42a-b3bbefc51ae8",
-   "event_ts": "2026-11-21T02:40:56.837000Z",
+   "event_id": "598480bc-3f8c-42a9-93a8-a211fb53900b",
+   "event_ts": "2026-11-21T11:29:44.301000Z",
    "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Flickr images missing SDC inception",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:1957-05-01 Ch'\u014fngny\u014fn Saenghwal (\uccad\ub144 \uc0dd\ud65c) public asian 79647159-1957-05-01-01.pdf",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 833,
+   "length_new": 1406
   },
   {
-   "event_id": "1cb6cb66-4a40-44e6-9fe9-0c3374bcf03f",
-   "event_ts": "2026-11-21T02:41:29.468000Z",
-   "wiki": "frwiki",
+   "event_id": "b2559b7e-ef46-4dec-a431-4d0e724ad0fa",
+   "event_ts": "2026-11-21T11:29:50.513000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:How Much Liquid Nitrogen Did We Need to Keep Webb Cool?.png",
+   "is_bot": true,
+   "length_old": 5741,
+   "length_new": 8117
+  },
+  {
+   "event_id": "6c602f78-99cc-445a-b260-243dfd9070be",
+   "event_ts": "2026-11-21T11:30:18.632000Z",
+   "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Championnat d'Alg\u00e9rie de football de deuxi\u00e8me division 1969-1970",
+   "title": "Q142234668",
    "is_bot": false,
-   "length_old": 49048,
-   "length_new": 49048
+   "length_old": 5191,
+   "length_new": 5626
   },
   {
-   "event_id": "201a6e32-04b0-4ac0-80fc-4f72845e0e28",
-   "event_ts": "2026-11-21T02:40:16.899000Z",
+   "event_id": "a769256d-c013-45be-bc1e-d6df141afe9b",
+   "event_ts": "2026-11-21T11:30:11.910000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q137447344",
+   "is_bot": false,
+   "length_old": 13045,
+   "length_new": 16026
+  },
+  {
+   "event_id": "e61f36d4-2296-4aa4-a97a-9d3e1cc4e94f",
+   "event_ts": "2026-11-21T11:30:44.478000Z",
    "wiki": "ruwiktionary",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u041d\u0443\u0436\u043d\u044b \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043e \u0441\u0435\u043c\u0430\u043d\u0442\u0438\u043a\u0435/bg",
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u0412\u0438\u043a\u0438\u0441\u043b\u043e\u0432\u0430\u0440\u044c:\u0421\u0442\u0430\u0442\u044c\u0438 \u0441 \u043c\u0435\u0436\u044a\u044f\u0437\u044b\u043a\u043e\u0432\u043e\u0439 \u043e\u043c\u043e\u043d\u0438\u043c\u0438\u0435\u0439/2",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "3cfbc54c-53ab-402e-ba36-e70a811661a4",
-   "event_ts": "2026-11-21T02:41:13.142000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Guides at Bamiyan.jpg",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "5aed7994-bb3d-401b-b9fd-a0b20e6de4ea",
-   "event_ts": "2026-11-21T02:41:24.702000Z",
-   "wiki": "ruwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0438\u044f:\u041f\u0420\u041e:\u0410\u0422\u0414:\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u044f\u044f \u043f\u0440\u0430\u0432\u043a\u0430: \u0432 \u0442\u0435\u043a\u0443\u0449\u0435\u043c \u043c\u0435\u0441\u044f\u0446\u0435",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "69ec2847-c542-45b8-ab55-4b1c5331b772",
-   "event_ts": "2026-11-21T02:41:32.060000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Brugge Dijver R26.jpg",
-   "is_bot": true,
-   "length_old": 3807,
-   "length_new": 7577
-  },
-  {
-   "event_id": "9977165e-db92-4b1f-aa11-7593417aff94",
-   "event_ts": "2026-11-21T02:41:43.641000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Galatasaray MV vs Fenerbah\u00e7e MV TMVL 20261114",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "92de0260-3eaf-4f9f-a254-424c2dddd001",
-   "event_ts": "2026-11-21T02:41:57.668000Z",
+   "event_id": "b8f5c85e-c656-404b-b569-f4b1b7830b4e",
+   "event_ts": "2026-11-21T11:29:54.225000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q103782091",
-   "is_bot": false,
-   "length_old": 5833,
-   "length_new": 6050
+   "title": "Q221210",
+   "is_bot": true,
+   "length_old": 19845,
+   "length_new": 20298
   },
   {
-   "event_id": "cc38c920-e2c4-4531-a647-60f1fb787bf7",
-   "event_ts": "2026-11-21T02:40:59.208000Z",
-   "wiki": "enwikinews",
-   "change_type": "log",
-   "namespace": 2,
-   "title": "User:Galileo2402",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "cdfdf72f-50ff-49a7-8e93-460e110d5b9e",
-   "event_ts": "2026-11-21T02:40:38.257000Z",
+   "event_id": "55386e18-186f-420a-ba28-f417c73eb2f6",
+   "event_ts": "2026-11-21T11:30:26.655000Z",
    "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Three men sitting against a mud-brick wall in Bamyan Province.jpg",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "a7320742-4369-4883-af16-e0242bfd98e1",
-   "event_ts": "2026-11-21T02:41:55.590000Z",
-   "wiki": "wikidatawiki",
    "change_type": "edit",
-   "namespace": 0,
-   "title": "Q142231645",
-   "is_bot": false,
-   "length_old": 1078,
-   "length_new": 1501
+   "namespace": 6,
+   "title": "File:Nashville 72 - USACE-p15141coll5-1064.jpeg",
+   "is_bot": true,
+   "length_old": 4133,
+   "length_new": 6159
   },
   {
-   "event_id": "18d7ede2-ec41-41bc-81f2-57f2231616d0",
-   "event_ts": "2026-11-21T02:40:42.144000Z",
+   "event_id": "4943c3a7-9e4e-49c3-ae3c-354a4c422ba7",
+   "event_ts": "2026-11-21T11:30:28.894000Z",
    "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Self-published work",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0a7b1f27-d6cc-4df3-8fe3-786c6351ac32",
+   "event_ts": "2026-11-21T11:29:11.060000Z",
+   "wiki": "arwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u062c\u0645\u064a\u0639 \u0627\u0644\u0645\u0642\u0627\u0644\u0627\u062a \u0628\u062f\u0648\u0646 \u0645\u0635\u062f\u0631",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b5920b37-b4c7-4b55-a71f-6cf1498c5881",
+   "event_ts": "2026-11-21T11:30:27.713000Z",
+   "wiki": "tewikisource",
    "change_type": "new",
-   "namespace": 14,
-   "title": "Category:United Kingdom photographs taken on 1929-06-21",
+   "namespace": 0,
+   "title": "Telugu Manuscripts in MOML Vol 13",
    "is_bot": false,
    "length_old": null,
-   "length_new": 45
+   "length_new": 554
+  },
+  {
+   "event_id": "3ff80570-f622-4b5b-8fa2-73e4048aa57f",
+   "event_ts": "2026-11-21T11:30:35.740000Z",
+   "wiki": "cebwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:CS1 maint: unflagged free DOI",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ed885d49-9067-4f7e-b64b-8067e4564f10",
+   "event_ts": "2026-11-21T11:30:23.090000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:LAR00039 00193 (54452727814).jpg",
+   "is_bot": true,
+   "length_old": 6129,
+   "length_new": 8158
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3915,
+   "observed": 4102,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3915,
-    "silver": 3915,
+    "bronze": 4102,
+    "silver": 4102,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2016,
-    "gold_edits": 2016
+    "silver_edits": 2417,
+    "gold_edits": 2417
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2016,
-  "bot_share": 0.4117,
+  "edits": 2417,
+  "bot_share": 0.4758,
   "top_wikis": [
    {
     "wiki": "wikidatawiki",
-    "edits": 838
+    "edits": 797
    },
    {
     "wiki": "commonswiki",
-    "edits": 357
+    "edits": 653
    },
    {
     "wiki": "enwiki",
-    "edits": 197
+    "edits": 209
    },
    {
     "wiki": "zhwikisource",
-    "edits": 100
+    "edits": 106
    },
    {
-    "wiki": "metawiki",
-    "edits": 58
+    "wiki": "plwiki",
+    "edits": 44
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q140536030",
-    "edits": 23
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q140536035",
+    "title": "Q140543264",
     "edits": 22
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140536036",
-    "edits": 19
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q140536026",
+    "title": "Q140543263",
     "edits": 18
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140536031",
-    "edits": 14
+    "title": "Q140543265",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140543262",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140130323",
+    "edits": 8
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 44260,
-  "silver.recentchange": 44260,
+  "bronze.recentchange": 44973,
+  "silver.recentchange": 44973,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 789,
+  "gold.edits_per_wiki_hour": 805,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44857095337"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44899251358"
  },
  "schema_version": 1
 }
