@@ -1,0 +1,410 @@
+{
+ "run_id": "20261122T223744Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-22T22:37:44Z",
+ "status": "passed",
+ "finished_at": "2026-11-22T22:40:19Z",
+ "duration_s": 155.43,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 4116,
+  "bytes": 5451552,
+  "window_start": "2026-11-22T22:37:44Z",
+  "window_end": "2026-11-22T22:39:43Z"
+ },
+ "partitions": [
+  "2026-11-22T22"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-22T22:37:44Z",
+   "duration_s": 120.01,
+   "rows_in": null,
+   "rows_out": 4116,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-22T22:39:44Z",
+   "duration_s": 12.19,
+   "rows_in": 4116,
+   "rows_out": 4116,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-22T22"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-22T22:39:56Z",
+   "duration_s": 0.2,
+   "rows_in": 4116,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-22T22:39:56Z",
+   "duration_s": 7.86,
+   "rows_in": 4116,
+   "rows_out": 4116,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-22T22:40:04Z",
+   "duration_s": 9.81,
+   "rows_in": 4116,
+   "rows_out": 90,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 79,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-22T22:40:14Z",
+   "duration_s": 3.31,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-22T22:40:17Z",
+   "duration_s": 2.06,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4116,
+  "bronze": 4116,
+  "silver": 4116,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "b5f4a268-6845-4507-95d4-0208a682eaa1",
+   "event_ts": "2026-11-22T22:39:00.031000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:20250323, Damallsvenskan, BK H\u00e4cken - Malm\u00f6 FF 101.jpg",
+   "is_bot": true,
+   "length_old": 6390,
+   "length_new": 8417
+  },
+  {
+   "event_id": "449508a5-dfdc-4294-aca0-1c535240d223",
+   "event_ts": "2026-11-22T22:38:12.030000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0584\u518a.djvu/236",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2360
+  },
+  {
+   "event_id": "fdc1e1bf-f629-4822-b99f-3b969111b3ba",
+   "event_ts": "2026-11-22T22:38:36.389000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0584\u518a.djvu/259",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2402
+  },
+  {
+   "event_id": "3d7ac897-ea30-46d0-86f1-08dc720309e1",
+   "event_ts": "2026-11-22T22:38:09.584000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 102,
+   "title": "Projet:Alimentation et gastronomie/\u00c9valuation/Index/35",
+   "is_bot": true,
+   "length_old": 50072,
+   "length_new": 50329
+  },
+  {
+   "event_id": "ba2f22c9-e1d0-4bb0-9c10-f22257bb2024",
+   "event_ts": "2026-11-22T22:38:49.312000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Media needing categories as of 22 November 2026",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "cf78cd25-2ad7-472e-83b9-a632eee633ed",
+   "event_ts": "2026-11-22T22:38:30.182000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q128210453",
+   "is_bot": false,
+   "length_old": 4023,
+   "length_new": 4458
+  },
+  {
+   "event_id": "2498f389-f2f1-4045-8a11-043e0f9ff386",
+   "event_ts": "2026-11-22T22:39:26.282000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages with deprecated parameters",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c0a74911-db89-4592-9d55-874c7c2d96eb",
+   "event_ts": "2026-11-22T22:39:40.045000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 3,
+   "title": "User talk:Jawhite33",
+   "is_bot": true,
+   "length_old": 5265,
+   "length_new": 5259
+  },
+  {
+   "event_id": "2987b1f7-b260-4ed1-81c7-1fb7beea9e50",
+   "event_ts": "2026-11-22T22:37:46.098000Z",
+   "wiki": "jawiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "yo\u011furt",
+   "is_bot": true,
+   "length_old": 1397,
+   "length_new": 1401
+  },
+  {
+   "event_id": "9d27feff-d9c9-4ef2-b51f-059d915d9856",
+   "event_ts": "2026-11-22T22:37:47.519000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:2026-11-12 Pr\u00eamio Eliane Anselmo de Educa\u00e7\u00e3o Antirracista, 002.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "cf094efb-71f4-47e7-ac92-eef5b5e68057",
+   "event_ts": "2026-11-22T22:39:35.261000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Creative Commons Attribution-Share Alike missing SDC copyright status",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "d379fe18-84e9-47fe-bfa4-c321c465d077",
+   "event_ts": "2026-11-22T22:39:15.875000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Creative Commons Attribution-Share Alike 4.0 missing SDC copyright license",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4116,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4116,
+    "silver": 4116,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2387,
+    "gold_edits": 2387
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2387,
+  "bot_share": 0.5949,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 841
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 352
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 338
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 134
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 114
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q16186461",
+    "edits": 17
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142250093",
+    "edits": 9
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q112976568",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q216578",
+    "edits": 8
+   },
+   {
+    "wiki": "arwiki",
+    "title": "\u0625\u0644\u064a\u0632\u0627\u0628\u064a\u062b \u0627\u0646\u062f\u0631\u0648\u0632",
+    "edits": 6
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 50209,
+  "silver.recentchange": 50209,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 886,
+  "gold.bot_share_hour": 11,
+  "gold.top_pages_hour": 110,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45078745021"
+ },
+ "schema_version": 1
+}
