@@ -1,52 +1,52 @@
 {
- "run_id": "20261121T193312Z",
+ "run_id": "20261122T003109Z",
  "trigger": "schedule",
- "started_at": "2026-11-21T19:33:12Z",
+ "started_at": "2026-11-22T00:31:09Z",
  "status": "passed",
- "finished_at": "2026-11-21T19:37:33Z",
- "duration_s": 260.61,
+ "finished_at": "2026-11-22T00:35:06Z",
+ "duration_s": 236.51,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.1,
-  "events": 4931,
-  "bytes": 6373557,
-  "window_start": "2026-11-21T19:33:12Z",
-  "window_end": "2026-11-21T19:35:12Z"
+  "sample_seconds": 120.3,
+  "events": 3746,
+  "bytes": 4991356,
+  "window_start": "2026-11-22T00:31:09Z",
+  "window_end": "2026-11-22T00:33:09Z"
  },
  "partitions": [
-  "2026-11-21T19"
+  "2026-11-22T00"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-21T19:33:12Z",
-   "duration_s": 120.09,
+   "started_at": "2026-11-22T00:31:09Z",
+   "duration_s": 120.25,
    "rows_in": null,
-   "rows_out": 4931,
+   "rows_out": 3746,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:12Z",
-   "duration_s": 15.72,
-   "rows_in": 4931,
-   "rows_out": 4931,
+   "started_at": "2026-11-22T00:33:10Z",
+   "duration_s": 11.43,
+   "rows_in": 3746,
+   "rows_out": 3746,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-21T19"
+     "2026-11-22T00"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:28Z",
-   "duration_s": 0.25,
-   "rows_in": 4931,
+   "started_at": "2026-11-22T00:33:21Z",
+   "duration_s": 0.24,
+   "rows_in": 3746,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:28Z",
-   "duration_s": 10.22,
-   "rows_in": 4931,
-   "rows_out": 4931,
+   "started_at": "2026-11-22T00:33:21Z",
+   "duration_s": 7.46,
+   "rows_in": 3746,
+   "rows_out": 3746,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:39Z",
-   "duration_s": 13.19,
-   "rows_in": 4931,
-   "rows_out": 96,
+   "started_at": "2026-11-22T00:33:29Z",
+   "duration_s": 9.61,
+   "rows_in": 3746,
+   "rows_out": 86,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 85,
+     "gold.edits_per_wiki_hour": 75,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:52Z",
-   "duration_s": 3.21,
+   "started_at": "2026-11-22T00:33:38Z",
+   "duration_s": 3.01,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-21T19:35:55Z",
-   "duration_s": 97.94,
+   "started_at": "2026-11-22T00:33:41Z",
+   "duration_s": 84.51,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 8054,
+    "rows_deleted": 8577,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4931,
-  "bronze": 4931,
-  "silver": 4931,
+  "landed": 3746,
+  "bronze": 3746,
+  "silver": 3746,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "83d1f43f-1711-4c6c-90d2-16d28cf6188a",
-   "event_ts": "2026-11-21T19:35:02.644000Z",
-   "wiki": "commonswiki",
+   "event_id": "6f57fc84-ee35-48b1-8e62-497c4024deac",
+   "event_ts": "2026-11-22T00:33:06.451000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Domenico Schiattarella",
+   "is_bot": false,
+   "length_old": 17414,
+   "length_new": 17462
+  },
+  {
+   "event_id": "e8a61c74-513b-48ef-8463-c7516b1f1a1f",
+   "event_ts": "2026-11-22T00:32:11.519000Z",
+   "wiki": "arwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:CC-BY-SA-4.0",
-   "is_bot": false,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0623\u0639\u0636\u0627\u0621 \u0647\u064a\u0626\u0629 \u062a\u062f\u0631\u064a\u0633 \u0645\u0639\u0647\u062f \u0627\u0644\u062f\u0631\u0627\u0633\u0627\u062a \u0627\u0644\u0633\u064a\u0627\u0633\u064a\u0629 \u0628\u0628\u0627\u0631\u064a\u0633",
+   "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "2b62709b-ff39-443d-bd12-fdd25606f2b7",
-   "event_ts": "2026-11-21T19:34:13.600000Z",
+   "event_id": "0b1916ab-e8da-4070-80eb-719ce7933c7c",
+   "event_ts": "2026-11-22T00:31:56.597000Z",
+   "wiki": "viwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u00d6zg\u00fcrler, Ere\u011fli",
+   "is_bot": true,
+   "length_old": 1958,
+   "length_new": 1964
+  },
+  {
+   "event_id": "92d83adf-6407-4f8d-9fb0-1d02bfa7a287",
+   "event_ts": "2026-11-22T00:33:04.107000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Iringole Kavu 2026 IMG20261113152856.jpg",
-   "is_bot": false,
-   "length_old": 556,
-   "length_new": 1280
-  },
-  {
-   "event_id": "c641d898-75dd-4586-a633-01f69227af16",
-   "event_ts": "2026-11-21T19:34:54.306000Z",
-   "wiki": "zhwikisource",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u671d\u9bae\u738b\u671d\u5be6\u9304/\u6210\u5b97\u5be6\u9304/\u4e03\u5e74",
+   "title": "File:CTA 70 Division bus at Division St canal bridge - Chicago, IL - May 2026.jpg",
    "is_bot": true,
-   "length_old": 554749,
-   "length_new": 554783
+   "length_old": 1894,
+   "length_new": 5223
   },
   {
-   "event_id": "493bf440-7ffb-4232-9cf8-322ebc6004b5",
-   "event_ts": "2026-11-21T19:33:58.758000Z",
-   "wiki": "jawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u3088\u3093\u30c1\u30e3\u30f3TV",
-   "is_bot": false,
-   "length_old": 548093,
-   "length_new": 548075
-  },
-  {
-   "event_id": "069d2776-9c5e-4f58-b10a-5b3fe27f7f22",
-   "event_ts": "2026-11-21T19:33:52.685000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:JZ SW - panoramio.jpg",
-   "is_bot": true,
-   "length_old": 7334,
-   "length_new": 9357
-  },
-  {
-   "event_id": "ef65740a-3e17-40bd-845f-1c1abb06928b",
-   "event_ts": "2026-11-21T19:34:39.650000Z",
-   "wiki": "hewiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u05d0\u05d1\u05e8\u05e6'\u05d9 \u05d0\u05d6\u05d4",
-   "is_bot": false,
-   "length_old": 24169,
-   "length_new": 24167
-  },
-  {
-   "event_id": "f712c466-6111-4cd6-a7e3-fd404a5f10be",
-   "event_ts": "2026-11-21T19:34:39.546000Z",
+   "event_id": "e4b20624-82dc-491b-b3ba-7b7dd2f54612",
+   "event_ts": "2026-11-22T00:32:08.250000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q140764268",
+   "title": "Q95338672",
    "is_bot": false,
-   "length_old": 9557,
-   "length_new": 11089
+   "length_old": 9081,
+   "length_new": 10565
   },
   {
-   "event_id": "93a30ed4-7710-45ee-a3fe-f9a7f4fb10c4",
-   "event_ts": "2026-11-21T19:34:45.441000Z",
+   "event_id": "3a39291f-f1b2-4164-84a7-68a2f7e86bf7",
+   "event_ts": "2026-11-22T00:33:03.453000Z",
    "wiki": "arwiki",
    "change_type": "edit",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0623\u0633\u062a\u0631\u0627\u0644\u064a\u0648\u0646 \u0645\u063a\u062a\u0631\u0628\u0648\u0646 \u0641\u064a \u0625\u0646\u062f\u0648\u0646\u064a\u0633\u064a\u0627",
+   "namespace": 0,
+   "title": "\u0623\u0648\u0642\u0627\u062a \u0642\u0627\u0633\u064a\u0629",
    "is_bot": true,
-   "length_old": 241,
-   "length_new": 165
+   "length_old": 3877,
+   "length_new": 3819
   },
   {
-   "event_id": "8a24635e-a339-43de-a1d8-79b6fc1bca39",
-   "event_ts": "2026-11-21T19:34:50.786000Z",
-   "wiki": "ptwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Categoria:!Artigos com liga\u00e7\u00f5es inativas",
+   "event_id": "016926a4-0062-4f6c-92bd-17b05b57107c",
+   "event_ts": "2026-11-22T00:32:11.144000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 158).jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "3472b029-f7a3-407f-9b8d-7849af7a3bfa",
+   "event_ts": "2026-11-22T00:31:28.976000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0642\u0645\u0629 \u0636\u0641\u062a\u064a \u0627\u0644\u0628\u062d\u0631 \u0627\u0644\u0623\u0628\u064a\u0636 \u0627\u0644\u0645\u062a\u0648\u0633\u0637",
    "is_bot": true,
-   "length_old": null,
-   "length_new": null
+   "length_old": 12752,
+   "length_new": 12838
   },
   {
-   "event_id": "b74c5c58-dec0-4312-8901-c419cf461eb9",
-   "event_ts": "2026-11-21T19:35:06.864000Z",
-   "wiki": "glwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Categor\u00eda:Galego",
+   "event_id": "afd0a10c-c008-46b6-88fe-b4bd7f0789c0",
+   "event_ts": "2026-11-22T00:32:28.729000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 207).jpg",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "b9dc08e4-3d21-4eb9-97c1-901cdcd99b08",
-   "event_ts": "2026-11-21T19:34:30.467000Z",
-   "wiki": "thwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u0e2b\u0e21\u0e27\u0e14\u0e2b\u0e21\u0e39\u0e48:\u0e41\u0e21\u0e48\u0e41\u0e1a\u0e1a\u0e20\u0e32\u0e29\u0e32",
+   "event_id": "9ce54fde-be11-491f-b519-ab10857a84a2",
+   "event_ts": "2026-11-22T00:31:57.910000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0623\u0648\u0641\u064a\u0646 \u0641\u0648\u0646 \u0648\u0644\u064a\u0645\u0632",
+   "is_bot": true,
+   "length_old": 8109,
+   "length_new": 8030
+  },
+  {
+   "event_id": "4742622c-332d-4b42-a91e-1ba5ce45665b",
+   "event_ts": "2026-11-22T00:32:40.912000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 229).jpg",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "3717c5cf-e206-4f13-869c-d1ca14c5df35",
-   "event_ts": "2026-11-21T19:33:51.333000Z",
-   "wiki": "frwiki",
-   "change_type": "new",
-   "namespace": 1,
-   "title": "Discussion:L'Islet (district \u00e9lectoral du Canada-Uni)",
+   "event_id": "4b49b4df-c0c2-487f-ab18-0c1071df1ca4",
+   "event_ts": "2026-11-22T00:31:53.570000Z",
+   "wiki": "dewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Burjaten",
    "is_bot": false,
-   "length_old": null,
-   "length_new": 89
+   "length_old": 10105,
+   "length_new": 9993
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4931,
+   "observed": 3746,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4931,
-    "silver": 4931,
+    "bronze": 3746,
+    "silver": 3746,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2619,
-    "gold_edits": 2619
+    "silver_edits": 2136,
+    "gold_edits": 2136
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2619,
-  "bot_share": 0.4838,
+  "edits": 2136,
+  "bot_share": 0.5969,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 748
+    "edits": 718
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 559
+    "edits": 373
    },
    {
     "wiki": "enwiki",
-    "edits": 318
-   },
-   {
-    "wiki": "plwiki",
-    "edits": 139
+    "edits": 275
    },
    {
     "wiki": "arwiki",
-    "edits": 138
+    "edits": 122
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 100
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q140764272",
-    "edits": 38
+    "title": "Q113350495",
+    "edits": 18
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140764263",
-    "edits": 35
+    "title": "Q142241242",
+    "edits": 12
+   },
+   {
+    "wiki": "arwiki",
+    "title": "\u0623\u0648\u0642\u0627\u062a \u0633\u0631\u064a\u0639\u0629 \u0641\u064a \u0631\u064a\u062f\u062c\u0645\u0648\u0646\u062a \u0647\u0627\u064a",
+    "edits": 10
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140764260",
-    "edits": 19
+    "title": "Q142238562",
+    "edits": 10
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q140764267",
-    "edits": 13
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q140764249",
-    "edits": 11
+    "title": "Q142237719",
+    "edits": 8
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 45927,
-  "silver.recentchange": 45927,
+  "bronze.recentchange": 45429,
+  "silver.recentchange": 45429,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 801,
+  "gold.edits_per_wiki_hour": 798,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44941495200"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44966957548"
  },
  "schema_version": 1
 }
