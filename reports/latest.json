@@ -1,52 +1,52 @@
 {
- "run_id": "20261122T003109Z",
+ "run_id": "20261122T081558Z",
  "trigger": "schedule",
- "started_at": "2026-11-22T00:31:09Z",
+ "started_at": "2026-11-22T08:15:58Z",
  "status": "passed",
- "finished_at": "2026-11-22T00:35:06Z",
- "duration_s": 236.51,
+ "finished_at": "2026-11-22T08:19:40Z",
+ "duration_s": 222.08,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.3,
-  "events": 3746,
-  "bytes": 4991356,
-  "window_start": "2026-11-22T00:31:09Z",
-  "window_end": "2026-11-22T00:33:09Z"
+  "sample_seconds": 120.1,
+  "events": 4289,
+  "bytes": 5727256,
+  "window_start": "2026-11-22T08:15:57Z",
+  "window_end": "2026-11-22T08:17:58Z"
  },
  "partitions": [
-  "2026-11-22T00"
+  "2026-11-22T08"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-22T00:31:09Z",
-   "duration_s": 120.25,
+   "started_at": "2026-11-22T08:15:58Z",
+   "duration_s": 120.14,
    "rows_in": null,
-   "rows_out": 3746,
+   "rows_out": 4289,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:10Z",
-   "duration_s": 11.43,
-   "rows_in": 3746,
-   "rows_out": 3746,
+   "started_at": "2026-11-22T08:17:58Z",
+   "duration_s": 8.86,
+   "rows_in": 4289,
+   "rows_out": 4289,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-22T00"
+     "2026-11-22T08"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:21Z",
-   "duration_s": 0.24,
-   "rows_in": 3746,
+   "started_at": "2026-11-22T08:18:07Z",
+   "duration_s": 0.17,
+   "rows_in": 4289,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:21Z",
-   "duration_s": 7.46,
-   "rows_in": 3746,
-   "rows_out": 3746,
+   "started_at": "2026-11-22T08:18:07Z",
+   "duration_s": 5.99,
+   "rows_in": 4289,
+   "rows_out": 4289,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:29Z",
-   "duration_s": 9.61,
-   "rows_in": 3746,
-   "rows_out": 86,
+   "started_at": "2026-11-22T08:18:13Z",
+   "duration_s": 6.95,
+   "rows_in": 4289,
+   "rows_out": 92,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 75,
+     "gold.edits_per_wiki_hour": 81,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:38Z",
-   "duration_s": 3.01,
+   "started_at": "2026-11-22T08:18:20Z",
+   "duration_s": 2.31,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-22T00:33:41Z",
-   "duration_s": 84.51,
+   "started_at": "2026-11-22T08:18:22Z",
+   "duration_s": 77.67,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 8577,
+    "rows_deleted": 7522,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3746,
-  "bronze": 3746,
-  "silver": 3746,
+  "landed": 4289,
+  "bronze": 4289,
+  "silver": 4289,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "6f57fc84-ee35-48b1-8e62-497c4024deac",
-   "event_ts": "2026-11-22T00:33:06.451000Z",
+   "event_id": "8939d4ef-0844-4593-bbe6-80bc0b2bb2b0",
+   "event_ts": "2026-11-22T08:17:53.707000Z",
+   "wiki": "arwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "\u0645\u0633\u062a\u062e\u062f\u0645:Wael Almohtaseb",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "efe57922-b707-4987-9e5a-9418859ffbaf",
+   "event_ts": "2026-11-22T08:16:19.978000Z",
    "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Domenico Schiattarella",
+   "title": "Tyler Hopperton",
    "is_bot": false,
-   "length_old": 17414,
-   "length_new": 17462
+   "length_old": 7361,
+   "length_new": 7390
   },
   {
-   "event_id": "e8a61c74-513b-48ef-8463-c7516b1f1a1f",
-   "event_ts": "2026-11-22T00:32:11.519000Z",
+   "event_id": "73198415-0887-44c4-aeb7-db768827e701",
+   "event_ts": "2026-11-22T08:16:47.995000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:The Daily Express. (San Antonio, Tex.), Vol. 44, No. 178, Ed. 1 Sunday, June 27, 1909 - DPLA - 6ebfa0aa034a552fe80326eed5bc8101 (page 8).jpg",
+   "is_bot": true,
+   "length_old": 60715,
+   "length_new": 63094
+  },
+  {
+   "event_id": "865faa87-c0e8-49cf-a916-72c76d96db31",
+   "event_ts": "2026-11-22T08:16:13.444000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:New Hampshire's 1st congressional district",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f1549513-31cd-407f-a177-29375401d64b",
+   "event_ts": "2026-11-22T08:17:23.546000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Biography articles without blp parameter",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ada3b415-f8f5-42c8-a903-4a28735dc797",
+   "event_ts": "2026-11-22T08:17:28.603000Z",
+   "wiki": "arwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "\u0645\u0633\u062a\u062e\u062f\u0645:Ribhim",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f9da7e08-9a2a-4894-8a1c-09c294ab4c69",
+   "event_ts": "2026-11-22T08:16:27.985000Z",
    "wiki": "arwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0623\u0639\u0636\u0627\u0621 \u0647\u064a\u0626\u0629 \u062a\u062f\u0631\u064a\u0633 \u0645\u0639\u0647\u062f \u0627\u0644\u062f\u0631\u0627\u0633\u0627\u062a \u0627\u0644\u0633\u064a\u0627\u0633\u064a\u0629 \u0628\u0628\u0627\u0631\u064a\u0633",
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0634\u0631\u0643\u0627\u062a \u062e\u062f\u0645\u0627\u062a \u0645\u0627\u0644\u064a\u0629 \u0623\u0645\u0631\u064a\u0643\u064a\u0629",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "0b1916ab-e8da-4070-80eb-719ce7933c7c",
-   "event_ts": "2026-11-22T00:31:56.597000Z",
-   "wiki": "viwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u00d6zg\u00fcrler, Ere\u011fli",
-   "is_bot": true,
-   "length_old": 1958,
-   "length_new": 1964
+   "event_id": "b3372aa2-4e4a-4136-a7b0-696396f1b91d",
+   "event_ts": "2026-11-22T08:17:38.238000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using infobox mapframe with missing coordinates",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
   },
   {
-   "event_id": "92d83adf-6407-4f8d-9fb0-1d02bfa7a287",
-   "event_ts": "2026-11-22T00:33:04.107000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:CTA 70 Division bus at Division St canal bridge - Chicago, IL - May 2026.jpg",
-   "is_bot": true,
-   "length_old": 1894,
-   "length_new": 5223
-  },
-  {
-   "event_id": "e4b20624-82dc-491b-b3ba-7b7dd2f54612",
-   "event_ts": "2026-11-22T00:32:08.250000Z",
+   "event_id": "efee589b-481d-478e-809e-0496b1693f20",
+   "event_ts": "2026-11-22T08:16:08.330000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q95338672",
+   "title": "Q21050289",
    "is_bot": false,
-   "length_old": 9081,
-   "length_new": 10565
+   "length_old": 4957,
+   "length_new": 4873
   },
   {
-   "event_id": "3a39291f-f1b2-4164-84a7-68a2f7e86bf7",
-   "event_ts": "2026-11-22T00:33:03.453000Z",
-   "wiki": "arwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u0623\u0648\u0642\u0627\u062a \u0642\u0627\u0633\u064a\u0629",
-   "is_bot": true,
-   "length_old": 3877,
-   "length_new": 3819
-  },
-  {
-   "event_id": "016926a4-0062-4f6c-92bd-17b05b57107c",
-   "event_ts": "2026-11-22T00:32:11.144000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 158).jpg",
+   "event_id": "1bd251aa-a06c-4049-bba8-889640d93f54",
+   "event_ts": "2026-11-22T08:16:43.880000Z",
+   "wiki": "ukwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u044f:\u041f\u043b\u0430\u0437\u0443\u043d\u0438 \u041a\u0430\u043c\u0431\u043e\u0434\u0436\u0456",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "3472b029-f7a3-407f-9b8d-7849af7a3bfa",
-   "event_ts": "2026-11-22T00:31:28.976000Z",
-   "wiki": "arwiki",
+   "event_id": "0fac8979-f7bf-49cb-8ee2-be5b51f9ec0f",
+   "event_ts": "2026-11-22T08:17:55.561000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u0642\u0645\u0629 \u0636\u0641\u062a\u064a \u0627\u0644\u0628\u062d\u0631 \u0627\u0644\u0623\u0628\u064a\u0636 \u0627\u0644\u0645\u062a\u0648\u0633\u0637",
-   "is_bot": true,
-   "length_old": 12752,
-   "length_new": 12838
-  },
-  {
-   "event_id": "afd0a10c-c008-46b6-88fe-b4bd7f0789c0",
-   "event_ts": "2026-11-22T00:32:28.729000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 207).jpg",
+   "title": "Yoshinofuji Naoya",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 14620,
+   "length_new": 14622
   },
   {
-   "event_id": "9ce54fde-be11-491f-b519-ab10857a84a2",
-   "event_ts": "2026-11-22T00:31:57.910000Z",
-   "wiki": "arwiki",
+   "event_id": "9f9ac9e3-fcdb-447a-8531-9228d981d412",
+   "event_ts": "2026-11-22T08:17:39.831000Z",
+   "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u0623\u0648\u0641\u064a\u0646 \u0641\u0648\u0646 \u0648\u0644\u064a\u0645\u0632",
-   "is_bot": true,
-   "length_old": 8109,
-   "length_new": 8030
-  },
-  {
-   "event_id": "4742622c-332d-4b42-a91e-1ba5ce45665b",
-   "event_ts": "2026-11-22T00:32:40.912000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Number 642 (Part 2 of 2) - DPLA - a4a3790ae5fa5209e514ed11b203e39d (page 229).jpg",
+   "title": "Q24902166",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "4b49b4df-c0c2-487f-ab18-0c1071df1ca4",
-   "event_ts": "2026-11-22T00:31:53.570000Z",
-   "wiki": "dewiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Burjaten",
-   "is_bot": false,
-   "length_old": 10105,
-   "length_new": 9993
+   "length_old": 6844,
+   "length_new": 6750
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3746,
+   "observed": 4289,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3746,
-    "silver": 3746,
+    "bronze": 4289,
+    "silver": 4289,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2136,
-    "gold_edits": 2136
+    "silver_edits": 2440,
+    "gold_edits": 2440
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2136,
-  "bot_share": 0.5969,
+  "edits": 2440,
+  "bot_share": 0.4676,
   "top_wikis": [
    {
-    "wiki": "commonswiki",
-    "edits": 718
-   },
-   {
     "wiki": "wikidatawiki",
-    "edits": 373
+    "edits": 830
    },
    {
-    "wiki": "enwiki",
-    "edits": 275
+    "wiki": "commonswiki",
+    "edits": 707
    },
    {
     "wiki": "arwiki",
-    "edits": 122
+    "edits": 202
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 125
    },
    {
     "wiki": "zhwikisource",
-    "edits": 100
+    "edits": 107
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q113350495",
-    "edits": 18
+    "title": "Q140572162",
+    "edits": 59
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142241242",
-    "edits": 12
+    "title": "Q140572169",
+    "edits": 57
    },
    {
-    "wiki": "arwiki",
-    "title": "\u0623\u0648\u0642\u0627\u062a \u0633\u0631\u064a\u0639\u0629 \u0641\u064a \u0631\u064a\u062f\u062c\u0645\u0648\u0646\u062a \u0647\u0627\u064a",
+    "wiki": "wikidatawiki",
+    "title": "Q140572183",
+    "edits": 31
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140572168",
     "edits": 10
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142238562",
+    "title": "Q142241459",
     "edits": 10
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q142237719",
-    "edits": 8
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 45429,
-  "silver.recentchange": 45429,
+  "bronze.recentchange": 45999,
+  "silver.recentchange": 45999,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 798,
+  "gold.edits_per_wiki_hour": 806,
   "gold.bot_share_hour": 10,
   "gold.top_pages_hour": 100,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/44966957548"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45001944236"
  },
  "schema_version": 1
 }

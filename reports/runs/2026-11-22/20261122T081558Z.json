@@ -1,0 +1,410 @@
+{
+ "run_id": "20261122T081558Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-22T08:15:58Z",
+ "status": "passed",
+ "finished_at": "2026-11-22T08:19:40Z",
+ "duration_s": 222.08,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4289,
+  "bytes": 5727256,
+  "window_start": "2026-11-22T08:15:57Z",
+  "window_end": "2026-11-22T08:17:58Z"
+ },
+ "partitions": [
+  "2026-11-22T08"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-22T08:15:58Z",
+   "duration_s": 120.14,
+   "rows_in": null,
+   "rows_out": 4289,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-22T08:17:58Z",
+   "duration_s": 8.86,
+   "rows_in": 4289,
+   "rows_out": 4289,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-22T08"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-22T08:18:07Z",
+   "duration_s": 0.17,
+   "rows_in": 4289,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-22T08:18:07Z",
+   "duration_s": 5.99,
+   "rows_in": 4289,
+   "rows_out": 4289,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-22T08:18:13Z",
+   "duration_s": 6.95,
+   "rows_in": 4289,
+   "rows_out": 92,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 81,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-22T08:18:20Z",
+   "duration_s": 2.31,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-22T08:18:22Z",
+   "duration_s": 77.67,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7522,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4289,
+  "bronze": 4289,
+  "silver": 4289,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "8939d4ef-0844-4593-bbe6-80bc0b2bb2b0",
+   "event_ts": "2026-11-22T08:17:53.707000Z",
+   "wiki": "arwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "\u0645\u0633\u062a\u062e\u062f\u0645:Wael Almohtaseb",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "efe57922-b707-4987-9e5a-9418859ffbaf",
+   "event_ts": "2026-11-22T08:16:19.978000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Tyler Hopperton",
+   "is_bot": false,
+   "length_old": 7361,
+   "length_new": 7390
+  },
+  {
+   "event_id": "73198415-0887-44c4-aeb7-db768827e701",
+   "event_ts": "2026-11-22T08:16:47.995000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:The Daily Express. (San Antonio, Tex.), Vol. 44, No. 178, Ed. 1 Sunday, June 27, 1909 - DPLA - 6ebfa0aa034a552fe80326eed5bc8101 (page 8).jpg",
+   "is_bot": true,
+   "length_old": 60715,
+   "length_new": 63094
+  },
+  {
+   "event_id": "865faa87-c0e8-49cf-a916-72c76d96db31",
+   "event_ts": "2026-11-22T08:16:13.444000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:New Hampshire's 1st congressional district",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f1549513-31cd-407f-a177-29375401d64b",
+   "event_ts": "2026-11-22T08:17:23.546000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Biography articles without blp parameter",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ada3b415-f8f5-42c8-a903-4a28735dc797",
+   "event_ts": "2026-11-22T08:17:28.603000Z",
+   "wiki": "arwiki",
+   "change_type": "log",
+   "namespace": 2,
+   "title": "\u0645\u0633\u062a\u062e\u062f\u0645:Ribhim",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f9da7e08-9a2a-4894-8a1c-09c294ab4c69",
+   "event_ts": "2026-11-22T08:16:27.985000Z",
+   "wiki": "arwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0634\u0631\u0643\u0627\u062a \u062e\u062f\u0645\u0627\u062a \u0645\u0627\u0644\u064a\u0629 \u0623\u0645\u0631\u064a\u0643\u064a\u0629",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b3372aa2-4e4a-4136-a7b0-696396f1b91d",
+   "event_ts": "2026-11-22T08:17:38.238000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using infobox mapframe with missing coordinates",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "efee589b-481d-478e-809e-0496b1693f20",
+   "event_ts": "2026-11-22T08:16:08.330000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q21050289",
+   "is_bot": false,
+   "length_old": 4957,
+   "length_new": 4873
+  },
+  {
+   "event_id": "1bd251aa-a06c-4049-bba8-889640d93f54",
+   "event_ts": "2026-11-22T08:16:43.880000Z",
+   "wiki": "ukwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u041a\u0430\u0442\u0435\u0433\u043e\u0440\u0456\u044f:\u041f\u043b\u0430\u0437\u0443\u043d\u0438 \u041a\u0430\u043c\u0431\u043e\u0434\u0436\u0456",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0fac8979-f7bf-49cb-8ee2-be5b51f9ec0f",
+   "event_ts": "2026-11-22T08:17:55.561000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Yoshinofuji Naoya",
+   "is_bot": false,
+   "length_old": 14620,
+   "length_new": 14622
+  },
+  {
+   "event_id": "9f9ac9e3-fcdb-447a-8531-9228d981d412",
+   "event_ts": "2026-11-22T08:17:39.831000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q24902166",
+   "is_bot": false,
+   "length_old": 6844,
+   "length_new": 6750
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4289,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4289,
+    "silver": 4289,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2440,
+    "gold_edits": 2440
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2440,
+  "bot_share": 0.4676,
+  "top_wikis": [
+   {
+    "wiki": "wikidatawiki",
+    "edits": 830
+   },
+   {
+    "wiki": "commonswiki",
+    "edits": 707
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 202
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 125
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 107
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140572162",
+    "edits": 59
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140572169",
+    "edits": 57
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140572183",
+    "edits": 31
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140572168",
+    "edits": 10
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142241459",
+    "edits": 10
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 45999,
+  "silver.recentchange": 45999,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 806,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45001944236"
+ },
+ "schema_version": 1
+}
