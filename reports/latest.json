@@ -1,52 +1,52 @@
 {
- "run_id": "20261123T035024Z",
+ "run_id": "20261123T150229Z",
  "trigger": "schedule",
- "started_at": "2026-11-23T03:50:24Z",
+ "started_at": "2026-11-23T15:02:29Z",
  "status": "passed",
- "finished_at": "2026-11-23T03:53:50Z",
- "duration_s": 205.99,
+ "finished_at": "2026-11-23T15:06:16Z",
+ "duration_s": 227.0,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.1,
-  "events": 4593,
-  "bytes": 6029574,
-  "window_start": "2026-11-23T03:50:24Z",
-  "window_end": "2026-11-23T03:52:24Z"
+  "sample_seconds": 120.0,
+  "events": 4439,
+  "bytes": 5731856,
+  "window_start": "2026-11-23T15:02:30Z",
+  "window_end": "2026-11-23T15:04:29Z"
  },
  "partitions": [
-  "2026-11-23T03"
+  "2026-11-23T15"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-23T03:50:24Z",
-   "duration_s": 120.05,
+   "started_at": "2026-11-23T15:02:29Z",
+   "duration_s": 120.0,
    "rows_in": null,
-   "rows_out": 4593,
+   "rows_out": 4439,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:24Z",
-   "duration_s": 8.49,
-   "rows_in": 4593,
-   "rows_out": 4593,
+   "started_at": "2026-11-23T15:04:29Z",
+   "duration_s": 9.58,
+   "rows_in": 4439,
+   "rows_out": 4439,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-23T03"
+     "2026-11-23T15"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:32Z",
+   "started_at": "2026-11-23T15:04:39Z",
    "duration_s": 0.17,
-   "rows_in": 4593,
+   "rows_in": 4439,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:32Z",
-   "duration_s": 5.7,
-   "rows_in": 4593,
-   "rows_out": 4593,
+   "started_at": "2026-11-23T15:04:39Z",
+   "duration_s": 6.91,
+   "rows_in": 4439,
+   "rows_out": 4439,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:38Z",
-   "duration_s": 6.95,
-   "rows_in": 4593,
-   "rows_out": 85,
+   "started_at": "2026-11-23T15:04:46Z",
+   "duration_s": 8.28,
+   "rows_in": 4439,
+   "rows_out": 110,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 74,
+     "gold.edits_per_wiki_hour": 99,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:45Z",
-   "duration_s": 2.31,
+   "started_at": "2026-11-23T15:04:54Z",
+   "duration_s": 2.62,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-23T03:52:47Z",
-   "duration_s": 62.32,
+   "started_at": "2026-11-23T15:04:57Z",
+   "duration_s": 79.43,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 7675,
+    "rows_deleted": 19612,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4593,
-  "bronze": 4593,
-  "silver": 4593,
+  "landed": 4439,
+  "bronze": 4439,
+  "silver": 4439,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "98978104-5669-4df1-bcc2-eb27b2553554",
-   "event_ts": "2026-11-23T03:51:32.916000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "9d39318a-62c8-4a3f-a774-64b63f6c6ea7",
+   "event_ts": "2026-11-23T15:03:58.005000Z",
+   "wiki": "cebwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q60674732",
-   "is_bot": false,
-   "length_old": 60733,
-   "length_new": 61039
-  },
-  {
-   "event_id": "986165b0-36d7-4f39-88da-53d2fe75fb09",
-   "event_ts": "2026-11-23T03:50:42.023000Z",
-   "wiki": "commonswiki",
-   "change_type": "log",
-   "namespace": 6,
-   "title": "File:Number 831 - DPLA - 138ca7a655fb9ab126e50b25a518b41c (page 1057).jpg",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "f904017b-a184-4f97-8ac4-ef8eefb15837",
-   "event_ts": "2026-11-23T03:51:57.934000Z",
-   "wiki": "zhwikisource",
-   "change_type": "new",
-   "namespace": 104,
-   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0605\u518a.djvu/730",
+   "title": "Muskeg Lake 102B",
    "is_bot": true,
-   "length_old": null,
-   "length_new": 2414
+   "length_old": 5302,
+   "length_new": 5318
   },
   {
-   "event_id": "5dfec733-80af-4a8f-9ab4-44da33908218",
-   "event_ts": "2026-11-23T03:51:55.888000Z",
+   "event_id": "780e4815-3016-452e-8c42-a50667611b8a",
+   "event_ts": "2026-11-23T15:04:28.187000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Flickr images missing SDC published in",
+   "title": "Category:Pages with local object coordinates and missing SDC coordinates",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "9b36b307-bee1-4211-b13d-0dc1fa0e5b8f",
-   "event_ts": "2026-11-23T03:51:24.323000Z",
-   "wiki": "arwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u062d\u062c\u0631\u064a \u0627\u0644\u0642\u062f\u064a\u0645",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "e3758a4e-4dfe-45cb-a704-3ed8199984be",
-   "event_ts": "2026-11-23T03:51:49.456000Z",
+   "event_id": "f6fe6b4f-5142-4306-973d-8d2e7f8f7773",
+   "event_ts": "2026-11-23T15:03:54.717000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:PD-old missing SDC copyright status",
+   "title": "Category:360\u00b0 panoramas",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "9913768e-0b2a-4eab-8027-5b84ccf0d563",
-   "event_ts": "2026-11-23T03:50:51.344000Z",
+   "event_id": "aaed48db-886a-4b66-ac61-97f0bd69b712",
+   "event_ts": "2026-11-23T15:04:19.069000Z",
+   "wiki": "mgwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Sokajy:Endriky ny matoanteny amin'ny teny astoriana",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "b6799f5b-03ac-43c3-b652-62f0f4daa172",
+   "event_ts": "2026-11-23T15:04:13.109000Z",
+   "wiki": "simplewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Hamz Cup",
+   "is_bot": false,
+   "length_old": 7008,
+   "length_new": 7030
+  },
+  {
+   "event_id": "904827e7-9519-4037-b310-02c608518f90",
+   "event_ts": "2026-11-23T15:04:04.173000Z",
+   "wiki": "cebwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Muskeg Lake 102D",
+   "is_bot": true,
+   "length_old": 5302,
+   "length_new": 5318
+  },
+  {
+   "event_id": "ade6031d-30c0-456e-a982-7809c8de00ef",
+   "event_ts": "2026-11-23T15:02:44.218000Z",
+   "wiki": "enwikisource",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "The Castle (Kafka)",
+   "is_bot": false,
+   "length_old": 1190,
+   "length_new": 1250
+  },
+  {
+   "event_id": "c4aa4a68-1383-4033-8b07-df0c437c78a9",
+   "event_ts": "2026-11-23T15:04:09.712000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Acting Secretary Keith E Sonderling stops at world famous Cuban restaurant, Cafe Versailles (55487428859).jpg",
+   "title": "File:Ikona Svetog Nikole i krst u Dobrom Potoku - Krupanj, Srbija.jpg",
    "is_bot": true,
-   "length_old": 603,
-   "length_new": 796
+   "length_old": 3566,
+   "length_new": 6895
   },
   {
-   "event_id": "7ab8b54a-b1c1-4deb-aafc-377a10eccdf2",
-   "event_ts": "2026-11-23T03:51:57.156000Z",
-   "wiki": "enwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Articles with dead external links from November 2026",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "a57e1491-e4ce-4f94-9e39-bb20ec62d5df",
-   "event_ts": "2026-11-23T03:51:53.338000Z",
-   "wiki": "arwiki",
+   "event_id": "b6a1b07f-f899-4894-9dd6-e2f730a102bb",
+   "event_ts": "2026-11-23T15:04:08.128000Z",
+   "wiki": "jawiki",
    "change_type": "edit",
-   "namespace": 14,
-   "title": "\u062a\u0635\u0646\u064a\u0641:\u062a\u0642\u0646\u064a\u0629 \u0641\u0643\u0631\u064a\u0629",
-   "is_bot": true,
-   "length_old": 257,
-   "length_new": 233
-  },
-  {
-   "event_id": "81d35c17-9490-411f-80ce-9bfe1ee18ce4",
-   "event_ts": "2026-11-23T03:50:37.862000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:PD-Australia",
+   "namespace": 0,
+   "title": "\u95a2\u897f\u9ad8\u901f\u9244\u9053",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 10299,
+   "length_new": 10326
   },
   {
-   "event_id": "4d1b8fc5-1619-4fd7-a384-ae417be04d1c",
-   "event_ts": "2026-11-23T03:51:40.840000Z",
+   "event_id": "84175307-b9fa-4a34-8b06-6b62e635431e",
+   "event_ts": "2026-11-23T15:03:00.962000Z",
+   "wiki": "itwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Canzano",
+   "is_bot": false,
+   "length_old": 21943,
+   "length_new": 22117
+  },
+  {
+   "event_id": "487cdd4c-7a03-4bb7-93aa-3be63f53fbbc",
+   "event_ts": "2026-11-23T15:04:15.559000Z",
+   "wiki": "frwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Tomislav Barbari\u0107",
+   "is_bot": false,
+   "length_old": 4353,
+   "length_new": 4316
+  },
+  {
+   "event_id": "448c4772-eed9-42fa-8a09-d0b283d21924",
+   "event_ts": "2026-11-23T15:03:29.200000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Gemahlte Blumen, Inventarnummer G31F (528).jpg",
+   "title": "File:Hurricane Katrina, Louisiana. (Damage, cleanup, city views, emergency centers, HUD personnel.) - DPLA - acc7d0460a63647d074fd584215c210b.jpg",
    "is_bot": true,
-   "length_old": 718,
-   "length_new": 2589
-  },
-  {
-   "event_id": "569112cf-0f6d-4303-b2c1-0a0394e5809b",
-   "event_ts": "2026-11-23T03:51:05.214000Z",
-   "wiki": "lvwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Kategorija:Izol\u0113tie raksti",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
+   "length_old": 34235,
+   "length_new": 36692
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4593,
+   "observed": 4439,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4593,
-    "silver": 4593,
+    "bronze": 4439,
+    "silver": 4439,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 1994,
-    "gold_edits": 1994
+    "silver_edits": 2228,
+    "gold_edits": 2228
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 1994,
-  "bot_share": 0.6901,
+  "edits": 2228,
+  "bot_share": 0.5319,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 661
+    "edits": 698
    },
    {
     "wiki": "enwiki",
-    "edits": 304
-   },
-   {
-    "wiki": "arwiki",
-    "edits": 174
+    "edits": 279
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 144
+    "edits": 252
    },
    {
-    "wiki": "zhwikisource",
+    "wiki": "arwiki",
+    "edits": 142
+   },
+   {
+    "wiki": "ttwiki",
     "edits": 108
    }
   ],
   "top_pages": [
    {
-    "wiki": "wikidatawiki",
-    "title": "Q142256519",
-    "edits": 10
+    "wiki": "arwiki",
+    "title": "\u0625\u064a\u0645\u0627\u0646\u0648\u064a\u0644 \u0643\u0627\u0646\u0637",
+    "edits": 11
    },
    {
-    "wiki": "wikidatawiki",
-    "title": "Q142256498",
-    "edits": 7
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q60674732",
+    "wiki": "frwiki",
+    "title": "Dolichopteroidea",
     "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q7014503",
+    "title": "Q142261954",
     "edits": 6
    },
    {
-    "wiki": "zhwiki",
-    "title": "Wikipedia:\u4eba\u5de5\u667a\u80fd\u5e03\u544a\u677f/\u8ffd\u8e2a/2026-11-05 \u53e4\u5b50\u4e2d\u4eba",
-    "edits": 6
+    "wiki": "wikidatawiki",
+    "title": "Q125116541",
+    "edits": 5
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q140314790",
+    "edits": 5
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 51012,
-  "silver.recentchange": 51012,
+  "bronze.recentchange": 45732,
+  "silver.recentchange": 45732,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 876,
-  "gold.bot_share_hour": 11,
-  "gold.top_pages_hour": 110,
+  "gold.edits_per_wiki_hour": 823,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45108261356"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45200540592"
  },
  "schema_version": 1
 }
