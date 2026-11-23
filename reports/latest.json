@@ -1,52 +1,52 @@
 {
- "run_id": "20261122T223744Z",
+ "run_id": "20261123T035024Z",
  "trigger": "schedule",
- "started_at": "2026-11-22T22:37:44Z",
+ "started_at": "2026-11-23T03:50:24Z",
  "status": "passed",
- "finished_at": "2026-11-22T22:40:19Z",
- "duration_s": 155.43,
+ "finished_at": "2026-11-23T03:53:50Z",
+ "duration_s": 205.99,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 4116,
-  "bytes": 5451552,
-  "window_start": "2026-11-22T22:37:44Z",
-  "window_end": "2026-11-22T22:39:43Z"
+  "sample_seconds": 120.1,
+  "events": 4593,
+  "bytes": 6029574,
+  "window_start": "2026-11-23T03:50:24Z",
+  "window_end": "2026-11-23T03:52:24Z"
  },
  "partitions": [
-  "2026-11-22T22"
+  "2026-11-23T03"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-22T22:37:44Z",
-   "duration_s": 120.01,
+   "started_at": "2026-11-23T03:50:24Z",
+   "duration_s": 120.05,
    "rows_in": null,
-   "rows_out": 4116,
+   "rows_out": 4593,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-22T22:39:44Z",
-   "duration_s": 12.19,
-   "rows_in": 4116,
-   "rows_out": 4116,
+   "started_at": "2026-11-23T03:52:24Z",
+   "duration_s": 8.49,
+   "rows_in": 4593,
+   "rows_out": 4593,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-22T22"
+     "2026-11-23T03"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-22T22:39:56Z",
-   "duration_s": 0.2,
-   "rows_in": 4116,
+   "started_at": "2026-11-23T03:52:32Z",
+   "duration_s": 0.17,
+   "rows_in": 4593,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-22T22:39:56Z",
-   "duration_s": 7.86,
-   "rows_in": 4116,
-   "rows_out": 4116,
+   "started_at": "2026-11-23T03:52:32Z",
+   "duration_s": 5.7,
+   "rows_in": 4593,
+   "rows_out": 4593,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-22T22:40:04Z",
-   "duration_s": 9.81,
-   "rows_in": 4116,
-   "rows_out": 90,
+   "started_at": "2026-11-23T03:52:38Z",
+   "duration_s": 6.95,
+   "rows_in": 4593,
+   "rows_out": 85,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 79,
+     "gold.edits_per_wiki_hour": 74,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-22T22:40:14Z",
-   "duration_s": 3.31,
+   "started_at": "2026-11-23T03:52:45Z",
+   "duration_s": 2.31,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-22T22:40:17Z",
-   "duration_s": 2.06,
+   "started_at": "2026-11-23T03:52:47Z",
+   "duration_s": 62.32,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 0,
+    "rows_deleted": 7675,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4116,
-  "bronze": 4116,
-  "silver": 4116,
+  "landed": 4593,
+  "bronze": 4593,
+  "silver": 4593,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,134 +120,134 @@
  },
  "samples": [
   {
-   "event_id": "b5f4a268-6845-4507-95d4-0208a682eaa1",
-   "event_ts": "2026-11-22T22:39:00.031000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:20250323, Damallsvenskan, BK H\u00e4cken - Malm\u00f6 FF 101.jpg",
-   "is_bot": true,
-   "length_old": 6390,
-   "length_new": 8417
-  },
-  {
-   "event_id": "449508a5-dfdc-4294-aca0-1c535240d223",
-   "event_ts": "2026-11-22T22:38:12.030000Z",
-   "wiki": "zhwikisource",
-   "change_type": "new",
-   "namespace": 104,
-   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0584\u518a.djvu/236",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": 2360
-  },
-  {
-   "event_id": "fdc1e1bf-f629-4822-b99f-3b969111b3ba",
-   "event_ts": "2026-11-22T22:38:36.389000Z",
-   "wiki": "zhwikisource",
-   "change_type": "new",
-   "namespace": 104,
-   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0584\u518a.djvu/259",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": 2402
-  },
-  {
-   "event_id": "3d7ac897-ea30-46d0-86f1-08dc720309e1",
-   "event_ts": "2026-11-22T22:38:09.584000Z",
-   "wiki": "frwiki",
-   "change_type": "edit",
-   "namespace": 102,
-   "title": "Projet:Alimentation et gastronomie/\u00c9valuation/Index/35",
-   "is_bot": true,
-   "length_old": 50072,
-   "length_new": 50329
-  },
-  {
-   "event_id": "ba2f22c9-e1d0-4bb0-9c10-f22257bb2024",
-   "event_ts": "2026-11-22T22:38:49.312000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Media needing categories as of 22 November 2026",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "cf78cd25-2ad7-472e-83b9-a632eee633ed",
-   "event_ts": "2026-11-22T22:38:30.182000Z",
+   "event_id": "98978104-5669-4df1-bcc2-eb27b2553554",
+   "event_ts": "2026-11-23T03:51:32.916000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q128210453",
+   "title": "Q60674732",
    "is_bot": false,
-   "length_old": 4023,
-   "length_new": 4458
+   "length_old": 60733,
+   "length_new": 61039
   },
   {
-   "event_id": "2498f389-f2f1-4045-8a11-043e0f9ff386",
-   "event_ts": "2026-11-22T22:39:26.282000Z",
-   "wiki": "enwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Pages with deprecated parameters",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "c0a74911-db89-4592-9d55-874c7c2d96eb",
-   "event_ts": "2026-11-22T22:39:40.045000Z",
-   "wiki": "enwiki",
-   "change_type": "edit",
-   "namespace": 3,
-   "title": "User talk:Jawhite33",
-   "is_bot": true,
-   "length_old": 5265,
-   "length_new": 5259
-  },
-  {
-   "event_id": "2987b1f7-b260-4ed1-81c7-1fb7beea9e50",
-   "event_ts": "2026-11-22T22:37:46.098000Z",
-   "wiki": "jawiktionary",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "yo\u011furt",
-   "is_bot": true,
-   "length_old": 1397,
-   "length_new": 1401
-  },
-  {
-   "event_id": "9d27feff-d9c9-4ef2-b51f-059d915d9856",
-   "event_ts": "2026-11-22T22:37:47.519000Z",
+   "event_id": "986165b0-36d7-4f39-88da-53d2fe75fb09",
+   "event_ts": "2026-11-23T03:50:42.023000Z",
    "wiki": "commonswiki",
    "change_type": "log",
    "namespace": 6,
-   "title": "File:2026-11-12 Pr\u00eamio Eliane Anselmo de Educa\u00e7\u00e3o Antirracista, 002.jpg",
+   "title": "File:Number 831 - DPLA - 138ca7a655fb9ab126e50b25a518b41c (page 1057).jpg",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "cf094efb-71f4-47e7-ac92-eef5b5e68057",
-   "event_ts": "2026-11-22T22:39:35.261000Z",
+   "event_id": "f904017b-a184-4f97-8ac4-ef8eefb15837",
+   "event_ts": "2026-11-23T03:51:57.934000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0605\u518a.djvu/730",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2414
+  },
+  {
+   "event_id": "5dfec733-80af-4a8f-9ab4-44da33908218",
+   "event_ts": "2026-11-23T03:51:55.888000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Creative Commons Attribution-Share Alike missing SDC copyright status",
+   "title": "Category:Flickr images missing SDC published in",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "9b36b307-bee1-4211-b13d-0dc1fa0e5b8f",
+   "event_ts": "2026-11-23T03:51:24.323000Z",
+   "wiki": "arwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0627\u0644\u0639\u0635\u0631 \u0627\u0644\u062d\u062c\u0631\u064a \u0627\u0644\u0642\u062f\u064a\u0645",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "e3758a4e-4dfe-45cb-a704-3ed8199984be",
+   "event_ts": "2026-11-23T03:51:49.456000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD-old missing SDC copyright status",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "d379fe18-84e9-47fe-bfa4-c321c465d077",
-   "event_ts": "2026-11-22T22:39:15.875000Z",
+   "event_id": "9913768e-0b2a-4eab-8027-5b84ccf0d563",
+   "event_ts": "2026-11-23T03:50:51.344000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Acting Secretary Keith E Sonderling stops at world famous Cuban restaurant, Cafe Versailles (55487428859).jpg",
+   "is_bot": true,
+   "length_old": 603,
+   "length_new": 796
+  },
+  {
+   "event_id": "7ab8b54a-b1c1-4deb-aafc-377a10eccdf2",
+   "event_ts": "2026-11-23T03:51:57.156000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Articles with dead external links from November 2026",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "a57e1491-e4ce-4f94-9e39-bb20ec62d5df",
+   "event_ts": "2026-11-23T03:51:53.338000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u062a\u0642\u0646\u064a\u0629 \u0641\u0643\u0631\u064a\u0629",
+   "is_bot": true,
+   "length_old": 257,
+   "length_new": 233
+  },
+  {
+   "event_id": "81d35c17-9490-411f-80ce-9bfe1ee18ce4",
+   "event_ts": "2026-11-23T03:50:37.862000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Creative Commons Attribution-Share Alike 4.0 missing SDC copyright license",
+   "title": "Category:PD-Australia",
    "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4d1b8fc5-1619-4fd7-a384-ae417be04d1c",
+   "event_ts": "2026-11-23T03:51:40.840000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Gemahlte Blumen, Inventarnummer G31F (528).jpg",
+   "is_bot": true,
+   "length_old": 718,
+   "length_new": 2589
+  },
+  {
+   "event_id": "569112cf-0f6d-4303-b2c1-0a0394e5809b",
+   "event_ts": "2026-11-23T03:51:05.214000Z",
+   "wiki": "lvwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategorija:Izol\u0113tie raksti",
+   "is_bot": true,
    "length_old": null,
    "length_new": null
   }
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4116,
+   "observed": 4593,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4116,
-    "silver": 4116,
+    "bronze": 4593,
+    "silver": 4593,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2387,
-    "gold_edits": 2387
+    "silver_edits": 1994,
+    "gold_edits": 1994
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2387,
-  "bot_share": 0.5949,
+  "edits": 1994,
+  "bot_share": 0.6901,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 841
-   },
-   {
-    "wiki": "wikidatawiki",
-    "edits": 352
+    "edits": 661
    },
    {
     "wiki": "enwiki",
-    "edits": 338
+    "edits": 304
    },
    {
     "wiki": "arwiki",
-    "edits": 134
+    "edits": 174
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 144
    },
    {
     "wiki": "zhwikisource",
-    "edits": 114
+    "edits": 108
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q16186461",
-    "edits": 17
+    "title": "Q142256519",
+    "edits": 10
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142250093",
-    "edits": 9
+    "title": "Q142256498",
+    "edits": 7
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q112976568",
-    "edits": 8
+    "title": "Q60674732",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q216578",
-    "edits": 8
+    "title": "Q7014503",
+    "edits": 6
    },
    {
-    "wiki": "arwiki",
-    "title": "\u0625\u0644\u064a\u0632\u0627\u0628\u064a\u062b \u0627\u0646\u062f\u0631\u0648\u0632",
+    "wiki": "zhwiki",
+    "title": "Wikipedia:\u4eba\u5de5\u667a\u80fd\u5e03\u544a\u677f/\u8ffd\u8e2a/2026-11-05 \u53e4\u5b50\u4e2d\u4eba",
     "edits": 6
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 50209,
-  "silver.recentchange": 50209,
+  "bronze.recentchange": 51012,
+  "silver.recentchange": 51012,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 886,
+  "gold.edits_per_wiki_hour": 876,
   "gold.bot_share_hour": 11,
   "gold.top_pages_hour": 110,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45078745021"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45108261356"
  },
  "schema_version": 1
 }
