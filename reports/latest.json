@@ -1,52 +1,52 @@
 {
- "run_id": "20261124T140024Z",
+ "run_id": "20261124T233401Z",
  "trigger": "schedule",
- "started_at": "2026-11-24T14:00:24Z",
+ "started_at": "2026-11-24T23:34:01Z",
  "status": "passed",
- "finished_at": "2026-11-24T14:03:49Z",
- "duration_s": 204.82,
+ "finished_at": "2026-11-24T23:37:47Z",
+ "duration_s": 226.19,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
   "sample_seconds": 120.0,
-  "events": 4174,
-  "bytes": 5329492,
-  "window_start": "2026-11-24T14:00:24Z",
-  "window_end": "2026-11-24T14:02:24Z"
+  "events": 4455,
+  "bytes": 5736929,
+  "window_start": "2026-11-24T23:34:01Z",
+  "window_end": "2026-11-24T23:36:01Z"
  },
  "partitions": [
-  "2026-11-24T14"
+  "2026-11-24T23"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-24T14:00:24Z",
-   "duration_s": 120.04,
+   "started_at": "2026-11-24T23:34:01Z",
+   "duration_s": 120.01,
    "rows_in": null,
-   "rows_out": 4174,
+   "rows_out": 4455,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:24Z",
-   "duration_s": 8.15,
-   "rows_in": 4174,
-   "rows_out": 4174,
+   "started_at": "2026-11-24T23:36:01Z",
+   "duration_s": 10.03,
+   "rows_in": 4455,
+   "rows_out": 4455,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-24T14"
+     "2026-11-24T23"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:32Z",
-   "duration_s": 0.15,
-   "rows_in": 4174,
+   "started_at": "2026-11-24T23:36:11Z",
+   "duration_s": 0.17,
+   "rows_in": 4455,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:32Z",
-   "duration_s": 5.5,
-   "rows_in": 4174,
-   "rows_out": 4174,
+   "started_at": "2026-11-24T23:36:11Z",
+   "duration_s": 6.62,
+   "rows_in": 4455,
+   "rows_out": 4455,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:38Z",
-   "duration_s": 6.58,
-   "rows_in": 4174,
-   "rows_out": 101,
+   "started_at": "2026-11-24T23:36:18Z",
+   "duration_s": 8.17,
+   "rows_in": 4455,
+   "rows_out": 87,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 90,
+     "gold.edits_per_wiki_hour": 76,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:44Z",
-   "duration_s": 2.46,
+   "started_at": "2026-11-24T23:36:26Z",
+   "duration_s": 2.74,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-24T14:02:47Z",
-   "duration_s": 61.95,
+   "started_at": "2026-11-24T23:36:29Z",
+   "duration_s": 78.44,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 16212,
+    "rows_deleted": 9958,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4174,
-  "bronze": 4174,
-  "silver": 4174,
+  "landed": 4455,
+  "bronze": 4455,
+  "silver": 4455,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "98e87892-c096-4341-810a-71b929b43721",
-   "event_ts": "2026-11-24T14:01:53.119000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q132660428",
-   "is_bot": false,
-   "length_old": 7888,
-   "length_new": 9373
-  },
-  {
-   "event_id": "41a23928-95aa-46c4-9768-25494135901b",
-   "event_ts": "2026-11-24T14:00:26.088000Z",
-   "wiki": "afwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Kategorie:Taksonbalkbladsye wat 'n Wikidata-item benodig",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "96866b78-b832-477c-adda-c886e7017092",
-   "event_ts": "2026-11-24T14:02:16.385000Z",
-   "wiki": "enwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:English non-lemma forms",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "0be23d8f-4704-4dd9-a4aa-cb138b398c70",
-   "event_ts": "2026-11-24T14:00:49.981000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q98542315",
-   "is_bot": false,
-   "length_old": 2347,
-   "length_new": 2423
-  },
-  {
-   "event_id": "693430f4-ef33-4654-804c-784e657e02a0",
-   "event_ts": "2026-11-24T14:01:20.343000Z",
+   "event_id": "806a0fd2-b83b-4663-a45d-d2cc43811d9e",
+   "event_ts": "2026-11-24T23:35:15.583000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Hydrocarbon-Burner - DPLA - 5545ba3c1a14d965a99efa7d2cdac58f (page 2).jpg",
+   "title": "File:Evelyn Gitau In 2019 02.jpg",
    "is_bot": true,
-   "length_old": 1010,
-   "length_new": 4308
+   "length_old": 3842,
+   "length_new": 5869
   },
   {
-   "event_id": "ea8d8658-29e4-4a61-952b-eba26cf847b6",
-   "event_ts": "2026-11-24T14:01:03.145000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Cartes de visite in Mus\u00e9e Carnavalet",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "e77fb717-ee13-4f1c-a647-e218c45946db",
-   "event_ts": "2026-11-24T14:01:36.961000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:CC-PD-Mark",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "0263f216-ecae-425d-bf9c-4a9a28ef957a",
-   "event_ts": "2026-11-24T14:00:55.532000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 14,
-   "title": "Category:Flags of the Royal Welch",
-   "is_bot": false,
-   "length_old": 81,
-   "length_new": 81
-  },
-  {
-   "event_id": "c9c02e12-d436-4970-925b-4b0ccd279bbf",
-   "event_ts": "2026-11-24T14:01:03.327000Z",
-   "wiki": "enwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Pages using the DynamicPageList extension",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "4753d58c-74af-4b2b-aaa8-8c25d71b5e9a",
-   "event_ts": "2026-11-24T14:00:29.159000Z",
+   "event_id": "38c4dae1-0746-403a-bac9-9d47a520f347",
+   "event_ts": "2026-11-24T23:35:39.980000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Hydrocarbon-Burner. - DPLA - 13e0bb3cb135600b72179fdeb39803ac (page 3).jpg",
-   "is_bot": true,
-   "length_old": 1134,
-   "length_new": 4432
+   "title": "File:Mapillary (180989400563352, f5fuin6i7codt9euy10zwj) (likesopenstreetmap) 2017-05-12 15H26M25S000.jpg",
+   "is_bot": false,
+   "length_old": 6907,
+   "length_new": 6943
   },
   {
-   "event_id": "19a22710-3998-4893-a047-d77bb78bc907",
-   "event_ts": "2026-11-24T14:01:02.168000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
+   "event_id": "5c39d205-4680-49d8-82f5-c193ea3a1289",
+   "event_ts": "2026-11-24T23:34:29.709000Z",
+   "wiki": "ttwiki",
+   "change_type": "new",
    "namespace": 0,
-   "title": "Q21664611",
+   "title": "1996 TP51",
    "is_bot": true,
-   "length_old": 18718,
-   "length_new": 18727
+   "length_old": null,
+   "length_new": 30
   },
   {
-   "event_id": "06e8c77e-44da-47bb-8a18-186a69d98095",
-   "event_ts": "2026-11-24T14:01:08.318000Z",
-   "wiki": "enwiktionary",
+   "event_id": "dfede71b-bac1-4cb2-8bd5-aca35d104b82",
+   "event_ts": "2026-11-24T23:34:21.056000Z",
+   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Pages using catfix",
+   "title": "Category:ISS Expedition 75 Crew Earth Observations (dump)",
    "is_bot": true,
    "length_old": null,
    "length_new": null
+  },
+  {
+   "event_id": "b92c5cfa-ca72-4320-a579-80a0dc3541e4",
+   "event_ts": "2026-11-24T23:35:21.358000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Pride of Ahmedabad- Jama Masjid.jpg",
+   "is_bot": true,
+   "length_old": 7973,
+   "length_new": 9996
+  },
+  {
+   "event_id": "302ec3d6-0745-4ed5-b23e-9839e922211c",
+   "event_ts": "2026-11-24T23:34:18.753000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "log",
+   "namespace": 0,
+   "title": "Q142278009",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "15e161bb-49ee-47ec-9a1c-4b4dc9fe2794",
+   "event_ts": "2026-11-24T23:35:47.503000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "log",
+   "namespace": 0,
+   "title": "Q95290475",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "eed8b4f4-a818-492e-9f45-52a702095c98",
+   "event_ts": "2026-11-24T23:34:44.073000Z",
+   "wiki": "sqwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Etimologjia e Esperantos",
+   "is_bot": false,
+   "length_old": 26268,
+   "length_new": 26062
+  },
+  {
+   "event_id": "4e365f84-636b-416b-bab4-32799c6db3eb",
+   "event_ts": "2026-11-24T23:35:15.638000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Gekr\u00fcmmte Keule, Inventarnummer Eth313W (12).jpg",
+   "is_bot": true,
+   "length_old": 821,
+   "length_new": 834
+  },
+  {
+   "event_id": "3a05685b-7f32-43d5-a1ba-2821203a297b",
+   "event_ts": "2026-11-24T23:35:02.805000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q98541674",
+   "is_bot": false,
+   "length_old": 2604,
+   "length_new": 2690
+  },
+  {
+   "event_id": "59891cd4-0507-44da-800c-79460e4126b9",
+   "event_ts": "2026-11-24T23:35:26.546000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hypolimnas bolina Varied eggfly female 47 Philippine Pde Palm Beach L1010381a.jpg",
+   "is_bot": true,
+   "length_old": 4376,
+   "length_new": 6404
+  },
+  {
+   "event_id": "ec59803a-8074-4c6d-b983-27f0d10aeb38",
+   "event_ts": "2026-11-24T23:35:09.023000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:The A497 towards Llanystumdwy - geograph.org.uk - 8436234.jpg",
+   "is_bot": true,
+   "length_old": 59,
+   "length_new": 8501
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4174,
+   "observed": 4455,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4174,
-    "silver": 4174,
+    "bronze": 4455,
+    "silver": 4455,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2509,
-    "gold_edits": 2509
+    "silver_edits": 2499,
+    "gold_edits": 2499
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2509,
-  "bot_share": 0.4591,
+  "edits": 2499,
+  "bot_share": 0.6467,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 717
+    "edits": 751
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 680
+    "edits": 479
    },
    {
     "wiki": "enwiki",
-    "edits": 203
+    "edits": 367
    },
    {
-    "wiki": "arwiki",
-    "edits": 105
+    "wiki": "ttwiki",
+    "edits": 118
    },
    {
-    "wiki": "ruwiktionary",
-    "edits": 101
+    "wiki": "zhwikisource",
+    "edits": 112
    }
   ],
   "top_pages": [
    {
-    "wiki": "fawiki",
-    "title": "\u06f7\u06f1\u06f6",
-    "edits": 22
+    "wiki": "wikidatawiki",
+    "title": "Q142278839",
+    "edits": 11
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q90440262",
-    "edits": 15
+    "title": "Q142278843",
+    "edits": 8
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142273972",
+    "title": "Q142278836",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142278844",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142173423",
     "edits": 6
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q141548662",
-    "edits": 5
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q142273149",
-    "edits": 5
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 39424,
-  "silver.recentchange": 39424,
+  "bronze.recentchange": 38948,
+  "silver.recentchange": 38948,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 757,
+  "gold.edits_per_wiki_hour": 748,
   "gold.bot_share_hour": 9,
   "gold.top_pages_hour": 90,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45409203433"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45510919514"
  },
  "schema_version": 1
 }
