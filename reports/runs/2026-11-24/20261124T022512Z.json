@@ -1,0 +1,410 @@
+{
+ "run_id": "20261124T022512Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-24T02:25:12Z",
+ "status": "passed",
+ "finished_at": "2026-11-24T02:29:24Z",
+ "duration_s": 252.32,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 3667,
+  "bytes": 4887213,
+  "window_start": "2026-11-24T02:25:13Z",
+  "window_end": "2026-11-24T02:27:11Z"
+ },
+ "partitions": [
+  "2026-11-24T02"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-24T02:25:12Z",
+   "duration_s": 120.13,
+   "rows_in": null,
+   "rows_out": 3667,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:12Z",
+   "duration_s": 12.12,
+   "rows_in": 3667,
+   "rows_out": 3667,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-24T02"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:24Z",
+   "duration_s": 0.22,
+   "rows_in": 3667,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:24Z",
+   "duration_s": 8.24,
+   "rows_in": 3667,
+   "rows_out": 3667,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:33Z",
+   "duration_s": 9.92,
+   "rows_in": 3667,
+   "rows_out": 90,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 79,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:43Z",
+   "duration_s": 4.65,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-24T02:27:47Z",
+   "duration_s": 97.03,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 12354,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3667,
+  "bronze": 3667,
+  "silver": 3667,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "c867808a-9cd7-419c-9aa8-f898bf565328",
+   "event_ts": "2026-11-24T02:25:27.863000Z",
+   "wiki": "kowiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\ud53c\uc5b4\uc2f1",
+   "is_bot": false,
+   "length_old": 77859,
+   "length_new": 78257
+  },
+  {
+   "event_id": "bf4c9826-9ab9-47d2-bf88-3a0466452191",
+   "event_ts": "2026-11-24T02:25:51.282000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Mailand Dom Fassade-20101023-RM-234828.jpg",
+   "is_bot": true,
+   "length_old": 6784,
+   "length_new": 8811
+  },
+  {
+   "event_id": "a87327da-7249-4500-a5c2-98a7983dfdaa",
+   "event_ts": "2026-11-24T02:25:55.331000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Unsere Zeit, oder Geschichtliche Uebersicht der merkw\u00fcrdigsten Ereignisse von 1789 - 1830. 5 (IA 10409295bsb).pdf",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "2b9075d9-07c4-4e0b-bacb-670794bf0b65",
+   "event_ts": "2026-11-24T02:27:08.070000Z",
+   "wiki": "cebwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Renown Park",
+   "is_bot": true,
+   "length_old": 51075,
+   "length_new": 51091
+  },
+  {
+   "event_id": "c53a7b3f-5fb1-4186-91ca-53eeac556aeb",
+   "event_ts": "2026-11-24T02:25:20.185000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Mindelaltheim Heilig Kreuz 946 Johannes.JPG",
+   "is_bot": true,
+   "length_old": 4405,
+   "length_new": 6426
+  },
+  {
+   "event_id": "c5ee159e-a883-4ca0-a2e3-7be8c886abb9",
+   "event_ts": "2026-11-24T02:26:46.763000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "User:Rkott/HGNC category",
+   "is_bot": false,
+   "length_old": 14642,
+   "length_new": 17533
+  },
+  {
+   "event_id": "cd17a347-59dc-4194-9bcb-a117a80170de",
+   "event_ts": "2026-11-24T02:26:28.645000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Rapacejos001.JPG",
+   "is_bot": true,
+   "length_old": 7068,
+   "length_new": 9092
+  },
+  {
+   "event_id": "97762f58-4152-4677-b05a-ba0897a63be2",
+   "event_ts": "2026-11-24T02:25:24.879000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Model of a Turing machine.jpg",
+   "is_bot": true,
+   "length_old": 6374,
+   "length_new": 8397
+  },
+  {
+   "event_id": "16a7e120-01e7-4354-8575-bc852b2cf2fc",
+   "event_ts": "2026-11-24T02:25:14.418000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q452742",
+   "is_bot": false,
+   "length_old": 121599,
+   "length_new": 119677
+  },
+  {
+   "event_id": "98364736-ab5b-442b-930f-b20ac08a54e7",
+   "event_ts": "2026-11-24T02:26:20.345000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Kagoshima Shimazu Family Cemetery (Fukusho-ji Temple) VLux5 hdsr ci37.jpg",
+   "is_bot": true,
+   "length_old": 4836,
+   "length_new": 8165
+  },
+  {
+   "event_id": "c0420790-4828-4f1d-88b4-55d0c629b254",
+   "event_ts": "2026-11-24T02:25:57.887000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Leo A. Daly logo.png",
+   "is_bot": false,
+   "length_old": 190,
+   "length_new": 199
+  },
+  {
+   "event_id": "f4bd3849-bc7c-44d4-9b47-3b9b6d5453a6",
+   "event_ts": "2026-11-24T02:26:00.980000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 14,
+   "title": "\u062a\u0635\u0646\u064a\u0641:\u0639\u0631\u0648\u0636 \u062a\u0644\u0641\u0632\u064a\u0629 \u062a\u0642\u0639 \u0623\u062d\u062f\u0627\u062b\u0647\u0627 \u0641\u064a \u0646\u064a\u0648 \u0623\u0648\u0631\u0644\u064a\u0646\u0632",
+   "is_bot": true,
+   "length_old": 347,
+   "length_new": 273
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3667,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3667,
+    "silver": 3667,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2414,
+    "gold_edits": 2414
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2414,
+  "bot_share": 0.6052,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 723
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 674
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 277
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 136
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 114
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q117859575",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q57256424",
+    "edits": 11
+   },
+   {
+    "wiki": "arwiki",
+    "title": "\u0627\u0644\u0623\u0644\u0639\u0627\u0628 \u0627\u0644\u0623\u0648\u0644\u0645\u0628\u064a\u0629 \u0627\u0644\u0635\u064a\u0641\u064a\u0629 1964",
+    "edits": 7
+   },
+   {
+    "wiki": "arwiki",
+    "title": "\u0627\u0644\u0623\u0644\u0639\u0627\u0628 \u0627\u0644\u0623\u0648\u0644\u0645\u0628\u064a\u0629 \u0627\u0644\u0635\u064a\u0641\u064a\u0629 1972",
+    "edits": 7
+   },
+   {
+    "wiki": "urwiki",
+    "title": "\u0634\u0627\u0648\u0645\u06cc \u0627\u06cc\u0645 \u0622\u0626\u06cc \u0627\u0633\u0645\u0627\u0631\u0679 \u0628\u06cc\u0646\u0688 6",
+    "edits": 7
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 43267,
+  "silver.recentchange": 43267,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 823,
+  "gold.bot_share_hour": 10,
+  "gold.top_pages_hour": 100,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45312162718"
+ },
+ "schema_version": 1
+}
