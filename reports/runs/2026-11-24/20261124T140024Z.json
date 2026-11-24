@@ -1,0 +1,410 @@
+{
+ "run_id": "20261124T140024Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-24T14:00:24Z",
+ "status": "passed",
+ "finished_at": "2026-11-24T14:03:49Z",
+ "duration_s": 204.82,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 4174,
+  "bytes": 5329492,
+  "window_start": "2026-11-24T14:00:24Z",
+  "window_end": "2026-11-24T14:02:24Z"
+ },
+ "partitions": [
+  "2026-11-24T14"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-24T14:00:24Z",
+   "duration_s": 120.04,
+   "rows_in": null,
+   "rows_out": 4174,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:24Z",
+   "duration_s": 8.15,
+   "rows_in": 4174,
+   "rows_out": 4174,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-24T14"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:32Z",
+   "duration_s": 0.15,
+   "rows_in": 4174,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:32Z",
+   "duration_s": 5.5,
+   "rows_in": 4174,
+   "rows_out": 4174,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:38Z",
+   "duration_s": 6.58,
+   "rows_in": 4174,
+   "rows_out": 101,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 90,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:44Z",
+   "duration_s": 2.46,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-24T14:02:47Z",
+   "duration_s": 61.95,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 16212,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4174,
+  "bronze": 4174,
+  "silver": 4174,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "98e87892-c096-4341-810a-71b929b43721",
+   "event_ts": "2026-11-24T14:01:53.119000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q132660428",
+   "is_bot": false,
+   "length_old": 7888,
+   "length_new": 9373
+  },
+  {
+   "event_id": "41a23928-95aa-46c4-9768-25494135901b",
+   "event_ts": "2026-11-24T14:00:26.088000Z",
+   "wiki": "afwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategorie:Taksonbalkbladsye wat 'n Wikidata-item benodig",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "96866b78-b832-477c-adda-c886e7017092",
+   "event_ts": "2026-11-24T14:02:16.385000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:English non-lemma forms",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0be23d8f-4704-4dd9-a4aa-cb138b398c70",
+   "event_ts": "2026-11-24T14:00:49.981000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q98542315",
+   "is_bot": false,
+   "length_old": 2347,
+   "length_new": 2423
+  },
+  {
+   "event_id": "693430f4-ef33-4654-804c-784e657e02a0",
+   "event_ts": "2026-11-24T14:01:20.343000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hydrocarbon-Burner - DPLA - 5545ba3c1a14d965a99efa7d2cdac58f (page 2).jpg",
+   "is_bot": true,
+   "length_old": 1010,
+   "length_new": 4308
+  },
+  {
+   "event_id": "ea8d8658-29e4-4a61-952b-eba26cf847b6",
+   "event_ts": "2026-11-24T14:01:03.145000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Cartes de visite in Mus\u00e9e Carnavalet",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "e77fb717-ee13-4f1c-a647-e218c45946db",
+   "event_ts": "2026-11-24T14:01:36.961000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:CC-PD-Mark",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "0263f216-ecae-425d-bf9c-4a9a28ef957a",
+   "event_ts": "2026-11-24T14:00:55.532000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 14,
+   "title": "Category:Flags of the Royal Welch",
+   "is_bot": false,
+   "length_old": 81,
+   "length_new": 81
+  },
+  {
+   "event_id": "c9c02e12-d436-4970-925b-4b0ccd279bbf",
+   "event_ts": "2026-11-24T14:01:03.327000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using the DynamicPageList extension",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4753d58c-74af-4b2b-aaa8-8c25d71b5e9a",
+   "event_ts": "2026-11-24T14:00:29.159000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Hydrocarbon-Burner. - DPLA - 13e0bb3cb135600b72179fdeb39803ac (page 3).jpg",
+   "is_bot": true,
+   "length_old": 1134,
+   "length_new": 4432
+  },
+  {
+   "event_id": "19a22710-3998-4893-a047-d77bb78bc907",
+   "event_ts": "2026-11-24T14:01:02.168000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q21664611",
+   "is_bot": true,
+   "length_old": 18718,
+   "length_new": 18727
+  },
+  {
+   "event_id": "06e8c77e-44da-47bb-8a18-186a69d98095",
+   "event_ts": "2026-11-24T14:01:08.318000Z",
+   "wiki": "enwiktionary",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Pages using catfix",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4174,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4174,
+    "silver": 4174,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2509,
+    "gold_edits": 2509
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2509,
+  "bot_share": 0.4591,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 717
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 680
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 203
+   },
+   {
+    "wiki": "arwiki",
+    "edits": 105
+   },
+   {
+    "wiki": "ruwiktionary",
+    "edits": 101
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "fawiki",
+    "title": "\u06f7\u06f1\u06f6",
+    "edits": 22
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q90440262",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142273972",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q141548662",
+    "edits": 5
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142273149",
+    "edits": 5
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 39424,
+  "silver.recentchange": 39424,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 757,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45409203433"
+ },
+ "schema_version": 1
+}
