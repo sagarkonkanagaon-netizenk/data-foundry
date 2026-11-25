@@ -1,52 +1,52 @@
 {
- "run_id": "20261125T085422Z",
+ "run_id": "20261125T192833Z",
  "trigger": "schedule",
- "started_at": "2026-11-25T08:54:22Z",
+ "started_at": "2026-11-25T19:28:33Z",
  "status": "passed",
- "finished_at": "2026-11-25T08:58:40Z",
- "duration_s": 257.53,
+ "finished_at": "2026-11-25T19:32:17Z",
+ "duration_s": 223.6,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 4285,
-  "bytes": 5337677,
-  "window_start": "2026-11-25T08:54:23Z",
-  "window_end": "2026-11-25T08:56:22Z"
+  "sample_seconds": 120.1,
+  "events": 4364,
+  "bytes": 5634692,
+  "window_start": "2026-11-25T19:28:34Z",
+  "window_end": "2026-11-25T19:30:33Z"
  },
  "partitions": [
-  "2026-11-25T08"
+  "2026-11-25T19"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-25T08:54:22Z",
-   "duration_s": 120.04,
+   "started_at": "2026-11-25T19:28:33Z",
+   "duration_s": 120.1,
    "rows_in": null,
-   "rows_out": 4285,
+   "rows_out": 4364,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:22Z",
-   "duration_s": 12.94,
-   "rows_in": 4285,
-   "rows_out": 4285,
+   "started_at": "2026-11-25T19:30:33Z",
+   "duration_s": 9.75,
+   "rows_in": 4364,
+   "rows_out": 4364,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-25T08"
+     "2026-11-25T19"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:35Z",
-   "duration_s": 0.17,
-   "rows_in": 4285,
+   "started_at": "2026-11-25T19:30:43Z",
+   "duration_s": 0.21,
+   "rows_in": 4364,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:35Z",
-   "duration_s": 9.49,
-   "rows_in": 4285,
-   "rows_out": 4285,
+   "started_at": "2026-11-25T19:30:43Z",
+   "duration_s": 7.18,
+   "rows_in": 4364,
+   "rows_out": 4364,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:45Z",
-   "duration_s": 10.39,
-   "rows_in": 4285,
-   "rows_out": 98,
+   "started_at": "2026-11-25T19:30:50Z",
+   "duration_s": 8.99,
+   "rows_in": 4364,
+   "rows_out": 96,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 87,
+     "gold.edits_per_wiki_hour": 85,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:55Z",
-   "duration_s": 3.4,
+   "started_at": "2026-11-25T19:30:59Z",
+   "duration_s": 2.91,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-25T08:56:59Z",
-   "duration_s": 101.1,
+   "started_at": "2026-11-25T19:31:02Z",
+   "duration_s": 74.47,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 7578,
+    "rows_deleted": 19714,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4285,
-  "bronze": 4285,
-  "silver": 4285,
+  "landed": 4364,
+  "bronze": 4364,
+  "silver": 4364,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "a2544859-0809-4a6c-9d60-5e0be5672c8b",
-   "event_ts": "2026-11-25T08:54:38.039000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:\u6709\u811a\u672c\u9519\u8bef\u7684\u9875\u9762",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "b818f37d-69f8-44dc-99d8-353b9922eece",
-   "event_ts": "2026-11-25T08:54:27.421000Z",
-   "wiki": "dewiki",
+   "event_id": "1df57ffa-1ad8-4209-afd0-937bc1a9dde3",
+   "event_ts": "2026-11-25T19:30:33.090000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 2,
-   "title": "Benutzer:MrTuvalu",
-   "is_bot": false,
-   "length_old": 14187,
-   "length_new": 22694
+   "title": "User:AlexNewArtBot/CanadaRoadsSearchResult",
+   "is_bot": true,
+   "length_old": 5959,
+   "length_new": 6439
   },
   {
-   "event_id": "d2f971a5-9c87-47ac-ac5e-748c70efc9b3",
-   "event_ts": "2026-11-25T08:56:12.902000Z",
-   "wiki": "zhwiktionary",
+   "event_id": "e4b59579-6288-4a6a-81c0-aba8b8a86513",
+   "event_ts": "2026-11-25T19:30:13.403000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Jame\u2019 Asr Hassanil Bolkiah Mosque - 53958165003.jpg",
+   "is_bot": true,
+   "length_old": 7430,
+   "length_new": 9457
+  },
+  {
+   "event_id": "36d3db16-3c73-4f43-9bd5-407461356581",
+   "event_ts": "2026-11-25T19:30:12.457000Z",
+   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:\u6709\u811a\u672c\u9519\u8bef\u7684\u9875\u9762",
-   "is_bot": true,
+   "title": "Category:CC-Zero",
+   "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "06919984-0432-4844-89dd-b737b0285aa4",
-   "event_ts": "2026-11-25T08:54:36.546000Z",
-   "wiki": "ruwikisource",
+   "event_id": "4e41c16f-f4ea-4222-8a5a-b85c43795089",
+   "event_ts": "2026-11-25T19:28:53.222000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Ortona 21.jpg",
+   "is_bot": true,
+   "length_old": 5548,
+   "length_new": 7566
+  },
+  {
+   "event_id": "c9a7bb83-94f5-437a-9e9c-87b19bd356ea",
+   "event_ts": "2026-11-25T19:28:45.766000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Mapillary (Hikerandy) 2026-11-11 17H29M48S000 (1287777790180929 at 0LTsBeR6aOpvGHNd3SnirZ) taken with Arashi Vision Insta360 X6.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c3641e44-daf1-4947-8f2f-4f8e251956d6",
+   "event_ts": "2026-11-25T19:30:07.911000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u0421\u043f\u0430\u0441\u0441\u043a\u0430\u044f \u043b\u0443\u0436\u0430\u0439\u043a\u0430 (\u041b\u0430\u0436\u0435\u0447\u043d\u0438\u043a\u043e\u0432)",
-   "is_bot": true,
-   "length_old": 34301,
-   "length_new": 34367
-  },
-  {
-   "event_id": "12795177-59ce-49ff-af58-05e13ca3649c",
-   "event_ts": "2026-11-25T08:55:24.500000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:\u6709\u811a\u672c\u9519\u8bef\u7684\u9875\u9762",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8ec40cfd-d5d6-46eb-9133-bf46cf898ae5",
-   "event_ts": "2026-11-25T08:55:05.624000Z",
-   "wiki": "trwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Kategori:1846'da tan\u0131mlanan pul kanatl\u0131lar",
+   "title": "357 Ninina",
    "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 5946,
+   "length_new": 6748
   },
   {
-   "event_id": "76787133-c99b-42af-b026-0b6654e0b1a6",
-   "event_ts": "2026-11-25T08:54:45.047000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "log",
-   "namespace": 828,
-   "title": "Module:Zh/data/dial-syn/\u6a44\u6b16",
+   "event_id": "cdea6698-066d-421e-b69d-e889a91f012d",
+   "event_ts": "2026-11-25T19:29:32.316000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Ms Le Nguyen Thien Nga and Mr. Rev Lebaredian, Vice President of Omniverse and Simulation Technology at NVIDIA, a global leader in accelerated computing and artificial intelligence.jpg",
    "is_bot": true,
-   "length_old": null,
-   "length_new": null
+   "length_old": 2388,
+   "length_new": 5286
   },
   {
-   "event_id": "fa261e77-db1a-48e5-9cf1-e668e7dcee93",
-   "event_ts": "2026-11-25T08:55:31.045000Z",
-   "wiki": "jawiki",
+   "event_id": "d5fb40d3-4c89-4974-9e34-ee0c6a5e7e79",
+   "event_ts": "2026-11-25T19:29:13.053000Z",
+   "wiki": "azwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u30a4\u30c3\u30c6\u30e9\u30c3\u30b7\u30e3\u30a4",
+   "title": "G\u0259nz\u0259 (Ordubad)",
    "is_bot": false,
-   "length_old": 13871,
-   "length_new": 13911
+   "length_old": 16916,
+   "length_new": 16936
   },
   {
-   "event_id": "61525679-ffbb-4345-b713-cd536342050c",
-   "event_ts": "2026-11-25T08:54:27.728000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "log",
-   "namespace": 828,
-   "title": "Module:Zh/data/dial-syn/\u68af\u5b50",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "8b225324-cba2-4825-b129-1ec4fe0afb25",
-   "event_ts": "2026-11-25T08:55:21.237000Z",
-   "wiki": "zhwiktionary",
-   "change_type": "log",
-   "namespace": 828,
-   "title": "Module:Zh/data/dial-syn/\u6cb9\u71c8",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "c02f6e50-6687-4ae8-a0cf-6b3e6a586457",
-   "event_ts": "2026-11-25T08:56:10.869000Z",
-   "wiki": "zhwikisource",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:\u672a\u6821\u5bf9",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "d16d9864-f472-450c-b187-d1cff14ac14a",
-   "event_ts": "2026-11-25T08:55:27.440000Z",
+   "event_id": "bedaafbb-974b-4403-b21e-f948f2803946",
+   "event_ts": "2026-11-25T19:28:40.412000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q135332609",
+   "title": "Q95554",
    "is_bot": false,
-   "length_old": 6720,
-   "length_new": 6723
+   "length_old": 67747,
+   "length_new": 67743
+  },
+  {
+   "event_id": "e0d8254f-fe75-4329-b8eb-c8177721aee5",
+   "event_ts": "2026-11-25T19:28:43.585000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Z\u00e1kladn\u00ed barmansk\u00fd kurz CBA 24.11.2026 obr.185.jpg",
+   "is_bot": false,
+   "length_old": 576,
+   "length_new": 1223
+  },
+  {
+   "event_id": "44d9eafd-67e0-477c-b147-9c7d8cc99f17",
+   "event_ts": "2026-11-25T19:28:38.415000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Haltern am See, Stausee, Schiff -- 2016 -- 2869.jpg",
+   "is_bot": true,
+   "length_old": 26207,
+   "length_new": 26345
+  },
+  {
+   "event_id": "d7a4a358-29a6-49d2-9591-60910792c7ad",
+   "event_ts": "2026-11-25T19:30:02.813000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Creative Commons Attribution-Share Alike missing SDC copyright status",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4285,
+   "observed": 4364,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4285,
-    "silver": 4285,
+    "bronze": 4364,
+    "silver": 4364,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2362,
-    "gold_edits": 2362
+    "silver_edits": 2780,
+    "gold_edits": 2780
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2362,
-  "bot_share": 0.5466,
+  "edits": 2780,
+  "bot_share": 0.573,
   "top_wikis": [
    {
-    "wiki": "wikidatawiki",
-    "edits": 480
-   },
-   {
     "wiki": "commonswiki",
-    "edits": 407
+    "edits": 735
    },
    {
-    "wiki": "zhwiktionary",
-    "edits": 307
+    "wiki": "wikidatawiki",
+    "edits": 492
    },
    {
     "wiki": "enwiki",
-    "edits": 274
+    "edits": 491
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 342
    },
    {
     "wiki": "zhwikisource",
-    "edits": 114
+    "edits": 110
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Lexeme:L1537102",
-    "edits": 16
+    "title": "Q193566",
+    "edits": 34
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142282048",
-    "edits": 12
+    "title": "Q142237776",
+    "edits": 8
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q83524326",
-    "edits": 11
+    "title": "Q142290669",
+    "edits": 8
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q114415250",
-    "edits": 10
+    "title": "Q21545665",
+    "edits": 8
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142282044",
+    "title": "Q142290850",
     "edits": 6
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 39487,
-  "silver.recentchange": 39487,
+  "bronze.recentchange": 34093,
+  "silver.recentchange": 34093,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 760,
-  "gold.bot_share_hour": 9,
-  "gold.top_pages_hour": 90,
+  "gold.edits_per_wiki_hour": 669,
+  "gold.bot_share_hour": 8,
+  "gold.top_pages_hour": 80,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45580306968"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45685455146"
  },
  "schema_version": 1
 }

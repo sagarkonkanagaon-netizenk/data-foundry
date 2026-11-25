@@ -1,0 +1,410 @@
+{
+ "run_id": "20261125T192833Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-25T19:28:33Z",
+ "status": "passed",
+ "finished_at": "2026-11-25T19:32:17Z",
+ "duration_s": 223.6,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 4364,
+  "bytes": 5634692,
+  "window_start": "2026-11-25T19:28:34Z",
+  "window_end": "2026-11-25T19:30:33Z"
+ },
+ "partitions": [
+  "2026-11-25T19"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-25T19:28:33Z",
+   "duration_s": 120.1,
+   "rows_in": null,
+   "rows_out": 4364,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-25T19:30:33Z",
+   "duration_s": 9.75,
+   "rows_in": 4364,
+   "rows_out": 4364,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-25T19"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-25T19:30:43Z",
+   "duration_s": 0.21,
+   "rows_in": 4364,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-25T19:30:43Z",
+   "duration_s": 7.18,
+   "rows_in": 4364,
+   "rows_out": 4364,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-25T19:30:50Z",
+   "duration_s": 8.99,
+   "rows_in": 4364,
+   "rows_out": 96,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 85,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-25T19:30:59Z",
+   "duration_s": 2.91,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-25T19:31:02Z",
+   "duration_s": 74.47,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 19714,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 4364,
+  "bronze": 4364,
+  "silver": 4364,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "1df57ffa-1ad8-4209-afd0-937bc1a9dde3",
+   "event_ts": "2026-11-25T19:30:33.090000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 2,
+   "title": "User:AlexNewArtBot/CanadaRoadsSearchResult",
+   "is_bot": true,
+   "length_old": 5959,
+   "length_new": 6439
+  },
+  {
+   "event_id": "e4b59579-6288-4a6a-81c0-aba8b8a86513",
+   "event_ts": "2026-11-25T19:30:13.403000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Jame\u2019 Asr Hassanil Bolkiah Mosque - 53958165003.jpg",
+   "is_bot": true,
+   "length_old": 7430,
+   "length_new": 9457
+  },
+  {
+   "event_id": "36d3db16-3c73-4f43-9bd5-407461356581",
+   "event_ts": "2026-11-25T19:30:12.457000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:CC-Zero",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "4e41c16f-f4ea-4222-8a5a-b85c43795089",
+   "event_ts": "2026-11-25T19:28:53.222000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Ortona 21.jpg",
+   "is_bot": true,
+   "length_old": 5548,
+   "length_new": 7566
+  },
+  {
+   "event_id": "c9a7bb83-94f5-437a-9e9c-87b19bd356ea",
+   "event_ts": "2026-11-25T19:28:45.766000Z",
+   "wiki": "commonswiki",
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Mapillary (Hikerandy) 2026-11-11 17H29M48S000 (1287777790180929 at 0LTsBeR6aOpvGHNd3SnirZ) taken with Arashi Vision Insta360 X6.jpg",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "c3641e44-daf1-4947-8f2f-4f8e251956d6",
+   "event_ts": "2026-11-25T19:30:07.911000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "357 Ninina",
+   "is_bot": false,
+   "length_old": 5946,
+   "length_new": 6748
+  },
+  {
+   "event_id": "cdea6698-066d-421e-b69d-e889a91f012d",
+   "event_ts": "2026-11-25T19:29:32.316000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Ms Le Nguyen Thien Nga and Mr. Rev Lebaredian, Vice President of Omniverse and Simulation Technology at NVIDIA, a global leader in accelerated computing and artificial intelligence.jpg",
+   "is_bot": true,
+   "length_old": 2388,
+   "length_new": 5286
+  },
+  {
+   "event_id": "d5fb40d3-4c89-4974-9e34-ee0c6a5e7e79",
+   "event_ts": "2026-11-25T19:29:13.053000Z",
+   "wiki": "azwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "G\u0259nz\u0259 (Ordubad)",
+   "is_bot": false,
+   "length_old": 16916,
+   "length_new": 16936
+  },
+  {
+   "event_id": "bedaafbb-974b-4403-b21e-f948f2803946",
+   "event_ts": "2026-11-25T19:28:40.412000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q95554",
+   "is_bot": false,
+   "length_old": 67747,
+   "length_new": 67743
+  },
+  {
+   "event_id": "e0d8254f-fe75-4329-b8eb-c8177721aee5",
+   "event_ts": "2026-11-25T19:28:43.585000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Z\u00e1kladn\u00ed barmansk\u00fd kurz CBA 24.11.2026 obr.185.jpg",
+   "is_bot": false,
+   "length_old": 576,
+   "length_new": 1223
+  },
+  {
+   "event_id": "44d9eafd-67e0-477c-b147-9c7d8cc99f17",
+   "event_ts": "2026-11-25T19:28:38.415000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Haltern am See, Stausee, Schiff -- 2016 -- 2869.jpg",
+   "is_bot": true,
+   "length_old": 26207,
+   "length_new": 26345
+  },
+  {
+   "event_id": "d7a4a358-29a6-49d2-9591-60910792c7ad",
+   "event_ts": "2026-11-25T19:30:02.813000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Creative Commons Attribution-Share Alike missing SDC copyright status",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 4364,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 4364,
+    "silver": 4364,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2780,
+    "gold_edits": 2780
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2780,
+  "bot_share": 0.573,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 735
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 492
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 491
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 342
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 110
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q193566",
+    "edits": 34
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142237776",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142290669",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q21545665",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142290850",
+    "edits": 6
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 34093,
+  "silver.recentchange": 34093,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 669,
+  "gold.bot_share_hour": 8,
+  "gold.top_pages_hour": 80,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45685455146"
+ },
+ "schema_version": 1
+}
