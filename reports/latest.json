@@ -1,52 +1,52 @@
 {
- "run_id": "20261126T025644Z",
+ "run_id": "20261126T125548Z",
  "trigger": "schedule",
- "started_at": "2026-11-26T02:56:44Z",
+ "started_at": "2026-11-26T12:55:48Z",
  "status": "passed",
- "finished_at": "2026-11-26T03:00:23Z",
- "duration_s": 219.02,
+ "finished_at": "2026-11-26T13:00:06Z",
+ "duration_s": 257.32,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 3429,
-  "bytes": 4397664,
-  "window_start": "2026-11-26T02:56:44Z",
-  "window_end": "2026-11-26T02:58:44Z"
+  "sample_seconds": 120.1,
+  "events": 4244,
+  "bytes": 5443691,
+  "window_start": "2026-11-26T12:55:49Z",
+  "window_end": "2026-11-26T12:57:48Z"
  },
  "partitions": [
-  "2026-11-26T02"
+  "2026-11-26T12"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-26T02:56:44Z",
-   "duration_s": 120.04,
+   "started_at": "2026-11-26T12:55:48Z",
+   "duration_s": 120.05,
    "rows_in": null,
-   "rows_out": 3429,
+   "rows_out": 4244,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-26T02:58:44Z",
-   "duration_s": 8.82,
-   "rows_in": 3429,
-   "rows_out": 3429,
+   "started_at": "2026-11-26T12:57:48Z",
+   "duration_s": 12.33,
+   "rows_in": 4244,
+   "rows_out": 4244,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-26T02"
+     "2026-11-26T12"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-26T02:58:52Z",
-   "duration_s": 0.13,
-   "rows_in": 3429,
+   "started_at": "2026-11-26T12:58:01Z",
+   "duration_s": 0.22,
+   "rows_in": 4244,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-26T02:58:53Z",
-   "duration_s": 5.29,
-   "rows_in": 3429,
-   "rows_out": 3429,
+   "started_at": "2026-11-26T12:58:01Z",
+   "duration_s": 8.76,
+   "rows_in": 4244,
+   "rows_out": 4244,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-26T02:58:58Z",
-   "duration_s": 7.09,
-   "rows_in": 3429,
-   "rows_out": 84,
+   "started_at": "2026-11-26T12:58:10Z",
+   "duration_s": 9.78,
+   "rows_in": 4244,
+   "rows_out": 101,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 73,
+     "gold.edits_per_wiki_hour": 90,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-26T02:59:05Z",
-   "duration_s": 2.88,
+   "started_at": "2026-11-26T12:58:20Z",
+   "duration_s": 3.2,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-26T02:59:08Z",
-   "duration_s": 74.75,
+   "started_at": "2026-11-26T12:58:23Z",
+   "duration_s": 102.97,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 8322,
+    "rows_deleted": 9271,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3429,
-  "bronze": 3429,
-  "silver": 3429,
+  "landed": 4244,
+  "bronze": 4244,
+  "silver": 4244,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "bb63d52d-14d2-4f37-b94c-230d104c3255",
-   "event_ts": "2026-11-26T02:57:30.114000Z",
-   "wiki": "commonswiki",
+   "event_id": "32b8dfd9-3b9d-4c0b-a9fa-58e8bf67d095",
+   "event_ts": "2026-11-26T12:57:00.273000Z",
+   "wiki": "frwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Files with coordinates missing SDC location of creation",
+   "title": "Cat\u00e9gorie:Article du projet Volley-ball d'avancement inconnu",
    "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "f8063b42-a330-4f98-addf-56e02a5dc9e9",
-   "event_ts": "2026-11-26T02:56:49.459000Z",
-   "wiki": "zhwikisource",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:\u672a\u6821\u5bf9",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "7a64d105-ee39-4921-94a8-15f139105a52",
-   "event_ts": "2026-11-26T02:58:42.287000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Taken with Nikon Z 9",
-   "is_bot": true,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "700488e3-af7e-44f1-8446-708bd79758a7",
-   "event_ts": "2026-11-26T02:58:28.350000Z",
-   "wiki": "enwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:American television task force articles",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "2f0bfe2d-7e8c-4daf-a98f-1cfcd659fd3f",
-   "event_ts": "2026-11-26T02:58:30.644000Z",
-   "wiki": "enwiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:File-Class American television pages",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "4c9dd38b-d7eb-41cd-a879-aa922f66329c",
-   "event_ts": "2026-11-26T02:57:59.268000Z",
-   "wiki": "bnwiki",
-   "change_type": "edit",
-   "namespace": 2,
-   "title": "\u09ac\u09cd\u09af\u09ac\u09b9\u09be\u09b0\u0995\u09be\u09b0\u09c0:Nobin Sadik",
-   "is_bot": false,
-   "length_old": 37790,
-   "length_new": 37890
-  },
-  {
-   "event_id": "e53af2a2-12ac-427d-b42b-1da37e2a1865",
-   "event_ts": "2026-11-26T02:58:19.304000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Mount Stuart",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "3fde7430-e531-4f60-8b43-b995f62a6b31",
-   "event_ts": "2026-11-26T02:56:46.961000Z",
-   "wiki": "viwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "B\u1ea1c m\u00e1 ng\u1ef1c s\u1ecdc",
-   "is_bot": true,
-   "length_old": 1381,
-   "length_new": 1583
-  },
-  {
-   "event_id": "d9e12e81-099f-4b50-9749-cee7b37f7015",
-   "event_ts": "2026-11-26T02:58:14.389000Z",
-   "wiki": "ruwiktionary",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u0437\u0430\u043f\u0438\u043d\u0430\u044e\u0449\u0438\u0439\u0441\u044f",
-   "is_bot": true,
-   "length_old": 4595,
-   "length_new": 4619
-  },
-  {
-   "event_id": "44e470ce-f249-4cf7-b9e8-fd6fcfd82fa5",
-   "event_ts": "2026-11-26T02:58:15.633000Z",
-   "wiki": "ruwiktionary",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u0437\u0430\u043f\u0438\u043d\u0430\u044f\u0441\u044c",
-   "is_bot": true,
-   "length_old": 4360,
-   "length_new": 4373
-  },
-  {
-   "event_id": "5afc6783-2869-49bc-aa6e-0dc286d41f4b",
-   "event_ts": "2026-11-26T02:57:09.334000Z",
-   "wiki": "cswiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u0158\u00ed\u0161e hv\u011bzd",
-   "is_bot": false,
-   "length_old": 2166,
-   "length_new": 2194
-  },
-  {
-   "event_id": "1392dc02-b838-44d6-a942-e6a8925e2af6",
-   "event_ts": "2026-11-26T02:58:37.114000Z",
+   "event_id": "12b8ba56-14d8-4ba9-9bc0-4719fea9ee99",
+   "event_ts": "2026-11-26T12:57:11.048000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Mount Stuart sun & fog from near Longs Pass (21 October 2024) 5.jpg",
+   "title": "File:IBPA 142668 - Porto Alegre recebe \u00f4nibus el\u00e9trico articulado - 2025-01-22 - Cesar Lopes-PMPA.JPG",
+   "is_bot": true,
+   "length_old": 3343,
+   "length_new": 7109
+  },
+  {
+   "event_id": "f3066bf9-18c4-440c-a537-08ccb7b9e2c8",
+   "event_ts": "2026-11-26T12:57:15.390000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q63464813",
    "is_bot": false,
-   "length_old": 6958,
-   "length_new": 6969
+   "length_old": 6960,
+   "length_new": 6987
+  },
+  {
+   "event_id": "c40609f6-981d-4c9f-b684-64c22301bc92",
+   "event_ts": "2026-11-26T12:55:53.162000Z",
+   "wiki": "arwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0627\u0644\u063a\u0648\u062b \u0628\u0646 \u0646\u0628\u062a",
+   "is_bot": false,
+   "length_old": 2844,
+   "length_new": 2343
+  },
+  {
+   "event_id": "42a9bec6-7d12-443f-b9f5-aa5557620a20",
+   "event_ts": "2026-11-26T12:57:41.482000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Manuscripts from Gallica (Biblioth\u00e8que nationale de France) uploaded by Gzen92Bot",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "d1d468d8-1420-46b1-b84f-abd52949699f",
+   "event_ts": "2026-11-26T12:57:17.886000Z",
+   "wiki": "itwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Colonia del Dahomey",
+   "is_bot": false,
+   "length_old": 5534,
+   "length_new": 5523
+  },
+  {
+   "event_id": "927b6c30-e3b7-4bba-8b48-9b2f05ffca8c",
+   "event_ts": "2026-11-26T12:56:56.141000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:IBPA 142644 - Dona Jurema Felix Ferreira, 88 anos, atendida na - 2025-01-21 - Cristine Rochol-PMPA.jpg",
+   "is_bot": true,
+   "length_old": 1960,
+   "length_new": 4859
+  },
+  {
+   "event_id": "d14dc4b3-6426-4587-971d-698c6b6a47c5",
+   "event_ts": "2026-11-26T12:56:56.973000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q9253369",
+   "is_bot": false,
+   "length_old": 14539,
+   "length_new": 14720
+  },
+  {
+   "event_id": "d7c6d552-1454-480c-94e7-2d11d5e2cbd3",
+   "event_ts": "2026-11-26T12:56:31.583000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Echecs, rue Sainte-Catherine, Montreal 04.jpg",
+   "is_bot": false,
+   "length_old": 8648,
+   "length_new": 8664
+  },
+  {
+   "event_id": "dfa020fb-6bbc-4a6b-b6cb-53fe10adbf64",
+   "event_ts": "2026-11-26T12:55:57.677000Z",
+   "wiki": "mgwiktionary",
+   "change_type": "new",
+   "namespace": 0,
+   "title": "aromado",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 182
+  },
+  {
+   "event_id": "96981add-ff8a-4092-bffc-279406c3cb9f",
+   "event_ts": "2026-11-26T12:55:57.801000Z",
+   "wiki": "dewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Royal Lincolnshire Regiment",
+   "is_bot": false,
+   "length_old": 9940,
+   "length_new": 9976
+  },
+  {
+   "event_id": "e5e92875-4389-4854-ba65-42b6a89bd389",
+   "event_ts": "2026-11-26T12:56:59.692000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142271857",
+   "is_bot": false,
+   "length_old": 5164,
+   "length_new": 6819
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3429,
+   "observed": 4244,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3429,
-    "silver": 3429,
+    "bronze": 4244,
+    "silver": 4244,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 1989,
-    "gold_edits": 1989
+    "silver_edits": 2548,
+    "gold_edits": 2548
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 1989,
-  "bot_share": 0.541,
+  "edits": 2548,
+  "bot_share": 0.3787,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 505
-   },
-   {
-    "wiki": "wikidatawiki",
-    "edits": 498
+    "edits": 592
    },
    {
     "wiki": "enwiki",
-    "edits": 352
+    "edits": 564
    },
    {
-    "wiki": "ruwiktionary",
-    "edits": 121
+    "wiki": "wikidatawiki",
+    "edits": 479
    },
    {
     "wiki": "zhwikisource",
+    "edits": 117
+   },
+   {
+    "wiki": "ruwiktionary",
     "edits": 110
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q141651391",
-    "edits": 13
+    "title": "Q142298388",
+    "edits": 12
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q8381938",
-    "edits": 7
+    "title": "Q126948445",
+    "edits": 11
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q235673",
+    "title": "Q1235304",
+    "edits": 8
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142292169",
     "edits": 6
    },
    {
-    "wiki": "metawiki",
-    "title": "Capacity Exchange/User Guide/tl",
-    "edits": 5
-   },
-   {
     "wiki": "wikidatawiki",
-    "title": "Q142294038",
-    "edits": 5
+    "title": "Q142296798",
+    "edits": 6
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 33406,
-  "silver.recentchange": 33406,
+  "bronze.recentchange": 33057,
+  "silver.recentchange": 33057,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 663,
+  "gold.edits_per_wiki_hour": 679,
   "gold.bot_share_hour": 8,
   "gold.top_pages_hour": 80,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45745642929"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45824137677"
  },
  "schema_version": 1
 }
