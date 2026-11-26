@@ -1,52 +1,52 @@
 {
- "run_id": "20261126T125548Z",
+ "run_id": "20261126T222806Z",
  "trigger": "schedule",
- "started_at": "2026-11-26T12:55:48Z",
+ "started_at": "2026-11-26T22:28:06Z",
  "status": "passed",
- "finished_at": "2026-11-26T13:00:06Z",
- "duration_s": 257.32,
+ "finished_at": "2026-11-26T22:31:48Z",
+ "duration_s": 221.97,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
   "sample_seconds": 120.1,
-  "events": 4244,
-  "bytes": 5443691,
-  "window_start": "2026-11-26T12:55:49Z",
-  "window_end": "2026-11-26T12:57:48Z"
+  "events": 4266,
+  "bytes": 5412358,
+  "window_start": "2026-11-26T22:28:06Z",
+  "window_end": "2026-11-26T22:30:06Z"
  },
  "partitions": [
-  "2026-11-26T12"
+  "2026-11-26T22"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-26T12:55:48Z",
-   "duration_s": 120.05,
+   "started_at": "2026-11-26T22:28:06Z",
+   "duration_s": 120.08,
    "rows_in": null,
-   "rows_out": 4244,
+   "rows_out": 4266,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-26T12:57:48Z",
-   "duration_s": 12.33,
-   "rows_in": 4244,
-   "rows_out": 4244,
+   "started_at": "2026-11-26T22:30:06Z",
+   "duration_s": 9.91,
+   "rows_in": 4266,
+   "rows_out": 4266,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-26T12"
+     "2026-11-26T22"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-26T12:58:01Z",
+   "started_at": "2026-11-26T22:30:16Z",
    "duration_s": 0.22,
-   "rows_in": 4244,
+   "rows_in": 4266,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-26T12:58:01Z",
-   "duration_s": 8.76,
-   "rows_in": 4244,
-   "rows_out": 4244,
+   "started_at": "2026-11-26T22:30:16Z",
+   "duration_s": 6.6,
+   "rows_in": 4266,
+   "rows_out": 4266,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-26T12:58:10Z",
-   "duration_s": 9.78,
-   "rows_in": 4244,
-   "rows_out": 101,
+   "started_at": "2026-11-26T22:30:23Z",
+   "duration_s": 7.88,
+   "rows_in": 4266,
+   "rows_out": 80,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 90,
+     "gold.edits_per_wiki_hour": 69,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-26T12:58:20Z",
-   "duration_s": 3.2,
+   "started_at": "2026-11-26T22:30:31Z",
+   "duration_s": 2.72,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-26T12:58:23Z",
-   "duration_s": 102.97,
+   "started_at": "2026-11-26T22:30:33Z",
+   "duration_s": 74.56,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 9271,
+    "rows_deleted": 8988,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 4244,
-  "bronze": 4244,
-  "silver": 4244,
+  "landed": 4266,
+  "bronze": 4266,
+  "silver": 4266,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "32b8dfd9-3b9d-4c0b-a9fa-58e8bf67d095",
-   "event_ts": "2026-11-26T12:57:00.273000Z",
-   "wiki": "frwiki",
+   "event_id": "e9f7fccc-5aa5-4a8d-9f68-7bd1ac524fc0",
+   "event_ts": "2026-11-26T22:28:40.400000Z",
+   "wiki": "zhwikisource",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Cat\u00e9gorie:Article du projet Volley-ball d'avancement inconnu",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "12b8ba56-14d8-4ba9-9bc0-4719fea9ee99",
-   "event_ts": "2026-11-26T12:57:11.048000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:IBPA 142668 - Porto Alegre recebe \u00f4nibus el\u00e9trico articulado - 2025-01-22 - Cesar Lopes-PMPA.JPG",
-   "is_bot": true,
-   "length_old": 3343,
-   "length_new": 7109
-  },
-  {
-   "event_id": "f3066bf9-18c4-440c-a537-08ccb7b9e2c8",
-   "event_ts": "2026-11-26T12:57:15.390000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q63464813",
-   "is_bot": false,
-   "length_old": 6960,
-   "length_new": 6987
-  },
-  {
-   "event_id": "c40609f6-981d-4c9f-b684-64c22301bc92",
-   "event_ts": "2026-11-26T12:55:53.162000Z",
-   "wiki": "arwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u0627\u0644\u063a\u0648\u062b \u0628\u0646 \u0646\u0628\u062a",
-   "is_bot": false,
-   "length_old": 2844,
-   "length_new": 2343
-  },
-  {
-   "event_id": "42a9bec6-7d12-443f-b9f5-aa5557620a20",
-   "event_ts": "2026-11-26T12:57:41.482000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Manuscripts from Gallica (Biblioth\u00e8que nationale de France) uploaded by Gzen92Bot",
+   "title": "Category:\u672a\u6821\u5bf9",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "d1d468d8-1420-46b1-b84f-abd52949699f",
-   "event_ts": "2026-11-26T12:57:17.886000Z",
-   "wiki": "itwiki",
+   "event_id": "b8a4f60e-ecfd-41be-8f79-f81be2bff403",
+   "event_ts": "2026-11-26T22:28:54.544000Z",
+   "wiki": "ruwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Colonia del Dahomey",
+   "title": "\u041d\u043e\u0445\u0447\u043c\u0430\u0445\u043a\u0430\u0445\u043e\u0439\u0446\u044b",
    "is_bot": false,
-   "length_old": 5534,
-   "length_new": 5523
+   "length_old": 13879,
+   "length_new": 13900
   },
   {
-   "event_id": "927b6c30-e3b7-4bba-8b48-9b2f05ffca8c",
-   "event_ts": "2026-11-26T12:56:56.141000Z",
-   "wiki": "commonswiki",
+   "event_id": "bcf996f2-aed1-45d6-a365-1a1e85a21a14",
+   "event_ts": "2026-11-26T22:30:00.320000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
-   "namespace": 6,
-   "title": "File:IBPA 142644 - Dona Jurema Felix Ferreira, 88 anos, atendida na - 2025-01-21 - Cristine Rochol-PMPA.jpg",
-   "is_bot": true,
-   "length_old": 1960,
-   "length_new": 4859
+   "namespace": 0,
+   "title": "Robotic vacuum cleaner",
+   "is_bot": false,
+   "length_old": 10353,
+   "length_new": 10316
   },
   {
-   "event_id": "d14dc4b3-6426-4587-971d-698c6b6a47c5",
-   "event_ts": "2026-11-26T12:56:56.973000Z",
+   "event_id": "2ebbf8e0-8c67-4f05-8d7c-f19b2728768b",
+   "event_ts": "2026-11-26T22:28:16.186000Z",
+   "wiki": "bewiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u0413\u0430\u0434\u0430\u043b\u0456\u043d\u0456\u0439",
+   "is_bot": true,
+   "length_old": 1383,
+   "length_new": 1377
+  },
+  {
+   "event_id": "c296bdeb-8c7c-4d5d-bc8b-573051d5b998",
+   "event_ts": "2026-11-26T22:28:59.809000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q9253369",
+   "title": "Q98543956",
    "is_bot": false,
-   "length_old": 14539,
-   "length_new": 14720
+   "length_old": 4120,
+   "length_new": 4120
   },
   {
-   "event_id": "d7c6d552-1454-480c-94e7-2d11d5e2cbd3",
-   "event_ts": "2026-11-26T12:56:31.583000Z",
+   "event_id": "8345fc3e-49a9-4fe0-a9fa-9add07d89cc8",
+   "event_ts": "2026-11-26T22:29:18.082000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Echecs, rue Sainte-Catherine, Montreal 04.jpg",
-   "is_bot": false,
-   "length_old": 8648,
-   "length_new": 8664
+   "title": "File:Radlkoferotoma cistifolium 639792476.jpg",
+   "is_bot": true,
+   "length_old": 1675,
+   "length_new": 4574
   },
   {
-   "event_id": "dfa020fb-6bbc-4a6b-b6cb-53fe10adbf64",
-   "event_ts": "2026-11-26T12:55:57.677000Z",
-   "wiki": "mgwiktionary",
-   "change_type": "new",
-   "namespace": 0,
-   "title": "aromado",
+   "event_id": "77de8ba8-7f39-4ddd-bd7d-7b1d24fd43c5",
+   "event_ts": "2026-11-26T22:28:26.724000Z",
+   "wiki": "fawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u0631\u062f\u0647:\u0635\u0641\u062d\u0647\u200c\u0647\u0627\u06cc\u06cc \u06a9\u0647 \u0627\u0632 \u0627\u0644\u06af\u0648:\u0648\u06cc\u06a9\u06cc\u200c\u062f\u0627\u062f\u0647 \u0645\u062a\u0627\u062f\u0627\u062f\u0647 \u0641\u0631\u0627\u0646\u0633\u0647 \u0628\u062f\u0648\u0646 \u0645\u0646\u0627\u0628\u0639 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0645\u06cc\u200c\u06a9\u0646\u0646\u062f",
    "is_bot": true,
    "length_old": null,
-   "length_new": 182
+   "length_new": null
   },
   {
-   "event_id": "96981add-ff8a-4092-bffc-279406c3cb9f",
-   "event_ts": "2026-11-26T12:55:57.801000Z",
-   "wiki": "dewiki",
+   "event_id": "44f7ad38-6adb-4043-9924-5a499bb3e3fe",
+   "event_ts": "2026-11-26T22:28:39.260000Z",
+   "wiki": "fawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u0631\u062f\u0647:\u0635\u0641\u062d\u0647\u200c\u0647\u0627\u06cc\u06cc \u06a9\u0647 \u0627\u0632 \u062c\u0639\u0628\u0647 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0646\u0637\u0642\u0647 \u0645\u0633\u06a9\u0648\u0646\u06cc \u0628\u0627 \u067e\u0627\u0631\u0627\u0645\u062a\u0631\u0647\u0627\u06cc \u0646\u0627\u0645\u0639\u0644\u0648\u0645 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0645\u06cc\u200c\u06a9\u0646\u0646\u062f",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "3c49ec37-0520-4a0c-b7d6-b2e535f8ce3d",
+   "event_ts": "2026-11-26T22:30:05.649000Z",
+   "wiki": "commonswiki",
    "change_type": "edit",
-   "namespace": 0,
-   "title": "Royal Lincolnshire Regiment",
-   "is_bot": false,
-   "length_old": 9940,
-   "length_new": 9976
+   "namespace": 6,
+   "title": "File:The Boston Traveler October 23, 1936 - DPLA - 9a4366c08cc225ff05b09c7dd57d4210 (page 41).jpg",
+   "is_bot": true,
+   "length_old": 1040,
+   "length_new": 3857
   },
   {
-   "event_id": "e5e92875-4389-4854-ba65-42b6a89bd389",
-   "event_ts": "2026-11-26T12:56:59.692000Z",
+   "event_id": "e089b192-590d-46f1-84a3-fb95c95baa9d",
+   "event_ts": "2026-11-26T22:28:21.347000Z",
    "wiki": "wikidatawiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q142271857",
+   "title": "Q110251028",
    "is_bot": false,
-   "length_old": 5164,
-   "length_new": 6819
+   "length_old": 26293,
+   "length_new": 26709
+  },
+  {
+   "event_id": "4a9ba40e-2ed9-4ec0-90df-c6bd14019ef9",
+   "event_ts": "2026-11-26T22:29:23.369000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q6916287",
+   "is_bot": false,
+   "length_old": 8969,
+   "length_new": 9105
+  },
+  {
+   "event_id": "98ea8482-e8be-4c91-a561-96f116ad833f",
+   "event_ts": "2026-11-26T22:28:45.961000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:7th joint sitting of the National Congress of Brazil (13 July 2017)",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 4244,
+   "observed": 4266,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 4244,
-    "silver": 4244,
+    "bronze": 4266,
+    "silver": 4266,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2548,
-    "gold_edits": 2548
+    "silver_edits": 2278,
+    "gold_edits": 2278
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2548,
-  "bot_share": 0.3787,
+  "edits": 2278,
+  "bot_share": 0.4302,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 592
-   },
-   {
-    "wiki": "enwiki",
-    "edits": 564
+    "edits": 562
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 479
+    "edits": 460
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 404
+   },
+   {
+    "wiki": "kaawiki",
+    "edits": 181
    },
    {
     "wiki": "zhwikisource",
-    "edits": 117
-   },
-   {
-    "wiki": "ruwiktionary",
-    "edits": 110
+    "edits": 113
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q142298388",
+    "title": "Q6138397",
     "edits": 12
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q126948445",
-    "edits": 11
+    "title": "Q142176212",
+    "edits": 10
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q1235304",
+    "title": "Q113518868",
     "edits": 8
    },
    {
-    "wiki": "wikidatawiki",
-    "title": "Q142292169",
-    "edits": 6
+    "wiki": "commonswiki",
+    "title": "Category:October League (Marxist\u2013Leninist)",
+    "edits": 7
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q142296798",
+    "title": "Property:P248",
     "edits": 6
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 33057,
-  "silver.recentchange": 33057,
+  "bronze.recentchange": 32884,
+  "silver.recentchange": 32884,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 679,
+  "gold.edits_per_wiki_hour": 649,
   "gold.bot_share_hour": 8,
   "gold.top_pages_hour": 80,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45824137677"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45904918263"
  },
  "schema_version": 1
 }
