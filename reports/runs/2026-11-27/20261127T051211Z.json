@@ -1,0 +1,410 @@
+{
+ "run_id": "20261127T051211Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-27T05:12:11Z",
+ "status": "passed",
+ "finished_at": "2026-11-27T05:15:46Z",
+ "duration_s": 215.06,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.0,
+  "events": 3065,
+  "bytes": 3959760,
+  "window_start": "2026-11-27T05:12:11Z",
+  "window_end": "2026-11-27T05:14:11Z"
+ },
+ "partitions": [
+  "2026-11-27T05"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-27T05:12:11Z",
+   "duration_s": 120.01,
+   "rows_in": null,
+   "rows_out": 3065,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:11Z",
+   "duration_s": 9.07,
+   "rows_in": 3065,
+   "rows_out": 3065,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-27T05"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:20Z",
+   "duration_s": 0.07,
+   "rows_in": 3065,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:20Z",
+   "duration_s": 6.15,
+   "rows_in": 3065,
+   "rows_out": 3065,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:26Z",
+   "duration_s": 8.03,
+   "rows_in": 3065,
+   "rows_out": 82,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 71,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:34Z",
+   "duration_s": 2.78,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-27T05:14:37Z",
+   "duration_s": 68.95,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 7424,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3065,
+  "bronze": 3065,
+  "silver": 3065,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "bfb87236-729b-4323-9795-bfba6541b2b3",
+   "event_ts": "2026-11-27T05:13:24.017000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142308439",
+   "is_bot": false,
+   "length_old": 1613,
+   "length_new": 2130
+  },
+  {
+   "event_id": "6ef3267b-29ae-44d5-a5a7-589c8db0a4e4",
+   "event_ts": "2026-11-27T05:13:00.540000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:MT Stryker 268632 1916 125000 geo (TIF).tif",
+   "is_bot": true,
+   "length_old": 1685,
+   "length_new": 2038
+  },
+  {
+   "event_id": "2af70887-5de1-4254-949a-620047ff2628",
+   "event_ts": "2026-11-27T05:13:28.749000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Folklore",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "59559a55-ac38-4389-8544-47cb09949e8a",
+   "event_ts": "2026-11-27T05:12:22.711000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 0985\u518a.djvu/332",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 4237
+  },
+  {
+   "event_id": "77e9c043-56b0-482e-90be-6da1437b7eff",
+   "event_ts": "2026-11-27T05:12:24.266000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Unknown date",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "2ee6cc49-f647-4217-8399-b7c575331b6a",
+   "event_ts": "2026-11-27T05:13:26.067000Z",
+   "wiki": "ruwiki",
+   "change_type": "edit",
+   "namespace": 10,
+   "title": "\u0428\u0430\u0431\u043b\u043e\u043d:Userbox/\u0423\u0447\u0430\u0441\u0442\u043d\u0438\u043a \u0438\u0437 \u0425\u0435\u0440\u0441\u043e\u043d\u0430",
+   "is_bot": true,
+   "length_old": 503,
+   "length_new": 488
+  },
+  {
+   "event_id": "2d395361-7834-4ae2-b3bf-30b719f4c133",
+   "event_ts": "2026-11-27T05:14:04.917000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q137822285",
+   "is_bot": false,
+   "length_old": 6198,
+   "length_new": 6631
+  },
+  {
+   "event_id": "6bde89d0-cd3d-4f2e-90ff-c175e0177134",
+   "event_ts": "2026-11-27T05:14:07.782000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Artworks without Wikidata item",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "f3a75caf-99d3-497e-a926-c5f2d77c298e",
+   "event_ts": "2026-11-27T05:12:29.379000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:RAFBF 90th Birthday Air Show, East Kirkby - geograph.org.uk - 3751127.jpg",
+   "is_bot": true,
+   "length_old": 8589,
+   "length_new": 10612
+  },
+  {
+   "event_id": "fe64a6d4-020a-41d2-b0c1-f15d632dec31",
+   "event_ts": "2026-11-27T05:13:36.824000Z",
+   "wiki": "fawiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "\u0631\u062f\u0647:\u0645\u0642\u0627\u0644\u0647\u200c\u0647\u0627\u06cc \u062f\u0627\u0631\u0627\u06cc \u0634\u0631\u062d \u0645\u062e\u062a\u0635\u0631",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "bbb8067d-ced6-417e-a52b-f9b6a5b7e545",
+   "event_ts": "2026-11-27T05:12:48.494000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Edna Stillwell",
+   "is_bot": false,
+   "length_old": 9181,
+   "length_new": 9182
+  },
+  {
+   "event_id": "03933afd-3da9-491a-841a-41bff370a7e6",
+   "event_ts": "2026-11-27T05:12:30.878000Z",
+   "wiki": "kaawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "34482 Jessikirchner",
+   "is_bot": true,
+   "length_old": 2347,
+   "length_new": 2371
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3065,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3065,
+    "silver": 3065,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 1762,
+    "gold_edits": 1762
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 1762,
+  "bot_share": 0.5806,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 506
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 449
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 188
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 107
+   },
+   {
+    "wiki": "ruwiktionary",
+    "edits": 98
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q137822285",
+    "edits": 15
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q137641927",
+    "edits": 10
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142308437",
+    "edits": 7
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142308439",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142308440",
+    "edits": 6
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 32282,
+  "silver.recentchange": 32282,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 641,
+  "gold.bot_share_hour": 8,
+  "gold.top_pages_hour": 80,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/45944320475"
+ },
+ "schema_version": 1
+}
