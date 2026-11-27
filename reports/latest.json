@@ -1,52 +1,52 @@
 {
- "run_id": "20261127T152326Z",
+ "run_id": "20261127T233852Z",
  "trigger": "schedule",
- "started_at": "2026-11-27T15:23:26Z",
+ "started_at": "2026-11-27T23:38:52Z",
  "status": "passed",
- "finished_at": "2026-11-27T15:26:49Z",
- "duration_s": 202.94,
+ "finished_at": "2026-11-27T23:41:26Z",
+ "duration_s": 154.02,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
-  "sample_seconds": 120.0,
-  "events": 5262,
-  "bytes": 6897377,
-  "window_start": "2026-11-27T15:23:27Z",
-  "window_end": "2026-11-27T15:25:26Z"
+  "sample_seconds": 120.1,
+  "events": 3986,
+  "bytes": 5206167,
+  "window_start": "2026-11-27T23:38:52Z",
+  "window_end": "2026-11-27T23:40:52Z"
  },
  "partitions": [
-  "2026-11-27T15"
+  "2026-11-27T23"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-27T15:23:26Z",
-   "duration_s": 120.0,
+   "started_at": "2026-11-27T23:38:52Z",
+   "duration_s": 120.07,
    "rows_in": null,
-   "rows_out": 5262,
+   "rows_out": 3986,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:26Z",
-   "duration_s": 8.84,
-   "rows_in": 5262,
-   "rows_out": 5262,
+   "started_at": "2026-11-27T23:40:52Z",
+   "duration_s": 10.66,
+   "rows_in": 3986,
+   "rows_out": 3986,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-27T15"
+     "2026-11-27T23"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:35Z",
-   "duration_s": 0.2,
-   "rows_in": 5262,
+   "started_at": "2026-11-27T23:41:02Z",
+   "duration_s": 0.15,
+   "rows_in": 3986,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:35Z",
-   "duration_s": 5.95,
-   "rows_in": 5262,
-   "rows_out": 5262,
+   "started_at": "2026-11-27T23:41:03Z",
+   "duration_s": 7.96,
+   "rows_in": 3986,
+   "rows_out": 3986,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:41Z",
-   "duration_s": 6.71,
-   "rows_in": 5262,
-   "rows_out": 101,
+   "started_at": "2026-11-27T23:41:11Z",
+   "duration_s": 9.16,
+   "rows_in": 3986,
+   "rows_out": 82,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 90,
+     "gold.edits_per_wiki_hour": 71,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:47Z",
-   "duration_s": 2.49,
+   "started_at": "2026-11-27T23:41:20Z",
+   "duration_s": 3.82,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-27T15:25:50Z",
-   "duration_s": 58.75,
+   "started_at": "2026-11-27T23:41:24Z",
+   "duration_s": 2.19,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 8449,
+    "rows_deleted": 0,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 5262,
-  "bronze": 5262,
-  "silver": 5262,
+  "landed": 3986,
+  "bronze": 3986,
+  "silver": 3986,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,133 +120,133 @@
  },
  "samples": [
   {
-   "event_id": "c6555e23-bf86-41c6-aae8-52ca5b3c5e8b",
-   "event_ts": "2026-11-27T15:24:31.490000Z",
+   "event_id": "b837e03d-3bad-4d42-ad2f-7effc95e629d",
+   "event_ts": "2026-11-27T23:39:55.099000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Large images",
+   "title": "Category:PD-USGov missing SDC copyright status",
    "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "74409926-0295-4314-bf5c-e925191e411b",
-   "event_ts": "2026-11-27T15:24:06.607000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "35933e17-2a94-4104-bc83-f8814b03558e",
+   "event_ts": "2026-11-27T23:40:47.092000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q104685879",
-   "is_bot": false,
-   "length_old": 28069,
-   "length_new": 29643
-  },
-  {
-   "event_id": "dec70933-48f2-4b8f-aaf1-b6b2b9c966fa",
-   "event_ts": "2026-11-27T15:23:47.440000Z",
-   "wiki": "shwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Liebelei",
+   "title": "D'Arcy Wentworth",
    "is_bot": true,
-   "length_old": 3024,
-   "length_new": 3067
+   "length_old": 49031,
+   "length_new": 49648
   },
   {
-   "event_id": "d07fdc41-ec79-4fbe-a7eb-93670dd85629",
-   "event_ts": "2026-11-27T15:23:53.443000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q104674383",
-   "is_bot": false,
-   "length_old": 23061,
-   "length_new": 24635
-  },
-  {
-   "event_id": "afc69f29-50d2-4589-a478-56896f34abd2",
-   "event_ts": "2026-11-27T15:23:57.525000Z",
+   "event_id": "62dc0c95-0d88-403b-8501-0802b4480f85",
+   "event_ts": "2026-11-27T23:40:20.151000Z",
    "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:Self-published work missing SDC copyright license",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "2e79f740-309d-4c41-84b9-16e88ad6b527",
-   "event_ts": "2026-11-27T15:24:42.507000Z",
-   "wiki": "enwikisource",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Proofread",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
-  },
-  {
-   "event_id": "91cd968f-00fc-412e-ada5-12022bf7245b",
-   "event_ts": "2026-11-27T15:25:17.940000Z",
-   "wiki": "itwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Jolanda Verdirosi",
-   "is_bot": false,
-   "length_old": 4793,
-   "length_new": 4943
-  },
-  {
-   "event_id": "a3f5c759-2d3c-423d-a4f8-123e79612da2",
-   "event_ts": "2026-11-27T15:24:42.519000Z",
-   "wiki": "euwiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Hazkundearen mugak",
+   "title": "Category:PD-USGov missing SDC copyright status",
    "is_bot": true,
-   "length_old": 10963,
-   "length_new": 11110
+   "length_old": null,
+   "length_new": null
   },
   {
-   "event_id": "0b98f213-2f4d-486c-9252-07fe278d2e2b",
-   "event_ts": "2026-11-27T15:23:40.948000Z",
+   "event_id": "93ce6112-aee0-4af5-b787-9bc662cf487e",
+   "event_ts": "2026-11-27T23:40:09.699000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142315290",
+   "is_bot": false,
+   "length_old": 1868,
+   "length_new": 2367
+  },
+  {
+   "event_id": "e5b1d43e-1045-4147-ad1c-59d9a13f9a6d",
+   "event_ts": "2026-11-27T23:39:16.136000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q104420261",
+   "is_bot": false,
+   "length_old": 43273,
+   "length_new": 45137
+  },
+  {
+   "event_id": "6cf4d51c-0815-435a-8098-b465efeab673",
+   "event_ts": "2026-11-27T23:40:45.591000Z",
+   "wiki": "enwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u5be6\u540d\u8a8d\u8b49",
+   "is_bot": false,
+   "length_old": 240,
+   "length_new": 266
+  },
+  {
+   "event_id": "14ed5358-ba01-487a-b985-15a54aa10489",
+   "event_ts": "2026-11-27T23:40:28.852000Z",
    "wiki": "commonswiki",
    "change_type": "edit",
    "namespace": 6,
-   "title": "File:Share people vaccinated covid, Europe, Jul 12, 2023.svg",
+   "title": "File:Steinbach-Steinbacher Str-Nr25-04-2022-gje.jpg",
    "is_bot": true,
-   "length_old": 798,
-   "length_new": 3331
+   "length_old": 1422,
+   "length_new": 7153
   },
   {
-   "event_id": "507fcc9f-0320-4aea-b271-dcf5edf72d78",
-   "event_ts": "2026-11-27T15:23:58.107000Z",
-   "wiki": "urwiki",
+   "event_id": "5513f055-1d74-45f2-808b-5ec81f908851",
+   "event_ts": "2026-11-27T23:38:54.367000Z",
+   "wiki": "cebwiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "\u0632\u0645\u0631\u06c1:\u0646\u0627\u0645\u06a9\u0645\u0644 \u067e\u06cc\u0627\u0645\u06cc \u062e\u0627\u0646\u06d2",
-   "is_bot": false,
+   "title": "Kategoriya:CS1 maint: unflagged free DOI",
+   "is_bot": true,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "9e4516a2-b082-4d42-8244-cf78c44f0705",
-   "event_ts": "2026-11-27T15:24:19.574000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "86ee7038-1a41-4836-8d5f-1c77cf0964f8",
+   "event_ts": "2026-11-27T23:40:29.537000Z",
+   "wiki": "elwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q104701978",
+   "title": "\u03a4\u03c3\u03b5\u03c7\u03b9\u03ba\u03ad\u03c2 \u03b5\u03ba\u03bb\u03bf\u03b3\u03ad\u03c2 \u0393\u03b5\u03c1\u03bf\u03c5\u03c3\u03af\u03b1\u03c2 2026",
    "is_bot": false,
-   "length_old": 27479,
-   "length_new": 28280
+   "length_old": 19552,
+   "length_new": 19535
   },
   {
-   "event_id": "101f9b69-71b1-432f-a899-b9dc1483fc80",
-   "event_ts": "2026-11-27T15:24:44.903000Z",
-   "wiki": "enwiki",
+   "event_id": "04309c60-aa76-446b-aca3-692c6983d267",
+   "event_ts": "2026-11-27T23:40:12.286000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:IMG 81wedding46.jpg",
+   "is_bot": true,
+   "length_old": 6168,
+   "length_new": 8195
+  },
+  {
+   "event_id": "7e21ccc5-c452-4b60-9498-610fde22d0ba",
+   "event_ts": "2026-11-27T23:39:58.094000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:NOUVEAU D'HOZIER. Gribou-Grip. - btv1b10080928z (068 of 422).jpg",
+   "is_bot": true,
+   "length_old": 1394,
+   "length_new": 1409
+  },
+  {
+   "event_id": "f35048b6-f411-4965-a19e-fcc5a8e530c1",
+   "event_ts": "2026-11-27T23:39:54.179000Z",
+   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Category:1986 births",
+   "title": "Category:Boeing 737-800 (msn 32779, ln 1167)",
    "is_bot": false,
    "length_old": null,
    "length_new": null
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 5262,
+   "observed": 3986,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 5262,
-    "silver": 5262,
+    "bronze": 3986,
+    "silver": 3986,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2409,
-    "gold_edits": 2409
+    "silver_edits": 2514,
+    "gold_edits": 2514
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,66 +337,66 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2409,
-  "bot_share": 0.4695,
+  "edits": 2514,
+  "bot_share": 0.5099,
   "top_wikis": [
    {
     "wiki": "commonswiki",
-    "edits": 815
-   },
-   {
-    "wiki": "enwiki",
-    "edits": 333
+    "edits": 796
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 309
+    "edits": 659
    },
    {
-    "wiki": "idwiki",
-    "edits": 136
+    "wiki": "enwiki",
+    "edits": 301
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 166
    },
    {
     "wiki": "zhwikisource",
-    "edits": 107
+    "edits": 115
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q66748",
-    "edits": 8
+    "title": "Q113669338",
+    "edits": 12
    },
    {
-    "wiki": "commonswiki",
-    "title": "File:United Boeing 757-200 N41135 IAD VA1.jpg",
+    "wiki": "wikidatawiki",
+    "title": "Q107140155",
     "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q104446689",
-    "edits": 5
+    "title": "Q142314936",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q12072279",
-    "edits": 5
+    "title": "Q64351129",
+    "edits": 6
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q67198456",
+    "title": "Q222996",
     "edits": 5
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 33370,
-  "silver.recentchange": 33370,
+  "bronze.recentchange": 37356,
+  "silver.recentchange": 37356,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 641,
-  "gold.bot_share_hour": 8,
-  "gold.top_pages_hour": 80,
+  "gold.edits_per_wiki_hour": 712,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
   "keep_hours": 72,
   "restored_from_cache": true
  },
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/46024394892"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/46083600184"
  },
  "schema_version": 1
 }

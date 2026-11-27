@@ -1,0 +1,410 @@
+{
+ "run_id": "20261127T233852Z",
+ "trigger": "schedule",
+ "started_at": "2026-11-27T23:38:52Z",
+ "status": "passed",
+ "finished_at": "2026-11-27T23:41:26Z",
+ "duration_s": 154.02,
+ "source": {
+  "kind": "wikimedia",
+  "url": "https://stream.wikimedia.org/v2/stream/recentchange",
+  "sample_seconds": 120.1,
+  "events": 3986,
+  "bytes": 5206167,
+  "window_start": "2026-11-27T23:38:52Z",
+  "window_end": "2026-11-27T23:40:52Z"
+ },
+ "partitions": [
+  "2026-11-27T23"
+ ],
+ "stages": [
+  {
+   "name": "extract",
+   "status": "ok",
+   "started_at": "2026-11-27T23:38:52Z",
+   "duration_s": 120.07,
+   "rows_in": null,
+   "rows_out": 3986,
+   "detail": {}
+  },
+  {
+   "name": "bronze",
+   "status": "ok",
+   "started_at": "2026-11-27T23:40:52Z",
+   "duration_s": 10.66,
+   "rows_in": 3986,
+   "rows_out": 3986,
+   "detail": {
+    "already_landed": false,
+    "hours": [
+     "2026-11-27T23"
+    ]
+   }
+  },
+  {
+   "name": "schema",
+   "status": "ok",
+   "started_at": "2026-11-27T23:41:02Z",
+   "duration_s": 0.15,
+   "rows_in": 3986,
+   "rows_out": null,
+   "detail": {
+    "changes": 0,
+    "fields_tracked": 39
+   }
+  },
+  {
+   "name": "silver",
+   "status": "ok",
+   "started_at": "2026-11-27T23:41:03Z",
+   "duration_s": 7.96,
+   "rows_in": 3986,
+   "rows_out": 3986,
+   "detail": {
+    "quarantined": 0,
+    "duplicates": 0
+   }
+  },
+  {
+   "name": "gold",
+   "status": "ok",
+   "started_at": "2026-11-27T23:41:11Z",
+   "duration_s": 9.16,
+   "rows_in": 3986,
+   "rows_out": 82,
+   "detail": {
+    "tables": {
+     "gold.edits_per_wiki_hour": 71,
+     "gold.bot_share_hour": 1,
+     "gold.top_pages_hour": 10
+    }
+   }
+  },
+  {
+   "name": "quality",
+   "status": "ok",
+   "started_at": "2026-11-27T23:41:20Z",
+   "duration_s": 3.82,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "checks": 8,
+    "failed": 0
+   }
+  },
+  {
+   "name": "retention",
+   "status": "ok",
+   "started_at": "2026-11-27T23:41:24Z",
+   "duration_s": 2.19,
+   "rows_in": null,
+   "rows_out": null,
+   "detail": {
+    "rows_deleted": 0,
+    "keep_hours": 72
+   }
+  }
+ ],
+ "rows": {
+  "landed": 3986,
+  "bronze": 3986,
+  "silver": 3986,
+  "quarantine": 0,
+  "duplicates": 0
+ },
+ "rejects": {
+  "total": 0,
+  "rate": 0.0,
+  "by_reason": {},
+  "samples": []
+ },
+ "samples": [
+  {
+   "event_id": "b837e03d-3bad-4d42-ad2f-7effc95e629d",
+   "event_ts": "2026-11-27T23:39:55.099000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD-USGov missing SDC copyright status",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "35933e17-2a94-4104-bc83-f8814b03558e",
+   "event_ts": "2026-11-27T23:40:47.092000Z",
+   "wiki": "enwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "D'Arcy Wentworth",
+   "is_bot": true,
+   "length_old": 49031,
+   "length_new": 49648
+  },
+  {
+   "event_id": "62dc0c95-0d88-403b-8501-0802b4480f85",
+   "event_ts": "2026-11-27T23:40:20.151000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:PD-USGov missing SDC copyright status",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "93ce6112-aee0-4af5-b787-9bc662cf487e",
+   "event_ts": "2026-11-27T23:40:09.699000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q142315290",
+   "is_bot": false,
+   "length_old": 1868,
+   "length_new": 2367
+  },
+  {
+   "event_id": "e5b1d43e-1045-4147-ad1c-59d9a13f9a6d",
+   "event_ts": "2026-11-27T23:39:16.136000Z",
+   "wiki": "wikidatawiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "Q104420261",
+   "is_bot": false,
+   "length_old": 43273,
+   "length_new": 45137
+  },
+  {
+   "event_id": "6cf4d51c-0815-435a-8098-b465efeab673",
+   "event_ts": "2026-11-27T23:40:45.591000Z",
+   "wiki": "enwiktionary",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u5be6\u540d\u8a8d\u8b49",
+   "is_bot": false,
+   "length_old": 240,
+   "length_new": 266
+  },
+  {
+   "event_id": "14ed5358-ba01-487a-b985-15a54aa10489",
+   "event_ts": "2026-11-27T23:40:28.852000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Steinbach-Steinbacher Str-Nr25-04-2022-gje.jpg",
+   "is_bot": true,
+   "length_old": 1422,
+   "length_new": 7153
+  },
+  {
+   "event_id": "5513f055-1d74-45f2-808b-5ec81f908851",
+   "event_ts": "2026-11-27T23:38:54.367000Z",
+   "wiki": "cebwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Kategoriya:CS1 maint: unflagged free DOI",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "86ee7038-1a41-4836-8d5f-1c77cf0964f8",
+   "event_ts": "2026-11-27T23:40:29.537000Z",
+   "wiki": "elwiki",
+   "change_type": "edit",
+   "namespace": 0,
+   "title": "\u03a4\u03c3\u03b5\u03c7\u03b9\u03ba\u03ad\u03c2 \u03b5\u03ba\u03bb\u03bf\u03b3\u03ad\u03c2 \u0393\u03b5\u03c1\u03bf\u03c5\u03c3\u03af\u03b1\u03c2 2026",
+   "is_bot": false,
+   "length_old": 19552,
+   "length_new": 19535
+  },
+  {
+   "event_id": "04309c60-aa76-446b-aca3-692c6983d267",
+   "event_ts": "2026-11-27T23:40:12.286000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:IMG 81wedding46.jpg",
+   "is_bot": true,
+   "length_old": 6168,
+   "length_new": 8195
+  },
+  {
+   "event_id": "7e21ccc5-c452-4b60-9498-610fde22d0ba",
+   "event_ts": "2026-11-27T23:39:58.094000Z",
+   "wiki": "commonswiki",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:NOUVEAU D'HOZIER. Gribou-Grip. - btv1b10080928z (068 of 422).jpg",
+   "is_bot": true,
+   "length_old": 1394,
+   "length_new": 1409
+  },
+  {
+   "event_id": "f35048b6-f411-4965-a19e-fcc5a8e530c1",
+   "event_ts": "2026-11-27T23:39:54.179000Z",
+   "wiki": "commonswiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:Boeing 737-800 (msn 32779, ln 1167)",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  }
+ ],
+ "dq": [
+  {
+   "check": "row_count",
+   "target": "bronze.recentchange",
+   "status": "pass",
+   "observed": 3986,
+   "threshold": ">= 1",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.domain",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.0",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "null_rate",
+   "target": "silver.recentchange.namespace",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.01",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "unique",
+   "target": "silver.recentchange.event_id",
+   "status": "pass",
+   "observed": 0,
+   "threshold": "0 duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "freshness",
+   "target": "silver.recentchange",
+   "status": "pass",
+   "observed": -2.0,
+   "threshold": "<= 30 min",
+   "severity": "warn",
+   "detail": "minutes since the newest event"
+  },
+  {
+   "check": "reconciliation",
+   "target": "bronze -> silver",
+   "status": "pass",
+   "observed": {
+    "bronze": 3986,
+    "silver": 3986,
+    "quarantine": 0,
+    "duplicates": 0
+   },
+   "threshold": "bronze = silver + quarantine + duplicates",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reconciliation",
+   "target": "silver -> gold",
+   "status": "pass",
+   "observed": {
+    "silver_edits": 2514,
+    "gold_edits": 2514
+   },
+   "threshold": "equal",
+   "severity": "error",
+   "detail": ""
+  },
+  {
+   "check": "reject_rate",
+   "target": "silver.quarantine",
+   "status": "pass",
+   "observed": 0.0,
+   "threshold": "<= 0.05",
+   "severity": "warn",
+   "detail": ""
+  }
+ ],
+ "schema_changes": [],
+ "contract_notes": [],
+ "gold": {
+  "edits": 2514,
+  "bot_share": 0.5099,
+  "top_wikis": [
+   {
+    "wiki": "commonswiki",
+    "edits": 796
+   },
+   {
+    "wiki": "wikidatawiki",
+    "edits": 659
+   },
+   {
+    "wiki": "enwiki",
+    "edits": 301
+   },
+   {
+    "wiki": "ttwiki",
+    "edits": 166
+   },
+   {
+    "wiki": "zhwikisource",
+    "edits": 115
+   }
+  ],
+  "top_pages": [
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q113669338",
+    "edits": 12
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q107140155",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q142314936",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q64351129",
+    "edits": 6
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q222996",
+    "edits": 5
+   }
+  ],
+  "note": "Counts cover the sampled window of each hour, not the whole hour."
+ },
+ "lake": {
+  "bronze.recentchange": 37356,
+  "silver.recentchange": 37356,
+  "silver.quarantine": 0,
+  "gold.edits_per_wiki_hour": 712,
+  "gold.bot_share_hour": 9,
+  "gold.top_pages_hour": 90,
+  "keep_hours": 72,
+  "restored_from_cache": true
+ },
+ "error": null,
+ "code": {
+  "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
+  "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/46083600184"
+ },
+ "schema_version": 1
+}
