@@ -1,52 +1,52 @@
 {
- "run_id": "20261127T233852Z",
+ "run_id": "20261128T080943Z",
  "trigger": "schedule",
- "started_at": "2026-11-27T23:38:52Z",
+ "started_at": "2026-11-28T08:09:43Z",
  "status": "passed",
- "finished_at": "2026-11-27T23:41:26Z",
- "duration_s": 154.02,
+ "finished_at": "2026-11-28T08:13:07Z",
+ "duration_s": 204.01,
  "source": {
   "kind": "wikimedia",
   "url": "https://stream.wikimedia.org/v2/stream/recentchange",
   "sample_seconds": 120.1,
-  "events": 3986,
-  "bytes": 5206167,
-  "window_start": "2026-11-27T23:38:52Z",
-  "window_end": "2026-11-27T23:40:52Z"
+  "events": 3905,
+  "bytes": 4911040,
+  "window_start": "2026-11-28T08:09:43Z",
+  "window_end": "2026-11-28T08:11:43Z"
  },
  "partitions": [
-  "2026-11-27T23"
+  "2026-11-28T08"
  ],
  "stages": [
   {
    "name": "extract",
    "status": "ok",
-   "started_at": "2026-11-27T23:38:52Z",
+   "started_at": "2026-11-28T08:09:43Z",
    "duration_s": 120.07,
    "rows_in": null,
-   "rows_out": 3986,
+   "rows_out": 3905,
    "detail": {}
   },
   {
    "name": "bronze",
    "status": "ok",
-   "started_at": "2026-11-27T23:40:52Z",
-   "duration_s": 10.66,
-   "rows_in": 3986,
-   "rows_out": 3986,
+   "started_at": "2026-11-28T08:11:43Z",
+   "duration_s": 8.3,
+   "rows_in": 3905,
+   "rows_out": 3905,
    "detail": {
     "already_landed": false,
     "hours": [
-     "2026-11-27T23"
+     "2026-11-28T08"
     ]
    }
   },
   {
    "name": "schema",
    "status": "ok",
-   "started_at": "2026-11-27T23:41:02Z",
-   "duration_s": 0.15,
-   "rows_in": 3986,
+   "started_at": "2026-11-28T08:11:51Z",
+   "duration_s": 0.08,
+   "rows_in": 3905,
    "rows_out": null,
    "detail": {
     "changes": 0,
@@ -56,10 +56,10 @@
   {
    "name": "silver",
    "status": "ok",
-   "started_at": "2026-11-27T23:41:03Z",
-   "duration_s": 7.96,
-   "rows_in": 3986,
-   "rows_out": 3986,
+   "started_at": "2026-11-28T08:11:51Z",
+   "duration_s": 5.38,
+   "rows_in": 3905,
+   "rows_out": 3905,
    "detail": {
     "quarantined": 0,
     "duplicates": 0
@@ -68,13 +68,13 @@
   {
    "name": "gold",
    "status": "ok",
-   "started_at": "2026-11-27T23:41:11Z",
-   "duration_s": 9.16,
-   "rows_in": 3986,
-   "rows_out": 82,
+   "started_at": "2026-11-28T08:11:57Z",
+   "duration_s": 7.3,
+   "rows_in": 3905,
+   "rows_out": 91,
    "detail": {
     "tables": {
-     "gold.edits_per_wiki_hour": 71,
+     "gold.edits_per_wiki_hour": 80,
      "gold.bot_share_hour": 1,
      "gold.top_pages_hour": 10
     }
@@ -83,8 +83,8 @@
   {
    "name": "quality",
    "status": "ok",
-   "started_at": "2026-11-27T23:41:20Z",
-   "duration_s": 3.82,
+   "started_at": "2026-11-28T08:12:04Z",
+   "duration_s": 2.43,
    "rows_in": null,
    "rows_out": null,
    "detail": {
@@ -95,20 +95,20 @@
   {
    "name": "retention",
    "status": "ok",
-   "started_at": "2026-11-27T23:41:24Z",
-   "duration_s": 2.19,
+   "started_at": "2026-11-28T08:12:07Z",
+   "duration_s": 60.44,
    "rows_in": null,
    "rows_out": null,
    "detail": {
-    "rows_deleted": 0,
+    "rows_deleted": 8997,
     "keep_hours": 72
    }
   }
  ],
  "rows": {
-  "landed": 3986,
-  "bronze": 3986,
-  "silver": 3986,
+  "landed": 3905,
+  "bronze": 3905,
+  "silver": 3905,
   "quarantine": 0,
   "duplicates": 0
  },
@@ -120,136 +120,136 @@
  },
  "samples": [
   {
-   "event_id": "b837e03d-3bad-4d42-ad2f-7effc95e629d",
-   "event_ts": "2026-11-27T23:39:55.099000Z",
+   "event_id": "e0b860dd-66ef-43d3-b7f1-2198c0ef15ad",
+   "event_ts": "2026-11-28T08:11:11.855000Z",
    "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:PD-USGov missing SDC copyright status",
-   "is_bot": true,
+   "change_type": "log",
+   "namespace": 6,
+   "title": "File:Sachsen-Eisenach, Johann Wilhelm, 1718, Inventarnummer 2.2. 8621 (2).jpg",
+   "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "35933e17-2a94-4104-bc83-f8814b03558e",
-   "event_ts": "2026-11-27T23:40:47.092000Z",
+   "event_id": "f0005504-e6d1-4e70-9018-cd5d4ef8dc81",
+   "event_ts": "2026-11-28T08:11:42.920000Z",
+   "wiki": "ttwiki",
+   "change_type": "new",
+   "namespace": 1,
+   "title": "\u0411\u04d9\u0445\u04d9\u0441:\u041b\u043e\u0441 \u041f\u0443\u0435\u043d\u0442\u0435\u0441 \u041a\u0443\u0430\u0442\u0435\u0441 (\u0410\u043e\u043c\u0435)",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 36
+  },
+  {
+   "event_id": "99075663-13e8-48fc-a96c-68d3b0830bd1",
+   "event_ts": "2026-11-28T08:09:46.845000Z",
+   "wiki": "enwiki",
+   "change_type": "categorize",
+   "namespace": 14,
+   "title": "Category:People from Lopburi province",
+   "is_bot": false,
+   "length_old": null,
+   "length_new": null
+  },
+  {
+   "event_id": "ba26fd52-6b2e-405b-924d-6c300a49a8c0",
+   "event_ts": "2026-11-28T08:11:15.352000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 1101\u518a.djvu/990",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2291
+  },
+  {
+   "event_id": "47dbd450-3c1b-4843-a3d9-e26c7392edc2",
+   "event_ts": "2026-11-28T08:11:15.602000Z",
+   "wiki": "zhwiki",
+   "change_type": "edit",
+   "namespace": 4,
+   "title": "Wikipedia:\u5080\u5121\u8abf\u67e5/\u6848\u4ef6/XiaoFui",
+   "is_bot": true,
+   "length_old": 1129,
+   "length_new": 1465
+  },
+  {
+   "event_id": "647b09f1-a715-45d7-8a13-40e8e816aecc",
+   "event_ts": "2026-11-28T08:11:42.350000Z",
    "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "D'Arcy Wentworth",
+   "title": "Brave New World (Fringe)",
    "is_bot": true,
-   "length_old": 49031,
-   "length_new": 49648
+   "length_old": 22974,
+   "length_new": 23432
   },
   {
-   "event_id": "62dc0c95-0d88-403b-8501-0802b4480f85",
-   "event_ts": "2026-11-27T23:40:20.151000Z",
+   "event_id": "8a7c183a-1521-41ce-ac90-c0ad29155fe2",
+   "event_ts": "2026-11-28T08:10:07.495000Z",
    "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:PD-USGov missing SDC copyright status",
+   "change_type": "edit",
+   "namespace": 6,
+   "title": "File:Lady Bird Johnson's Daily Diary Entry, 4-24-1966 - DPLA - 67d5c9b5111f1f0327daecebf27c496e.pdf",
    "is_bot": true,
+   "length_old": 26989,
+   "length_new": 27347
+  },
+  {
+   "event_id": "82bd479c-e3ad-4faf-a594-5ecdd70c56d2",
+   "event_ts": "2026-11-28T08:11:27.674000Z",
+   "wiki": "itwiki",
+   "change_type": "log",
+   "namespace": 118,
+   "title": "Bozza:Antonina F\u00ebdorovna Chudjakova",
+   "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "93ce6112-aee0-4af5-b787-9bc662cf487e",
-   "event_ts": "2026-11-27T23:40:09.699000Z",
-   "wiki": "wikidatawiki",
+   "event_id": "63d71f63-8c11-4697-be6f-c870a86f97aa",
+   "event_ts": "2026-11-28T08:11:10.883000Z",
+   "wiki": "arwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "Q142315290",
-   "is_bot": false,
-   "length_old": 1868,
-   "length_new": 2367
-  },
-  {
-   "event_id": "e5b1d43e-1045-4147-ad1c-59d9a13f9a6d",
-   "event_ts": "2026-11-27T23:39:16.136000Z",
-   "wiki": "wikidatawiki",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "Q104420261",
-   "is_bot": false,
-   "length_old": 43273,
-   "length_new": 45137
-  },
-  {
-   "event_id": "6cf4d51c-0815-435a-8098-b465efeab673",
-   "event_ts": "2026-11-27T23:40:45.591000Z",
-   "wiki": "enwiktionary",
-   "change_type": "edit",
-   "namespace": 0,
-   "title": "\u5be6\u540d\u8a8d\u8b49",
-   "is_bot": false,
-   "length_old": 240,
-   "length_new": 266
-  },
-  {
-   "event_id": "14ed5358-ba01-487a-b985-15a54aa10489",
-   "event_ts": "2026-11-27T23:40:28.852000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:Steinbach-Steinbacher Str-Nr25-04-2022-gje.jpg",
+   "title": "\u0633\u064a\u0631\u062c\u064a\u0648 \u0644\u0648\u0628\u064a\u0632 (\u0644\u0627\u0639\u0628 \u0643\u0631\u0629 \u0642\u062f\u0645 \u0645\u0648\u0627\u0644\u064a\u062f 1999)",
    "is_bot": true,
-   "length_old": 1422,
-   "length_new": 7153
+   "length_old": 4644,
+   "length_new": 4779
   },
   {
-   "event_id": "5513f055-1d74-45f2-808b-5ec81f908851",
-   "event_ts": "2026-11-27T23:38:54.367000Z",
-   "wiki": "cebwiki",
+   "event_id": "5d3ea425-629d-445f-9e2f-e774c5e99e01",
+   "event_ts": "2026-11-28T08:10:49.335000Z",
+   "wiki": "zhwikisource",
+   "change_type": "new",
+   "namespace": 104,
+   "title": "Page:\u6587\u6df5\u95a3\u56db\u5eab\u5168\u66f8 1101\u518a.djvu/967",
+   "is_bot": true,
+   "length_old": null,
+   "length_new": 2219
+  },
+  {
+   "event_id": "573dceef-2634-4d85-945f-dab0eac27a0e",
+   "event_ts": "2026-11-28T08:09:57.597000Z",
+   "wiki": "commonswiki",
    "change_type": "categorize",
    "namespace": 14,
-   "title": "Kategoriya:CS1 maint: unflagged free DOI",
-   "is_bot": true,
+   "title": "Category:Personality rights warning",
+   "is_bot": false,
    "length_old": null,
    "length_new": null
   },
   {
-   "event_id": "86ee7038-1a41-4836-8d5f-1c77cf0964f8",
-   "event_ts": "2026-11-27T23:40:29.537000Z",
-   "wiki": "elwiki",
+   "event_id": "edb18628-5a66-47eb-9236-0038a3497d71",
+   "event_ts": "2026-11-28T08:11:19.389000Z",
+   "wiki": "enwiki",
    "change_type": "edit",
    "namespace": 0,
-   "title": "\u03a4\u03c3\u03b5\u03c7\u03b9\u03ba\u03ad\u03c2 \u03b5\u03ba\u03bb\u03bf\u03b3\u03ad\u03c2 \u0393\u03b5\u03c1\u03bf\u03c5\u03c3\u03af\u03b1\u03c2 2026",
-   "is_bot": false,
-   "length_old": 19552,
-   "length_new": 19535
-  },
-  {
-   "event_id": "04309c60-aa76-446b-aca3-692c6983d267",
-   "event_ts": "2026-11-27T23:40:12.286000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:IMG 81wedding46.jpg",
+   "title": "2007\u201308 Borussia Dortmund season",
    "is_bot": true,
-   "length_old": 6168,
-   "length_new": 8195
-  },
-  {
-   "event_id": "7e21ccc5-c452-4b60-9498-610fde22d0ba",
-   "event_ts": "2026-11-27T23:39:58.094000Z",
-   "wiki": "commonswiki",
-   "change_type": "edit",
-   "namespace": 6,
-   "title": "File:NOUVEAU D'HOZIER. Gribou-Grip. - btv1b10080928z (068 of 422).jpg",
-   "is_bot": true,
-   "length_old": 1394,
-   "length_new": 1409
-  },
-  {
-   "event_id": "f35048b6-f411-4965-a19e-fcc5a8e530c1",
-   "event_ts": "2026-11-27T23:39:54.179000Z",
-   "wiki": "commonswiki",
-   "change_type": "categorize",
-   "namespace": 14,
-   "title": "Category:Boeing 737-800 (msn 32779, ln 1167)",
-   "is_bot": false,
-   "length_old": null,
-   "length_new": null
+   "length_old": 6341,
+   "length_new": 6345
   }
  ],
  "dq": [
@@ -257,7 +257,7 @@
    "check": "row_count",
    "target": "bronze.recentchange",
    "status": "pass",
-   "observed": 3986,
+   "observed": 3905,
    "threshold": ">= 1",
    "severity": "error",
    "detail": ""
@@ -303,8 +303,8 @@
    "target": "bronze -> silver",
    "status": "pass",
    "observed": {
-    "bronze": 3986,
-    "silver": 3986,
+    "bronze": 3905,
+    "silver": 3905,
     "quarantine": 0,
     "duplicates": 0
    },
@@ -317,8 +317,8 @@
    "target": "silver -> gold",
    "status": "pass",
    "observed": {
-    "silver_edits": 2514,
-    "gold_edits": 2514
+    "silver_edits": 2292,
+    "gold_edits": 2292
    },
    "threshold": "equal",
    "severity": "error",
@@ -337,64 +337,64 @@
  "schema_changes": [],
  "contract_notes": [],
  "gold": {
-  "edits": 2514,
-  "bot_share": 0.5099,
+  "edits": 2292,
+  "bot_share": 0.5384,
   "top_wikis": [
    {
+    "wiki": "enwiki",
+    "edits": 730
+   },
+   {
     "wiki": "commonswiki",
-    "edits": 796
+    "edits": 419
    },
    {
     "wiki": "wikidatawiki",
-    "edits": 659
+    "edits": 322
    },
    {
-    "wiki": "enwiki",
-    "edits": 301
-   },
-   {
-    "wiki": "ttwiki",
-    "edits": 166
+    "wiki": "ruwiktionary",
+    "edits": 103
    },
    {
     "wiki": "zhwikisource",
-    "edits": 115
+    "edits": 99
    }
   ],
   "top_pages": [
    {
     "wiki": "wikidatawiki",
-    "title": "Q113669338",
-    "edits": 12
+    "title": "Q132471786",
+    "edits": 7
    },
    {
     "wiki": "wikidatawiki",
-    "title": "Q107140155",
-    "edits": 6
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q142314936",
-    "edits": 6
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q64351129",
-    "edits": 6
-   },
-   {
-    "wiki": "wikidatawiki",
-    "title": "Q222996",
+    "title": "Q2940491",
     "edits": 5
+   },
+   {
+    "wiki": "aswiki",
+    "title": "\u09a8\u09cb\u09b9",
+    "edits": 4
+   },
+   {
+    "wiki": "enwiki",
+    "title": "2026\u201327 Southampton F.C. season",
+    "edits": 4
+   },
+   {
+    "wiki": "wikidatawiki",
+    "title": "Q137776754",
+    "edits": 4
    }
   ],
   "note": "Counts cover the sampled window of each hour, not the whole hour."
  },
  "lake": {
-  "bronze.recentchange": 37356,
-  "silver.recentchange": 37356,
+  "bronze.recentchange": 36806,
+  "silver.recentchange": 36806,
   "silver.quarantine": 0,
-  "gold.edits_per_wiki_hour": 712,
+  "gold.edits_per_wiki_hour": 716,
   "gold.bot_share_hour": 9,
   "gold.top_pages_hour": 90,
   "keep_hours": 72,
@@ -404,7 +404,7 @@
  "code": {
   "commit": "d0dfe98ab5d9fc0dc133b3438458431f65d9804f",
   "repository": "https://github.com/sagarkonkanagaon-netizenk/data-foundry",
-  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/46083600184"
+  "workflow_run": "https://github.com/sagarkonkanagaon-netizenk/data-foundry/actions/runs/46124463559"
  },
  "schema_version": 1
 }
